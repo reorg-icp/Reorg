@@ -117,3 +117,4 @@ pub struct UpdateSystemParamsPayload {
     pub proposal_vote_threshold: Option<Tokens>,
     pub proposal_submission_deposit: Option<Tokens>,
 }
+//company details go into system params
