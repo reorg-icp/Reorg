@@ -107,17 +107,17 @@ Governance in a tokenized DAO is conducted through voting using governance token
 4. **Fundraising**
 
 Investors can find and acquire these tokens on various exchanges, generating funding for the issuing startups
-
-    ```plaintext
+   ```plaintext
         +---------------------------+
-        |        Fundraising        |
+        |        Fundraising       |
         +------------+--------------+
                      |
                      v
         +------------+--------------+
-        |  Sell Tokens to Investors |
+        |  Sell tokens to investors |
         +---------------------------+
     ```
+
 
 5. **Operation as DAO**
 
