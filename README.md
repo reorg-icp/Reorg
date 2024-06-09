@@ -10,7 +10,7 @@ Reorg leverages blockchain technology to transform startups into Decentralized A
 
 ## Introduction
 
-In recent years, blockchain technology has introduced innovative ways to manage and transfer value. Among these innovations, the concept of tokenization has gained significant attention. Tokenization refers to the process of converting rights to an asset into a digital token on a blockchain. This approach provides numerous advantages, including improved liquidity, enhanced security, and increased accessibility.
+In recent years, blockchain technology has introduced innovative ways to manage and transfer value, with tokenization gaining significant attention as the process of converting rights to an asset into a digital token on a blockchain, offering advantages like improved liquidity, enhanced security, and increased accessibility. However, existing problems in traditional financing systems, such as limited access to funding, opaque governance structures, and geographic barriers hindering global reach, persist. Reorg addresses these challenges by democratizing access to funding through tokenization, enabling startups to raise capital directly from a global pool of investors, while providing transparent and democratic governance through tokenized DAOs, ensuring accountability and fairness in decision-making processes. Operating on the Internet Computer blockchain, Reorg transcends geographic limitations, providing a decentralized and borderless platform for startups and investors worldwide, thereby expanding investment opportunities and fostering a more inclusive global economy.
 
 ### Stablecoins as a Precedent
 
