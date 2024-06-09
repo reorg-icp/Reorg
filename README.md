@@ -91,7 +91,7 @@ Governance in a tokenized DAO is conducted through voting using governance token
 
 3. **Tokenization**
 
-    Ownership and assets are tokenized into NFTs and fungible tokens.
+    Ownership and assets are tokenized into ICRC1-compatible tokens. i.e they can be exchanged on decentralized exchange platforms such as ICPSWAP e.t.c
 
     ```plaintext
         +---------------------------+
@@ -100,13 +100,13 @@ Governance in a tokenized DAO is conducted through voting using governance token
                      |
                      v
         +------------+--------------+
-        | NFTs and Fungible Tokens  |
+        |  Fungible Tokens  |
         +---------------------------+
     ```
 
 4. **Fundraising**
 
-    Startups raise funds by selling these tokens to investors.
+Investors can find and acquire these tokens on various exchanges, generating funding for the issuing startups
 
     ```plaintext
         +---------------------------+
@@ -136,33 +136,21 @@ Governance in a tokenized DAO is conducted through voting using governance token
 
 ## Conclusion
 
-Reorg leverages the power of blockchain and tokenization to transform the way startups raise funds and govern their operations. By creating tokenized DAOs, we enable a democratic, transparent, and efficient ecosystem for startups and investors. The use of NFTs and fungible tokens ensures liquidity, ownership clarity, and active participation in governance, driving the future of decentralized economies.
+Reorg leverages the power of blockchain and tokenization to transform the way startups raise funds and govern their operations. By creating tokenized DAOs, we enable a democratic, transparent, and efficient ecosystem for startups and investors. The use of tokens ensures liquidity, ownership clarity, and active participation in governance, driving the future of decentralized economies.
 
 # References
 
 1. **"The DAO" - Ethereum Whitepaper:**
    - Buterin, V. (2013). *Ethereum: A Next-Generation Smart Contract and Decentralized Application Platform*. Ethereum Whitepaper. Available at [Ethereum Whitepaper](https://ethereum.org/en/whitepaper/).
 
-2. **MakerDAO:**
-   - MakerDAO. (n.d.). *MakerDAO Documentation*. Available at [MakerDAO](https://makerdao.com/en/whitepaper/).
+2. **Internet computer: Building a DAO:**
+   - Internet computer. (n.d.). *Internet computer Documentation*. Available at [Building a DAO](https://internetcomputer.org/docs/current/references/samples/rust/basic_dao).
 
-3. **Aragon:**
-   - Aragon One. (2019). *Aragon Whitepaper: A Digital Jurisdiction for Decentralized Organizations*. Available at [Aragon Whitepaper](https://aragon.org/whitepaper.pdf).
+3. **The Bitcoin whitepaper**
+    - Satoshi Nakamoto. (2008). *Bitcoin: A Peer-to-Peer Electronic Cash System*. Available at [https://bitcoin.org/bitcoin.pdf](https://bitcoin.org/bitcoin.pdf)
 
-4. **Tokenization of Assets:**
-   - Deloitte. (2018). *The tokenization of assets is disrupting the financial industry*. Deloitte Insights. Available at [Deloitte Insights](https://www2.deloitte.com/content/dam/Deloitte/lu/Documents/financial-services/lu-tokenization-of-assets-disrupting-financial-industry.pdf).
 
-5. **World Economic Forum:**
-   - World Economic Forum. (2020). *Crypto, What Is It Good For? An Overview of Cryptocurrency Use Cases*. Available at [WEF](http://www3.weforum.org/docs/WEF_Cryptocurrency_Uses_Cases_2020.pdf).
 
-6. **The Law of Tokenization:**
-   - De Filippi, P., & Wright, A. (2018). *Blockchain and the Law: The Rule of Code*. Harvard University Press.
-
-7. **Switzerland's Legal Framework for DLT:**
-   - Swiss Federal Council. (2018). *Legal framework for distributed ledger technology and blockchain in Switzerland*. Available at [Swiss Federal Council](https://www.newsd.admin.ch/newsd/message/attachments/54056.pdf).
-
-8. **OpenLaw:**
-   - OpenLaw. (n.d.). *Automating Legal Agreements with OpenLaw*. Available at [OpenLaw](https://www.openlaw.io/).
 
 9. **Tokenomics:**
    - Voshmgir, S. (2020). *Token Economy: How Blockchains and Smart Contracts Revolutionize the Economy*. Token Kitchen.
