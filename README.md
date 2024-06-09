@@ -149,11 +149,3 @@ Reorg leverages the power of blockchain and tokenization to transform the way st
 3. **The Bitcoin whitepaper**
     - Satoshi Nakamoto. (2008). *Bitcoin: A Peer-to-Peer Electronic Cash System*. Available at [https://bitcoin.org/bitcoin.pdf](https://bitcoin.org/bitcoin.pdf)
 
-
-
-
-9. **Tokenomics:**
-   - Voshmgir, S. (2020). *Token Economy: How Blockchains and Smart Contracts Revolutionize the Economy*. Token Kitchen.
-
-10. **The DAO Hack:**
-    - Hackernoon. (2016). *The History of the DAO and Lessons Learned*. Available at [Hackernoon](https://hackernoon.com/the-history-of-the-dao-and-lessons-learned-d06740f8cfa5).
