@@ -1,6 +1,7 @@
 #[macro_use]
 extern crate serde;
 use error_handler::DaoError;
+use icrc2::create_and_deploy_canister;
 use types::BasicDaoStableStorage as Dao;
 use types::UpdateSystemParamsPayload;
 
@@ -13,6 +14,7 @@ use std::cell::RefCell;
 use std::fmt::Debug;
 mod dao;
 mod error_handler;
+mod icrc2;
 mod types;
 
 type Memory = VirtualMemory<DefaultMemoryImpl>;
@@ -35,7 +37,7 @@ thread_local! {
 
     static DAO_ID_COUNTER: RefCell<IdCell> = RefCell::new(
         IdCell::init(MEMORY_MANAGER.with(|m| m.borrow().get(MemoryId::new(1))), 0)
-            .expect("Cannot create a  user counter")
+            .expect("Cannot create a  DAO counter")
     );
 
 
@@ -65,6 +67,8 @@ fn _register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, DaoError> {
         .total_token_supply
         .ok_or(DaoError::MissingField("total_token_supply"))?;
 
+    //we need to create an icrc2 token here
+
     Ok(dao)
 }
 
@@ -84,5 +88,9 @@ fn register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, DaoError> {
         }
         Err(error) => Err(error),
     }
+}
+#[ic_cdk::update]
+async fn create_icrc2_token(wasm_module: Vec<u8>) -> Result<String, String> {
+    create_and_deploy_canister(wasm_module).await
 }
 ic_cdk::export_candid!();

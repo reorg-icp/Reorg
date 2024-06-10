@@ -1,1 +1,22 @@
-service : { greet : (text) -> (text) query }
+
+type CanisterId = principal;
+type CreateCanisterArgs = record {};
+type CanisterSettings = record {
+    controller: principal;
+    compute_allocation: nat;
+    memory_allocation: nat;
+    freezing_threshold: nat;
+};
+type InstallCodeArgs = record {
+    mode: variant { install; reinstall; upgrade };
+    canister_id: CanisterId;
+    wasm_module: blob;
+    arg: blob;
+};
+
+service : {
+    "create_canister": (CreateCanisterArgs) -> (record { canister_id: CanisterId });
+    "install_code": (InstallCodeArgs) -> ();
+    "update_settings": (record { canister_id: CanisterId; settings: CanisterSettings }) -> ();
+}
+

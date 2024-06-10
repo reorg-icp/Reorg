@@ -18,6 +18,7 @@ pub struct BasicDaoStableStorage {
 #[derive(Clone, Copy, Debug, Default, CandidType, Deserialize, PartialEq, PartialOrd)]
 pub struct Tokens {
     pub amount_e8s: u64,
+    pub canister_id: Option<Principal>,
 }
 
 impl Add for Tokens {
@@ -26,6 +27,7 @@ impl Add for Tokens {
     fn add(self, other: Self) -> Self {
         Tokens {
             amount_e8s: self.amount_e8s + other.amount_e8s,
+            canister_id: self.canister_id,
         }
     }
 }
@@ -47,6 +49,7 @@ impl Mul<u64> for Tokens {
     fn mul(self, rhs: u64) -> Self {
         Tokens {
             amount_e8s: self.amount_e8s * rhs,
+            canister_id: self.canister_id,
         }
     }
 }
