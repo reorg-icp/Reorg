@@ -150,5 +150,5 @@ Reorg leverages the power of blockchain and tokenization to transform the way st
     - Satoshi Nakamoto. (2008). *Bitcoin: A Peer-to-Peer Electronic Cash System*. Available at [https://bitcoin.org/bitcoin.pdf](https://bitcoin.org/bitcoin.pdf)
 
 4. **Internet computer:Ic reference**
-       - Internet computer. (n.d.). *Internet computer IC reference. Available at [IC reference ](https://internetcomputer.org/docs/current/references/ic-interface-spec/#target-audience)
+    - Internet computer. (n.d.). *Internet computer IC reference. Available at [IC reference ](https://internetcomputer.org/docs/current/references/ic-interface-spec/#target-audience)
 
