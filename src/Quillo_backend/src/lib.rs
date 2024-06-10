@@ -1,6 +1,7 @@
 #[macro_use]
 extern crate serde;
 use error_handler::DaoError;
+use error_handler::TokenError;
 use icrc2::create_and_deploy_canister;
 use types::BasicDaoStableStorage as Dao;
 use types::UpdateSystemParamsPayload;
@@ -91,7 +92,7 @@ fn register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, DaoError> {
     }
 }
 #[ic_cdk::update]
-async fn create_icrc2_token(wasm_module: Vec<u8>) -> Result<String, String> {
-    create_and_deploy_canister(wasm_module).await
+async fn create_icrc2_token() {
+    let result = create_and_deploy_canister().await;
 }
 ic_cdk::export_candid!();

@@ -5,6 +5,7 @@ use ic_cdk::api::management_canister::main::{
     create_canister, install_code, CanisterSettings, CreateCanisterArgument, InstallCodeArgument,
 };
 
+use crate::error_handler::TokenError;
 use crate::utils::decompress_wasm;
 use ic_cdk::trap;
 use ic_cdk_macros::{init, update};
@@ -31,7 +32,8 @@ pub struct TokenDetails {
     feature_flags: bool,
 }
 
-pub async fn create_and_deploy_canister(wasm_module: Vec<u8>) -> Result<String, String> {
+pub async fn create_and_deploy_canister() -> Result<String, TokenError> {
+    let wasm_module = decompress_wasm("icrc1_ledger.wasm.gz")?;
     let cycles = 40_000_000_000_000;
     let default_canister_settings: CanisterSettings = CanisterSettings::default();
 
@@ -41,7 +43,7 @@ pub async fn create_and_deploy_canister(wasm_module: Vec<u8>) -> Result<String, 
 
     let create_response = create_canister(create_args, cycles)
         .await
-        .map_err(|e| format!("Failed to create canister: {:?}", e))?;
+        .map_err(|e| TokenError::custom(format!("Failed to create canister: {:?}", e)))?;
 
     let new_canister_id = create_response.0;
 
@@ -55,7 +57,7 @@ pub async fn create_and_deploy_canister(wasm_module: Vec<u8>) -> Result<String, 
 
     install_code(install_args)
         .await
-        .map_err(|e| format!("Failed to install code: {:?}", e))?;
+        .map_err(|e| TokenError::custom(format!("Failed to install code: {:?}", e)))?;
 
     Ok(new_canister_id.canister_id.to_string())
 }

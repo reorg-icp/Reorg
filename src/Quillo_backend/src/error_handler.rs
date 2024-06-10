@@ -1,6 +1,8 @@
 use std::error::Error;
 use std::fmt;
+use std::io::{self, Error as IOERROR, Read};
 
+use candid::CandidType;
 // Define custom error type
 #[derive(Debug, candid::CandidType, Deserialize, Serialize)]
 pub enum DaoError {
@@ -15,3 +17,8 @@ impl fmt::Display for DaoError {
     }
 }
 impl Error for DaoError {}
+
+pub enum TokenError {
+    custom(String),
+    IO(IOERROR),
+}
