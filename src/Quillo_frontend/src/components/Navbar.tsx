@@ -54,12 +54,12 @@ export const Navbar = () => {
               <h2
                 style={{
                   color: "#50C878",
-                  fontSize: "48",
-                  fontFamily: "Arial, sans-serif",
+                  fontSize: "54",
+                  fontFamily: "cursive",
                   fontWeight: "bold",
                 }}
               >
-               Reorg
+               reorg.
               </h2>
             </a>
           </NavigationMenuItem>

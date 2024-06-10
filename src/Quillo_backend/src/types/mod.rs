@@ -1,5 +1,8 @@
+mod dao_methods;
 use candid::{CandidType, Deserialize, Principal};
 use std::ops::{Add, AddAssign, Mul, SubAssign};
+
+use crate::dao::RegistrationDetails;
 
 #[derive(Clone, Debug, Default, CandidType, Deserialize)]
 pub struct BasicDaoStableStorage {
@@ -116,5 +119,6 @@ pub struct UpdateSystemParamsPayload {
     pub transfer_fee: Option<Tokens>,
     pub proposal_vote_threshold: Option<Tokens>,
     pub proposal_submission_deposit: Option<Tokens>,
+    pub registration_details: RegistrationDetails,
 }
 //company details go into system params
