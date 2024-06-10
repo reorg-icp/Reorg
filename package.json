@@ -11,7 +11,9 @@
     "start": "npm start --workspaces --if-present",
     "test": "npm test --workspaces --if-present",
     "deploy": " ./did.sh &&  dfx generate Quillo_frontend && dfx generate Quillo_backend && dfx deploy -y",
-    "publish": "dfx deploy --network ic "
+    "publish": "dfx deploy --network ic ",
+    "build-backend":"cd src/Quillo_backend && cargo build",
+    "acp": "git add . && git commit -m \"$MESSAGE\" && git push origin \"$BRANCH\""
   },
   "type": "module",
   "workspaces": [

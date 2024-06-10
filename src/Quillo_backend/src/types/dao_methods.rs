@@ -9,11 +9,11 @@ impl DAO {
         // Logic to set new goals
     }
 
-    pub fn add_product_feature(&self, feature: String) {
+    pub fn add_product_feature(&self, feature: String, extra_info: String) {
         // Logic to add product feature
     }
 
-    pub fn prioritize_tasks(&self, tasks: Vec<String>) {
+    pub fn prioritize_tasks(&self, tasks: Vec<String>, extra_info: String) {
         // Logic to prioritize tasks
     }
 
