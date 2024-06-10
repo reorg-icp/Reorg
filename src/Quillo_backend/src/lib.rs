@@ -16,6 +16,7 @@ mod dao;
 mod error_handler;
 mod icrc2;
 mod types;
+mod utils;
 
 type Memory = VirtualMemory<DefaultMemoryImpl>;
 

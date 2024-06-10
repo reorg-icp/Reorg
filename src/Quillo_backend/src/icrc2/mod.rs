@@ -5,6 +5,7 @@ use ic_cdk::api::management_canister::main::{
     create_canister, install_code, CanisterSettings, CreateCanisterArgument, InstallCodeArgument,
 };
 
+use crate::utils::decompress_wasm;
 use ic_cdk::trap;
 use ic_cdk_macros::{init, update};
 
