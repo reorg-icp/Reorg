@@ -1,10 +1,12 @@
 use candid::CandidType;
+use candid::Decode;
 use candid::Encode;
 use candid::Nat as CNat;
 use candid::Principal;
 use ic_cdk::api::management_canister::main::{
     create_canister, install_code, CanisterSettings, CreateCanisterArgument, InstallCodeArgument,
 };
+use log::{debug, error, info, trace, warn};
 
 use icrc_ledger_types::icrc::generic_metadata_value::MetadataValue;
 use icrc_ledger_types::icrc1::account::Account;
@@ -24,7 +26,6 @@ use icrc_ledger_types::icrc::generic_value::Value::{Array, Blob, Int, Map, Nat, 
 
 mod ledger_types;
 pub async fn create_and_deploy_canister() -> Result<String, TokenError> {
-    // Create instances of required fields for InitArgs
     let minting_account = Account {
         owner: Principal::from_text(
             "owu57-ix3tx-4pgh7-pmu7n-dzlor-tqljq-wui5j-g5b2g-mtnfa-yklry-mae",
@@ -41,15 +42,12 @@ pub async fn create_and_deploy_canister() -> Result<String, TokenError> {
         subaccount: None,
     });
 
-    let transfer_fee = Nat64(1000);
-    let decimals = Some(Nat64(8));
-    let max_memo_length = Some(Nat64(256));
-    let token_symbol = Text("REO".to_string());
-    let token_name = Text("Reorg".to_string());
-    let metadata = vec![(
-        "icrc1_name".to_string(),
-        MetadataValue::Text("REORG".to_string()),
-    )];
+    let transfer_fee = CNat::from(1000_u32);
+    let decimals = Some(8);
+    let max_memo_length = Some(256);
+    let token_symbol = "REO".to_string();
+    let token_name = "Reorg".to_string();
+    let metadata = vec![("icrc1_name".to_string(), Text("REORG".to_string()))];
 
     let initial_balances = vec![(
         Account {
@@ -60,20 +58,20 @@ pub async fn create_and_deploy_canister() -> Result<String, TokenError> {
             subaccount: None,
             // Initialize the Account fields as needed
         },
-        Nat64(1000),
+        CNat::from(1000_u32),
     )];
 
     let feature_flags = Some(FeatureFlags { icrc2: true });
-    let maximum_number_of_accounts = Some(Nat64(1000));
-    let accounts_overflow_trim_quantity = Some(Nat64(100));
+    let maximum_number_of_accounts = Some(1000);
+    let accounts_overflow_trim_quantity = Some(100);
 
     let archive_options = ArchiveOptions {
-        num_blocks_to_archive: Nat64(500),
-        max_transactions_per_response: Some(Nat64(200)),
-        trigger_threshold: Nat64(1000),
-        max_message_size_bytes: Some(Nat64(1024)),
-        cycles_for_archive_creation: Some(Nat64(10)),
-        node_max_memory_size_bytes: Some(Nat64(2000)),
+        num_blocks_to_archive: 500usize,
+        max_transactions_per_response: Some(200),
+        trigger_threshold: 1000usize,
+        max_message_size_bytes: Some(1024),
+        cycles_for_archive_creation: Some(100),
+        node_max_memory_size_bytes: Some(200),
         controller_id: Principal::anonymous(),
         more_controller_ids: Some(vec![Principal::anonymous()]),
     };
@@ -97,8 +95,13 @@ pub async fn create_and_deploy_canister() -> Result<String, TokenError> {
     // Create a new token instance using LedgerArgs with UpgradeArgs as None
 
     let token = LedgerArg::Init(init_args);
-
     let serialized_args = Encode!(&token).expect("Serialization failed");
+
+    let formatted_message = format!(
+        "my_update_function called with args: {:?}",
+        &serialized_args
+    );
+    ic_cdk::print(&formatted_message);
     let wasm_module = ICRC1_LEDGER_WASM.to_vec();
     let cycles = 8_093_982_275;
     let default_canister_settings: CanisterSettings = CanisterSettings::default();
@@ -115,7 +118,7 @@ pub async fn create_and_deploy_canister() -> Result<String, TokenError> {
 
     // Step 2: Install code to the new canister
     let install_args = InstallCodeArgument {
-        canister_id: Principal::from_text("b77ix-eeaaa-aaaaa-qaada-cai").unwrap(), //b77ix-eeaaa-aaaaa-qaada-cai
+        canister_id: Principal::from_text("b77ix-eeaaa-aaaaa-qaada-cai").unwrap(), //b77ix-eeaaa-aaaaa-qaada-cai or replace with the created canister id
         wasm_module,
         arg: serialized_args, // here is where we pass argurments for our token but serialized as bytes encoded in candid
         mode: ic_cdk::api::management_canister::main::CanisterInstallMode::Install,
@@ -123,7 +126,7 @@ pub async fn create_and_deploy_canister() -> Result<String, TokenError> {
 
     install_code(install_args)
         .await
-        .map_err(|e| TokenError::custom(format!("Failed to install code: {:?}", e)))?;
+        .map_err(|e| TokenError::custom(format!("Failed to install code: {:?},{:?}", e.0, e.1)))?;
 
     Ok(new_canister_id.canister_id.to_string())
 }
