@@ -22,6 +22,10 @@ mod utils;
 type Memory = VirtualMemory<DefaultMemoryImpl>;
 
 type IdCell = Cell<u64, Memory>;
+use ic_cdk_macros::init;
+
+// Embed the file at compile time
+const ICRC1_LEDGER_WASM: &[u8] = include_bytes!("./assets/icrc1_ledger.wasm.gz");
 
 thread_local! {
 
@@ -92,7 +96,14 @@ fn register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, DaoError> {
     }
 }
 #[ic_cdk::update]
-async fn create_icrc2_token() {
+async fn create_icrc2_token() -> Result<String, String> {
     let result = create_and_deploy_canister().await;
+    match result {
+        Ok(canister_id) => Ok(canister_id),
+        Err(e) => match e {
+            TokenError::IO(err) => Err(String::from("Could not decompress the wasm")),
+            TokenError::custom(custom) => Err(custom),
+        },
+    }
 }
 ic_cdk::export_candid!();

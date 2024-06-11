@@ -17,7 +17,7 @@ impl fmt::Display for DaoError {
     }
 }
 impl Error for DaoError {}
-
+#[derive(Debug)]
 pub enum TokenError {
     custom(String),
     IO(IOERROR),
