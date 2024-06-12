@@ -2,12 +2,15 @@ use candid::Nat;
 use ic_cdk::id;
 use ic_ledger_types::MAINNET_CYCLES_MINTING_CANISTER_ID;
 
-use crate::rust_declarations::cmc_service::{CmcService, NotifyTopUpArg, NotifyTopUpResult};
+use crate::{
+    error_handler::TokenError,
+    rust_declarations::cmc_service::{CmcService, NotifyTopUpArg, NotifyTopUpResult},
+};
 
 pub struct CMC {}
 
 impl CMC {
-    pub async fn top_up_self(block_index: u64) -> Result<Nat, String> {
+    pub async fn top_up_self(block_index: u64) -> Result<Nat, TokenError> {
         match CmcService(MAINNET_CYCLES_MINTING_CANISTER_ID)
             .notify_top_up(NotifyTopUpArg {
                 block_index,
@@ -17,9 +20,9 @@ impl CMC {
         {
             Ok((result,)) => match result {
                 NotifyTopUpResult::Ok(cycles) => Ok(cycles),
-                NotifyTopUpResult::Err(err) => Err(format!("{:?}", err)),
+                NotifyTopUpResult::Err(err) => Err(TokenError::custom(format!("{:?}", err))),
             },
-            Err((_, err)) => Err(err),
+            Err((_, err)) => Err(TokenError::custom(format!("{:?}", err))),
         }
     }
 }

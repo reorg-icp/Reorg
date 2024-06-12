@@ -16,11 +16,11 @@ serde = "1.0.126"
 serde_derive = "1.0.126"
 ic-stable-structures = "0.5.6"
 ic-cdk-macros= "0.14.0"
-flate2 = "1.0"
+
 icrc-ledger-types= "0.1.5"
-log= "0.4.21"
-rust_decimal = "1.35.0"
-anyhow = "1.0.86"
-ic-agent= "0.36.0"
-hex= "0.4.3"
+
+
+
+
+
 ic-ledger-types= "0.11.0"

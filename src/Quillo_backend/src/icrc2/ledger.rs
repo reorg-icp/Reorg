@@ -5,16 +5,20 @@ use ic_ledger_types::{
     GetBlocksArgs, Tokens, TransferArgs, DEFAULT_SUBACCOUNT, MAINNET_LEDGER_CANISTER_ID,
 };
 
+use crate::error_handler::TokenError;
+
 pub struct Ledger {}
 
 impl Ledger {
-    pub async fn transfer_icp(args: TransferArgs) -> Result<u64, String> {
+    pub async fn transfer_icp(args: TransferArgs) -> Result<u64, TokenError> {
         match transfer(MAINNET_LEDGER_CANISTER_ID, args).await {
             Ok(result) => match result {
                 Ok(block_index) => Ok(block_index),
-                Err(err) => Err(err.to_string()),
+                Err(err) => Err(err.to_string())
+                    .map_err(|e| TokenError::custom(format!("Failed to create canister: {:?}", e))),
             },
-            Err((_, err)) => Err(err),
+            Err((_, err)) => Err(err)
+                .map_err(|e| TokenError::custom(format!("Failed to create canister: {:?}", e))),
         }
     }
 
