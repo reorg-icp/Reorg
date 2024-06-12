@@ -1,4 +1,5 @@
 mod dao_methods;
+pub mod icpts;
 
 use crate::dao::RegistrationDetails;
 use candid::{CandidType, Decode, Deserialize, Encode, Principal};

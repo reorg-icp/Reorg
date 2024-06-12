@@ -17,13 +17,17 @@ use crate::ICRC1_LEDGER_WASM;
 
 use icrc_ledger_types::icrc::generic_value::Value::Text;
 
+pub mod cmc;
+pub mod ledger;
 mod ledger_types;
+mod transactions;
 pub async fn create_and_deploy_canister(
     token_name: String,
     token_symbol: String,
     transfer_fee: Nat,
     total_supply: Nat,
     token_image: String,
+    cycles: u128,
 ) -> Result<String, TokenError> {
     let minting_account = Account {
         owner: Principal::from_text(
@@ -98,7 +102,7 @@ pub async fn create_and_deploy_canister(
     let serialized_args = Encode!(&token).expect("Serialization failed");
 
     let wasm_module = ICRC1_LEDGER_WASM.to_vec();
-    let cycles = 8_093_982_275;
+
     let default_canister_settings: CanisterSettings = CanisterSettings::default();
 
     let create_args = CreateCanisterArgument {

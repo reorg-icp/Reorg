@@ -1,6 +1,7 @@
 #[macro_use]
 extern crate serde;
 use candid::Nat;
+use candid::Principal;
 use error_handler::DaoError;
 use error_handler::TokenError;
 use icrc2::create_and_deploy_canister;
@@ -19,12 +20,16 @@ mod error_handler;
 mod icrc2;
 mod types;
 mod utils;
-
+pub mod rust_declarations {
+    pub mod cmc_service;
+    pub mod icp_ledger_service;
+}
 type Memory = VirtualMemory<DefaultMemoryImpl>;
 
 type IdCell = Cell<u64, Memory>;
 
 const ICRC1_LEDGER_WASM: &[u8] = include_bytes!("./assets/icrc1_ledger.wasm.gz");
+const MEMO_TOP_UP_CANISTER: u64 = 1347768404_u64;
 
 thread_local! {
 
@@ -94,28 +99,5 @@ fn register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, DaoError> {
         Err(error) => Err(error),
     }
 }
-#[ic_cdk::update]
-async fn create_icrc2_token(
-    token_name: String,
-    token_symbol: String,
-    transfer_fee: Nat,
-    total_supply: Nat,
-    token_image: String,
-) -> Result<String, String> {
-    let result = create_and_deploy_canister(
-        token_name,
-        token_symbol,
-        transfer_fee,
-        total_supply,
-        token_image,
-    )
-    .await;
-    match result {
-        Ok(canister_id) => Ok(canister_id),
-        Err(e) => match e {
-            TokenError::IO(_) => Err(String::from("Could not decompress the wasm")),
-            TokenError::custom(custom) => Err(custom),
-        },
-    }
-}
+
 ic_cdk::export_candid!();
