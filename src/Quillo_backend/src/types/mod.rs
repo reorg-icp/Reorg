@@ -1,4 +1,11 @@
-use candid::{CandidType, Deserialize, Principal};
+mod dao_methods;
+
+use crate::dao::RegistrationDetails;
+use candid::{CandidType, Decode, Deserialize, Encode, Principal};
+
+use ic_stable_structures::{BoundedStorable, Storable};
+use std::borrow::Cow;
+use std::default::Default;
 use std::ops::{Add, AddAssign, Mul, SubAssign};
 
 #[derive(Clone, Debug, Default, CandidType, Deserialize)]
@@ -11,6 +18,7 @@ pub struct BasicDaoStableStorage {
 #[derive(Clone, Copy, Debug, Default, CandidType, Deserialize, PartialEq, PartialOrd)]
 pub struct Tokens {
     pub amount_e8s: u64,
+    pub canister_id: Option<Principal>,
 }
 
 impl Add for Tokens {
@@ -19,6 +27,7 @@ impl Add for Tokens {
     fn add(self, other: Self) -> Self {
         Tokens {
             amount_e8s: self.amount_e8s + other.amount_e8s,
+            canister_id: self.canister_id,
         }
     }
 }
@@ -40,6 +49,7 @@ impl Mul<u64> for Tokens {
     fn mul(self, rhs: u64) -> Self {
         Tokens {
             amount_e8s: self.amount_e8s * rhs,
+            canister_id: self.canister_id,
         }
     }
 }
@@ -47,15 +57,10 @@ impl Mul<u64> for Tokens {
 #[derive(Clone, Debug, CandidType, Deserialize, PartialEq)]
 pub enum ProposalState {
     Open,
-
     Accepted,
-
     Rejected,
-
     Executing,
-
     Succeeded,
-
     Failed(String),
 }
 
@@ -105,10 +110,10 @@ pub struct VoteArgs {
 #[derive(Clone, Default, Debug, CandidType, Deserialize)]
 pub struct SystemParams {
     pub transfer_fee: Tokens,
-
     pub proposal_vote_threshold: Tokens,
-
     pub proposal_submission_deposit: Tokens,
+    pub total_token_supply: Tokens,
+    pub registration_details: RegistrationDetails,
 }
 
 #[derive(Clone, Debug, CandidType, Deserialize)]
@@ -116,5 +121,22 @@ pub struct UpdateSystemParamsPayload {
     pub transfer_fee: Option<Tokens>,
     pub proposal_vote_threshold: Option<Tokens>,
     pub proposal_submission_deposit: Option<Tokens>,
+    pub total_token_supply: Option<Tokens>,
+    pub registration_details: Option<RegistrationDetails>,
 }
-//company details go into system params
+
+//implement Storable and BoundedStorable
+impl Storable for BasicDaoStableStorage {
+    fn to_bytes(&self) -> std::borrow::Cow<[u8]> {
+        Cow::Owned(Encode!(self).unwrap())
+    }
+
+    fn from_bytes(bytes: std::borrow::Cow<[u8]>) -> Self {
+        Decode!(bytes.as_ref(), Self).unwrap()
+    }
+}
+
+impl BoundedStorable for BasicDaoStableStorage {
+    const MAX_SIZE: u32 = 102400;
+    const IS_FIXED_SIZE: bool = false;
+}

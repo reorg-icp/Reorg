@@ -12,11 +12,11 @@ export const LogoIcon = () => {
         x="10"
         y="35"
         fill="#50C878"
-        fontSize="40"
-        fontFamily="Arial, sans-serif"
+        fontSize="20"
+        fontFamily="Cursive"
         fontWeight="bold"
       >
-        Reorg
+        reorg.
       </text>
     </svg>
   );
