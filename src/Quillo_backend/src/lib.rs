@@ -1,6 +1,7 @@
 #[macro_use]
 extern crate serde;
 use candid::Nat;
+use candid::Principal;
 use error_handler::DaoError;
 use error_handler::TokenError;
 use icrc2::create_and_deploy_canister;
@@ -19,7 +20,11 @@ mod error_handler;
 mod icrc2;
 mod types;
 mod utils;
-
+pub mod rust_declarations {
+    pub mod cmc_service;
+    pub mod icp_ledger_service;
+    pub mod types;
+}
 type Memory = VirtualMemory<DefaultMemoryImpl>;
 
 type IdCell = Cell<u64, Memory>;

@@ -5,10 +5,12 @@ use ic_cdk::api::management_canister::main::{
     create_canister, install_code, CanisterSettings, CreateCanisterArgument, InstallCodeArgument,
 };
 
+use ic_ledger_types::Tokens;
 use icrc_ledger_types::icrc1::account::Account;
 use ledger_types::ArchiveOptions;
 use ledger_types::FeatureFlags;
 use ledger_types::InitArgs;
+use transactions::mint_cycles;
 
 use crate::error_handler::TokenError;
 use crate::icrc2::ledger_types::LedgerArg;
@@ -17,7 +19,10 @@ use crate::ICRC1_LEDGER_WASM;
 
 use icrc_ledger_types::icrc::generic_value::Value::Text;
 
+pub mod cmc;
+pub mod ledger;
 mod ledger_types;
+mod transactions;
 pub async fn create_and_deploy_canister(
     token_name: String,
     token_symbol: String,
@@ -25,6 +30,7 @@ pub async fn create_and_deploy_canister(
     total_supply: Nat,
     token_image: String,
 ) -> Result<String, TokenError> {
+    let minted_cycles = mint_cycles(Tokens::from_e8s(1000)).await?;
     let minting_account = Account {
         owner: Principal::from_text(
             "owu57-ix3tx-4pgh7-pmu7n-dzlor-tqljq-wui5j-g5b2g-mtnfa-yklry-mae",
@@ -98,14 +104,14 @@ pub async fn create_and_deploy_canister(
     let serialized_args = Encode!(&token).expect("Serialization failed");
 
     let wasm_module = ICRC1_LEDGER_WASM.to_vec();
-    let cycles = 8_093_982_275;
+
     let default_canister_settings: CanisterSettings = CanisterSettings::default();
 
     let create_args = CreateCanisterArgument {
         settings: Some(default_canister_settings),
     };
 
-    let create_response = create_canister(create_args, cycles)
+    let create_response = create_canister(create_args, nat_to_u128(minted_cycles))
         .await
         .map_err(|e| TokenError::custom(format!("Failed to create canister: {:?}", e)))?;
 
@@ -124,4 +130,7 @@ pub async fn create_and_deploy_canister(
         .map_err(|e| TokenError::custom(format!("Failed to install code: {:?},{:?}", e.0, e.1)))?;
 
     Ok(new_canister_id.canister_id.to_string())
+}
+fn nat_to_u128(value: Nat) -> u128 {
+    TryFrom::try_from(value.0).unwrap()
 }
