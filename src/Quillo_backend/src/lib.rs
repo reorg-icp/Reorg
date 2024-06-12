@@ -1,5 +1,6 @@
 #[macro_use]
 extern crate serde;
+use candid::Nat;
 use error_handler::DaoError;
 use error_handler::TokenError;
 use icrc2::create_and_deploy_canister;
@@ -12,7 +13,7 @@ use ic_stable_structures::{
 };
 
 use std::cell::RefCell;
-use std::fmt::Debug;
+
 mod dao;
 mod error_handler;
 mod icrc2;
@@ -22,9 +23,7 @@ mod utils;
 type Memory = VirtualMemory<DefaultMemoryImpl>;
 
 type IdCell = Cell<u64, Memory>;
-use ic_cdk_macros::init;
 
-// Embed the file at compile time
 const ICRC1_LEDGER_WASM: &[u8] = include_bytes!("./assets/icrc1_ledger.wasm.gz");
 
 thread_local! {
@@ -96,12 +95,25 @@ fn register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, DaoError> {
     }
 }
 #[ic_cdk::update]
-async fn create_icrc2_token() -> Result<String, String> {
-    let result = create_and_deploy_canister().await;
+async fn create_icrc2_token(
+    token_name: String,
+    token_symbol: String,
+    transfer_fee: Nat,
+    total_supply: Nat,
+    token_image: String,
+) -> Result<String, String> {
+    let result = create_and_deploy_canister(
+        token_name,
+        token_symbol,
+        transfer_fee,
+        total_supply,
+        token_image,
+    )
+    .await;
     match result {
         Ok(canister_id) => Ok(canister_id),
         Err(e) => match e {
-            TokenError::IO(err) => Err(String::from("Could not decompress the wasm")),
+            TokenError::IO(_) => Err(String::from("Could not decompress the wasm")),
             TokenError::custom(custom) => Err(custom),
         },
     }

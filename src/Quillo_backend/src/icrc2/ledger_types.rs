@@ -2,10 +2,9 @@ use candid::CandidType;
 
 use candid::Nat;
 use candid::Principal;
-use icrc_ledger_types::icrc::generic_metadata_value::MetadataValue;
 
 use icrc_ledger_types::icrc::generic_value::Value;
-use icrc_ledger_types::icrc1::account::{Account, Subaccount};
+use icrc_ledger_types::icrc1::account::Account;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, CandidType, Clone, PartialEq, Eq)]

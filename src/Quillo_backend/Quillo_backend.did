@@ -84,6 +84,6 @@ type Valuation = record {
   post_money_valuation : float64;
 };
 service : {
-  create_icrc2_token : () -> (Result);
+  create_icrc2_token : (text, text, nat, nat, text) -> (Result);
   register_dao : (UpdateSystemParamsPayload) -> (Result_1);
 }

@@ -1,31 +1,30 @@
-use candid::CandidType;
-use candid::Decode;
 use candid::Encode;
-use candid::Nat as CNat;
+use candid::Nat;
 use candid::Principal;
 use ic_cdk::api::management_canister::main::{
     create_canister, install_code, CanisterSettings, CreateCanisterArgument, InstallCodeArgument,
 };
-use log::{debug, error, info, trace, warn};
 
-use icrc_ledger_types::icrc::generic_metadata_value::MetadataValue;
 use icrc_ledger_types::icrc1::account::Account;
 use ledger_types::ArchiveOptions;
 use ledger_types::FeatureFlags;
 use ledger_types::InitArgs;
-use std::default;
-use std::env;
 
 use crate::error_handler::TokenError;
 use crate::icrc2::ledger_types::LedgerArg;
-use crate::utils::decompress_wasm;
+
 use crate::ICRC1_LEDGER_WASM;
-use ic_cdk::trap;
-use ic_cdk_macros::{init, update};
-use icrc_ledger_types::icrc::generic_value::Value::{Array, Blob, Int, Map, Nat, Nat64, Text};
+
+use icrc_ledger_types::icrc::generic_value::Value::Text;
 
 mod ledger_types;
-pub async fn create_and_deploy_canister() -> Result<String, TokenError> {
+pub async fn create_and_deploy_canister(
+    token_name: String,
+    token_symbol: String,
+    transfer_fee: Nat,
+    total_supply: Nat,
+    token_image: String,
+) -> Result<String, TokenError> {
     let minting_account = Account {
         owner: Principal::from_text(
             "owu57-ix3tx-4pgh7-pmu7n-dzlor-tqljq-wui5j-g5b2g-mtnfa-yklry-mae",
@@ -42,12 +41,13 @@ pub async fn create_and_deploy_canister() -> Result<String, TokenError> {
         subaccount: None,
     });
 
-    let transfer_fee = CNat::from(1000_u32);
     let decimals = Some(8);
     let max_memo_length = Some(256);
-    let token_symbol = "REO".to_string();
-    let token_name = "Reorg".to_string();
-    let metadata = vec![("icrc1_name".to_string(), Text("REORG".to_string()))];
+
+    let metadata = vec![
+        ("icrc1_name".to_string(), Text("REORG".to_string())),
+        ("icrc1_logo".to_string(), Text(token_image)),
+    ];
 
     let initial_balances = vec![(
         Account {
@@ -58,7 +58,7 @@ pub async fn create_and_deploy_canister() -> Result<String, TokenError> {
             subaccount: None,
             // Initialize the Account fields as needed
         },
-        CNat::from(1000_u32),
+        total_supply,
     )];
 
     let feature_flags = Some(FeatureFlags { icrc2: true });
@@ -97,11 +97,6 @@ pub async fn create_and_deploy_canister() -> Result<String, TokenError> {
     let token = LedgerArg::Init(init_args);
     let serialized_args = Encode!(&token).expect("Serialization failed");
 
-    let formatted_message = format!(
-        "my_update_function called with args: {:?}",
-        &serialized_args
-    );
-    ic_cdk::print(&formatted_message);
     let wasm_module = ICRC1_LEDGER_WASM.to_vec();
     let cycles = 8_093_982_275;
     let default_canister_settings: CanisterSettings = CanisterSettings::default();
@@ -118,7 +113,7 @@ pub async fn create_and_deploy_canister() -> Result<String, TokenError> {
 
     // Step 2: Install code to the new canister
     let install_args = InstallCodeArgument {
-        canister_id: Principal::from_text("b77ix-eeaaa-aaaaa-qaada-cai").unwrap(), //b77ix-eeaaa-aaaaa-qaada-cai or replace with the created canister id
+        canister_id: new_canister_id.canister_id, //b77ix-eeaaa-aaaaa-qaada-cai or replace with the created canister id
         wasm_module,
         arg: serialized_args, // here is where we pass argurments for our token but serialized as bytes encoded in candid
         mode: ic_cdk::api::management_canister::main::CanisterInstallMode::Install,
