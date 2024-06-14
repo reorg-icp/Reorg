@@ -146,9 +146,15 @@ graph TD
   subgraph "DAO Canister"
     E[Deploy on Internet Computer]
     E --> F[DAO Logic]
-    E --> G[Minting Tokens]
-    E --> H[Token Distribution]
-    E --> I[Transfer Fee Collection]
+    F -->|Execute Proposals| G[Minting Tokens]
+    F -->|Execute Proposals| H[Token Distribution]
+    F -->|Execute Proposals| I[Transfer Fee Collection]
+    F -->|Execute Proposals| M[Add Founder]
+    F -->|Execute Proposals| N[Update Valuation]
+    F -->|Execute Proposals| O[Change Tokenization Details]
+    F -->|Execute Proposals| P[Approve Spending]
+    F -->|Execute Proposals| Q[Update Company Information]
+    F -->|Execute Proposals| R[Adjust Token Supply]
   end
 
   subgraph "ICRC2 Ledger Canister"
@@ -160,7 +166,7 @@ graph TD
   C --> E
   D --> J
 
-  F -->|Mint Tokens| K
+  G -->|Mint Tokens| K
   H -->|Distribute Tokens| Investors
 
   style A fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
@@ -175,7 +181,12 @@ graph TD
   style I fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
   style K fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
   style L fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
-
+  style M fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style N fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style O fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style P fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style Q fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style R fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
 ```
 ## Conclusion
 
