@@ -75,62 +75,56 @@ graph TD
 2. **Valuation**
 
     Startups decide on their valuation metrics and structure their token offering.
+```mermaid
 
-    ```plaintext
-        +---------------------------+
-        |         Valuation         |
-        +------------+--------------+
-                     |
-                     v
-        +------------+--------------+
-        | Token Offering Structure  |
-        +---------------------------+
-    ```
+graph TD
+    C[Valuation] -->|Token Offering Structure| D[Structure Tokens]
+    style C fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+    style D fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+
+```
 
 3. **Tokenization**
 
     Ownership and assets are tokenized into ICRC1-compatible tokens. i.e they can be exchanged on decentralized exchange platforms such as ICPSWAP e.t.c
 
-    ```plaintext
-        +---------------------------+
-        |        Tokenization       |
-        +------------+--------------+
-                     |
-                     v
-        +------------+--------------+
-        |  Fungible Tokens  |
-        +---------------------------+
-    ```
+   ```mermaid
+   graph TD
+    E[Tokenization] -->|Fungible Tokens| F[Create Tokens]
+    style E fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+    style F fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+
+   ```
 
 4. #### Fundraising
     Investors can find and acquire these tokens on various exchanges, generating funding for the issuing startups
 
-   ```plaintext
-        +---------------------------+
-        |        Fundraising       |
-        +------------+--------------+
-                     |
-                     v
-        +------------+--------------+
-        |  Sell tokens to investors |
-        +---------------------------+
-    ```
+```mermaid
+
+
+graph TD
+    G[Fundraising] -->|Sell tokens to investors| H[Acquire Tokens]
+    style G fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+    style H fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+
+
+```
 
 
 5. **Operation as DAO**
 
     Startups operate as DAOs with governance and decision-making through token holder voting.
+```mermaid
 
-    ```plaintext
-        +---------------------------+
-        |   Operation as a DAO      |
-        +------------+--------------+
-                     |
-                     v
-        +------------+--------------+
-        |  Governance and Voting    |
-        +---------------------------+
-    ```
+
+graph TD
+    I[Operation as a DAO] -->|Governance and Voting| J[DAO Governance]
+    style I fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+    style J fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+
+
+
+```
 6. ## How it works (Technical overview )
 
 ```mermaid
