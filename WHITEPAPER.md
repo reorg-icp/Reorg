@@ -7,7 +7,7 @@
 
 Tokenization of assets represents the future of the global economy and ownership structures. Stablecoins serve as a successful example of asset tokenization, providing a stable digital currency backed by real-world assets. Similarly, Non-Fungible Tokens (NFTs) enable the tokenization of unique assets, creating new opportunities for ownership and investment. Jurisdictions such as Switzerland are developing legal frameworks to support the tokenization of assets, further validating this transformative approach.
 
-Reorg leverages blockchain technology to transform startups into Decentralized Autonomous Organizations (DAOs), enabling them to tokenize their assets and governance structures. This whitepaper outlines the principles, mechanisms, and benefits of Reorg’s platform, which combines the power of NFTs, fungible tokens, and DAOs to create a democratic, transparent, and efficient ecosystem for startups and investors.
+Reorg leverages blockchain technology to transform startups into Decentralized Autonomous Organizations (DAOs), enabling them to tokenize their assets and governance structures. This whitepaper outlines the principles, mechanisms, and benefits of Reorg’s platform, which combines the power of fungible tokens, and DAOs to create a democratic, transparent, and efficient ecosystem for startups and investors.
 
 ## Introduction
 
@@ -39,20 +39,66 @@ In a tokenized DAO, ownership and governance are represented through tokens. Reo
 
 Governance in a tokenized DAO is conducted through voting using governance tokens. Proposals can be made by any member, and the voting power is determined by the number of tokens held.
 
-```plaintext
-    +-----------------------+
-    |     DAO Members       |
-    +-----------+-----------+
-                |
-                v
-    +-----------+-----------+
-    |    Governance Tokens  |
-    +-----------+-----------+
-                |
-                v
-    +-----------+-----------+
-    |         Voting         |
-    +-----------------------+
+```mermaid
+
+graph TD;
+
+    // Nodes representing main components
+    A[DAO Proposal Creation] --> B{Proposal Submitted?};
+    B -->|Yes| C[Proposal Voting];
+    B -->|No| A;
+    C --> D{Voting Completed?};
+    D -->|Yes| E[Quorum Check];
+    D -->|No| C;
+    E --> F{Quorum Met?};
+    F -->|Yes| G[Proposal Execution];
+    F -->|No| C;
+    G --> H{Execution Successful?};
+    H -->|Yes| I[Implementation];
+    H -->|No| J[Rejection];
+    I --> K[Completed Proposal];
+    J --> K;
+
+    // Subgraph for Stakeholder Groups
+    subgraph "Stakeholders"
+        L[Token Holders] --> M[Voting Power];
+        N[DAO Members] --> O[Proposal Creation Rights];
+        O --> P[Submit Proposal];
+        O --> Q[Vote on Proposals];
+        P --> B;
+        Q --> C;
+        R[Developers] --> S[Implementation];
+        S --> I;
+        T[Observers] --> U[Monitoring];
+        U --> D;
+    end
+
+    // Styling nodes and subgraph
+    style A fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style B fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style C fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style D fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style E fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style F fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style G fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style H fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style I fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style J fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style K fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style L fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style M fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style N fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style O fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style P fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style Q fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style R fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style S fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style T fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style U fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+
+
+
+
 ```
 
 
