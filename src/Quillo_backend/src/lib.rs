@@ -1,9 +1,10 @@
 #[macro_use]
 extern crate serde;
 use candid::Nat;
+
 use candid::Principal;
-use error_handler::DaoError;
-use error_handler::TokenError;
+use error_handler::CustomError;
+
 use icrc2::create_and_deploy_canister;
 use types::BasicDaoStableStorage as Dao;
 use types::UpdateSystemParamsPayload;
@@ -55,27 +56,27 @@ thread_local! {
 
 }
 
-fn _register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, DaoError> {
+fn _register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError> {
     let mut dao = Dao::default();
     dao.system_params.transfer_fee = payload
         .transfer_fee
-        .ok_or(DaoError::MissingField("transfer_fee"))?;
+        .ok_or(CustomError::MissingField("transfer_fee"))?;
 
     dao.system_params.registration_details = payload
         .registration_details
-        .ok_or(DaoError::MissingField("registration_details"))?;
+        .ok_or(CustomError::MissingField("registration_details"))?;
 
     dao.system_params.proposal_submission_deposit = payload
         .proposal_submission_deposit
-        .ok_or(DaoError::MissingField("proposal_submission_deposit"))?;
+        .ok_or(CustomError::MissingField("proposal_submission_deposit"))?;
 
     dao.system_params.proposal_vote_threshold = payload
         .proposal_vote_threshold
-        .ok_or(DaoError::MissingField("proposal_vote_threshold"))?;
+        .ok_or(CustomError::MissingField("proposal_vote_threshold"))?;
 
     dao.system_params.total_token_supply = payload
         .total_token_supply
-        .ok_or(DaoError::MissingField("total_token_supply"))?;
+        .ok_or(CustomError::MissingField("total_token_supply"))?;
 
     //we need to create an icrc2 token here
 
@@ -83,7 +84,7 @@ fn _register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, DaoError> {
 }
 
 #[ic_cdk::update]
-fn register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, DaoError> {
+fn register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError> {
     match _register_dao(payload) {
         Ok(dao) => {
             //construct the id
@@ -106,20 +107,24 @@ async fn create_icrc2_token(
     transfer_fee: Nat,
     total_supply: Nat,
     token_image: String,
-) -> Result<String, String> {
+    dao_id: Principal,
+) -> Result<Principal, String> {
     let result = create_and_deploy_canister(
         token_name,
         token_symbol,
         transfer_fee,
         total_supply,
         token_image,
+        dao_id,
     )
     .await;
     match result {
         Ok(canister_id) => Ok(canister_id),
         Err(e) => match e {
-            TokenError::IO(_) => Err(String::from("Could not decompress the wasm")),
-            TokenError::custom(custom) => Err(custom),
+            CustomError::MissingField(_) => Err(String::from(
+                "A missing field was found when registering the DAO",
+            )),
+            CustomError::custom(custom) => Err(custom),
         },
     }
 }
