@@ -56,7 +56,7 @@ Governance in a tokenized DAO is conducted through voting using governance token
 ```
 
 
-## How Reorg Works
+## How Reorg Works( High level overview )
 
 ### Registration to Tokenization
 
@@ -134,7 +134,49 @@ Governance in a tokenized DAO is conducted through voting using governance token
         |  Governance and Voting    |
         +---------------------------+
     ```
+6. ## How it works (Technical overview )
 
+```mermaid
+
+graph TD
+  A[Startups pay ICP tokens] -->|ICP tokens| B[Backend Canister]
+  B -->|Convert ICP to cycles| C[Create DAO Canister]
+  B -->|Convert ICP to cycles| D[Create ICRC2 Ledger Canister]
+
+  subgraph "DAO Canister"
+    E[Deploy on Internet Computer]
+    E --> F[DAO Logic]
+    E --> G[Minting Tokens]
+    E --> H[Token Distribution]
+    E --> I[Transfer Fee Collection]
+  end
+
+  subgraph "ICRC2 Ledger Canister"
+    J[Deploy on ICP Blockchain]
+    J --> K[Store Token Info]
+    K --> L[Token Management]
+  end
+
+  C --> E
+  D --> J
+
+  F -->|Mint Tokens| K
+  H -->|Distribute Tokens| Investors
+
+  style A fill:#f9f,stroke:#333,stroke-width:2px
+  style B fill:#bbf,stroke:#333,stroke-width:2px
+  style C fill:#ccf,stroke:#333,stroke-width:2px
+  style D fill:#ccf,stroke:#333,stroke-width:2px
+  style E fill:#acf,stroke:#333,stroke-width:2px
+  style J fill:#acf,stroke:#333,stroke-width:2px
+  style F fill:#cfc,stroke:#333,stroke-width:2px
+  style G fill:#cfc,stroke:#333,stroke-width:2px
+  style H fill:#cfc,stroke:#333,stroke-width:2px
+  style I fill:#cfc,stroke:#333,stroke-width:2px
+  style K fill:#cfc,stroke:#333,stroke-width:2px
+  style L fill:#cfc,stroke:#333,stroke-width:2px
+
+```
 ## Conclusion
 
 Reorg leverages the power of blockchain and tokenization to transform the way startups raise funds and govern their operations. By creating tokenized DAOs, we enable a democratic, transparent, and efficient ecosystem for startups and investors. The use of tokens ensures liquidity, ownership clarity, and active participation in governance, driving the future of decentralized economies.
