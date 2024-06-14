@@ -163,18 +163,18 @@ graph TD
   F -->|Mint Tokens| K
   H -->|Distribute Tokens| Investors
 
-  style A fill:#FF99FF,stroke:#333,stroke-width:2px
-  style B fill:#99BBFF,stroke:#333,stroke-width:2px
-  style C fill:#99CCFF,stroke:#333,stroke-width:2px
-  style D fill:#99CCFF,stroke:#333,stroke-width:2px
-  style E fill:#99DDFF,stroke:#333,stroke-width:2px
-  style J fill:#99DDFF,stroke:#333,stroke-width:2px
-  style F fill:#99FF99,stroke:#333,stroke-width:2px
-  style G fill:#99FF99,stroke:#333,stroke-width:2px
-  style H fill:#99FF99,stroke:#333,stroke-width:2px
-  style I fill:#99FF99,stroke:#333,stroke-width:2px
-  style K fill:#99FF99,stroke:#333,stroke-width:2px
-  style L fill:#99FF99,stroke:#333,stroke-width:2px
+  style A fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style B fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style C fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style D fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style E fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style J fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style F fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style G fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style H fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style I fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style K fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style L fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
 
 ```
 ## Conclusion
