@@ -64,15 +64,12 @@ Governance in a tokenized DAO is conducted through voting using governance token
 
     Startups apply to Reorg and undergo proof of existence and identity verification.
 
-    ```plaintext
-        +---------------------------+
-        |        Onboarding         |
-        +------------+--------------+
-                     |
-                     v
-        +------------+--------------+
-        | Proof of Existence & ID   |
-        +---------------------------+
+```mermaid
+graph TD
+    A[Onboarding] -->|Proof of Existence & ID| B[Verification]
+    style A fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+    style B fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+    
     ```
 
 2. **Valuation**
