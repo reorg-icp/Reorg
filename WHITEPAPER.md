@@ -69,8 +69,8 @@ graph TD
     A[Onboarding] -->|Proof of Existence & ID| B[Verification]
     style A fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
     style B fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
-    
-    ```
+
+```
 
 2. **Valuation**
 
