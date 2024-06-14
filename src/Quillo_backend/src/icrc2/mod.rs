@@ -12,7 +12,7 @@ use ledger_types::FeatureFlags;
 use ledger_types::InitArgs;
 use transactions::mint_cycles;
 
-use crate::error_handler::TokenError;
+use crate::error_handler::CustomError;
 use crate::icrc2::ledger_types::LedgerArg;
 
 use crate::ICRC1_LEDGER_WASM;
@@ -29,21 +29,17 @@ pub async fn create_and_deploy_canister(
     transfer_fee: Nat,
     total_supply: Nat,
     token_image: String,
-) -> Result<String, TokenError> {
+    dao_id: Principal,
+) -> Result<Principal, CustomError> {
     let minted_cycles = mint_cycles(Tokens::from_e8s(1000)).await?;
     let minting_account = Account {
-        owner: Principal::from_text(
-            "owu57-ix3tx-4pgh7-pmu7n-dzlor-tqljq-wui5j-g5b2g-mtnfa-yklry-mae",
-        )
-        .unwrap(),
+        owner: dao_id,
         subaccount: None,
     };
 
+    //the dao collects the fee
     let fee_collector_account = Some(Account {
-        owner: Principal::from_text(
-            "owu57-ix3tx-4pgh7-pmu7n-dzlor-tqljq-wui5j-g5b2g-mtnfa-yklry-mae",
-        )
-        .unwrap(),
+        owner: dao_id,
         subaccount: None,
     });
 
@@ -55,16 +51,14 @@ pub async fn create_and_deploy_canister(
         ("icrc1_logo".to_string(), Text(token_image)),
     ];
 
+    //distribute tokens to accounts you want
     let initial_balances = vec![(
         Account {
-            owner: Principal::from_text(
-                "owu57-ix3tx-4pgh7-pmu7n-dzlor-tqljq-wui5j-g5b2g-mtnfa-yklry-mae",
-            )
-            .unwrap(),
+            owner: dao_id,
             subaccount: None,
             // Initialize the Account fields as needed
         },
-        total_supply,
+        total_supply.clone(),
     )];
 
     let feature_flags = Some(FeatureFlags { icrc2: true });
@@ -101,7 +95,7 @@ pub async fn create_and_deploy_canister(
     // Create a new token instance using LedgerArgs with UpgradeArgs as None
 
     let token = LedgerArg::Init(init_args);
-    let serialized_args = Encode!(&token).expect("Serialization failed");
+    let serialized_args = Encode!(&token).expect(" ledger args serialization failed");
 
     let wasm_module = ICRC1_LEDGER_WASM.to_vec();
 
@@ -113,7 +107,7 @@ pub async fn create_and_deploy_canister(
 
     let create_response = create_canister(create_args, nat_to_u128(minted_cycles))
         .await
-        .map_err(|e| TokenError::custom(format!("Failed to create canister: {:?}", e)))?;
+        .map_err(|e| CustomError::custom(format!("Failed to create canister: {:?}", e)))?;
 
     let new_canister_id = create_response.0;
 
@@ -127,9 +121,9 @@ pub async fn create_and_deploy_canister(
 
     install_code(install_args)
         .await
-        .map_err(|e| TokenError::custom(format!("Failed to install code: {:?},{:?}", e.0, e.1)))?;
+        .map_err(|e| CustomError::custom(format!("Failed to install code: {:?},{:?}", e.0, e.1)))?;
 
-    Ok(new_canister_id.canister_id.to_string())
+    Ok(new_canister_id.canister_id)
 }
 fn nat_to_u128(value: Nat) -> u128 {
     TryFrom::try_from(value.0).unwrap()

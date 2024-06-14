@@ -4,20 +4,17 @@ use std::io::Error as IOERROR;
 
 // Define custom error type
 #[derive(Debug, candid::CandidType, Deserialize, Serialize)]
-pub enum DaoError {
+pub enum CustomError {
     MissingField(&'static str),
+    custom(String),
 }
 
-impl fmt::Display for DaoError {
+impl fmt::Display for CustomError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            DaoError::MissingField(field) => write!(f, "Missing required field: {}", field),
+            CustomError::MissingField(field) => write!(f, "Missing required field: {}", field),
+            CustomError::custom(err) => Ok(ic_cdk::print(err)),
         }
     }
 }
-impl Error for DaoError {}
-#[derive(Debug)]
-pub enum TokenError {
-    custom(String),
-    IO(IOERROR),
-}
+impl Error for CustomError {}
