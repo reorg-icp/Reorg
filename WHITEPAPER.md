@@ -43,7 +43,7 @@ Governance in a tokenized DAO is conducted through voting using governance token
 
 graph TD;
 
-    // Nodes representing main components
+   
     A[DAO Proposal Creation] --> B{Proposal Submitted?};
     B -->|Yes| C[Proposal Voting];
     B -->|No| A;
@@ -59,7 +59,7 @@ graph TD;
     I --> K[Completed Proposal];
     J --> K;
 
-    // Subgraph for Stakeholder Groups
+   
     subgraph "Stakeholders"
         L[Token Holders] --> M[Voting Power];
         N[DAO Members] --> O[Proposal Creation Rights];
@@ -73,7 +73,7 @@ graph TD;
         U --> D;
     end
 
-    // Styling nodes and subgraph
+  
     style A fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
     style B fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
     style C fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
