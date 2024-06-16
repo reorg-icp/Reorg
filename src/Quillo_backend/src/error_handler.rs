@@ -1,6 +1,5 @@
 use std::error::Error;
 use std::fmt;
-use std::io::Error as IOERROR;
 
 // Define custom error type
 #[derive(Debug, candid::CandidType, Deserialize, Serialize)]

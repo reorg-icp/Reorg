@@ -6,8 +6,8 @@ use candid::Principal;
 use error_handler::CustomError;
 
 use icrc2::create_and_deploy_canister;
-use types::BasicDaoStableStorage as Dao;
-use types::UpdateSystemParamsPayload;
+use daoservice::BasicDaoStableStorage as Dao;
+use daoservice::UpdateSystemParamsPayload;
 
 use ic_stable_structures::{
     memory_manager::{MemoryId, MemoryManager, VirtualMemory},
@@ -16,10 +16,10 @@ use ic_stable_structures::{
 
 use std::cell::RefCell;
 
-mod dao;
+mod company;
 mod error_handler;
 mod icrc2;
-mod types;
+mod daoservice;
 mod utils;
 pub mod rust_declarations {
     pub mod cmc_service;
@@ -58,25 +58,33 @@ thread_local! {
 
 fn _register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError> {
     let mut dao = Dao::default();
-    dao.system_params.transfer_fee = payload
-        .transfer_fee
-        .ok_or(CustomError::MissingField("transfer_fee"))?;
+    dao.system_params.transfer_fee = Some(
+        payload
+            .transfer_fee
+            .ok_or(CustomError::MissingField("transfer_fee"))?,
+    );
 
     dao.system_params.registration_details = payload
         .registration_details
         .ok_or(CustomError::MissingField("registration_details"))?;
 
-    dao.system_params.proposal_submission_deposit = payload
-        .proposal_submission_deposit
-        .ok_or(CustomError::MissingField("proposal_submission_deposit"))?;
+    dao.system_params.proposal_submission_deposit = Some(
+        payload
+            .proposal_submission_deposit
+            .ok_or(CustomError::MissingField("proposal_submission_deposit"))?,
+    );
 
-    dao.system_params.proposal_vote_threshold = payload
-        .proposal_vote_threshold
-        .ok_or(CustomError::MissingField("proposal_vote_threshold"))?;
+    dao.system_params.proposal_vote_threshold = Some(
+        payload
+            .proposal_vote_threshold
+            .ok_or(CustomError::MissingField("proposal_vote_threshold"))?,
+    );
 
-    dao.system_params.total_token_supply = payload
-        .total_token_supply
-        .ok_or(CustomError::MissingField("total_token_supply"))?;
+    dao.system_params.total_token_supply = Some(
+        payload
+            .total_token_supply
+            .ok_or(CustomError::MissingField("total_token_supply"))?,
+    );
 
     //we need to create an icrc2 token here
 

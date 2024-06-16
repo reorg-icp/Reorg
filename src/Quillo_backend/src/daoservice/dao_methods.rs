@@ -1,4 +1,4 @@
-use crate::types::BasicDaoStableStorage as DAO;
+use crate::daoservice::BasicDaoStableStorage as DAO;
 use candid::{CandidType, Deserialize, Principal};
 impl DAO {
     pub fn set_vision(&self, new_vision: String) {
