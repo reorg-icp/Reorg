@@ -7,7 +7,7 @@
 
 Tokenization of assets represents the future of the global economy and ownership structures. Stablecoins serve as a successful example of asset tokenization, providing a stable digital currency backed by real-world assets. Similarly, Non-Fungible Tokens (NFTs) enable the tokenization of unique assets, creating new opportunities for ownership and investment. Jurisdictions such as Switzerland are developing legal frameworks to support the tokenization of assets, further validating this transformative approach.
 
-Reorg leverages blockchain technology to transform startups into Decentralized Autonomous Organizations (DAOs), enabling them to tokenize their assets and governance structures. This whitepaper outlines the principles, mechanisms, and benefits of Reorg’s platform, which combines the power of NFTs, fungible tokens, and DAOs to create a democratic, transparent, and efficient ecosystem for startups and investors.
+Reorg leverages blockchain technology to transform startups into Decentralized Autonomous Organizations (DAOs), enabling them to tokenize their assets and governance structures. This whitepaper outlines the principles, mechanisms, and benefits of Reorg’s platform, which combines the power of fungible tokens, and DAOs to create a democratic, transparent, and efficient ecosystem for startups and investors.
 
 ## Introduction
 
@@ -39,24 +39,67 @@ In a tokenized DAO, ownership and governance are represented through tokens. Reo
 
 Governance in a tokenized DAO is conducted through voting using governance tokens. Proposals can be made by any member, and the voting power is determined by the number of tokens held.
 
-```plaintext
-    +-----------------------+
-    |     DAO Members       |
-    +-----------+-----------+
-                |
-                v
-    +-----------+-----------+
-    |    Governance Tokens  |
-    +-----------+-----------+
-                |
-                v
-    +-----------+-----------+
-    |         Voting         |
-    +-----------------------+
+```mermaid
+
+graph TD;
+
+   
+    A[DAO Proposal Creation] --> B{Proposal Submitted?};
+    B -->|Yes| C[Proposal Voting];
+    B -->|No| A;
+    C --> D{Voting Completed?};
+    D -->|Yes| E[Quorum Check];
+    D -->|No| C;
+    E --> F{Quorum Met?};
+    F -->|Yes| G[Proposal Execution];
+    F -->|No| C;
+    G --> H{Execution Successful?};
+    H -->|Yes| I[Implementation];
+    H -->|No| J[Rejection];
+    I --> K[Completed Proposal];
+    J --> K;
+
+   
+    subgraph "Stakeholders"
+        L[Token Holders] --> M[Voting Power];
+        N[DAO Members] --> O[Proposal Creation Rights];
+        O --> P[Submit Proposal];
+        O --> Q[Vote on Proposals];
+        P --> B;
+        Q --> C;
+        R[Developers] --> S[Implementation];
+        S --> I;
+        T[Observers] --> U[Monitoring];
+        U --> D;
+    end
+
+  
+    style A fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style B fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style C fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style D fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style E fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style F fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style G fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style H fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style I fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style J fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style K fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style L fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style M fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style N fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style O fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style P fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style Q fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style R fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style S fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style T fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+    style U fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff;
+
 ```
 
 
-## How Reorg Works
+## How Reorg Works( High level overview )
 
 ### Registration to Tokenization
 
@@ -64,77 +107,121 @@ Governance in a tokenized DAO is conducted through voting using governance token
 
     Startups apply to Reorg and undergo proof of existence and identity verification.
 
-    ```plaintext
-        +---------------------------+
-        |        Onboarding         |
-        +------------+--------------+
-                     |
-                     v
-        +------------+--------------+
-        | Proof of Existence & ID   |
-        +---------------------------+
-    ```
+```mermaid
+graph TD
+    A[Onboarding] -->|Proof of Existence & ID| B[Verification]
+    style A fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+    style B fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+
+```
 
 2. **Valuation**
 
     Startups decide on their valuation metrics and structure their token offering.
+```mermaid
 
-    ```plaintext
-        +---------------------------+
-        |         Valuation         |
-        +------------+--------------+
-                     |
-                     v
-        +------------+--------------+
-        | Token Offering Structure  |
-        +---------------------------+
-    ```
+graph TD
+    C[Valuation] -->|Token Offering Structure| D[Structure Tokens]
+    style C fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+    style D fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+
+```
 
 3. **Tokenization**
 
     Ownership and assets are tokenized into ICRC1-compatible tokens. i.e they can be exchanged on decentralized exchange platforms such as ICPSWAP e.t.c
 
-    ```plaintext
-        +---------------------------+
-        |        Tokenization       |
-        +------------+--------------+
-                     |
-                     v
-        +------------+--------------+
-        |  Fungible Tokens  |
-        +---------------------------+
-    ```
+   ```mermaid
+   graph TD
+    E[Tokenization] -->|Fungible Tokens| F[Create Tokens]
+    style E fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+    style F fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+
+   ```
 
 4. #### Fundraising
     Investors can find and acquire these tokens on various exchanges, generating funding for the issuing startups
 
-   ```plaintext
-        +---------------------------+
-        |        Fundraising       |
-        +------------+--------------+
-                     |
-                     v
-        +------------+--------------+
-        |  Sell tokens to investors |
-        +---------------------------+
-    ```
+```mermaid
+
+
+graph TD
+    G[Fundraising] -->|Sell tokens to investors| H[Acquire Tokens]
+    style G fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+    style H fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+
+
+```
 
 
 5. **Operation as DAO**
 
     Startups operate as DAOs with governance and decision-making through token holder voting.
+```mermaid
 
-    ```plaintext
-        +---------------------------+
-        |   Operation as a DAO      |
-        +------------+--------------+
-                     |
-                     v
-        +------------+--------------+
-        |  Governance and Voting    |
-        +---------------------------+
-    ```
 
+graph TD
+    I[Operation as a DAO] -->|Governance and Voting| J[DAO Governance]
+    style I fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+    style J fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+
+
+
+```
+6. ## How it works (Technical overview )
+
+```mermaid
+
+graph TD
+  A[Startups pay ICP tokens] -->|ICP tokens| B[Backend Canister]
+  B -->|Convert ICP to cycles| C[Create DAO Canister]
+  B -->|Convert ICP to cycles| D[Create ICRC2 Ledger Canister]
+
+  subgraph "DAO Canister"
+    E[Deploy on Internet Computer]
+    E --> F[DAO Logic]
+    F -->|Execute Proposals| G[Minting Tokens]
+    F -->|Execute Proposals| H[Token Distribution]
+    F -->|Execute Proposals| I[Transfer Fee Collection]
+    F -->|Execute Proposals| M[Add Founder]
+    F -->|Execute Proposals| N[Update Valuation]
+    F -->|Execute Proposals| O[Change Tokenization Details]
+    F -->|Execute Proposals| P[Approve Spending]
+    F -->|Execute Proposals| Q[Update Company Information]
+    F -->|Execute Proposals| R[Adjust Token Supply]
+  end
+
+  subgraph "ICRC2 Ledger Canister"
+    J[Deploy on ICP Blockchain]
+    J --> K[Store Token Info]
+    K --> L[Token Management]
+  end
+
+  C --> E
+  D --> J
+
+  G -->|Mint Tokens| K
+  H -->|Distribute Tokens| Investors
+
+  style A fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style B fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style C fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style D fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style E fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style J fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style F fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style G fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style H fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style I fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style K fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style L fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style M fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style N fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style O fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style P fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style Q fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+  style R fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+```
 ## Conclusion
 
 Reorg leverages the power of blockchain and tokenization to transform the way startups raise funds and govern their operations. By creating tokenized DAOs, we enable a democratic, transparent, and efficient ecosystem for startups and investors. The use of tokens ensures liquidity, ownership clarity, and active participation in governance, driving the future of decentralized economies.
