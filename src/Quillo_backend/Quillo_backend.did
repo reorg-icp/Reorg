@@ -1,1 +1,89 @@
-service : { greet : (text) -> (text) query }
+type Account = record { owner : principal; tokens : Tokens };
+type Address = record {
+  street : text;
+  country : text;
+  city : text;
+  postal_code : text;
+  state : text;
+};
+type BasicDaoStableStorage = record {
+  system_params : SystemParams;
+  accounts : vec Account;
+  proposals : vec Proposal;
+};
+type ContactInfo = record { email : text; phone : text };
+type DaoError = variant { MissingField : text };
+type Founder = record {
+  address : Address;
+  contact_info : ContactInfo;
+  kyc_document : text;
+  first_name : text;
+  last_name : text;
+  date_of_birth : text;
+};
+type Proposal = record {
+  id : nat64;
+  votes_no : Tokens;
+  voters : vec principal;
+  state : ProposalState;
+  timestamp : nat64;
+  proposer : principal;
+  votes_yes : Tokens;
+  payload : ProposalPayload;
+};
+type ProposalPayload = record {
+  method : text;
+  canister_id : principal;
+  message : blob;
+};
+type ProposalState = variant {
+  Failed : text;
+  Open;
+  Executing;
+  Rejected;
+  Succeeded;
+  Accepted;
+};
+type RegistrationDetails = record {
+  founders : vec Founder;
+  company_name : text;
+  registration_number : text;
+  valuation : Valuation;
+  tokenization_details : TokenizationDetails;
+  incorporation_date : text;
+  jurisdiction : text;
+  terms_and_conditions_accepted : bool;
+  address : Address;
+  contact_info : ContactInfo;
+};
+type Result = variant { Ok : text; Err : text };
+type Result_1 = variant { Ok : BasicDaoStableStorage; Err : DaoError };
+type SystemParams = record {
+  transfer_fee : Tokens;
+  registration_details : RegistrationDetails;
+  proposal_vote_threshold : Tokens;
+  proposal_submission_deposit : Tokens;
+  total_token_supply : Tokens;
+};
+type TokenizationDetails = record {
+  token_symbol : text;
+  token_name : text;
+  total_supply : nat64;
+};
+type Tokens = record { canister_id : opt principal; amount_e8s : nat64 };
+type UpdateSystemParamsPayload = record {
+  transfer_fee : opt Tokens;
+  registration_details : opt RegistrationDetails;
+  proposal_vote_threshold : opt Tokens;
+  proposal_submission_deposit : opt Tokens;
+  total_token_supply : opt Tokens;
+};
+type Valuation = record {
+  pre_money_valuation : float64;
+  valuation_date : text;
+  post_money_valuation : float64;
+};
+service : {
+  create_icrc2_token : (text, text, nat, nat, text) -> (Result);
+  register_dao : (UpdateSystemParamsPayload) -> (Result_1);
+}
