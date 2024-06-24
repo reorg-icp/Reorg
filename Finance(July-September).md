@@ -23,7 +23,7 @@ graph TD;
   G["Cost per Impression (CPM)<br>$7 per 1,000 impressions"]
   
   %% Founders' compensation
-  H["Founders' Compensation<br>$1,000 each (3 months)"]
+  H["Founders' Compensation<br>$500 each (3 months)"]
   
   %% Connect nodes
   A --> B
