@@ -32,5 +32,4 @@ graph TD;
   E --> F
   E --> G
   B --> H
-
 ```
