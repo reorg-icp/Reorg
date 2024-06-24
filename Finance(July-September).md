@@ -65,3 +65,39 @@ gantt
     Offer Early Access to Platform           :2024-07-25, 15d         // Provide exclusive access to early adopter investors
     Schedule Follow-up Meetings              :2024-08-05, 10d         // Arrange meetings to finalize investor commitments
 ```
+
+#### User journey
+```mermaid
+graph TD;
+    A["Start: Product (DApp, Protocol, DAO)"] -->|Apply on Reorg| B["Application Review"]
+    B -->|Partner Evaluation| C["Viability Check"]
+    C --> D["Approval"]
+    D --> E["Tokenization Consultation"]
+    E --> F["Fill Token Details Form"]
+    F --> G["Token Creation"]
+    G --> H["Token Live"]
+
+    subgraph "Investor Vetting & DAO Governance"
+        H --> I["Investors Vetting in DAO"]
+        I --> J["Token Purchase Vote"]
+        J --> K["Discussion & Agreement"]
+        K --> L["Revenue Sharing Model"]
+        L --> M["Investment Contribution"]
+        M --> N["Money to Startup, Tokens to Investors"]
+        N --> O["Regular Governance Participation"]
+        O --> P["Transparency & Reporting"]
+    end
+
+    subgraph "Platform Revenue Streams"
+        Q["Consultation Fee"]
+        R["Tokenization Fee"]
+        S["Transfer Fee (Support Development)"]
+    end
+
+    Q --> |Startup Consultation| E
+    R --> |Tokenization Process| G
+    S --> |Token Transfer| Support
+
+    style A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+    style Q, R, S fill:#50C878,stroke:#fff,stroke-width:2px,color:#fff
+```
