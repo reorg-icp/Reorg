@@ -1,4 +1,4 @@
-import { Dispatch, JSX, SetStateAction } from "react";
+import { JSX, Dispatch, SetStateAction } from "react";
 import { sectionType } from "../../pages/about";
 import { ArrowLeft, ArrowRight } from "../../assets/icons";
 

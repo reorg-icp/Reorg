@@ -2,6 +2,7 @@ import { JSX, useState } from "react";
 import { Intro } from "../components/about/Intro";
 import { Daos } from "../components/about/Daos";
 import { Faqs } from "../components/about/Faqs";
+import { HowItWorks } from "../components/about/HowItWorks";
 import { Controls } from "../components/about/Controls";
 import "../styles/pages/about.scss";
 
@@ -22,7 +23,9 @@ export default function AboutReorg(): JSX.Element {
         <Controls currSection={currSection} setCurrSection={setCurrSection} />
       </div>
 
-      <div className="c02"></div>
+      <div className="c02">
+        <HowItWorks />
+      </div>
     </section>
   );
 }
