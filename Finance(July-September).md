@@ -1,9 +1,10 @@
+### Finance plan (3 months)
 ```mermaid
 %% Define the chart layout
 graph TD;
 
   %% Income node
-  A[Income: $5,000]
+  A[Total grant: $5,000]
   
   %% Expenses node
   B[Expenses]
@@ -38,4 +39,29 @@ graph TD;
     F --> TotalAdsCost["Total Advertising Cost:<br>$1000-1500"]
   end
 
+```
+### First customer acquisition plan
+
+```mermaid
+gantt
+    dateFormat  YYYY-MM-DD
+    title Three-Month Plan to Acquire First Clients
+
+    section Startups
+    Define Ideal Startup Profiles            :start, 2024-07-01, 30d  // Define target characteristics and needs
+    Outreach Strategy                        :2024-07-01, 30d         // Develop outreach channels and messaging
+    Simplify Application Process             :2024-07-15, 15d         // Streamline application and onboarding steps
+    Tokenization Fee                         :2024-07-20, 10d         // Set fee structure for tokenization service
+    Onboard First 10 Startups                :2024-07-25, 15d         // Process initial applications and onboard startups
+    Partner with Token Economics Experts     :2024-07-30, 20d         // Collaborate with experts to refine tokenomics
+    Publish Tokenomics Guides                :2024-08-01, 15d         // Release educational content on tokenomics
+
+    section Investors
+    Define Ideal Investor Profiles           :after Startups, 2024-07-01, 30d  // Specify investor criteria and preferences
+    Build List of 200 Investors              :2024-07-01, 20d         // Research and compile a list of potential investors
+    Launch Email Campaign                    :2024-07-10, 15d         // Initiate targeted email outreach to investors
+    Target Web3 Enthusiasts                  :2024-07-15, 15d         // Focus on investors interested in Web3 technologies
+    Host Webinars on Web3 and DAOs           :2024-07-20, 20d         // Conduct educational webinars on Web3 and DAOs
+    Offer Early Access to Platform           :2024-07-25, 15d         // Provide exclusive access to early adopter investors
+    Schedule Follow-up Meetings              :2024-08-05, 10d         // Arrange meetings to finalize investor commitments
 ```
