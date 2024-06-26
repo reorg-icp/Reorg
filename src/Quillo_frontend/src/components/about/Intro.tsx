@@ -5,30 +5,20 @@ export const Intro = (): JSX.Element => {
     <div className="reorgintro">
       <div className="forstartups">
         <p className="textLG">
-          turn your startup <br />
-          into a tokenized DAO <br />& unlock new capital
+        Empowering Web3 Startups, dApps, and Protocols through Tokenization
+
         </p>
 
         <p className="desc">
-          Reorg is a pioneering platform positioned at the forefront of the DAO
-          movement. We empower startups to unlock the full potential of
-          decentralization by facilitating the creation and operation of
-          Tokenized Decentralized Autonomous Organizations (DAOs). We enable
-          startups to tokenize ownership and assets, granting access to a global
-          pool of investors seeking alternative investment opportunities.
+       At Reorg, we empower Web3 startups, including dApps, protocols, and DAOs, to seamlessly raise funds by leveraging the power of tokenization. Our platform simplifies the fundraising process, providing startups with the tools and support needed to tokenize their assets and attract global investors. 
         </p>
       </div>
 
       <div className="forinvestors">
         <p className="textMD">for investors;</p>
         <p className="desc">
-          Reorg unlocks a new frontier for investors seeking diversification and
-          democratic participation. Through our platform, you gain access to
-          innovative startups shaping the future of blockchain technology.
-          Invest in tokenized ownership and assets, fostering a direct stake in
-          a company's success. Reorg empowers you to join a global community and
-          actively participate in governance decisions, shaping the direction of
-          these pioneering ventures.
+        Discover, Invest, and Profit from Innovative Web3 Startups, dApps, and Protocols.
+At Reorg, we provide investors with unparalleled access to a diverse portfolio of Web3 startups, including dApps, protocols, and DAOs. Our platform enables you to discover promising projects, invest in tokenized assets, and participate in decentralized governance.
         </p>
       </div>
     </div>

@@ -34,7 +34,7 @@ export const Controls = ({
 
         <button className="nextbtn" onClick={onGoToNext}>
           {currSection == "about"
-            ? "Why DAOs ?"
+            ? "Reorg Dao ?"
             : currSection == "daos"
             ? "FAQs"
             : "About Reorg"}
