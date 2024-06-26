@@ -9,13 +9,22 @@ import {
   Twitter,
 } from "../../assets/icons";
 
-type howitworksSteps = "onboarding" | "tokenize" | "aiTokenomics" | "daoGovernance";
+type howitworksSteps =
+  | "onboarding"
+  | "tokenize"
+  | "aiTokenomics"
+  | "daoGovernance";
 
 export const HowItWorks = (): JSX.Element => {
   const [currSteps, setCurrSteps] = useState<howitworksSteps>("onboarding");
 
   useEffect(() => {
-    const steps: howitworksSteps[] = ["onboarding", "tokenize", "aiTokenomics", "daoGovernance"];
+    const steps: howitworksSteps[] = [
+      "onboarding",
+      "tokenize",
+      "aiTokenomics",
+      "daoGovernance",
+    ];
     const currentIndex = steps.indexOf(currSteps);
     const nextIndex = (currentIndex + 1) % steps.length;
     const timeout = setTimeout(() => setCurrSteps(steps[nextIndex]), 10000);
@@ -34,7 +43,11 @@ export const HowItWorks = (): JSX.Element => {
               <Onboarding width={24} height={24} />
               <p className="title">Onboarding</p>
               <p className="text">
-                Startups seeking to leverage the benefits of DAOs can integrate with the Reorg platform through a streamlined onboarding process. Following successful onboarding, they launch their DAO and operate within the Reorg ecosystem while maintaining their legal status as separate entities.
+                Startups seeking to leverage the benefits of DAOs can integrate
+                with the Reorg platform through a streamlined onboarding
+                process. Following successful onboarding, they launch their DAO
+                and operate within the Reorg ecosystem while maintaining their
+                legal status as separate entities.
               </p>
             </span>
 
@@ -42,7 +55,13 @@ export const HowItWorks = (): JSX.Element => {
               <ProofOfID width={24} height={24} />
               <p className="title">Proof of Existence & Identity</p>
               <p className="text">
-                Reorg employs a comprehensive due diligence process to ensure the legitimacy of startups seeking to launch DAOs on our platform. This process incorporates rigorous verification of a startup's existence, identity (through Know Your Customer [KYC] and Know Your Business [KYB] procedures), and valuation to foster trust and transparency for all participants in the Reorg ecosystem.
+                Reorg employs a comprehensive due diligence process to ensure
+                the legitimacy of startups seeking to launch DAOs on our
+                platform. This process incorporates rigorous verification of a
+                startup's existence, identity (through Know Your Customer [KYC]
+                and Know Your Business [KYB] procedures), and valuation to
+                foster trust and transparency for all participants in the Reorg
+                ecosystem.
               </p>
             </span>
           </>
@@ -54,7 +73,10 @@ export const HowItWorks = (): JSX.Element => {
               <Tokenize width={24} height={24} />
               <p className="title">Tokenize Ownership</p>
               <p className="text">
-                Reorg facilitates the tokenization of startups' ownership structures. This involves creating tokens that represent a quantifiable stake in the company, enabling fractional ownership and increased liquidity in the fundraising process.
+                Reorg facilitates the tokenization of startups' ownership
+                structures. This involves creating tokens that represent a
+                quantifiable stake in the company, enabling fractional ownership
+                and increased liquidity in the fundraising process.
               </p>
             </span>
 
@@ -62,7 +84,14 @@ export const HowItWorks = (): JSX.Element => {
               <SiteMap width={24} height={24} />
               <p className="title">Operate As a DAO</p>
               <p className="text">
-                Reorg empowers startups to operate with a robust and secure governance structure. Investors holding tokens within the DAO ecosystem enjoy a suite of rights, including the ability to trade these tokens, propose amendments to the DAO's governing policies, and participate in voting processes that shape the direction of the organization. This fosters a collaborative and transparent decision-making model, aligning investor interests with the long-term success of the startup.
+                Reorg empowers startups to operate with a robust and secure
+                governance structure. Investors holding tokens within the DAO
+                ecosystem enjoy a suite of rights, including the ability to
+                trade these tokens, propose amendments to the DAO's governing
+                policies, and participate in voting processes that shape the
+                direction of the organization. This fosters a collaborative and
+                transparent decision-making model, aligning investor interests
+                with the long-term success of the startup.
               </p>
             </span>
           </>
@@ -74,7 +103,11 @@ export const HowItWorks = (): JSX.Element => {
               <Tokenize width={24} height={24} />
               <p className="title">AI-Powered Tokenomics</p>
               <p className="text">
-                Reorg's token creation platform includes an AI model trained on tokenomics. Based on the startup's business model, the AI recommends an optimal tokenomics structure, including total token supply, transfer fees, and more, ensuring a well-balanced and sustainable token ecosystem.
+                Reorg's token creation platform includes an AI model trained on
+                tokenomics. Based on the startup's business model, the AI
+                recommends an optimal tokenomics structure, including total
+                token supply, transfer fees, and more, ensuring a well-balanced
+                and sustainable token ecosystem.
               </p>
             </span>
           </>
@@ -86,7 +119,11 @@ export const HowItWorks = (): JSX.Element => {
               <SiteMap width={24} height={24} />
               <p className="title">DAO Governance</p>
               <p className="text">
-                Investors participate in a DAO that governs the startup. This includes voting on key decisions, managing the token supply, and ensuring transparent operations. The DAO structure aligns investor and startup interests, fostering a collaborative and engaged community.
+                Investors participate in a DAO that governs the startup. This
+                includes voting on key decisions, managing the token supply, and
+                ensuring transparent operations. The DAO structure aligns
+                investor and startup interests, fostering a collaborative and
+                engaged community.
               </p>
             </span>
           </>
