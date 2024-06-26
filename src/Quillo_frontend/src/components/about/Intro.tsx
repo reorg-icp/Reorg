@@ -23,8 +23,8 @@ export const Intro = (): JSX.Element => {
           Discover, Invest, and Profit from Innovative Web3 Startups, dApps, and
           Protocols. At Reorg, we provide investors with unparalleled access to
           a diverse portfolio of Web3 startups, including dApps, protocols, and
-          DAOs. Our platform enables you to discover promising projects, invest
-          in tokenized assets, and participate in decentralized governance.
+          DAOs. Our platform enables you to discover amazing projects, invest in
+          tokenized assets, and participate in decentralized governance.
         </p>
       </div>
     </div>
