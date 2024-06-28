@@ -11,9 +11,8 @@ import {
   DialogContent,
   DialogTitle,
   Typography,
-
 } from "@mui/material";
-import { useAuthStore,Auth } from "../store";
+import { useAuthStore, Auth } from "../store";
 
 // Define a custom font style
 const headerFont = {
@@ -30,25 +29,20 @@ interface WalletPopupProps {
 const WalletPopup: React.FC<WalletPopupProps> = ({
   onClose,
   handlePurchasePopup,
-
   setPrincipal,
 }) => {
-
-    const authState:Auth= useAuthStore((state:Auth)=>state)
+  const authState: Auth = useAuthStore((state: Auth) => state);
   const [isConnecting, setIsConnecting] = useState(false);
   const [connectionStatus, setConnectionStatus] = useState<
     "success" | "error" | null
   >(null);
   const [walletType, setWalletType] = useState<"plug" | "nfid" | null>(null);
- ;
 
   const connectPlugWallet = async () => {
     setIsConnecting(true);
     setConnectionStatus(null);
     setWalletType("plug");
 
-    // const canisterId = "kf4ru-ciaaa-aaaap-qhk3q-cai";
-    // const whitelist = [canisterId];
     const host = "http://127.0.0.1:4943/";
 
     const onConnectionUpdate = () => {
@@ -57,21 +51,23 @@ const WalletPopup: React.FC<WalletPopupProps> = ({
         (window as any).ic?.plug?.sessionManager?.sessionData
       );
 
-      ///save the principal and account ID in the state
-      authState.setPrincipal((window as any).ic?.plug?.sessionManager?.sessionData.principalId)
-         authState.setAccountId((window as any).ic?.plug?.sessionManager?.sessionData.accountId)
-
+      // Save the principal and account ID in the state
+      authState.setPrincipal(
+        (window as any).ic?.plug?.sessionManager?.sessionData.principalId
+      );
+      authState.setAccountId(
+        (window as any).ic?.plug?.sessionManager?.sessionData.accountId
+      );
     };
 
     try {
-      const publicKey: Uint8Array = await (window as any).ic.plug.requestConnect(
-        {
-         
-          host,
-          onConnectionUpdate,
-          timeout: 5000,
-        }
-      );
+      const publicKey: Uint8Array = await (
+        window as any
+      ).ic.plug.requestConnect({
+        host,
+        onConnectionUpdate,
+        timeout: 5000,
+      });
 
       console.log(`The connected user's public key is:`, publicKey);
       setPrincipal(Principal.selfAuthenticating(publicKey).toString());
@@ -103,7 +99,7 @@ const WalletPopup: React.FC<WalletPopupProps> = ({
       const principal = await connectNFIDWallet();
 
       if (principal) {
-            authState.setPrincipal(principal)
+        authState.setPrincipal(principal);
         console.log(`The connected user's principal is:`, principal);
         setPrincipal(principal);
         setConnectionStatus("success");
@@ -147,7 +143,9 @@ const WalletPopup: React.FC<WalletPopupProps> = ({
         },
       }}
     >
-      <DialogTitle sx={{ backgroundColor: "#393e46", textAlign: "center", ...headerFont }}>
+      <DialogTitle
+        sx={{ backgroundColor: "#393e46", textAlign: "center", ...headerFont }}
+      >
         <Typography variant="h5" sx={{ color: "#ffffff" }}>
           Choose a Wallet
         </Typography>
@@ -161,8 +159,10 @@ const WalletPopup: React.FC<WalletPopupProps> = ({
             sx={{
               mb: 2,
               width: "100%",
-              bgcolor: isConnecting && walletType === "plug" ? "#76ABAE" : "#30475e",
-              color: isConnecting && walletType === "plug" ? "#30475e" : "#ffffff",
+              bgcolor:
+                isConnecting && walletType === "plug" ? "#76ABAE" : "#30475e",
+              color:
+                isConnecting && walletType === "plug" ? "#30475e" : "#ffffff",
               "&:hover": {
                 bgcolor: "#76ABAE",
               },
@@ -180,8 +180,10 @@ const WalletPopup: React.FC<WalletPopupProps> = ({
             onClick={connectNFIDWalletHandler}
             sx={{
               width: "100%",
-              bgcolor: isConnecting && walletType === "nfid" ? "#76ABAE" : "#30475e",
-              color: isConnecting && walletType === "nfid" ? "#30475e" : "#ffffff",
+              bgcolor:
+                isConnecting && walletType === "nfid" ? "#76ABAE" : "#30475e",
+              color:
+                isConnecting && walletType === "nfid" ? "#30475e" : "#ffffff",
               "&:hover": {
                 bgcolor: "#76ABAE",
               },
@@ -214,7 +216,10 @@ const WalletPopup: React.FC<WalletPopupProps> = ({
         </Container>
       </DialogContent>
       <DialogActions sx={{ backgroundColor: "#393e46", padding: "12px" }}>
-        <Button onClick={onClose} sx={{ width: "100%", bgcolor: "#c7c7c7", color: "#000000" }}>
+        <Button
+          onClick={onClose}
+          sx={{ width: "100%", bgcolor: "#c7c7c7", color: "#000000" }}
+        >
           Close
         </Button>
       </DialogActions>

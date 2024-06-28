@@ -26,10 +26,9 @@ export const Controls = ({
 
   return (
     <div className="controls">
-      <Link to={"/auth/business"}>
-         <button className="getstarted">Get Started</button>
+      <Link to={"/auth/wallet"}>
+        <button className="getstarted">Get Started</button>
       </Link>
-   
 
       <span>
         <button className="prevbtn" onClick={onGoToPrev}>
