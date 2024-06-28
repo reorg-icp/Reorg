@@ -185,7 +185,7 @@ const WalletPopup: React.FC<WalletPopupProps> = ({
             )}
           </Button>
           {isConnecting && (
-            <div sx={{ mt: 2, textAlign: "center" }}>
+            <div style={{ marginTop: 2, textAlign: "center" }}>
               <Typography variant="body2" sx={{ color: "#cccccc" }}>
                 Accept the request connection
               </Typography>
@@ -199,7 +199,7 @@ const WalletPopup: React.FC<WalletPopupProps> = ({
           )}
           {connectionStatus === "error" && (
             <Typography variant="body1" sx={{ mt: 2, color: "#f44336" }}>
-              Connection failed. Please try again.
+              Connection failed. Do you have plug extension installed?
             </Typography>
           )}
         </Container>
