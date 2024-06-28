@@ -5,11 +5,15 @@ import { colors } from "../../../assets/colors";
 import Button from "@mui/material/Button";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { ArrowForward } from "@mui/icons-material";
+import { useState } from "react";
 const GetStartedBusiness = ({
   handleConnectWallet,
 }: {
   handleConnectWallet: () => void;
 }): JSX.Element => {
+  const [accountType, setAccountType] = useState<"business" | "investor">(
+    "business"
+  );
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
@@ -20,10 +24,16 @@ const GetStartedBusiness = ({
       sx={{ padding: "10px" }}
     >
       <Grid item xs={8}>
-        <CreateAccount handleConnectWallet={handleConnectWallet} />
+        <CreateAccount
+          handleConnectWallet={handleConnectWallet}
+          accountType={accountType}
+        />
       </Grid>
       <Grid item xs={4}>
-        <ChooseAccount />
+        <ChooseAccount
+          accountType={accountType}
+          setAccountType={setAccountType}
+        />
       </Grid>
     </Grid>
   );
@@ -31,8 +41,10 @@ const GetStartedBusiness = ({
 
 const CreateAccount = ({
   handleConnectWallet,
+  accountType,
 }: {
   handleConnectWallet: () => void;
+  accountType: string;
 }): JSX.Element => {
   return (
     <>
@@ -60,7 +72,10 @@ const CreateAccount = ({
         </a>
       </p>
 
-      <Link to="create-token">
+      <Link
+        to={accountType === "business" ? `/create-token` : `/`}
+        style={{ textDecoration: "none" }}
+      >
         <Button
           variant="contained"
           endIcon={
@@ -87,6 +102,7 @@ const CreateAccount = ({
             marginTop: "10px",
             alignItems: "center",
             justifyContent: "space-between",
+            textDecoration: "none",
             "&:hover": {
               background: colors.primary,
             },
@@ -99,7 +115,15 @@ const CreateAccount = ({
   );
 };
 
-const ChooseAccount = (): JSX.Element => {
+const ChooseAccount = ({
+  accountType,
+  setAccountType,
+}: {
+  accountType: "investor" | "business";
+  setAccountType: (accountType: "investor" | "business") => void;
+}): JSX.Element => {
+  const theme = useTheme();
+
   return (
     <>
       <h1 style={{ textAlign: "center", fontWeight: "bold" }}>Reorg</h1>
@@ -112,6 +136,16 @@ const ChooseAccount = (): JSX.Element => {
         style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
       >
         <Button
+          onClick={() => {
+            const newAccountType =
+              accountType === "business" ? "investor" : "business";
+            setAccountType(newAccountType);
+
+            // Update the URL query parameter
+            const url = new URL(window.location.href);
+            url.searchParams.set("accountType", newAccountType);
+            window.history.pushState({}, "", url.toString());
+          }}
           variant="contained"
           endIcon={
             <div
@@ -122,61 +156,43 @@ const ChooseAccount = (): JSX.Element => {
                 width: "24px",
                 height: "24px",
                 borderRadius: "50%",
-                border: `2px solid ${colors.divider}`,
+                border: `2px solid ${theme.palette.divider}`,
+                transition: "border-color 0.3s ease",
               }}
             >
               <ArrowForward />
             </div>
           }
           sx={{
-            height: "26px",
-
+            height: "50px",
             background: colors.primary,
-            margin: "0 10px",
+            color: theme.palette.getContrastText(theme.palette.primary.main),
+            padding: "0 20px",
             display: "flex",
-            marginTop: "10px",
             alignItems: "center",
             justifyContent: "space-between",
+            borderRadius: "10px",
+
+            fontWeight: "bold",
+            textTransform: "none",
+            transition: "transform 0.2s, box-shadow 0.2s",
             "&:hover": {
               background: colors.primary,
             },
-          }}
-        >
-          <span>Investor</span>
-        </Button>
-        <p>or</p>
-        <Button
-          variant="contained"
-          endIcon={
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "24px",
-                height: "24px",
-                borderRadius: "50%",
-                border: `2px solid ${colors.divider}`,
-              }}
-            >
-              <ArrowForward />
-            </div>
-          }
-          sx={{
-            height: "26px",
-
-            background: colors.primary,
-            margin: "0 10px",
-            display: "flex",
-            marginTop: "10px",
-            alignItems: "center",
-            justifyContent: "space-between",
-            "&:hover": {
-              background: colors.primary,
+            "& .MuiButton-endIcon": {
+              marginLeft: "10px",
+              transition: "margin-left 0.3s ease",
+            },
+            "&:hover .MuiButton-endIcon": {
+              marginLeft: "15px",
             },
           }}
         >
-          <span>Sign in </span>
+          <span>
+            {accountType === "business"
+              ? "Authenticate as an investor"
+              : "Authenticate as an business"}
+          </span>
         </Button>
       </div>
     </>

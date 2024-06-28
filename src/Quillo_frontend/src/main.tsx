@@ -9,10 +9,7 @@ import WalletPopup from "./components/Wallet"; // Import WalletPopup component
 import Private from "./pages/Private";
 import "./styles/index.scss";
 
-
-
 const App = () => {
- 
   const [principal, setPrincipal] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [_, setshowPurchasePopUp] = useState(false);
@@ -29,16 +26,26 @@ const App = () => {
     setshowPurchasePopUp(true);
   };
 
-   const router = createBrowserRouter([
-  {
-    path: "/",
-    index: true,
-    element: <AboutReorg />,
-    errorElement: <ErrorPage />,
-  },
-  { path: "/auth/:accType", element: <Authentication handleConnectWallet={handleConnectWallet} /> },
-  { path: "/create-token", element: <Private><CreateToken /></Private> },
-]);
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      index: true,
+      element: <AboutReorg />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/auth/:accType",
+      element: <Authentication handleConnectWallet={handleConnectWallet} />,
+    },
+    {
+      path: "/create-token",
+      element: (
+        <Private>
+          <CreateToken />
+        </Private>
+      ),
+    },
+  ]);
 
   return (
     <React.StrictMode>
