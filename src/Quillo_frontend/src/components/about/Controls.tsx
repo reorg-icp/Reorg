@@ -1,6 +1,7 @@
 import { JSX, Dispatch, SetStateAction } from "react";
 import { sectionType } from "../../pages/about";
 import { ArrowLeft, ArrowRight } from "../../assets/icons";
+import { Link } from "react-router-dom";
 
 interface controlsprops {
   currSection: sectionType;
@@ -25,7 +26,10 @@ export const Controls = ({
 
   return (
     <div className="controls">
-      <button className="getstarted">Get Started</button>
+      <Link to={"/auth/business"}>
+         <button className="getstarted">Get Started</button>
+      </Link>
+   
 
       <span>
         <button className="prevbtn" onClick={onGoToPrev}>

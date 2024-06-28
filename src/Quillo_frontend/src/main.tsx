@@ -6,6 +6,7 @@ import { Authentication } from "./pages/auth";
 import { CreateToken } from "./pages/app/token/createtoken";
 import { ErrorPage } from "./pages/error";
 import WalletPopup from "./components/Wallet"; // Import WalletPopup component
+import Private from "./pages/Private";
 import "./styles/index.scss";
 
 
@@ -36,7 +37,7 @@ const App = () => {
     errorElement: <ErrorPage />,
   },
   { path: "/auth/:accType", element: <Authentication handleConnectWallet={handleConnectWallet} /> },
-  { path: "/create-token", element: <CreateToken /> },
+  { path: "/create-token", element: <Private><CreateToken /></Private> },
 ]);
 
   return (

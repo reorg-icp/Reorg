@@ -11,8 +11,9 @@ import {
   DialogContent,
   DialogTitle,
   Typography,
-  useTheme,
+
 } from "@mui/material";
+import { useAuthStore,Auth } from "../store";
 
 // Define a custom font style
 const headerFont = {
@@ -29,23 +30,25 @@ interface WalletPopupProps {
 const WalletPopup: React.FC<WalletPopupProps> = ({
   onClose,
   handlePurchasePopup,
-  principal,
+
   setPrincipal,
 }) => {
+
+    const authState:Auth= useAuthStore((state:Auth)=>state)
   const [isConnecting, setIsConnecting] = useState(false);
   const [connectionStatus, setConnectionStatus] = useState<
     "success" | "error" | null
   >(null);
   const [walletType, setWalletType] = useState<"plug" | "nfid" | null>(null);
-  const theme = useTheme();
+ ;
 
   const connectPlugWallet = async () => {
     setIsConnecting(true);
     setConnectionStatus(null);
     setWalletType("plug");
 
-    const canisterId = "kf4ru-ciaaa-aaaap-qhk3q-cai";
-    const whitelist = [canisterId];
+    // const canisterId = "kf4ru-ciaaa-aaaap-qhk3q-cai";
+    // const whitelist = [canisterId];
     const host = "http://127.0.0.1:4943/";
 
     const onConnectionUpdate = () => {
@@ -53,12 +56,17 @@ const WalletPopup: React.FC<WalletPopupProps> = ({
         "Session data is: ",
         (window as any).ic?.plug?.sessionManager?.sessionData
       );
+
+      ///save the principal and account ID in the state
+      authState.setPrincipal((window as any).ic?.plug?.sessionManager?.sessionData.principalId)
+         authState.setAccountId((window as any).ic?.plug?.sessionManager?.sessionData.accountId)
+
     };
 
     try {
       const publicKey: Uint8Array = await (window as any).ic.plug.requestConnect(
         {
-          whitelist,
+         
           host,
           onConnectionUpdate,
           timeout: 5000,
@@ -95,6 +103,7 @@ const WalletPopup: React.FC<WalletPopupProps> = ({
       const principal = await connectNFIDWallet();
 
       if (principal) {
+            authState.setPrincipal(principal)
         console.log(`The connected user's principal is:`, principal);
         setPrincipal(principal);
         setConnectionStatus("success");
