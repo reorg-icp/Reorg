@@ -12,7 +12,7 @@ type BasicDaoStableStorage = record {
   proposals : vec Proposal;
 };
 type ContactInfo = record { email : text; phone : text };
-type DaoError = variant { MissingField : text };
+type CustomError = variant { custom : text; MissingField : text };
 type Founder = record {
   address : Address;
   contact_info : ContactInfo;
@@ -33,8 +33,8 @@ type Proposal = record {
 };
 type ProposalPayload = record {
   method : text;
-  canister_id : principal;
-  message : blob;
+  main_param : blob;
+  extra_info : blob;
 };
 type ProposalState = variant {
   Failed : text;
@@ -56,23 +56,24 @@ type RegistrationDetails = record {
   address : Address;
   contact_info : ContactInfo;
 };
-type Result = variant { Ok : text; Err : text };
-type Result_1 = variant { Ok : BasicDaoStableStorage; Err : DaoError };
+type Result = variant { Ok : principal; Err : text };
+type Result_1 = variant { Ok : BasicDaoStableStorage; Err : CustomError };
 type SystemParams = record {
-  transfer_fee : Tokens;
+  transfer_fee : opt Tokens;
   registration_details : RegistrationDetails;
-  proposal_vote_threshold : Tokens;
-  proposal_submission_deposit : Tokens;
-  total_token_supply : Tokens;
+  proposal_vote_threshold : opt Tokens;
+  proposal_submission_deposit : opt Tokens;
+  total_token_supply : opt Tokens;
 };
 type TokenizationDetails = record {
   token_symbol : text;
   token_name : text;
   total_supply : nat64;
 };
-type Tokens = record { canister_id : opt principal; amount_e8s : nat64 };
+type Tokens = record { e8s : nat64 };
 type UpdateSystemParamsPayload = record {
   transfer_fee : opt Tokens;
+  token_canister : opt principal;
   registration_details : opt RegistrationDetails;
   proposal_vote_threshold : opt Tokens;
   proposal_submission_deposit : opt Tokens;
@@ -84,6 +85,6 @@ type Valuation = record {
   post_money_valuation : float64;
 };
 service : {
-  create_icrc2_token : (text, text, nat, nat, text) -> (Result);
+  create_icrc2_token : (text, text, nat, nat, text, principal) -> (Result);
   register_dao : (UpdateSystemParamsPayload) -> (Result_1);
 }
