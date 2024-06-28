@@ -20,7 +20,7 @@ const GetStartedBusiness = ({handleConnectWallet}:{ handleConnectWallet: () => v
 const CreateAccount = ({handleConnectWallet}:{ handleConnectWallet: () => void }): JSX.Element => {
   return (
     <>
-  <List items={["Get started by creating an account", "Sign in to Reorg with", "Plug Wallet", "NFID Wallet"]} handleConnectWallet={handleConnectWallet} />
+  <List items={["Get started by creating an account", "Sign in to Reorg with", "Connect Wallet"]} handleConnectWallet={handleConnectWallet} />
     <p className="desc">
      Plug is a crypto wallet for the Internet Computer that allows you to hold, send, and swap ICP, Cycles,NFTs, and other tokens. 
      <br></br>
