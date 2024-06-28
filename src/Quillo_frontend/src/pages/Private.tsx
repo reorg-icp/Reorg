@@ -5,7 +5,7 @@ const Private = ({ children }: any) => {
 
   // If accessToken doesn't exist, redirect to login
   if (!principal || !accountId) {
-    // return <Navigate to="/auth/wallet" />;
+    return <Navigate to="/auth/wallet" />;
   }
 
   return <>{children}</>;
