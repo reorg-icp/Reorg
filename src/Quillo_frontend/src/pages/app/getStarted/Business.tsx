@@ -3,10 +3,13 @@ import { Grid } from '@mui/material';
 import List from '../../../components/reusables/AuthList';
 import { colors } from '../../../assets/colors';
 import Button from '@mui/material/Button';
+import {useMediaQuery,useTheme} from "@mui/material"
 import { ArrowForward } from '@mui/icons-material';
 const GetStartedBusiness = ({handleConnectWallet}:{ handleConnectWallet: () => void }): JSX.Element => {
+  const theme=useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
-    <Grid container spacing={0} sx={{padding:"10px"}}>
+    <Grid  direction={isMobile ? 'column' : 'row'} container spacing={0} sx={{padding:"10px"}} >
       <Grid item xs={8}>
    <CreateAccount handleConnectWallet={handleConnectWallet}/>
       </Grid>
