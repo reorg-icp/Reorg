@@ -132,7 +132,7 @@ let owner=dao.system_params.project_details.unwrap().project_principal.unwrap();
         token_details.transfer_fee,
         token_details.total_supply,
         token_details.token_image,
-       owner
+      Principal::from_text(owner).unwrap()
     ).await {
         Ok(canister_id) => Ok(canister_id),
         Err(e) => match e {
@@ -142,7 +142,11 @@ let owner=dao.system_params.project_details.unwrap().project_principal.unwrap();
     }
 }
 
+#[ic_cdk::query]
 
+fn greet(name:String)->String{
+    name
+}
 
 fn match_get_dao(id: &u64) -> Option<Dao> {
     DAOS.with(|service| service.borrow().get(id))
