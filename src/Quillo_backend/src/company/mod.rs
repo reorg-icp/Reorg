@@ -1,109 +1,82 @@
-use candid::{CandidType, Deserialize, Principal};
-use std::collections::HashMap;
+use std::borrow::Cow;
 
-#[derive(Clone, Debug, Default, CandidType, Deserialize)]
-pub struct Address {
-    pub street: String,
-    pub city: String,
-    pub state: String,
-    pub country: String,
-    pub postal_code: String,
-}
-
-#[derive(Clone, Debug, Default, CandidType, Deserialize)]
-pub struct ContactInfo {
-    pub email: String,
-    pub phone: String,
-}
-
-#[derive(Clone, Debug, Default, CandidType, Deserialize)]
-pub struct Founder {
-    pub first_name: String,
-    pub last_name: String,
-    pub date_of_birth: String,
-    pub contact_info: ContactInfo,
-    pub address: Address,
-    pub kyc_document: String, // Link to the KYC document
-}
-
-#[derive(Clone, Debug, Default, CandidType, Deserialize)]
-pub struct Valuation {
-    pub pre_money_valuation: f64,
-    pub post_money_valuation: f64,
-    pub valuation_date: String,
-}
-
-impl Valuation {
-    pub fn new(
-        pre_money_valuation: f64,
-        post_money_valuation: f64,
-        valuation_date: String,
-    ) -> Self {
-        Self {
-            pre_money_valuation,
-            post_money_valuation,
-            valuation_date,
-        }
-    }
-}
-
-#[derive(Clone, Debug, Default, CandidType, Deserialize)]
-pub struct TokenizationDetails {
-    pub token_name: String,
-    pub token_symbol: String,
-    pub total_supply: u64,
-}
-
-#[derive(Clone, Debug, Default, CandidType, Deserialize)]
-pub struct RegistrationDetails {
-    pub company_name: String,
-    pub registration_number: String,
-    pub incorporation_date: String,
-    pub jurisdiction: String,
-    pub address: Address,
-    pub contact_info: ContactInfo,
-    pub founders: Vec<Founder>,
-    pub valuation: Valuation,
-    pub tokenization_details: TokenizationDetails,
-    pub terms_and_conditions_accepted: bool,
-}
-
-impl RegistrationDetails {
-    pub fn new(
-        company_name: String,
-        registration_number: String,
-        incorporation_date: String,
-        jurisdiction: String,
-        address: Address,
-        contact_info: ContactInfo,
-        founders: Vec<Founder>,
-        valuation: Valuation,
-        tokenization_details: TokenizationDetails,
-        terms_and_conditions_accepted: bool,
-    ) -> Self {
-        Self {
-            company_name,
-            registration_number,
-            incorporation_date,
-            jurisdiction,
-            address,
-            contact_info,
-            founders,
-            valuation,
-            tokenization_details,
-            terms_and_conditions_accepted,
-        }
-    }
-
-    pub fn add_founder(&mut self, founder: Founder) {
-        self.founders.push(founder);
-    }
-}
-
-// Struct for a generic proposal payload
+use candid::{CandidType, Decode, Encode, Nat, Principal};
+use ic_stable_structures::{BoundedStorable, Storable};
 #[derive(Clone, Debug, CandidType, Deserialize)]
-pub struct ProposalPayload {
-    pub canister_id: Principal,
-    pub method: String,
-    pub message: Vec<u8>,
+pub struct ProjectInfo{
+
+    pub project_name:String,
+    pub project_description:String,
+    pub socials:Option<Socials>,
+    pub team:Option<Vec<Member>>,
+    pub technical:Option<Technical>,
+    pub tokenomics:Option<Tokenomics>,
+    pub legal:Option<Legal>,
+    pub project_principal:Option<Principal>
+
+}
+
+impl Default for ProjectInfo{
+    fn default() -> Self {
+        Self { project_name: String::new(), project_description: String::new(), socials: None, team:None, technical: None, tokenomics:None, legal:None, project_principal:None }
+    }
+}
+#[derive(Clone, Debug, CandidType, Deserialize)]
+pub struct Socials{
+    pub x:Option<String>,
+    pub website:Option<String>,
+    pub linkedin:Option<String>,
+    pub discord:Option<String>
+
+}
+#[derive(Clone, Debug, CandidType, Deserialize)]
+pub struct Member{
+    pub name:String,
+    pub role:String,
+    pub socials:Socials,
+    pub email:Option<String>,
+    pub kyc:Option<KYC>
+}
+#[derive(Clone, Debug, CandidType, Deserialize)]
+pub struct KYC{
+    pub front_document:Option<Vec<u8>>,
+    pub back_document:Option<Vec<u8>>,
+    pub face:Option<Vec<u8>>
+}
+#[derive(Clone, Debug, CandidType, Deserialize)]
+pub struct Technical{
+    pub whitepaper:Option<Vec<u8>>,
+    pub github:Option<String>
+}
+#[derive(Clone, Debug, CandidType, Deserialize)]
+pub struct Tokenomics{
+    pub token_name:String,
+    pub token_symbol:String,
+    pub total_supply:Nat,
+pub transfer_fee:Nat,
+pub token_image:String
+
+
+}
+#[derive(Clone, Debug, CandidType, Deserialize)]
+pub struct Legal{
+    pub entity:String,
+    pub compliance_documents:Vec<Vec<u8>>
+}
+
+
+//implement Storable and BoundedStorable
+impl Storable for ProjectInfo{
+    fn to_bytes(&self) -> std::borrow::Cow<[u8]> {
+        Cow::Owned(Encode!(self).unwrap())
+    }
+
+    fn from_bytes(bytes: std::borrow::Cow<[u8]>) -> Self {
+        Decode!(bytes.as_ref(), Self).unwrap()
+    }
+}
+
+impl BoundedStorable for ProjectInfo {
+    const MAX_SIZE: u32 = 102400;
+    const IS_FIXED_SIZE: bool = false;
 }

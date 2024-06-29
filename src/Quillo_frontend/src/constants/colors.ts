@@ -4,4 +4,5 @@ export enum colors {
   text_primary = "rgba(238, 238, 238, 1)",
   text_secondary = "rgba(197, 197, 197, 1)",
   divider = "rgba(252, 234, 234, 0.03)",
+  green = "#00FF00",
 }
