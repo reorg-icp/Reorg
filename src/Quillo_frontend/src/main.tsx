@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutReorg from "./pages/about";
 import { Authentication } from "./pages/auth";
-import { CreateToken } from "./pages/app/token/createtoken";
+import CreateToken from "./pages/app/token/createtoken";
 import { ErrorPage } from "./pages/error";
 import WalletPopup from "./components/Wallet"; // Import WalletPopup component
 import Private from "./pages/Private";

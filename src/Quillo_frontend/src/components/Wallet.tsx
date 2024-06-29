@@ -61,18 +61,24 @@ const WalletPopup: React.FC<WalletPopupProps> = ({
     };
 
     try {
-      const publicKey: Uint8Array = await (
-        window as any
-      ).ic.plug.requestConnect({
-        host,
-        onConnectionUpdate,
-        timeout: 5000,
-      });
+      const publicKey: Uint8Array = await(window as any).ic.plug.requestConnect(
+        {
+          host,
+          onConnectionUpdate,
+          timeout: 5000,
+        }
+      );
 
       console.log(`The connected user's public key is:`, publicKey);
       setPrincipal(Principal.selfAuthenticating(publicKey).toString());
       setConnectionStatus("success");
-
+      // Save the principal and account ID in the state
+      authState.setPrincipal(
+        (window as any).ic?.plug?.sessionManager?.sessionData.principalId
+      );
+      authState.setAccountId(
+        (window as any).ic?.plug?.sessionManager?.sessionData.accountId
+      );
       setTimeout(() => {
         setConnectionStatus(null);
       }, 3000);

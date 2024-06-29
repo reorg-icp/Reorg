@@ -64,9 +64,9 @@ fn _register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError>
             .ok_or(CustomError::MissingField("transfer_fee"))?,
     );
 
-    dao.system_params.registration_details = payload
-        .registration_details
-        .ok_or(CustomError::MissingField("registration_details"))?;
+    dao.system_params.project_details = Some(payload
+        .project_details
+        .ok_or(CustomError::MissingField("project details"))?);
 
     dao.system_params.proposal_submission_deposit = Some(
         payload
@@ -109,31 +109,42 @@ fn register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError> 
     }
 }
 #[ic_cdk::update]
-async fn create_icrc2_token(
-    token_name: String,
-    token_symbol: String,
-    transfer_fee: Nat,
-    total_supply: Nat,
-    token_image: String,
-    dao_id: Principal,
+async fn launch_token(
+   
+    id: u64
 ) -> Result<Principal, String> {
-    let result = create_and_deploy_canister(
-        token_name,
-        token_symbol,
-        transfer_fee,
-        total_supply,
-        token_image,
-        dao_id,
-    )
-    .await;
-    match result {
+  
+    let dao = match match_get_dao(&id).ok_or_else(|| format!("DAO with id={} not found", id)) {
+        Ok(dao) => dao,
+        Err(e) => return Err(e),
+    };
+
+
+    let token_details = match dao.system_params.project_details.clone().and_then(|details| details.tokenomics) {
+        Some(tokenomics) => tokenomics,
+        None => return Err(String::from("Tokenomics details not found for the DAO")),
+    };
+let owner=dao.system_params.project_details.unwrap().project_principal.unwrap();
+   
+    match create_and_deploy_canister(
+        token_details.token_name,
+        token_details.token_symbol,
+        token_details.transfer_fee,
+        token_details.total_supply,
+        token_details.token_image,
+       owner
+    ).await {
         Ok(canister_id) => Ok(canister_id),
         Err(e) => match e {
-            CustomError::MissingField(_) => Err(String::from(
-                "A missing field was found when registering the DAO",
-            )),
+            CustomError::MissingField(_) => Err(String::from("A missing field was found when registering the DAO")),
             CustomError::custom(custom) => Err(custom),
         },
     }
+}
+
+
+
+fn match_get_dao(id: &u64) -> Option<Dao> {
+    DAOS.with(|service| service.borrow().get(id))
 }
 ic_cdk::export_candid!();

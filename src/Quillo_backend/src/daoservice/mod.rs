@@ -1,12 +1,14 @@
 mod dao_methods;
 
-use crate::company::RegistrationDetails;
+
 use candid::{CandidType, Decode, Deserialize, Encode, Principal};
 
 use ic_ledger_types::Tokens;
 use ic_stable_structures::{BoundedStorable, Storable};
 use std::borrow::Cow;
 use std::default::Default;
+
+use crate::company::ProjectInfo;
 
 #[derive(Clone, Debug, Default, CandidType, Deserialize)]
 pub struct BasicDaoStableStorage {
@@ -69,7 +71,7 @@ pub struct SystemParams {
     pub proposal_vote_threshold: Option<Tokens>,
     pub proposal_submission_deposit: Option<Tokens>,
     pub total_token_supply: Option<Tokens>,
-    pub registration_details: RegistrationDetails,
+    pub project_details:Option<ProjectInfo>
 }
 
 #[derive(Clone, Debug, CandidType, Deserialize)]
@@ -78,8 +80,9 @@ pub struct UpdateSystemParamsPayload {
     pub proposal_vote_threshold: Option<Tokens>,
     pub proposal_submission_deposit: Option<Tokens>,
     pub total_token_supply: Option<Tokens>,
-    pub registration_details: Option<RegistrationDetails>,
+   
     pub token_canister: Option<Principal>,
+    pub project_details:Option<ProjectInfo>
 }
 
 //implement Storable and BoundedStorable
