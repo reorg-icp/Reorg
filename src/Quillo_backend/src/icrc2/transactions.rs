@@ -13,13 +13,17 @@ pub static MEMO_CREATE_CANISTER: Memo = Memo(1095062083_u64);
 pub static ICP_TRANSACTION_FEE: Tokens = Tokens::from_e8s(10000);
 
 pub async fn mint_cycles(amount: Tokens) -> Result<candid::Nat, CustomError> {
+    //let users transfer icp funds to this canister use plug or build your little infrastructure. Then the funds are transferred to cmc and converted to cycles for this canister
     ic_cdk::print(&MAINNET_CYCLES_MINTING_CANISTER_ID.to_string());
     let transfer_args = TransferArgs {
         memo: MEMO_TOP_UP_CANISTER,
         amount,
         fee: ICP_TRANSACTION_FEE,
         from_subaccount: Some(Subaccount::from(
-            Principal::from_text("owu57-ix3tx-4pgh7-pmu7n-dzlor-tqljq-wui5j-g5b2g-mtnfa-yklry-mae")
+            Principal::from_text("owu57-ix3tx-4pgh7-pmu7n-dzlor-tqljq-wui5j-g5b2g-mtnfa-yklry-mae")//this canister make sure users transfer funds to this canister. I think we can use None
+            
+
+
                 .unwrap(),
         )),
         to: AccountIdentifier::new(

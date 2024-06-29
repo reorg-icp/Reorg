@@ -12,13 +12,15 @@ pub struct ProjectInfo{
     pub technical:Option<Technical>,
     pub tokenomics:Option<Tokenomics>,
     pub legal:Option<Legal>,
-    pub project_principal:Option<Principal>
+    pub project_principal:Option<Principal>,
+    pub project_category:Option<ProjectCategory>,
+    pub platform:Option<Platform>
 
 }
 
 impl Default for ProjectInfo{
     fn default() -> Self {
-        Self { project_name: String::new(), project_description: String::new(), socials: None, team:None, technical: None, tokenomics:None, legal:None, project_principal:None }
+        Self { project_name: String::new(), project_description: String::new(), socials: None, team:None, technical: None, tokenomics:None, legal:None, project_principal:None,project_category:None ,platform:None}
     }
 }
 #[derive(Clone, Debug, CandidType, Deserialize)]
@@ -28,6 +30,20 @@ pub struct Socials{
     pub linkedin:Option<String>,
     pub discord:Option<String>
 
+}
+#[derive(Clone, Debug, CandidType, Deserialize)]
+pub enum ProjectCategory{
+    Tokenization,
+    Defi,
+    NFT,
+    Dapp,
+    Gaming
+}
+#[derive(Clone, Debug, CandidType, Deserialize)]
+pub enum Platform{
+    Web,
+    Mobile,
+    Desktop
 }
 #[derive(Clone, Debug, CandidType, Deserialize)]
 pub struct Member{
