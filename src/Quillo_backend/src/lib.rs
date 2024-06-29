@@ -1,6 +1,6 @@
 #[macro_use]
 extern crate serde;
-use candid::Nat;
+
 
 use candid::Principal;
 use error_handler::CustomError;
