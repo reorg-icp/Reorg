@@ -30,7 +30,7 @@ type ProjectInfo = record {
   legal : opt Legal;
   project_category : opt ProjectCategory;
   project_name : text;
-  project_principal : opt principal;
+  project_principal : opt text;
 };
 type Proposal = record {
   id : nat64;
@@ -88,6 +88,7 @@ type UpdateSystemParamsPayload = record {
   total_token_supply : opt Tokens;
 };
 service : {
+  greet : (text) -> (text) query;
   launch_token : (nat64) -> (Result);
   register_dao : (UpdateSystemParamsPayload) -> (Result_1);
 }

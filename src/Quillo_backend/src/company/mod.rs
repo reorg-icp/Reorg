@@ -12,7 +12,7 @@ pub struct ProjectInfo{
     pub technical:Option<Technical>,
     pub tokenomics:Option<Tokenomics>,
     pub legal:Option<Legal>,
-    pub project_principal:Option<Principal>,
+    pub project_principal:Option<String>,
     pub project_category:Option<ProjectCategory>,
     pub platform:Option<Platform>
 

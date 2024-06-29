@@ -9,8 +9,12 @@ import {
 } from "@mui/material";
 import { ArrowForward, UploadFile } from "@mui/icons-material";
 import { colors } from "../../../constants/colors";
-import { useProjectInfo } from "../../../store";
-
+import { Auth, useAuthStore, useProjectInfo } from "../../../store";
+import {
+  Quillo_backend,
+  createActor,
+} from "../../../../../declarations/Quillo_backend";
+import { HttpAgent } from "@dfinity/agent";
 const theme = createTheme({
   palette: {
     primary: {
@@ -58,7 +62,48 @@ const theme = createTheme({
 });
 
 const Tokenize = () => {
-  const { tokenomics, setTokenomics } = useProjectInfo((state: any) => state);
+  let actor = Quillo_backend;
+  const agent: any = new HttpAgent();
+  //backend canister name
+  actor = createActor("dzh22-nuaaa-aaaaa-qaaoa-cai", {
+    agent,
+  });
+  const { principal } = useAuthStore((state: Auth) => state);
+  const {
+    tokenomics,
+    setTokenomics,
+    project_name,
+    project_description,
+
+    platform,
+
+    projectCategory,
+    socials,
+  } = useProjectInfo((state: any) => state);
+  let project_details = {
+    project_name: project_name,
+    project_description: project_description,
+    project_category: projectCategory,
+    platform: platform,
+    socials: socials,
+    tokenomics: tokenomics,
+    project_principal: [principal] as [string],
+    team: [] as [],
+    technical: [] as [], // Cast to tuple with one element
+    legal: [] as [],
+  };
+
+  async function registerProject() {
+    let response = await actor.register_dao({
+      project_details: [project_details],
+      transfer_fee: [],
+      token_canister: [],
+      proposal_vote_threshold: [],
+      proposal_submission_deposit: [],
+      total_token_supply: [],
+    });
+    alert(JSON.stringify(response));
+  }
 
   const inputProps = {
     style: {
@@ -244,8 +289,8 @@ const Tokenize = () => {
                       backgroundColor: "#304FFE", // Darker blue on hover
                     },
                   }}
-                  onClick={() => {
-                    alert(JSON.stringify(tokenomics));
+                  onClick={async () => {
+                    await registerProject();
                   }}
                 >
                   <span>Submit</span>
