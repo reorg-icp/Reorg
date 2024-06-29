@@ -1,8 +1,18 @@
 import { JSX } from "react";
 import { useParams } from "react-router-dom";
+import GetStartedBusiness from "./app/getStarted/Business";
 
-export const Authentication = (): JSX.Element => {
+import { ErrorPage } from "./error";
+
+export const Authentication = ({
+  handleConnectWallet,
+}: {
+  handleConnectWallet: () => void;
+}): JSX.Element => {
   const { accType } = useParams<{ accType?: string }>();
-
-  return <div>auth {accType}</div>;
+  if (accType === "wallet") {
+    return <GetStartedBusiness handleConnectWallet={handleConnectWallet} />;
+  } else {
+    return <ErrorPage />;
+  }
 };

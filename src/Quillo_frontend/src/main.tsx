@@ -1,25 +1,65 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutReorg from "./pages/about";
 import { Authentication } from "./pages/auth";
-import { CreateToken } from "./pages/app/token/createtoken";
+import CreateToken from "./pages/app/token/createtoken";
 import { ErrorPage } from "./pages/error";
+import WalletPopup from "./components/Wallet"; // Import WalletPopup component
+import Private from "./pages/Private";
 import "./styles/index.scss";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    index: true,
-    element: <AboutReorg />,
-    errorElement: <ErrorPage />,
-  },
-  { path: "/auth/:accType", element: <Authentication /> },
-  { path: "/create-token", element: <CreateToken /> },
-]);
+const App = () => {
+  const [principal, setPrincipal] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [_, setshowPurchasePopUp] = useState(false);
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
+  const handleConnectWallet = () => {
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
+  const handlePurchasePopup = () => {
+    setshowPurchasePopUp(true);
+  };
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      index: true,
+      element: <AboutReorg />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/auth/:accType",
+      element: <Authentication handleConnectWallet={handleConnectWallet} />,
+    },
+    {
+      path: "/create-token",
+      element: (
+        <Private>
+          <CreateToken />
+        </Private>
+      ),
+    },
+  ]);
+
+  return (
+    <React.StrictMode>
+      <RouterProvider router={router} />
+      {showPopup && (
+        <WalletPopup
+          principal={principal}
+          setPrincipal={setPrincipal}
+          onClose={handleClosePopup}
+          handlePurchasePopup={handlePurchasePopup}
+        />
+      )}
+    </React.StrictMode>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
