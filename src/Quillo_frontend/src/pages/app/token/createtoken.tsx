@@ -5,10 +5,11 @@ import {
   Button,
   createTheme,
   ThemeProvider,
-  useMediaQuery,
 } from "@mui/material";
 import { ArrowForward } from "@mui/icons-material";
-import { useState } from "react";
+
+import { Link } from "react-router-dom";
+import { useProjectInfo } from "../../../store";
 
 const theme = createTheme({
   components: {
@@ -38,21 +39,19 @@ const theme = createTheme({
   },
 });
 
-const CreateToken = (): JSX.Element => {
-  const [formData, setFormData] = useState({
-    productName: "",
-    productCategory: "",
-    teamMembers: "",
-    platform: "",
-    projectDescription: "",
-  });
-
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+const CreateToken = () => {
+  const {
+    project_name,
+    project_description,
+    setProjectName,
+    setProjectDescription,
+    setPlatform,
+    platform,
+    setProjectCategory,
+    projectCategory,
+    socials,
+    setSocials,
+  } = useProjectInfo((state: any) => state);
 
   const inputProps = {
     style: {
@@ -93,10 +92,12 @@ const CreateToken = (): JSX.Element => {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6} md={4}>
                 <TextField
-                  label="Product Name"
-                  name="productName"
-                  value={formData.productName}
-                  onChange={handleChange}
+                  label="Project Name"
+                  name="projectName"
+                  value={project_name}
+                  onChange={(e: any) => {
+                    setProjectName(e.target.value);
+                  }}
                   variant="outlined"
                   fullWidth
                   InputProps={{
@@ -113,10 +114,12 @@ const CreateToken = (): JSX.Element => {
               <Grid item xs={12} sm={6} md={4}>
                 <TextField
                   select
-                  label="Product Category"
-                  name="productCategory"
-                  value={formData.productCategory}
-                  onChange={handleChange}
+                  label="Project Category"
+                  name="projectCategory"
+                  value={projectCategory}
+                  onChange={(e: any) => {
+                    setProjectCategory(e.target.value);
+                  }}
                   variant="outlined"
                   fullWidth
                   SelectProps={{
@@ -124,39 +127,22 @@ const CreateToken = (): JSX.Element => {
                     ...inputProps,
                   }}
                 >
-                  <MenuItem value="tokenization">Tokenization</MenuItem>
-                  <MenuItem value="defi">DeFi</MenuItem>
-                  <MenuItem value="nft">NFT</MenuItem>
-                  <MenuItem value="gaming">Gaming</MenuItem>
-                  <MenuItem value="dapp">dApp</MenuItem>
+                  <MenuItem value="Tokenization">Tokenization</MenuItem>
+                  <MenuItem value="Defi">DeFi</MenuItem>
+                  <MenuItem value="NFT">NFT</MenuItem>
+                  <MenuItem value="Gaming">Gaming</MenuItem>
+                  <MenuItem value="Dapp">DApp</MenuItem>
                 </TextField>
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <TextField
-                  label="Team Members"
-                  name="teamMembers"
-                  value={formData.teamMembers}
-                  onChange={handleChange}
-                  variant="outlined"
-                  fullWidth
-                  InputProps={{
-                    ...inputProps,
-                    onFocus: (e) => {
-                      e.target.style.borderBottomColor = "#00FF00";
-                    },
-                    onBlur: (e) => {
-                      e.target.style.borderBottomColor = "transparent";
-                    },
-                  }}
-                />
               </Grid>
               <Grid item xs={12} sm={6} md={4}>
                 <TextField
                   select
                   label="Platform"
                   name="platform"
-                  value={formData.platform}
-                  onChange={handleChange}
+                  value={platform}
+                  onChange={(e) => {
+                    setPlatform(e.target.value);
+                  }}
                   variant="outlined"
                   fullWidth
                   SelectProps={{
@@ -164,17 +150,19 @@ const CreateToken = (): JSX.Element => {
                     ...inputProps,
                   }}
                 >
-                  <MenuItem value="mobile">Mobile</MenuItem>
-                  <MenuItem value="web">Web</MenuItem>
-                  <MenuItem value="desktop">Desktop</MenuItem>
+                  <MenuItem value="Mobile">Mobile</MenuItem>
+                  <MenuItem value="Web">Web</MenuItem>
+                  <MenuItem value="Desktop">Desktop</MenuItem>
                 </TextField>
               </Grid>
-              <Grid item xs={12} sm={12} md={8}>
+              <Grid item xs={12} sm={6} md={4}>
                 <TextField
                   label="Project Description"
                   name="projectDescription"
-                  value={formData.projectDescription}
-                  onChange={handleChange}
+                  value={project_description}
+                  onChange={(e: any) => {
+                    setProjectDescription(e.target.value);
+                  }}
                   variant="outlined"
                   multiline
                   rows={4}
@@ -190,21 +178,108 @@ const CreateToken = (): JSX.Element => {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} textAlign="center">
-                <Button
-                  variant="contained"
-                  endIcon={<ArrowForward />}
-                  sx={{
-                    height: "50px",
-                    backgroundColor: "#00FF00",
-                    color: "#fff",
-                    "&:hover": {
-                      backgroundColor: "#00CC00",
+              <Grid item xs={12} sm={6} md={4}>
+                <TextField
+                  label="Website"
+                  name="website"
+                  value={socials.website}
+                  onChange={(e: any) => {
+                    setSocials({ ...socials, website: e.target.value });
+                  }}
+                  variant="outlined"
+                  fullWidth
+                  InputProps={{
+                    ...inputProps,
+                    onFocus: (e) => {
+                      e.target.style.borderBottomColor = "#00FF00";
+                    },
+                    onBlur: (e) => {
+                      e.target.style.borderBottomColor = "transparent";
                     },
                   }}
-                >
-                  <span>Submit</span>
-                </Button>
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                <TextField
+                  label="Twitter (X)"
+                  name="x"
+                  value={socials.x}
+                  onChange={(e: any) => {
+                    setSocials({ ...socials, x: e.target.value });
+                  }}
+                  variant="outlined"
+                  fullWidth
+                  InputProps={{
+                    ...inputProps,
+                    onFocus: (e) => {
+                      e.target.style.borderBottomColor = "#00FF00";
+                    },
+                    onBlur: (e) => {
+                      e.target.style.borderBottomColor = "transparent";
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                <TextField
+                  label="LinkedIn"
+                  name="linkedin"
+                  value={socials.linkedin}
+                  onChange={(e: any) => {
+                    setSocials({ ...socials, linkedin: e.target.value });
+                  }}
+                  variant="outlined"
+                  fullWidth
+                  InputProps={{
+                    ...inputProps,
+                    onFocus: (e) => {
+                      e.target.style.borderBottomColor = "#00FF00";
+                    },
+                    onBlur: (e) => {
+                      e.target.style.borderBottomColor = "transparent";
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                <TextField
+                  label="Discord"
+                  name="discord"
+                  value={socials.discord}
+                  onChange={(e: any) => {
+                    setSocials({ ...socials, discord: e.target.value });
+                  }}
+                  variant="outlined"
+                  fullWidth
+                  InputProps={{
+                    ...inputProps,
+                    onFocus: (e) => {
+                      e.target.style.borderBottomColor = "#00FF00";
+                    },
+                    onBlur: (e) => {
+                      e.target.style.borderBottomColor = "transparent";
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} textAlign="center">
+                <Link to="/tokenize">
+                  <Button
+                    variant="contained"
+                    endIcon={<ArrowForward />}
+                    sx={{
+                      height: "50px",
+                      backgroundColor: "#00FF00",
+                      color: "#fff",
+                      "&:hover": {
+                        backgroundColor: "#00CC00",
+                      },
+                    }}
+                  >
+                    <span>Next</span>
+                  </Button>
+                </Link>
               </Grid>
             </Grid>
           </form>

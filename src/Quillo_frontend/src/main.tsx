@@ -7,6 +7,7 @@ import CreateToken from "./pages/app/token/createtoken";
 import { ErrorPage } from "./pages/error";
 import WalletPopup from "./components/Wallet"; // Import WalletPopup component
 import Private from "./pages/Private";
+import Tokenize from "./pages/app/token/Tokenize";
 import "./styles/index.scss";
 
 const App = () => {
@@ -42,6 +43,14 @@ const App = () => {
       element: (
         <Private>
           <CreateToken />
+        </Private>
+      ),
+    },
+    {
+      path: "/tokenize",
+      element: (
+        <Private>
+          <Tokenize />
         </Private>
       ),
     },

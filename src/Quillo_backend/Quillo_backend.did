@@ -1,25 +1,36 @@
 type Account = record { owner : principal; tokens : Tokens };
-type Address = record {
-  street : text;
-  country : text;
-  city : text;
-  postal_code : text;
-  state : text;
-};
 type BasicDaoStableStorage = record {
   system_params : SystemParams;
   accounts : vec Account;
   proposals : vec Proposal;
 };
-type ContactInfo = record { email : text; phone : text };
 type CustomError = variant { custom : text; MissingField : text };
-type Founder = record {
-  address : Address;
-  contact_info : ContactInfo;
-  kyc_document : text;
-  first_name : text;
-  last_name : text;
-  date_of_birth : text;
+type KYC = record {
+  face : opt blob;
+  front_document : opt blob;
+  back_document : opt blob;
+};
+type Legal = record { entity : text; compliance_documents : vec blob };
+type Member = record {
+  kyc : opt KYC;
+  name : text;
+  role : text;
+  socials : Socials;
+  email : opt text;
+};
+type Platform = variant { Web; Desktop; Mobile };
+type ProjectCategory = variant { NFT; Dapp; Defi; Gaming; Tokenization };
+type ProjectInfo = record {
+  tokenomics : opt Tokenomics;
+  project_description : text;
+  team : opt vec Member;
+  socials : opt Socials;
+  platform : opt Platform;
+  technical : opt Technical;
+  legal : opt Legal;
+  project_category : opt ProjectCategory;
+  project_name : text;
+  project_principal : opt principal;
 };
 type Proposal = record {
   id : nat64;
@@ -44,47 +55,39 @@ type ProposalState = variant {
   Succeeded;
   Accepted;
 };
-type RegistrationDetails = record {
-  founders : vec Founder;
-  company_name : text;
-  registration_number : text;
-  valuation : Valuation;
-  tokenization_details : TokenizationDetails;
-  incorporation_date : text;
-  jurisdiction : text;
-  terms_and_conditions_accepted : bool;
-  address : Address;
-  contact_info : ContactInfo;
-};
 type Result = variant { Ok : principal; Err : text };
 type Result_1 = variant { Ok : BasicDaoStableStorage; Err : CustomError };
+type Socials = record {
+  x : opt text;
+  linkedin : opt text;
+  website : opt text;
+  discord : opt text;
+};
 type SystemParams = record {
+  project_details : opt ProjectInfo;
   transfer_fee : opt Tokens;
-  registration_details : RegistrationDetails;
   proposal_vote_threshold : opt Tokens;
   proposal_submission_deposit : opt Tokens;
   total_token_supply : opt Tokens;
 };
-type TokenizationDetails = record {
+type Technical = record { whitepaper : opt blob; github : opt text };
+type Tokenomics = record {
+  token_image : text;
   token_symbol : text;
+  transfer_fee : nat;
   token_name : text;
-  total_supply : nat64;
+  total_supply : nat;
 };
 type Tokens = record { e8s : nat64 };
 type UpdateSystemParamsPayload = record {
+  project_details : opt ProjectInfo;
   transfer_fee : opt Tokens;
   token_canister : opt principal;
-  registration_details : opt RegistrationDetails;
   proposal_vote_threshold : opt Tokens;
   proposal_submission_deposit : opt Tokens;
   total_token_supply : opt Tokens;
 };
-type Valuation = record {
-  pre_money_valuation : float64;
-  valuation_date : text;
-  post_money_valuation : float64;
-};
 service : {
-  create_icrc2_token : (text, text, nat, nat, text, principal) -> (Result);
+  launch_token : (nat64) -> (Result);
   register_dao : (UpdateSystemParamsPayload) -> (Result_1);
 }
