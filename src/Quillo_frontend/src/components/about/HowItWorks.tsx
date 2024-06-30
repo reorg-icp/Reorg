@@ -8,7 +8,7 @@ import {
   Tokenize,
   Twitter,
 } from "../../assets/icons";
-
+import { colors } from "../../assets/colors";
 type howitworksSteps =
   | "onboarding"
   | "tokenize"
@@ -35,7 +35,12 @@ export const HowItWorks = (): JSX.Element => {
   return (
     <div className="howitworks">
       <div className="workscontent">
-        <p className="workstitle">How it works</p>
+        <p
+          className="workstitle"
+          style={{ color: colors.green, fontWeight: "bold" }}
+        >
+          How it works
+        </p>
 
         {currSteps === "onboarding" && (
           <>
@@ -45,9 +50,8 @@ export const HowItWorks = (): JSX.Element => {
               <p className="text">
                 Startups seeking to leverage the benefits of DAOs can integrate
                 with the Reorg platform through a streamlined onboarding
-                process. Following successful onboarding, they launch their DAO
-                and operate within the Reorg ecosystem while maintaining their
-                legal status as separate entities.
+                process. Following successful onboarding, they launch their
+                token.
               </p>
             </span>
 
@@ -56,7 +60,7 @@ export const HowItWorks = (): JSX.Element => {
               <p className="title">Proof of Existence & Identity</p>
               <p className="text">
                 Reorg employs a comprehensive due diligence process to ensure
-                the legitimacy of startups seeking to launch DAOs on our
+                the legitimacy of startups seeking to launch tokens on our
                 platform. This process incorporates rigorous verification of a
                 startup's existence, identity (through Know Your Customer [KYC]
                 and Know Your Business [KYB] procedures), and valuation to
@@ -136,8 +140,8 @@ export const HowItWorks = (): JSX.Element => {
           <Twitter />
           <Discord />
         </div>
-        <div className="links">
-          <span>FAQ</span>
+        <div className="links" style={{ color: colors.green }}>
+          <span style={{ color: colors.green }}>FAQ</span>
           <span>Terms & Conditions</span>
           <span>Privacy Policy</span>
         </div>

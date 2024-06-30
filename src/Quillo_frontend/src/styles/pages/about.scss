@@ -20,6 +20,7 @@
       @include usefontLS();
       font-size: 2.75rem;
       font-weight: 600;
+      color: $green;
     }
 
     .reorgintro {
@@ -100,6 +101,7 @@
           @include usefontJO();
           margin-bottom: 0.25rem;
           font-size: 1.5rem;
+          color: $green;
         }
         .desc {
           font-size: 1.25rem;
@@ -168,14 +170,14 @@
           width: 3rem;
           border: 1px solid $divider;
           border-radius: 0.25rem;
-          background-color: $secondary;
+          background-color: $green;
         }
 
         .nextbtn {
           width: calc(100% - 4rem);
           gap: 0.5rem;
           font-weight: 500;
-          color: $text_secondary;
+          color: $primary;
         }
       }
 
@@ -185,6 +187,8 @@
           border: 1px solid $primary;
           border-radius: 0.25rem;
           transition: all ease-in-out 0.25s;
+          color: $green;
+          background-color: $secondary;
 
           &:hover {
             border: 1px solid $divider;
@@ -221,13 +225,14 @@
       @include flexmixin(column, no-wrap, center, space-between, 0);
       width: 100%;
       height: 100%;
+      background-color: "rgba(255, 255, 255, 0.16)";
 
       .workscontent {
         .workstitle {
           font-size: 1.25rem;
           font-weight: 500;
           text-align: center;
-          color: $text_primary;
+          color: $green;
         }
 
         span {

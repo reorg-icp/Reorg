@@ -58,49 +58,44 @@ thread_local! {
 
 fn _register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError> {
     let mut dao = Dao::default();
-    dao.system_params.transfer_fee = Some(
-        payload
-            .transfer_fee
-            .ok_or(CustomError::MissingField("transfer_fee"))?,
-    );
 
-    dao.system_params.project_details = Some(payload
-        .project_details
-        .ok_or(CustomError::MissingField("project details"))?);
+    if let Some(transfer_fee) = payload.transfer_fee {
+        dao.system_params.transfer_fee = Some(transfer_fee);
+    }
 
-    dao.system_params.proposal_submission_deposit = Some(
-        payload
-            .proposal_submission_deposit
-            .ok_or(CustomError::MissingField("proposal_submission_deposit"))?,
-    );
+    if let Some(project_details) = payload.project_details {
+        dao.system_params.project_details = Some(project_details);
+    }
 
-    dao.system_params.proposal_vote_threshold = Some(
-        payload
-            .proposal_vote_threshold
-            .ok_or(CustomError::MissingField("proposal_vote_threshold"))?,
-    );
+    if let Some(proposal_submission_deposit) = payload.proposal_submission_deposit {
+        dao.system_params.proposal_submission_deposit = Some(proposal_submission_deposit);
+    }
 
-    dao.system_params.total_token_supply = Some(
-        payload
-            .total_token_supply
-            .ok_or(CustomError::MissingField("total_token_supply"))?,
-    );
+    if let Some(proposal_vote_threshold) = payload.proposal_vote_threshold {
+        dao.system_params.proposal_vote_threshold = Some(proposal_vote_threshold);
+    }
 
-    //we need to create an icrc2 token here
+    if let Some(total_token_supply) = payload.total_token_supply {
+        dao.system_params.total_token_supply = Some(total_token_supply);
+    }
+
+    // we need to create an icrc2 token here
 
     Ok(dao)
 }
 
+
 #[ic_cdk::update]
 fn register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError> {
     match _register_dao(payload) {
-        Ok(dao) => {
+        Ok(mut dao) => {
             //construct the id
             let id = DAO_ID_COUNTER.with(|counter| {
                 let counter_value = *counter.borrow().get();
                 let _ = counter.borrow_mut().set(counter_value + 1);
                 counter_value
             });
+            dao.id=id;
             //Update the storage
             DAOS.with(|service| service.borrow_mut().insert(id, dao.clone()));
             Ok(dao)

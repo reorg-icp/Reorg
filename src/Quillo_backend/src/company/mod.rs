@@ -8,19 +8,18 @@ pub struct ProjectInfo{
     pub project_name:String,
     pub project_description:String,
     pub socials:Option<Socials>,
-    pub team:Option<Vec<Member>>,
-    pub technical:Option<Technical>,
+  
     pub tokenomics:Option<Tokenomics>,
-    pub legal:Option<Legal>,
+  
     pub project_principal:Option<String>,
-    pub project_category:Option<ProjectCategory>,
-    pub platform:Option<Platform>
+
+   
 
 }
 
 impl Default for ProjectInfo{
     fn default() -> Self {
-        Self { project_name: String::new(), project_description: String::new(), socials: None, team:None, technical: None, tokenomics:None, legal:None, project_principal:None,project_category:None ,platform:None}
+        Self { project_name: String::new(), project_description: String::new(), socials: None,  tokenomics:None, project_principal:None }
     }
 }
 #[derive(Clone, Debug, CandidType, Deserialize)]
@@ -93,6 +92,6 @@ impl Storable for ProjectInfo{
 }
 
 impl BoundedStorable for ProjectInfo {
-    const MAX_SIZE: u32 = 102400;
+    const MAX_SIZE: u32 = 429496;
     const IS_FIXED_SIZE: bool = false;
 }

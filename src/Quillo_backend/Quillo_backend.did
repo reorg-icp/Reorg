@@ -1,34 +1,15 @@
 type Account = record { owner : principal; tokens : Tokens };
 type BasicDaoStableStorage = record {
+  id : nat64;
   system_params : SystemParams;
   accounts : vec Account;
   proposals : vec Proposal;
 };
 type CustomError = variant { custom : text; MissingField : text };
-type KYC = record {
-  face : opt blob;
-  front_document : opt blob;
-  back_document : opt blob;
-};
-type Legal = record { entity : text; compliance_documents : vec blob };
-type Member = record {
-  kyc : opt KYC;
-  name : text;
-  role : text;
-  socials : Socials;
-  email : opt text;
-};
-type Platform = variant { Web; Desktop; Mobile };
-type ProjectCategory = variant { NFT; Dapp; Defi; Gaming; Tokenization };
 type ProjectInfo = record {
   tokenomics : opt Tokenomics;
   project_description : text;
-  team : opt vec Member;
   socials : opt Socials;
-  platform : opt Platform;
-  technical : opt Technical;
-  legal : opt Legal;
-  project_category : opt ProjectCategory;
   project_name : text;
   project_principal : opt text;
 };
@@ -70,7 +51,6 @@ type SystemParams = record {
   proposal_submission_deposit : opt Tokens;
   total_token_supply : opt Tokens;
 };
-type Technical = record { whitepaper : opt blob; github : opt text };
 type Tokenomics = record {
   token_image : text;
   token_symbol : text;
