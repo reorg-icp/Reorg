@@ -12,6 +12,7 @@ use crate::company::ProjectInfo;
 
 #[derive(Clone, Debug, Default, CandidType, Deserialize)]
 pub struct BasicDaoStableStorage {
+    pub id:u64,
     pub accounts: Vec<Account>,
     pub proposals: Vec<Proposal>,
     pub system_params: SystemParams,
@@ -97,6 +98,6 @@ impl Storable for BasicDaoStableStorage {
 }
 
 impl BoundedStorable for BasicDaoStableStorage {
-    const MAX_SIZE: u32 = 102400;
+    const MAX_SIZE: u32 = 429496;
     const IS_FIXED_SIZE: bool = false;
 }

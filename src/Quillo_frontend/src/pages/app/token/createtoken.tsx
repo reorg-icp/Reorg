@@ -1,7 +1,6 @@
 import {
   Grid,
   TextField,
-  MenuItem,
   Button,
   createTheme,
   ThemeProvider,
@@ -45,10 +44,8 @@ const CreateToken = () => {
     project_description,
     setProjectName,
     setProjectDescription,
-    setPlatform,
-    platform,
-    setProjectCategory,
-    projectCategory,
+
+    // projectCategory,
     socials,
     setSocials,
   } = useProjectInfo((state: any) => state);
@@ -111,37 +108,21 @@ const CreateToken = () => {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <TextField
-                  select
-                  label="Project Category"
-                  name="projectCategory"
-                  value={projectCategory}
-                  onChange={(e: any) => {
-                    setProjectCategory(e.target.value);
-                  }}
-                  variant="outlined"
-                  fullWidth
-                  SelectProps={{
-                    IconComponent: () => null,
-                    ...inputProps,
-                  }}
-                >
-                  <MenuItem value="Tokenization">Tokenization</MenuItem>
-                  <MenuItem value="Defi">DeFi</MenuItem>
-                  <MenuItem value="NFT">NFT</MenuItem>
-                  <MenuItem value="Gaming">Gaming</MenuItem>
-                  <MenuItem value="Dapp">DApp</MenuItem>
-                </TextField>
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
+
+              {/* <Grid item xs={12} sm={6} md={4}>
                 <TextField
                   select
                   label="Platform"
                   name="platform"
                   value={platform}
-                  onChange={(e) => {
-                    setPlatform(e.target.value);
+                  onChange={(e: any) => {
+                    if (e.target.value === "Mobile") {
+                      setPlatform({ Mobile: null });
+                    } else if (e.target.value === "Web") {
+                      setPlatform({ Web: null });
+                    } else if (e.target.value === "Desktop") {
+                      setPlatform({ Desktop: null });
+                    }
                   }}
                   variant="outlined"
                   fullWidth
@@ -154,7 +135,7 @@ const CreateToken = () => {
                   <MenuItem value="Web">Web</MenuItem>
                   <MenuItem value="Desktop">Desktop</MenuItem>
                 </TextField>
-              </Grid>
+              </Grid> */}
               <Grid item xs={12} sm={6} md={4}>
                 <TextField
                   label="Project Description"
@@ -184,7 +165,7 @@ const CreateToken = () => {
                   name="website"
                   value={socials.website}
                   onChange={(e: any) => {
-                    setSocials({ ...socials, website: e.target.value });
+                    setSocials({ ...socials, website: [e.target.value] });
                   }}
                   variant="outlined"
                   fullWidth
@@ -205,7 +186,7 @@ const CreateToken = () => {
                   name="x"
                   value={socials.x}
                   onChange={(e: any) => {
-                    setSocials({ ...socials, x: e.target.value });
+                    setSocials({ ...socials, x: [e.target.value] });
                   }}
                   variant="outlined"
                   fullWidth
@@ -226,7 +207,7 @@ const CreateToken = () => {
                   name="linkedin"
                   value={socials.linkedin}
                   onChange={(e: any) => {
-                    setSocials({ ...socials, linkedin: e.target.value });
+                    setSocials({ ...socials, linkedin: [e.target.value] });
                   }}
                   variant="outlined"
                   fullWidth
@@ -247,7 +228,7 @@ const CreateToken = () => {
                   name="discord"
                   value={socials.discord}
                   onChange={(e: any) => {
-                    setSocials({ ...socials, discord: e.target.value });
+                    setSocials({ ...socials, discord: [e.target.value] });
                   }}
                   variant="outlined"
                   fullWidth

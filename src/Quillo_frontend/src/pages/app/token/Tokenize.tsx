@@ -65,7 +65,7 @@ const Tokenize = () => {
   let actor = Quillo_backend;
   const agent: any = new HttpAgent();
   //backend canister name
-  actor = createActor("dzh22-nuaaa-aaaaa-qaaoa-cai", {
+  actor = createActor("ircua-hiaaa-aaaap-qhkvq-cai", {
     agent,
   });
   const { principal } = useAuthStore((state: Auth) => state);
@@ -75,34 +75,34 @@ const Tokenize = () => {
     project_name,
     project_description,
 
-    platform,
-
-    projectCategory,
     socials,
   } = useProjectInfo((state: any) => state);
   let project_details = {
     project_name: project_name,
     project_description: project_description,
-    project_category: projectCategory,
-    platform: platform,
-    socials: socials,
-    tokenomics: tokenomics,
+
+    socials: [socials],
+    tokenomics: [tokenomics],
     project_principal: [principal] as [string],
-    team: [] as [],
-    technical: [] as [], // Cast to tuple with one element
-    legal: [] as [],
   };
 
   async function registerProject() {
-    let response = await actor.register_dao({
-      project_details: [project_details],
+    console.log(JSON.stringify(project_details));
+    let response: any = await actor.register_dao({
+      project_details: [project_details] as [any],
       transfer_fee: [],
       token_canister: [],
       proposal_vote_threshold: [],
       proposal_submission_deposit: [],
       total_token_supply: [],
     });
-    alert(JSON.stringify(response));
+    if (response?.Ok) {
+      alert("Success");
+      console.log(response?.Ok?.id);
+    }
+    if (response?.Err) {
+      alert("Error");
+    }
   }
 
   const inputProps = {
@@ -212,7 +212,7 @@ const Tokenize = () => {
                   onChange={(e: any) => {
                     setTokenomics({
                       ...tokenomics,
-                      total_supply: e.target.value,
+                      total_supply: Number(e.target.value),
                     });
                   }}
                   variant="outlined"
@@ -236,7 +236,7 @@ const Tokenize = () => {
                   onChange={(e: any) => {
                     setTokenomics({
                       ...tokenomics,
-                      transfer_fee: e.target.value,
+                      transfer_fee: Number(e.target.value),
                     });
                   }}
                   variant="outlined"
