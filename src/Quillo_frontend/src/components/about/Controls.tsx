@@ -2,6 +2,7 @@ import { JSX, Dispatch, SetStateAction } from "react";
 import { sectionType } from "../../pages/about";
 import { ArrowLeft, ArrowRight } from "../../assets/icons";
 import { Link } from "react-router-dom";
+import { colors } from "../../assets/colors";
 
 interface controlsprops {
   currSection: sectionType;
@@ -27,12 +28,14 @@ export const Controls = ({
   return (
     <div className="controls">
       <Link to={"/auth/wallet"}>
-        <button className="getstarted">Get Started</button>
+        <button className="getstarted" style={{ color: colors.green }}>
+          Get Started
+        </button>
       </Link>
 
       <span>
         <button className="prevbtn" onClick={onGoToPrev}>
-          <ArrowLeft />
+          <ArrowLeft color={colors.primary} />
         </button>
 
         <button className="nextbtn" onClick={onGoToNext}>
@@ -41,7 +44,7 @@ export const Controls = ({
             : currSection == "daos"
             ? "FAQs"
             : "About Reorg"}
-          <ArrowRight />
+          <ArrowRight color={colors.primary} />
         </button>
       </span>
     </div>
