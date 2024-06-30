@@ -9,7 +9,7 @@ import { ArrowForward } from "@mui/icons-material";
 
 import { Link } from "react-router-dom";
 import { useProjectInfo } from "../../../store";
-
+import { colors } from "../../../assets/colors";
 const theme = createTheme({
   components: {
     MuiTextField: {
@@ -27,10 +27,10 @@ const theme = createTheme({
             },
           },
           "& .MuiInputLabel-root": {
-            color: "#00FF00",
+            color: colors.green,
           },
           "& .MuiInputLabel-root.Mui-focused": {
-            color: "#00FF00",
+            color: colors.green,
           },
         },
       },
@@ -59,7 +59,7 @@ const CreateToken = () => {
     },
     focused: {
       style: {
-        borderBottomColor: "#00FF00",
+        borderBottomColor: "#000e1c",
       },
     },
   };
@@ -72,13 +72,13 @@ const CreateToken = () => {
         spacing={4}
         sx={{
           padding: "20px",
-          backgroundColor: "#111",
+          backgroundColor: colors.primary,
           color: "#fff",
         }}
       >
         <Grid item xs={12} textAlign="center">
-          <h1 style={{ fontWeight: "bold", color: "#00FF00" }}>Reorg</h1>
-          <h2 style={{ color: "#00FF00" }}>for Startups</h2>
+          <h1 style={{ fontWeight: "bold", color: colors.green }}>Reorg</h1>
+          <h2 style={{ color: colors.green }}>for Startups</h2>
           <p>
             Reorg empowers Web3 startups, dApps, protocols, and DAOs to
             seamlessly raise funds by leveraging the power of tokenization.
@@ -251,10 +251,10 @@ const CreateToken = () => {
                     endIcon={<ArrowForward />}
                     sx={{
                       height: "50px",
-                      backgroundColor: "#00FF00",
-                      color: "#fff",
+                      backgroundColor: colors.green,
+                      color: colors.primary,
                       "&:hover": {
-                        backgroundColor: "#00CC00",
+                        backgroundColor: colors.green,
                       },
                     }}
                   >

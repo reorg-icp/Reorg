@@ -6,36 +6,50 @@ import Button from "@mui/material/Button";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { ArrowForward } from "@mui/icons-material";
 import { useState } from "react";
+import "../../../styles/pages/about.scss";
 const GetStartedBusiness = ({
   handleConnectWallet,
 }: {
   handleConnectWallet: () => void;
 }): JSX.Element => {
-  const [accountType, setAccountType] = useState<"business" | "investor">(
-    "business"
-  );
+  const [accountType, _] = useState<"business" | "investor">("business");
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
-    <Grid
-      direction={isMobile ? "column" : "row"}
-      container
-      spacing={0}
-      sx={{ padding: "10px" }}
-    >
-      <Grid item xs={8}>
-        <CreateAccount
-          handleConnectWallet={handleConnectWallet}
-          accountType={accountType}
-        />
+    <>
+      <p
+        className="textLG"
+        style={{
+          fontWeight: "bold",
+          fontSize: "30px",
+          color: colors.green,
+          textAlign: "center",
+          paddingTop: "30px",
+        }}
+      >
+        Connect Plug wallet and continue
+      </p>
+
+      <Grid
+        direction={isMobile ? "column" : "column"}
+        container
+        spacing={0}
+        sx={{
+          padding: "10px",
+          alignItems: "center",
+          paddingTop: "50px",
+          // background: "rgba(255, 255, 255, 0.16)",
+        }}
+      >
+        {" "}
+        <Grid item xs={12}>
+          <CreateAccount
+            handleConnectWallet={handleConnectWallet}
+            accountType={accountType}
+          />
+        </Grid>
       </Grid>
-      <Grid item xs={4}>
-        <ChooseAccount
-          accountType={accountType}
-          setAccountType={setAccountType}
-        />
-      </Grid>
-    </Grid>
+    </>
   );
 };
 
@@ -51,23 +65,32 @@ const CreateAccount = ({
       <List
         items={[
           "Get started by creating an account",
-          "Sign in to Reorg with",
+          "Sign in to Reorg with Plug or NFID",
           "Connect Wallet",
         ]}
         handleConnectWallet={handleConnectWallet}
       />
-      <p className="desc">
+      <p className="desc" style={{ marginBlock: "15px" }}>
         Plug is a crypto wallet for the Internet Computer that allows you to
         hold, send, and swap ICP, Cycles,NFTs, and other tokens.
         <br></br>
-        <a style={{ color: colors.textPrimary }} href="https://plugwallet.ooo/">
+        <br></br>
+        <a
+          style={{ color: colors.textPrimary, marginBlock: "15px" }}
+          href="https://plugwallet.ooo/"
+        >
           Learn more
         </a>
+        <br></br>
         <br></br>
         NFID is the easiest and most secure digital identity for the modern
         world.
         <br></br>
-        <a style={{ color: colors.textPrimary }} href="https://nfid.one/">
+        <br></br>
+        <a
+          style={{ color: colors.textPrimary, marginBlock: "15px" }}
+          href="https://nfid.one/"
+        >
           Learn more
         </a>
       </p>
@@ -96,105 +119,23 @@ const CreateAccount = ({
           sx={{
             height: "26px",
             width: "100px",
-            background: colors.primary,
+            background: colors.green,
             margin: "0 10px",
             display: "flex",
             marginTop: "10px",
             alignItems: "center",
             justifyContent: "space-between",
+            color: colors.primary,
+            alignContent: "center",
             textDecoration: "none",
             "&:hover": {
-              background: colors.primary,
+              background: colors.green,
             },
           }}
         >
           <span>Next</span>
         </Button>
       </Link>
-    </>
-  );
-};
-
-const ChooseAccount = ({
-  accountType,
-  setAccountType,
-}: {
-  accountType: "investor" | "business";
-  setAccountType: (accountType: "investor" | "business") => void;
-}): JSX.Element => {
-  const theme = useTheme();
-
-  return (
-    <>
-      <h1 style={{ textAlign: "center", fontWeight: "bold" }}>Reorg</h1>
-      <h2 style={{ textAlign: "center" }}>for Startups</h2>
-      <p style={{ textAlign: "center" }} className="desc">
-        Reorg empowers Web3 startups, dApps, protocols, and DAOs, to seamlessly
-        raise funds by leveraging the power of tokenization.
-      </p>
-      <div
-        style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
-      >
-        <Button
-          onClick={() => {
-            const newAccountType =
-              accountType === "business" ? "investor" : "business";
-            setAccountType(newAccountType);
-
-            // Update the URL query parameter
-            const url = new URL(window.location.href);
-            url.searchParams.set("accountType", newAccountType);
-            window.history.pushState({}, "", url.toString());
-          }}
-          variant="contained"
-          endIcon={
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "24px",
-                height: "24px",
-                borderRadius: "50%",
-                border: `2px solid ${theme.palette.divider}`,
-                transition: "border-color 0.3s ease",
-              }}
-            >
-              <ArrowForward />
-            </div>
-          }
-          sx={{
-            height: "50px",
-            background: colors.primary,
-            color: theme.palette.getContrastText(theme.palette.primary.main),
-            padding: "0 20px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            borderRadius: "10px",
-
-            fontWeight: "bold",
-            textTransform: "none",
-            transition: "transform 0.2s, box-shadow 0.2s",
-            "&:hover": {
-              background: colors.primary,
-            },
-            "& .MuiButton-endIcon": {
-              marginLeft: "10px",
-              transition: "margin-left 0.3s ease",
-            },
-            "&:hover .MuiButton-endIcon": {
-              marginLeft: "15px",
-            },
-          }}
-        >
-          <span>
-            {accountType === "business"
-              ? "Authenticate as an investor"
-              : "Authenticate as an business"}
-          </span>
-        </Button>
-      </div>
     </>
   );
 };

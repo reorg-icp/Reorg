@@ -15,6 +15,7 @@ import {
   createActor,
 } from "../../../../../declarations/Quillo_backend";
 import { HttpAgent } from "@dfinity/agent";
+import React from "react";
 const theme = createTheme({
   palette: {
     primary: {
@@ -62,6 +63,14 @@ const theme = createTheme({
 });
 
 const Tokenize = () => {
+  const [_, setDaoId] = React.useState<BigInt>(-1n);
+  // function extractNumber(str: string) {
+  //   if (str.endsWith("n")) {
+  //     return parseInt(str.slice(0, -1), 10);
+  //   } else {
+  //     throw new Error("Invalid format");
+  //   }
+  // }
   let actor = Quillo_backend;
   const agent: any = new HttpAgent();
   //backend canister name
@@ -97,11 +106,22 @@ const Tokenize = () => {
       total_token_supply: [],
     });
     if (response?.Ok) {
-      alert("Success");
-      console.log(response?.Ok?.id);
+      setDaoId(response?.Ok?.id);
+      console.log(typeof response?.Ok?.id);
+      alert("Success... your token is being created...");
+
+      let tokenResponse: any = await actor.launch_token(response?.Ok?.id);
+
+      if (tokenResponse?.Ok) {
+        alert(`Token created and the canister id is ${tokenResponse?.Ok}`);
+      } else if (tokenResponse?.Err) {
+        alert(`${tokenResponse?.Err}`);
+      }
     }
     if (response?.Err) {
-      alert("Error");
+      alert(
+        "Error could not save your project details... We are looking into it"
+      );
     }
   }
 
@@ -140,16 +160,16 @@ const Tokenize = () => {
         spacing={4}
         sx={{
           padding: "20px",
-          backgroundColor: "#121212", // Dark background color
+          // backgroundColor: colors.primary, // Dark background color
           color: "#FFF", // White text color
           borderRadius: "8px",
         }}
       >
         <Grid item xs={12} textAlign="center">
-          <h1 style={{ fontWeight: "bold", color: "#00FF00" }}>
+          <h1 style={{ fontWeight: "bold", color: colors.green }}>
             Launch a token
           </h1>
-          <h4 style={{ color: "#00FF00" }}>
+          <h4 style={{ color: colors.green }}>
             Proceed to create an icrc2 token.
           </h4>
         </Grid>
@@ -283,10 +303,10 @@ const Tokenize = () => {
                   endIcon={<ArrowForward />}
                   sx={{
                     height: "50px",
-                    backgroundColor: "#3D5AFE", // ICP blue color
-                    color: "#FFF", // White text color
+                    backgroundColor: colors.green, // ICP blue color
+                    color: colors.primary, // White text color
                     "&:hover": {
-                      backgroundColor: "#304FFE", // Darker blue on hover
+                      backgroundColor: colors.green, // Darker blue on hover
                     },
                   }}
                   onClick={async () => {
