@@ -8,7 +8,8 @@ import {
   Tokenize,
   Twitter,
 } from "../../assets/icons";
-import { colors } from "../../assets/colors";
+import { colors } from "../../constants/colors";
+
 type howitworksSteps =
   | "onboarding"
   | "tokenize"
@@ -33,19 +34,18 @@ export const HowItWorks = (): JSX.Element => {
   }, [currSteps]);
 
   return (
-    <div className="howitworks">
+    <div id="howitworks">
       <div className="workscontent">
-        <p
-          className="workstitle"
-          style={{ color: colors.green, fontWeight: "bold" }}
-        >
-          How it works
-        </p>
+        <p className="workstitle">How it works</p>
 
         {currSteps === "onboarding" && (
           <>
             <span className="span">
-              <Onboarding width={24} height={24} />
+              <Onboarding
+                width={24}
+                height={24}
+                color={colors.text_secondary}
+              />
               <p className="title">Onboarding</p>
               <p className="text">
                 Startups seeking to leverage the benefits of DAOs can integrate
@@ -56,7 +56,7 @@ export const HowItWorks = (): JSX.Element => {
             </span>
 
             <span>
-              <ProofOfID width={24} height={24} />
+              <ProofOfID width={24} height={24} color={colors.text_secondary} />
               <p className="title">Proof of Existence & Identity</p>
               <p className="text">
                 Reorg employs a comprehensive due diligence process to ensure
@@ -74,7 +74,7 @@ export const HowItWorks = (): JSX.Element => {
         {currSteps === "tokenize" && (
           <>
             <span className="span">
-              <Tokenize width={24} height={24} />
+              <Tokenize width={24} height={24} color={colors.text_secondary} />
               <p className="title">Tokenize Ownership</p>
               <p className="text">
                 Reorg facilitates the tokenization of startups' ownership
@@ -85,7 +85,7 @@ export const HowItWorks = (): JSX.Element => {
             </span>
 
             <span>
-              <SiteMap width={24} height={24} />
+              <SiteMap width={24} height={24} color={colors.text_secondary} />
               <p className="title">Operate As a DAO</p>
               <p className="text">
                 Reorg empowers startups to operate with a robust and secure
@@ -104,7 +104,7 @@ export const HowItWorks = (): JSX.Element => {
         {currSteps === "aiTokenomics" && (
           <>
             <span className="span">
-              <Tokenize width={24} height={24} />
+              <Tokenize width={24} height={24} color={colors.text_secondary} />
               <p className="title">AI-Powered Tokenomics</p>
               <p className="text">
                 Reorg's token creation platform includes an AI model trained on
@@ -120,7 +120,7 @@ export const HowItWorks = (): JSX.Element => {
         {currSteps === "daoGovernance" && (
           <>
             <span>
-              <SiteMap width={24} height={24} />
+              <SiteMap width={24} height={24} color={colors.text_secondary} />
               <p className="title">DAO Governance</p>
               <p className="text">
                 Investors participate in a DAO that governs the startup. This
@@ -136,12 +136,12 @@ export const HowItWorks = (): JSX.Element => {
 
       <div className="contact">
         <div className="social">
-          <Github />
-          <Twitter />
-          <Discord />
+          <Github color={colors.text_primary} />
+          <Twitter color={colors.text_primary} />
+          <Discord color={colors.text_primary} />
         </div>
-        <div className="links" style={{ color: colors.green }}>
-          <span style={{ color: colors.green }}>FAQ</span>
+        <div className="links">
+          <span>FAQ</span>
           <span>Terms & Conditions</span>
           <span>Privacy Policy</span>
         </div>

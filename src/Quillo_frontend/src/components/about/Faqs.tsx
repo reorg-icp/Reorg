@@ -2,7 +2,7 @@ import { JSX } from "react";
 
 export const Faqs = (): JSX.Element => {
   return (
-    <div className="fraqs">
+    <div id="fraqs">
       <p className="textLG">FAQs</p>
 
       <span>

@@ -26,11 +26,9 @@ export const Controls = ({
   };
 
   return (
-    <div className="controls">
-      <Link to={"/auth/wallet"}>
-        <button className="getstarted" style={{ color: colors.green }}>
-          Get Started
-        </button>
+    <div id="controls">
+      <Link to="/auth/business">
+        <button className="getstarted">Get Started</button>
       </Link>
 
       <span>
@@ -40,7 +38,7 @@ export const Controls = ({
 
         <button className="nextbtn" onClick={onGoToNext}>
           {currSection == "about"
-            ? "Reorg Dao ?"
+            ? "Reorg Dao"
             : currSection == "daos"
             ? "FAQs"
             : "About Reorg"}

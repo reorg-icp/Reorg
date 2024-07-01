@@ -1,32 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { SnackBarProvider } from "./context/snackbarctx";
 import AboutReorg from "./pages/about";
-import { Authentication } from "./pages/auth";
+import Authentication from "./pages/auth";
 import CreateToken from "./pages/app/token/createtoken";
-import { ErrorPage } from "./pages/error";
-import WalletPopup from "./components/Wallet"; // Import WalletPopup component
 import Private from "./pages/Private";
 import Tokenize from "./pages/app/token/Tokenize";
+import ErrorPage from "./pages/error";
 import "./styles/index.scss";
 
 const App = () => {
-  const [principal, setPrincipal] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
-  const [_, setshowPurchasePopUp] = useState(false);
-
-  const handleConnectWallet = () => {
-    setShowPopup(true);
-  };
-
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
-
-  const handlePurchasePopup = () => {
-    setshowPurchasePopUp(true);
-  };
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -36,7 +20,7 @@ const App = () => {
     },
     {
       path: "/auth/:accType",
-      element: <Authentication handleConnectWallet={handleConnectWallet} />,
+      element: <Authentication />,
     },
     {
       path: "/create-token",
@@ -58,15 +42,9 @@ const App = () => {
 
   return (
     <React.StrictMode>
-      <RouterProvider router={router} />
-      {showPopup && (
-        <WalletPopup
-          principal={principal}
-          setPrincipal={setPrincipal}
-          onClose={handleClosePopup}
-          handlePurchasePopup={handlePurchasePopup}
-        />
-      )}
+      <SnackBarProvider>
+        <RouterProvider router={router} />
+      </SnackBarProvider>
     </React.StrictMode>
   );
 };

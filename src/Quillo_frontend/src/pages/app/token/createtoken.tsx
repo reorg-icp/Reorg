@@ -27,10 +27,10 @@ const theme = createTheme({
             },
           },
           "& .MuiInputLabel-root": {
-            color: colors.green,
+            color: colors.success,
           },
           "& .MuiInputLabel-root.Mui-focused": {
-            color: colors.green,
+            color: colors.success,
           },
         },
       },
@@ -77,8 +77,8 @@ const CreateToken = () => {
         }}
       >
         <Grid item xs={12} textAlign="center">
-          <h1 style={{ fontWeight: "bold", color: colors.green }}>Reorg</h1>
-          <h2 style={{ color: colors.green }}>for Startups</h2>
+          <h1 style={{ fontWeight: "bold", color: colors.success }}>Reorg</h1>
+          <h2 style={{ color: colors.success }}>for Startups</h2>
           <p>
             Reorg empowers Web3 startups, dApps, protocols, and DAOs to
             seamlessly raise funds by leveraging the power of tokenization.
@@ -251,10 +251,10 @@ const CreateToken = () => {
                     endIcon={<ArrowForward />}
                     sx={{
                       height: "50px",
-                      backgroundColor: colors.green,
+                      backgroundColor: colors.success,
                       color: colors.primary,
                       "&:hover": {
-                        backgroundColor: colors.green,
+                        backgroundColor: colors.success,
                       },
                     }}
                   >

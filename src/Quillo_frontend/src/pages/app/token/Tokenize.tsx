@@ -22,7 +22,7 @@ const theme = createTheme({
       main: "#3D5AFE", // Primary color similar to ICP blue
     },
     secondary: {
-      main: colors.green, // Accent color
+      main: colors.success, // Accent color
     },
     text: {
       primary: "#FFF", // White text color
@@ -51,10 +51,10 @@ const theme = createTheme({
             },
           },
           "& .MuiInputLabel-root": {
-            color: colors.green, // Accent color for labels
+            color: colors.success, // Accent color for labels
           },
           "& .MuiInputLabel-root.Mui-focused": {
-            color: colors.green, // Accent color for focused labels
+            color: colors.success, // Accent color for focused labels
           },
         },
       },
@@ -134,7 +134,7 @@ const Tokenize = () => {
     },
     focused: {
       style: {
-        borderBottomColor: colors.green, // Accent color on focus
+        borderBottomColor: colors.success, // Accent color on focus
       },
     },
   };
@@ -166,10 +166,10 @@ const Tokenize = () => {
         }}
       >
         <Grid item xs={12} textAlign="center">
-          <h1 style={{ fontWeight: "bold", color: colors.green }}>
+          <h1 style={{ fontWeight: "bold", color: colors.success }}>
             Launch a token
           </h1>
-          <h4 style={{ color: colors.green }}>
+          <h4 style={{ color: colors.success }}>
             Proceed to create an icrc2 token.
           </h4>
         </Grid>
@@ -192,7 +192,7 @@ const Tokenize = () => {
                   InputProps={{
                     ...inputProps,
                     onFocus: (e) => {
-                      e.target.style.borderBottomColor = colors.green;
+                      e.target.style.borderBottomColor = colors.success;
                     },
                     onBlur: (e) => {
                       e.target.style.borderBottomColor = "transparent";
@@ -216,7 +216,7 @@ const Tokenize = () => {
                   InputProps={{
                     ...inputProps,
                     onFocus: (e) => {
-                      e.target.style.borderBottomColor = colors.green;
+                      e.target.style.borderBottomColor = colors.success;
                     },
                     onBlur: (e) => {
                       e.target.style.borderBottomColor = "transparent";
@@ -240,7 +240,7 @@ const Tokenize = () => {
                   InputProps={{
                     ...inputProps,
                     onFocus: (e) => {
-                      e.target.style.borderBottomColor = colors.green;
+                      e.target.style.borderBottomColor = colors.success;
                     },
                     onBlur: (e) => {
                       e.target.style.borderBottomColor = "transparent";
@@ -264,7 +264,7 @@ const Tokenize = () => {
                   InputProps={{
                     ...inputProps,
                     onFocus: (e) => {
-                      e.target.style.borderBottomColor = colors.green;
+                      e.target.style.borderBottomColor = colors.success;
                     },
                     onBlur: (e) => {
                       e.target.style.borderBottomColor = "transparent";
@@ -288,7 +288,7 @@ const Tokenize = () => {
                       </InputAdornment>
                     ),
                     onFocus: (e) => {
-                      e.target.style.borderBottomColor = colors.green;
+                      e.target.style.borderBottomColor = colors.success;
                     },
                     onBlur: (e) => {
                       e.target.style.borderBottomColor = "transparent";
@@ -303,10 +303,10 @@ const Tokenize = () => {
                   endIcon={<ArrowForward />}
                   sx={{
                     height: "50px",
-                    backgroundColor: colors.green, // ICP blue color
+                    backgroundColor: colors.success, // ICP blue color
                     color: colors.primary, // White text color
                     "&:hover": {
-                      backgroundColor: colors.green, // Darker blue on hover
+                      backgroundColor: colors.success, // Darker blue on hover
                     },
                   }}
                   onClick={async () => {

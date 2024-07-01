@@ -20,7 +20,7 @@
       @include usefontLS();
       font-size: 2.75rem;
       font-weight: 600;
-      color: $green;
+      color: $success;
     }
 
     .reorgintro {
@@ -37,7 +37,7 @@
 
         .desc {
           margin-top: 1rem;
-          font-size: 1.25rem;
+          font-size: 1.125rem;
         }
       }
 
@@ -46,7 +46,7 @@
 
         .textMD,
         .desc {
-          font-size: 1.25rem;
+          font-size: 1.125rem;
         }
 
         .textMD {
@@ -60,13 +60,13 @@
       }
     }
 
-    .whydaos,
-    .fraqs {
+    #whydaos,
+    #fraqs {
       margin-top: 2rem;
       margin-bottom: 7rem;
 
       .textLG {
-        @include usefontLS();
+        @include usefontJO();
         font-size: 2rem;
         font-weight: 400;
       }
@@ -101,7 +101,7 @@
           @include usefontJO();
           margin-bottom: 0.25rem;
           font-size: 1.5rem;
-          color: $green;
+          color: $text_primary;
         }
         .desc {
           font-size: 1.25rem;
@@ -109,7 +109,7 @@
       }
     }
 
-    .controls {
+    #controls {
       @include desktop {
         @include flexmixin(row-reverse, no-wrap, center, space-between, 0);
       }
@@ -118,7 +118,6 @@
         width: 55vw;
         bottom: 2.5rem;
         left: 2.5rem;
-        background-color: $primary;
         padding: 0.25rem 0;
       }
 
@@ -144,14 +143,14 @@
         outline: none;
         outline-color: transparent;
         background-color: transparent;
-        font-size: 1rem;
-        color: $text_primary;
+        font-size: 1.125rem;
         cursor: pointer;
       }
 
       span {
         @include desktop {
           width: 40%;
+          background-color: transparent;
         }
 
         @include big-desktop {
@@ -170,35 +169,31 @@
           width: 3rem;
           border: 1px solid $divider;
           border-radius: 0.25rem;
-          background-color: $green;
+          background-color: $primary;
         }
 
         .nextbtn {
+          @include usefontJost();
           width: calc(100% - 4rem);
           gap: 0.5rem;
           font-weight: 500;
-          color: $primary;
+          color: $text_primary;
         }
       }
 
       .getstarted {
         @include desktop {
           width: 20vw;
-          border: 1px solid $primary;
+          border: 0;
           border-radius: 0.25rem;
           transition: all ease-in-out 0.25s;
-          color: $green;
-          background-color: $secondary;
-
-          &:hover {
-            border: 1px solid $divider;
-            background-color: $secondary;
-          }
+          color: $primary;
+          background-color: $success;
         }
 
         padding: 0.5rem;
         background-color: $primary;
-        border-top: 2px solid $secondary;
+        border-top: 2px solid $divider;
         font-size: 1.25rem;
         font-weight: 500;
       }
@@ -212,27 +207,26 @@
 
     display: none !important;
     position: fixed;
-    top: 1rem;
+    top: 2.5rem;
     right: 2.5rem;
     width: calc(100vw - 66vw);
-    height: calc(100vh - 2rem);
+    height: calc(100vh - 5rem);
     padding: 0.5rem;
     border: 1px solid $divider;
     border-radius: 0.5rem;
     background-color: $secondary;
 
-    .howitworks {
+    #howitworks {
       @include flexmixin(column, no-wrap, center, space-between, 0);
       width: 100%;
       height: 100%;
-      background-color: "rgba(255, 255, 255, 0.16)";
 
       .workscontent {
         .workstitle {
           font-size: 1.25rem;
           font-weight: 500;
           text-align: center;
-          color: $green;
+          color: $text_primary;
         }
 
         span {
@@ -270,6 +264,8 @@
           border-top: 1px solid $divider;
 
           span {
+            font-weight: 400;
+            color: $text_primary;
             cursor: pointer;
           }
         }

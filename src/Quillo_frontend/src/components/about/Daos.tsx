@@ -2,7 +2,7 @@ import { JSX } from "react";
 
 export const Daos = (): JSX.Element => {
   return (
-    <div className="whydaos">
+    <div id="whydaos">
       <p className="textLG">Reorg DAO ?</p>
 
       <p className="textBG">
@@ -33,9 +33,9 @@ export const Daos = (): JSX.Element => {
       <span>
         <p className="title">How it works</p>
         <p className="desc">
-          Web3 startups, including DApps, protocols, and DAOs, apply to Reorg
-          DAO for funding. Our partners conduct a thorough viability check to
-          ensure the quality and potential of each project.
+          Web3 startups, DApps, protocols, DAOs..., apply to Reorg DAO for
+          funding. Our partners conduct a thorough viability check to ensure the
+          quality and potential of each project.
         </p>
       </span>
 
