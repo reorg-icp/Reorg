@@ -1,1 +1,74 @@
-service : { greet : (text) -> (text) query }
+type Account = record { owner : principal; tokens : Tokens };
+type BasicDaoStableStorage = record {
+  id : nat64;
+  system_params : SystemParams;
+  accounts : vec Account;
+  proposals : vec Proposal;
+};
+type CustomError = variant { custom : text; MissingField : text };
+type ProjectInfo = record {
+  tokenomics : opt Tokenomics;
+  project_description : text;
+  socials : opt Socials;
+  project_name : text;
+  project_principal : opt text;
+};
+type Proposal = record {
+  id : nat64;
+  votes_no : Tokens;
+  voters : vec principal;
+  state : ProposalState;
+  timestamp : nat64;
+  proposer : principal;
+  votes_yes : Tokens;
+  payload : ProposalPayload;
+};
+type ProposalPayload = record {
+  method : text;
+  main_param : blob;
+  extra_info : blob;
+};
+type ProposalState = variant {
+  Failed : text;
+  Open;
+  Executing;
+  Rejected;
+  Succeeded;
+  Accepted;
+};
+type Result = variant { Ok : principal; Err : text };
+type Result_1 = variant { Ok : BasicDaoStableStorage; Err : CustomError };
+type Socials = record {
+  x : opt text;
+  linkedin : opt text;
+  website : opt text;
+  discord : opt text;
+};
+type SystemParams = record {
+  project_details : opt ProjectInfo;
+  transfer_fee : opt Tokens;
+  proposal_vote_threshold : opt Tokens;
+  proposal_submission_deposit : opt Tokens;
+  total_token_supply : opt Tokens;
+};
+type Tokenomics = record {
+  token_image : text;
+  token_symbol : text;
+  transfer_fee : nat;
+  token_name : text;
+  total_supply : nat;
+};
+type Tokens = record { e8s : nat64 };
+type UpdateSystemParamsPayload = record {
+  project_details : opt ProjectInfo;
+  transfer_fee : opt Tokens;
+  token_canister : opt principal;
+  proposal_vote_threshold : opt Tokens;
+  proposal_submission_deposit : opt Tokens;
+  total_token_supply : opt Tokens;
+};
+service : {
+  greet : (text) -> (text) query;
+  launch_token : (nat64) -> (Result);
+  register_dao : (UpdateSystemParamsPayload) -> (Result_1);
+}

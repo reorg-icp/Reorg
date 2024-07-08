@@ -1,0 +1,279 @@
+@import "../constants/mixins";
+@import "../constants/colors";
+
+#aboutreorg {
+  @include big-desktop {
+    padding: 2.5rem;
+  }
+
+  width: 100vw;
+  min-height: 100vh;
+  padding: 0.5rem;
+  padding-top: 2rem;
+
+  .c01 {
+    @include big-desktop {
+      width: 55vw;
+    }
+
+    .reorg {
+      @include usefontLS();
+      font-size: 2.75rem;
+      font-weight: 600;
+      color: $green;
+    }
+
+    .reorgintro {
+      margin-top: 2rem;
+      margin-bottom: 7rem;
+
+      .forstartups {
+        .textLG {
+          @include usefontLS();
+          text-transform: capitalize;
+          font-size: 2rem;
+          font-weight: 400;
+        }
+
+        .desc {
+          margin-top: 1rem;
+          font-size: 1.25rem;
+        }
+      }
+
+      .forinvestors {
+        margin-top: 1rem;
+
+        .textMD,
+        .desc {
+          font-size: 1.25rem;
+        }
+
+        .textMD {
+          font-weight: 500;
+          text-transform: capitalize;
+        }
+
+        .desc {
+          margin-top: 0.5rem;
+        }
+      }
+    }
+
+    .whydaos,
+    .fraqs {
+      margin-top: 2rem;
+      margin-bottom: 7rem;
+
+      .textLG {
+        @include usefontLS();
+        font-size: 2rem;
+        font-weight: 400;
+      }
+
+      .textBG {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        background-color: $secondary;
+        border: 1px solid $divider;
+        border-radius: 0.25rem;
+      }
+
+      .textMD {
+        font-size: 1.25rem;
+        margin-top: 1rem;
+      }
+
+      .textXM {
+        font-size: 1.25rem;
+        font-weight: 400;
+        margin-top: 1rem;
+      }
+
+      span {
+        display: block;
+        margin-top: 1.5rem;
+        padding-bottom: 0.5rem;
+        border: 0;
+        border-bottom: 1px solid $divider;
+
+        .title {
+          @include usefontJO();
+          margin-bottom: 0.25rem;
+          font-size: 1.5rem;
+          color: $green;
+        }
+        .desc {
+          font-size: 1.25rem;
+        }
+      }
+    }
+
+    .controls {
+      @include desktop {
+        @include flexmixin(row-reverse, no-wrap, center, space-between, 0);
+      }
+
+      @include big-desktop {
+        width: 55vw;
+        bottom: 2.5rem;
+        left: 2.5rem;
+        background-color: $primary;
+        padding: 0.25rem 0;
+      }
+
+      @include flexmixin(column, no-wrap, center, center, 0);
+      width: 100vw;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+
+      span,
+      .getstarted {
+        @include desktop {
+          min-width: fit-content;
+        }
+
+        width: 100%;
+      }
+
+      button {
+        @include usefontJO();
+        height: 3rem;
+        border: 0;
+        outline: none;
+        outline-color: transparent;
+        background-color: transparent;
+        font-size: 1rem;
+        color: $text_primary;
+        cursor: pointer;
+      }
+
+      span {
+        @include desktop {
+          width: 40%;
+        }
+
+        @include big-desktop {
+          max-width: 30vw;
+          padding: unset;
+        }
+
+        @include flexmixin(row, no-wrap, center, space-between, 0);
+        padding: 0.5rem;
+        border: 0;
+        background-color: $primary;
+
+        .prevbtn,
+        .nextbtn {
+          @include flexmixin(row, no-wrap, center, center, 0);
+          width: 3rem;
+          border: 1px solid $divider;
+          border-radius: 0.25rem;
+          background-color: $green;
+        }
+
+        .nextbtn {
+          width: calc(100% - 4rem);
+          gap: 0.5rem;
+          font-weight: 500;
+          color: $primary;
+        }
+      }
+
+      .getstarted {
+        @include desktop {
+          width: 20vw;
+          border: 1px solid $primary;
+          border-radius: 0.25rem;
+          transition: all ease-in-out 0.25s;
+          color: $green;
+          background-color: $secondary;
+
+          &:hover {
+            border: 1px solid $divider;
+            background-color: $secondary;
+          }
+        }
+
+        padding: 0.5rem;
+        background-color: $primary;
+        border-top: 2px solid $secondary;
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .c02 {
+    @include big-desktop {
+      display: block !important;
+    }
+
+    display: none !important;
+    position: fixed;
+    top: 1rem;
+    right: 2.5rem;
+    width: calc(100vw - 66vw);
+    height: calc(100vh - 2rem);
+    padding: 0.5rem;
+    border: 1px solid $divider;
+    border-radius: 0.5rem;
+    background-color: $secondary;
+
+    .howitworks {
+      @include flexmixin(column, no-wrap, center, space-between, 0);
+      width: 100%;
+      height: 100%;
+      background-color: "rgba(255, 255, 255, 0.16)";
+
+      .workscontent {
+        .workstitle {
+          font-size: 1.25rem;
+          font-weight: 500;
+          text-align: center;
+          color: $green;
+        }
+
+        span {
+          @include flexmixin(column, no-wrap, center, center, 1rem);
+          @include usesimpleanimation(300ms, 50ms);
+          margin-top: 1rem;
+
+          .title {
+            font-weight: 500;
+          }
+
+          p {
+            font-size: 1.125rem;
+            text-align: center;
+          }
+        }
+
+        .span {
+          padding-bottom: 0.5rem;
+          border-bottom: 1px solid $divider;
+        }
+      }
+
+      .contact {
+        width: 100%;
+
+        .social {
+          @include flexmixin(row, no-wrap, center, center, 1.5rem);
+          margin-bottom: 1rem;
+        }
+        .links {
+          @include flexmixin(row, no-wrap, center, center, 1.5rem);
+          padding-top: 0.5rem;
+          border: 0;
+          border-top: 1px solid $divider;
+
+          span {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
