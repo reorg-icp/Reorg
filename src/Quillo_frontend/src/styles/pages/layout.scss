@@ -1,0 +1,11 @@
+@import "../constants/mixins";
+
+#layout_main {
+  @include tablet-upwards {
+    padding: 0 2.5rem;
+  }
+
+  margin-top: 4.25rem;
+  margin-bottom: 0.5rem;
+  padding: 0 0.5rem;
+}

@@ -1,5 +1,6 @@
 // import { Navigate } from "react-router-dom";
-import { Auth, useAuthStore } from "../store";
+import { Auth, useAuthStore } from "../../store";
+
 const Private = ({ children }: any) => {
   const { principal, accountId } = useAuthStore((state: Auth) => state);
 

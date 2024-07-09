@@ -1,42 +1,23 @@
-import React from "react";
+import React, { JSX } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { SnackBarProvider } from "./context/snackbarctx";
 import AboutReorg from "./pages/about";
 import Authentication from "./pages/auth";
-import CreateToken from "./pages/app/token/createtoken";
-import Private from "./pages/Private";
-import Tokenize from "./pages/app/token/Tokenize";
 import ErrorPage from "./pages/error";
+import { Layout } from "./components/global/Layout";
 import "./styles/index.scss";
 
-const App = () => {
+const App = (): JSX.Element => {
   const router = createBrowserRouter([
     {
       path: "/",
-      index: true,
-      element: <AboutReorg />,
+      element: <Layout />,
       errorElement: <ErrorPage />,
-    },
-    {
-      path: "/auth/:accType",
-      element: <Authentication />,
-    },
-    {
-      path: "/create-token",
-      element: (
-        <Private>
-          <CreateToken />
-        </Private>
-      ),
-    },
-    {
-      path: "/tokenize",
-      element: (
-        <Private>
-          <Tokenize />
-        </Private>
-      ),
+      children: [
+        { path: "", index: true, element: <AboutReorg /> },
+        { path: "/auth/:accType", element: <Authentication /> },
+      ],
     },
   ]);
 

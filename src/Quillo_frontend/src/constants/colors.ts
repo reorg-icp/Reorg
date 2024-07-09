@@ -1,9 +1,11 @@
 export enum colors {
-  primary = "rgba(254, 252, 243, 1)",
-  secondary = "rgba(245, 235, 224, 0.1)",
-  text_primary = "rgba(50, 50, 50, 1)",
-  text_secondary = "rgba(22, 26, 48, 1)",
-  placeholder_txt = "rgba(38, 38, 38, 0.4)",
-  divider = "rgba(0, 0, 0, 0.1)",
-  success = "rgba(80, 200, 120, 1)",
+  primary = "#ffffff",
+  secondary = "rgba(228, 255, 151, 0.2)",
+  text_primary = "#000000",
+  text_secondary = "#7f7f7f",
+  darkdefault = "#222222",
+  divider = "rgba(127, 127, 127, 0.3)",
+  success = "rgba(18, 163, 58, 0.7)",
+  bluee = "#006ad4",
+  danger = "rgba(188, 0, 68, 0.7)",
 }
