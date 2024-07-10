@@ -1,0 +1,108 @@
+@import "../../constants/colors";
+@import "../../constants/mixins";
+
+.mobilenavctr {
+  @include tablet-upwards {
+    display: none !important;
+  }
+
+  @include flexmixin(row, no-wrap, center, space-between, 0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 4rem;
+  padding: 0.5rem;
+  border: 0;
+  border-bottom: 1px solid $divider;
+  background-color: $primary;
+
+  .logo {
+    @include usefontLS();
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+
+  .drawerbtn {
+    @include flexmixin(row, no-wrap, center, center, 0);
+    width: 2rem;
+    height: 2rem;
+    padding: 0.5rem;
+    border: 0;
+    border-radius: 0.25rem;
+    outline: none;
+    outline-color: transparent;
+    background-color: $bluee;
+  }
+}
+
+.desktopnavctr {
+  @include tablet-upwards {
+    @include flexmixin(row, no-wrap, center, space-between, 0);
+  }
+
+  display: none !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 4rem;
+  padding: 0 2.5rem;
+  border: 0;
+  border-bottom: 1px solid $divider;
+  background-color: $primary;
+
+  .logo_links {
+    @include flexmixin(row, no-wrap, center, flex-start, 1rem);
+
+    .logo {
+      @include usefontLS();
+      font-size: 1.75rem;
+      font-weight: 600;
+    }
+
+    .links {
+      @include flexmixin(row, no-wrap, center, flex-start, 1rem);
+
+      a {
+        @include usefontJO();
+        @include flexmixin(row, no-wrap, center, flex-start, 0.5rem);
+        text-decoration: none;
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: $bluee;
+      }
+    }
+  }
+
+  .actions {
+    @include flexmixin(row, no-wrap, center, flex-end, 1.5rem);
+
+    button {
+      @include flexmixin(row, no-wrap, center, center, 0.5rem);
+      @include usefontJO();
+      height: 2rem;
+      padding: 0.25rem 2rem;
+      border: 0;
+      border-radius: 0.25rem;
+      outline: none;
+      outline-color: transparent;
+      font-size: 1.025rem;
+      font-weight: 400;
+      background-color: $bluee;
+      color: $primary;
+      cursor: pointer;
+      transition: all ease-in-out 0.25s;
+
+      &:hover {
+        border-radius: 0;
+      }
+    }
+
+    ._connect {
+      border: 1px solid $bluee;
+      background-color: transparent;
+      color: $bluee;
+    }
+  }
+}

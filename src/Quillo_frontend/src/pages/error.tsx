@@ -1,9 +1,10 @@
 import { JSX } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "../assets/icons";
+import { colors } from "../constants/colors";
 import "../styles/pages/errorpage.scss";
 
-export const ErrorPage = (): JSX.Element => {
+export default function ErrorPage(): JSX.Element {
   const navigate: NavigateFunction = useNavigate();
 
   return (
@@ -12,8 +13,8 @@ export const ErrorPage = (): JSX.Element => {
       <p>Sorry, an unexpected error occurred !</p>
 
       <button title="Go Back" onClick={() => navigate(-1)}>
-        <ChevronLeft /> GO Back
+        <ChevronLeft color={colors.primary} /> GO Back
       </button>
     </section>
   );
-};
+}

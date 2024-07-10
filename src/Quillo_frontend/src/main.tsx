@@ -1,74 +1,33 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React, { JSX } from "react";
+import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { SnackBarProvider } from "./context/snackbarctx";
 import AboutReorg from "./pages/about";
-import { Authentication } from "./pages/auth";
-import CreateToken from "./pages/app/token/createtoken";
-import { ErrorPage } from "./pages/error";
-import WalletPopup from "./components/Wallet"; // Import WalletPopup component
-import Private from "./pages/Private";
-import Tokenize from "./pages/app/token/Tokenize";
+import Authentication from "./pages/auth";
+import ErrorPage from "./pages/error";
+import { Layout } from "./components/global/Layout";
 import "./styles/index.scss";
 
-const App = () => {
-  const [principal, setPrincipal] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
-  const [_, setshowPurchasePopUp] = useState(false);
-
-  const handleConnectWallet = () => {
-    setShowPopup(true);
-  };
-
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
-
-  const handlePurchasePopup = () => {
-    setshowPurchasePopUp(true);
-  };
-
+const App = (): JSX.Element => {
   const router = createBrowserRouter([
     {
       path: "/",
-      index: true,
-      element: <AboutReorg />,
+      element: <Layout />,
       errorElement: <ErrorPage />,
-    },
-    {
-      path: "/auth/:accType",
-      element: <Authentication handleConnectWallet={handleConnectWallet} />,
-    },
-    {
-      path: "/create-token",
-      element: (
-        <Private>
-          <CreateToken />
-        </Private>
-      ),
-    },
-    {
-      path: "/tokenize",
-      element: (
-        <Private>
-          <Tokenize />
-        </Private>
-      ),
+      children: [
+        { path: "", index: true, element: <AboutReorg /> },
+        { path: "/auth/:accType", element: <Authentication /> },
+      ],
     },
   ]);
 
   return (
     <React.StrictMode>
-      <RouterProvider router={router} />
-      {showPopup && (
-        <WalletPopup
-          principal={principal}
-          setPrincipal={setPrincipal}
-          onClose={handleClosePopup}
-          handlePurchasePopup={handlePurchasePopup}
-        />
-      )}
+      <SnackBarProvider>
+        <RouterProvider router={router} />
+      </SnackBarProvider>
     </React.StrictMode>
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.createRoot(document.getElementById("root")!).render(<App />);
