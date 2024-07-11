@@ -43,14 +43,6 @@ interface Tokenomics {
   token_image: string;
 }
 
-const useAuthStore = create<Auth>((set) => ({
-  principal: "",
-  accountId: "",
-  setPrincipal: (newPrincipal: string) =>
-    set(() => ({ principal: newPrincipal })),
-  setAccountId: (newId: string) => set(() => ({ accountId: newId })),
-}));
-
 const useProjectInfo = create<any>((set: any) => ({
   project_name: "",
   project_description: "",
@@ -75,5 +67,5 @@ const useProjectInfo = create<any>((set: any) => ({
     set(() => ({ tokenomics: tokenomics })),
 }));
 
-export { useAuthStore, useProjectInfo };
+export { useProjectInfo };
 export type { Auth };

@@ -8,6 +8,8 @@ import Authentication from "./pages/auth";
 import ErrorPage from "./pages/error";
 import { Layout } from "./components/global/Layout";
 import "./styles/index.scss";
+import Private from "./components/auth/Private";
+import { HomePage } from "./pages/home";
 
 const App = (): JSX.Element => {
   const router = createBrowserRouter([
@@ -17,8 +19,19 @@ const App = (): JSX.Element => {
       errorElement: <ErrorPage />,
       children: [
         { path: "", index: true, element: <AboutReorg /> },
-        { path: "/auth/:accType", element: <Authentication /> },
+        {
+          path: "/auth/:accType",
+          element: (
+            <Private>
+              <Authentication />
+            </Private>
+          ),
+        },
       ],
+    },
+    {
+      path: "/app",
+      element: <HomePage />,
     },
   ]);
 

@@ -1,12 +1,15 @@
-// import { Navigate } from "react-router-dom";
-import { Auth, useAuthStore } from "../../store";
+import { ReactNode } from "react";
+import { Navigate } from "react-router-dom";
 
-const Private = ({ children }: any) => {
-  const { principal, accountId } = useAuthStore((state: Auth) => state);
+interface props {
+  children: ReactNode;
+}
 
-  // If accessToken doesn't exist, redirect to login
-  if (!principal || !accountId) {
-    // return <Navigate to="/auth/wallet" />;
+const Private = ({ children }: props) => {
+  const principalId: string | null = localStorage.getItem("principal");
+
+  if (!principalId) {
+    return <Navigate to="/" />;
   }
 
   return <>{children}</>;
