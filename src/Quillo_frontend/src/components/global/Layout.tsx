@@ -2,6 +2,7 @@ import { JSX } from "react";
 import { Outlet } from "react-router-dom";
 import { MobileNav } from "../navigation/Mobile";
 import { DesktopNav } from "../navigation/Desktop";
+import { SignInDrawer } from "../auth/SignInDrawer";
 import "../../styles/pages/layout.scss";
 
 export const Layout = (): JSX.Element => {
@@ -12,6 +13,8 @@ export const Layout = (): JSX.Element => {
 
       <main id="layout_main">
         <Outlet />
+
+        <SignInDrawer />
       </main>
     </>
   );
