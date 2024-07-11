@@ -2,8 +2,8 @@ import { JSX } from "react";
 import { Link } from "react-router-dom";
 import {
   AutoAwesome,
-  Discord,
   Feature,
+  Github,
   Investor,
   Twitter,
 } from "../assets/icons";
@@ -108,12 +108,12 @@ export default function AboutReorg(): JSX.Element {
         </p>
 
         <div className="contact">
-          <Link to="" target="_blank">
+          <Link to="https://x.com/ReorgDaos" target="_blank">
             <Twitter width={18} height={18} color={colors.bluee} />
           </Link>
 
-          <Link to="" target="_blank">
-            <Discord width={26} height={22} color={colors.bluee} />
+          <Link to="https://github.com/TefroTech" target="_blank">
+            <Github width={24} height={24} />
           </Link>
         </div>
       </div>
