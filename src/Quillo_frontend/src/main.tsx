@@ -2,6 +2,7 @@ import React, { JSX } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { SnackBarProvider } from "./context/snackbarctx";
+import { AuthDrawerProvider } from "./context/authdrawerctx";
 import AboutReorg from "./pages/about";
 import Authentication from "./pages/auth";
 import ErrorPage from "./pages/error";
@@ -24,7 +25,9 @@ const App = (): JSX.Element => {
   return (
     <React.StrictMode>
       <SnackBarProvider>
-        <RouterProvider router={router} />
+        <AuthDrawerProvider>
+          <RouterProvider router={router} />
+        </AuthDrawerProvider>
       </SnackBarProvider>
     </React.StrictMode>
   );
