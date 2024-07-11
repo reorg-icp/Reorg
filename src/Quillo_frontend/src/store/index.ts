@@ -1,26 +1,33 @@
 import { create } from "zustand";
-import {} from "../../../declarations/Quillo_backend/Quillo_backend.did";
 import { Principal } from "@dfinity/principal";
+
 interface Auth {
   principal: string;
   accountId: string;
   setPrincipal: (newPrincipal: string) => void;
   setAccountId: (newId: string) => void;
 }
-// enum Platform {
-//   Web = "Web",
-//   Mobile = "Mobile",
-//   Desktop = "Desktop",
-// }
+
+/** 
+enum Platform {
+  Web = "Web",
+  Mobile = "Mobile",
+  Desktop = "Desktop",
+}
+*/
+
+/**
+ enum ProjectCategory {
+  Tokenization = "Tokenization",
+  Defi = "Defi",
+  NFT = "NFT",
+  Dapp = "Dapp",
+  Gaming = "Gaming",
+  }
+  */
+
 export type Platform = { Web: null } | { Desktop: null } | { Mobile: null };
 
-// enum ProjectCategory {
-//   Tokenization = "Tokenization",
-//   Defi = "Defi",
-//   NFT = "NFT",
-//   Dapp = "Dapp",
-//   Gaming = "Gaming",
-// }
 interface Socials {
   x: [string];
   website: [string];
@@ -28,14 +35,6 @@ interface Socials {
   discord: [string];
 }
 
-// pub struct Tokenomics{
-//     pub token_name:String,
-//     pub token_symbol:String,
-//     pub total_supply:Nat,
-// pub transfer_fee:Nat,
-// pub token_image:String
-
-// }
 interface Tokenomics {
   token_name: string;
   token_symbol: string;
