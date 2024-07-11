@@ -1,23 +1,19 @@
 import { JSX, useState, CSSProperties } from "react";
+import { Link } from "react-router-dom";
 import { Drawer } from "@mui/material";
-import { Link, NavigateFunction, useNavigate } from "react-router-dom";
-import { colors } from "../../constants/colors";
+import { useAuthDrawer } from "../../context/authdrawerctx";
 import { ArrowRight, ChevronDown, MenuIcon } from "../../assets/icons";
+import { colors } from "../../constants/colors";
 import { logoFont, jockeyOneFont } from "../../constants/styles";
-import "../../styles/components/navigation/navigation.scss";
+import "../../styles/components/navigation.scss";
 
 export const MobileNav = (): JSX.Element => {
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
-  const navigate: NavigateFunction = useNavigate();
+  const { openAuthDrawer } = useAuthDrawer();
 
   const toggleDrawer = (newOpen: boolean) => (): void => {
     setDrawerOpen(newOpen);
-  };
-
-  const goToGetStarted = (): void => {
-    setDrawerOpen(false);
-    navigate("/auth/business");
   };
 
   return (
@@ -26,7 +22,7 @@ export const MobileNav = (): JSX.Element => {
         <span className="logo">reorg.</span>
 
         <button onClick={toggleDrawer(true)} className="drawerbtn">
-          <MenuIcon color={colors.primary} />
+          <MenuIcon color={colors.bluee} />
         </button>
       </div>
 
@@ -52,15 +48,23 @@ export const MobileNav = (): JSX.Element => {
               border: `1px solid ${colors.bluee}`,
               backgroundColor: "transparent",
             }}
+            onClick={() => {
+              setDrawerOpen(false);
+              openAuthDrawer("signin");
+            }}
           >
             Connect Wallet
           </button>
+
           <button
             style={{
               ...actionBtn,
               marginTop: "0.75rem",
             }}
-            onClick={goToGetStarted}
+            onClick={() => {
+              setDrawerOpen(false);
+              openAuthDrawer("signup");
+            }}
           >
             Get Started <ArrowRight width={20} height={20} />
           </button>
