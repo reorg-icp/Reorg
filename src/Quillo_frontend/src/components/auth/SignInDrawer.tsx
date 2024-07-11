@@ -1,22 +1,61 @@
 import { CSSProperties, JSX, useState } from "react";
-import { Link } from "react-router-dom";
+import { Principal } from "@dfinity/principal";
+import Lottie from "lottie-react";
+import { NavigateFunction, Link, useNavigate } from "react-router-dom";
 import { useMediaQuery, Drawer, Radio } from "@mui/material";
 import { accType } from "../../pages/auth";
 import { useAuthDrawer } from "../../context/authdrawerctx";
+import { useSnackbar } from "../../context/snackbarctx";
 import { Wallet } from "../../assets/icons";
 import { colors } from "../../constants/colors";
 import { logoFont, baseFont } from "../../constants/styles";
+import LoadingAnimation from "../../assets/animations/loading.json";
 
 export const SignInDrawer = (): JSX.Element => {
   const [accountType, setAccountType] = useState<accType>("business");
+  const [isConnecting, setIsConnecting] = useState(false);
 
-  // const navigate: NavigateFunction = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const matchesSM: boolean = useMediaQuery("(min-width:768px)");
   const { authDrawerOpen, authType, closeAuthdrawer } = useAuthDrawer();
 
-  // const _onSignIn = (): void => {
-  //   navigate("/auth/business");
-  // };
+  const { showsuccesssnack, showerrorsnack } = useSnackbar();
+
+  const onConnectionUpdate = (): void => {};
+  const ConnectPlugWallet = async (): Promise<void> => {
+    setIsConnecting(true);
+
+    const host: string = "http://127.0.0.1:4943/";
+
+    try {
+      const publicKey: Uint8Array = await (
+        window as any
+      ).ic.plug.requestConnect({
+        host,
+        onConnectionUpdate,
+        timeout: 5000,
+      });
+
+      localStorage.setItem(
+        "principal",
+        Principal.selfAuthenticating(publicKey).toString()
+      );
+      closeAuthdrawer();
+      showsuccesssnack("You signed in successfully");
+
+      setTimeout(() => {
+        if (authType == "signup" && accountType == "business") {
+          navigate("/auth/business");
+        } else {
+          navigate("/app");
+        }
+      }, 2500);
+    } catch (e) {
+      showerrorsnack("An error occurred, please try again.");
+    } finally {
+      setIsConnecting(false);
+    }
+  };
 
   const drawerstyles: CSSProperties = {
     width: matchesSM ? "24rem" : "100vw",
@@ -81,8 +120,23 @@ export const SignInDrawer = (): JSX.Element => {
             </div>
           )}
 
-          <button style={{ ...button, ...signinbtn }} title="Sign in to reorg">
-            Sign in with Plug wallet <Wallet color={colors.primary} />
+          <button
+            style={{ ...button, ...signinbtn }}
+            title="Sign in to reorg"
+            onClick={ConnectPlugWallet}
+            disabled={isConnecting}
+          >
+            Sign in with Plug wallet
+            {isConnecting ? (
+              <Lottie
+                animationData={LoadingAnimation}
+                autoplay
+                loop
+                style={{ width: "1.75rem", height: "1.75rem" }}
+              />
+            ) : (
+              <Wallet color={colors.primary} />
+            )}
           </button>
 
           <p
