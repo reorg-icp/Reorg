@@ -1,13 +1,11 @@
 import { JSX } from "react";
-import { Link, NavigateFunction, useNavigate } from "react-router-dom";
-import { ArrowRight, ChevronDown } from "../../assets/icons";
+import { Link } from "react-router-dom";
+import { useAuthDrawer } from "../../context/authdrawerctx";
+import { ArrowRight, ChevronDown, Wallet } from "../../assets/icons";
+import "../../styles/components/navigation.scss";
 
 export const DesktopNav = (): JSX.Element => {
-  const navigate: NavigateFunction = useNavigate();
-
-  const goToGetStarted = (): void => {
-    navigate("/auth/business");
-  };
+  const { openAuthDrawer } = useAuthDrawer();
 
   return (
     <div className="desktopnavctr">
@@ -33,12 +31,21 @@ export const DesktopNav = (): JSX.Element => {
       </div>
 
       <div className="actions">
-        <button className="_connect" title="Sign in to reorg.">
-          Connect Wallet
+        <button
+          className="_connect"
+          title="Sign in to reorg."
+          onClick={() => openAuthDrawer("signin")}
+        >
+          <span>Connect Wallet</span>
+          <Wallet width={20} height={18} />
         </button>
 
-        <button title="Create a reorg. account" onClick={goToGetStarted}>
-          Get Started <ArrowRight width={20} height={20} />
+        <button
+          title="Create a reorg. account"
+          onClick={() => openAuthDrawer("signup")}
+        >
+          <span>Get Started</span>
+          <ArrowRight width={20} height={20} />
         </button>
       </div>
     </div>
