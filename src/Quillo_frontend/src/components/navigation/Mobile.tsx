@@ -2,7 +2,7 @@ import { JSX, useState, CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { Drawer } from "@mui/material";
 import { useAuthDrawer } from "../../context/authdrawerctx";
-import { ArrowRight, ChevronDown, MenuIcon } from "../../assets/icons";
+import { MenuIcon } from "../../assets/icons";
 import { colors } from "../../constants/colors";
 import { logoFont, jockeyOneFont } from "../../constants/styles";
 import "../../styles/components/navigation.scss";
@@ -42,21 +42,26 @@ export const MobileNav = (): JSX.Element => {
             reorg.
           </span>
 
-          <button
-            style={{
-              ...actionBtn,
-              border: `1px solid ${colors.bluee}`,
-              backgroundColor: "transparent",
-            }}
-            onClick={() => {
-              setDrawerOpen(false);
-              openAuthDrawer("signin");
-            }}
-          >
-            Connect Wallet
-          </button>
+          {localStorage.getItem("principal") && (
+            <p className="principal">{localStorage.getItem("principal")}</p>
+          )}
+          {!localStorage.getItem("principal") && (
+            <button
+              style={{
+                ...actionBtn,
+                border: `1px solid ${colors.bluee}`,
+                backgroundColor: "transparent",
+              }}
+              onClick={() => {
+                setDrawerOpen(false);
+                openAuthDrawer("signin");
+              }}
+            >
+              Connect Wallet
+            </button>
+          )}
 
-          <button
+          {/* <button
             style={{
               ...actionBtn,
               marginTop: "0.75rem",
@@ -67,22 +72,19 @@ export const MobileNav = (): JSX.Element => {
             }}
           >
             Get Started <ArrowRight width={20} height={20} />
-          </button>
+          </button> */}
 
           <div style={links}>
-            <Link to="/" style={aLink}>
+            <Link to="token" style={aLink}>
               Tokens
-              <ChevronDown />
             </Link>
 
-            <Link to="/" style={aLink}>
+            <Link to="comingSoon" style={aLink}>
               LaunchPad
-              <ChevronDown />
             </Link>
 
-            <Link to="/" style={aLink}>
-              MarketPlace
-              <ChevronDown />
+            <Link to="comingSoon" style={aLink}>
+              Liquidity pools
             </Link>
           </div>
         </div>

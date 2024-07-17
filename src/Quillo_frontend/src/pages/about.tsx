@@ -9,12 +9,12 @@ import {
 } from "../assets/icons";
 import { colors } from "../constants/colors";
 import TokensImg from "../assets/images/tokens.png";
-import OnboardingImg from "../assets/images/onboarding.png";
-import KYCImg from "../assets/images/kyc.png";
-import TokenImg from "../assets/images/token.png";
-import DAOImg from "../assets/images/dao.png";
-import AITknsImg from "../assets/images/ai-tokenomics.png";
-import GovernImg from "../assets/images/governance.png";
+// import OnboardingImg from "../assets/images/onboarding.png";
+// import KYCImg from "../assets/images/kyc.png";
+// import TokenImg from "../assets/images/token.png";
+// import DAOImg from "../assets/images/dao.png";
+// import AITknsImg from "../assets/images/ai-tokenomics.png";
+// import GovernImg from "../assets/images/governance.png";
 import "../styles/pages/about.scss";
 
 export default function AboutReorg(): JSX.Element {
@@ -23,12 +23,11 @@ export default function AboutReorg(): JSX.Element {
       <div className="about_features">
         <div className="about">
           <p className="p0">
-            A tokens platform for projects on the Internet Computer.
+            Token launch made simple. Trade, liquidity, funding. All in one
+            place.
           </p>
 
-          <p className="p1">
-            reorg. <span className="tge">TGE</span>
-          </p>
+          <p className="p1">reorg.</p>
         </div>
 
         <div className="features">
@@ -51,15 +50,30 @@ export default function AboutReorg(): JSX.Element {
       <div className="for_founders_investors">
         <div className="for_founders">
           <p className="p0">
-            For Founders & Startups <AutoAwesome />
+            Easy Launch & Tokenomics
+            <AutoAwesome />
           </p>
           <p className="p1">
-            We help internet computer projects launch tokens easily with a sound
-            token economics model. Tokens created on reorg can be swapped on
-            ICPSWAP. We offer liquidity pools, a Dex and we partner with other
-            Dexes to list tokens on those Dexes. Reorg DAO is a DAO of investors
-            interested in outstanding ICP projects like yours. After launching
-            your token, you can apply for funding from the DAO.
+            We simplify the launch process and help design a sound economic
+            model for your token.
+          </p>
+        </div>
+
+        <div className="for_founders">
+          <p className="p0">
+            Trading & Liquidity
+            <AutoAwesome />
+          </p>
+          <p className="p1">Get your token listed on our DEX for trading.</p>
+        </div>
+
+        <div className="for_founders">
+          <p className="p0">
+            Funding Potential
+            <AutoAwesome />
+          </p>
+          <p className="p1">
+            Get funding for your project through our launchpad.
           </p>
         </div>
 
@@ -67,13 +81,7 @@ export default function AboutReorg(): JSX.Element {
           <p className="p0">
             For Investors <Investor />
           </p>
-          <p className="p1">
-            Discover, invest, and profit from innovative internet computer
-            dApps, Protocols and DAOS. At Reorg, we provide you with
-            unparalleled access to a diverse portfolio of these Web3 projects
-            and allow you to invest in them by buying tokens and profit from
-            their growth.
-          </p>
+          <p className="p1">Invest in innovative projects</p>
         </div>
 
         <div className="growth">
@@ -81,7 +89,7 @@ export default function AboutReorg(): JSX.Element {
         </div>
       </div>
 
-      <div className="how_it_works">
+      {/* <div className="how_it_works">
         <p className="p0">how it works</p>
 
         <div className="_steps">
@@ -98,7 +106,7 @@ export default function AboutReorg(): JSX.Element {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       <div className="copy_contact">
         <p className="copy">&copy; reorg.</p>
@@ -126,59 +134,51 @@ type featuresType = {
   complete: boolean;
 };
 
-type howstepstype = {
-  title: string;
-  text: string;
-  image: string;
-};
+// type howstepstype = {
+//   title: string;
+//   text: string;
+//   image: string;
+// };
 
 const features: featuresType[] = [
-  { title: "Tokens Creation", complete: true },
+  { title: "Token Creation", complete: true },
   {
-    title: "Launchpad",
+    title: "Liquidity pools",
     complete: false,
   },
-  { title: "AI Tokenomics", complete: false },
-  { title: "Tokens Exchange", complete: false },
-  {
-    title: "Airdrop Mechanisms",
-    complete: false,
-  },
-  {
-    title: "DAO Systems",
-    complete: false,
-  },
+  { title: "Launchpad", complete: false },
+  { title: "AI powered tokenomics", complete: false },
 ];
 
-const howitworksSteps: howstepstype[] = [
-  {
-    title: "Onboarding",
-    text: "Startups seeking to leverage the benefits of DAOs can integrate with the Reorg platform through a streamlined onboarding process. Following successful onboarding, they launch their token.",
-    image: OnboardingImg,
-  },
-  {
-    title: "Proof of Existence & Identity",
-    text: "Reorg employs a comprehensive due diligence process to ensure the legitimacy of startups seeking to launch tokens on our platform.",
-    image: KYCImg,
-  },
-  {
-    title: "Tokenize Ownership",
-    text: "Reorg facilitates the tokenization of startups ownership structures, by, creating tokens that represent a quantifiable stake in the company.",
-    image: TokenImg,
-  },
-  {
-    title: "Operate as a DAO",
-    text: "Reorg empowers startups to operate with a robust and secure governance structure. Investors holding tokens within a DAO enjoy a suite of rights, including the ability to propose amendments.",
-    image: DAOImg,
-  },
-  {
-    title: "AI Tokenomics",
-    text: "Reorg's token creation platform includes an AI model trained on tokenomics. Based on the startup's business model, we can recommends an optimal tokenomics structure.",
-    image: AITknsImg,
-  },
-  {
-    title: "DAO Governance",
-    text: "Investors participate in a DAO that governs the startup. This includes voting on key decisions, and aligns investor and startup interests.",
-    image: GovernImg,
-  },
-];
+// const howitworksSteps: howstepstype[] = [
+//   {
+//     title: "Onboarding",
+//     text: "Startups seeking to leverage the benefits of DAOs can integrate with the Reorg platform through a streamlined onboarding process. Following successful onboarding, they launch their token.",
+//     image: OnboardingImg,
+//   },
+//   {
+//     title: "Proof of Existence & Identity",
+//     text: "Reorg employs a comprehensive due diligence process to ensure the legitimacy of startups seeking to launch tokens on our platform.",
+//     image: KYCImg,
+//   },
+//   {
+//     title: "Tokenize Ownership",
+//     text: "Reorg facilitates the tokenization of startups ownership structures, by, creating tokens that represent a quantifiable stake in the company.",
+//     image: TokenImg,
+//   },
+//   {
+//     title: "Operate as a DAO",
+//     text: "Reorg empowers startups to operate with a robust and secure governance structure. Investors holding tokens within a DAO enjoy a suite of rights, including the ability to propose amendments.",
+//     image: DAOImg,
+//   },
+//   {
+//     title: "AI Tokenomics",
+//     text: "Reorg's token creation platform includes an AI model trained on tokenomics. Based on the startup's business model, we can recommends an optimal tokenomics structure.",
+//     image: AITknsImg,
+//   },
+//   {
+//     title: "DAO Governance",
+//     text: "Investors participate in a DAO that governs the startup. This includes voting on key decisions, and aligns investor and startup interests.",
+//     image: GovernImg,
+//   },
+// ];

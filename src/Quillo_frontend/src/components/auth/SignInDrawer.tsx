@@ -1,7 +1,7 @@
 import { CSSProperties, JSX, useState } from "react";
-import { Principal } from "@dfinity/principal";
+
 import Lottie from "lottie-react";
-import { NavigateFunction, Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useMediaQuery, Drawer, Radio } from "@mui/material";
 import { accType } from "../../pages/auth";
 import { useAuthDrawer } from "../../context/authdrawerctx";
@@ -15,7 +15,7 @@ export const SignInDrawer = (): JSX.Element => {
   const [accountType, setAccountType] = useState<accType>("business");
   const [isConnecting, setIsConnecting] = useState(false);
 
-  const navigate: NavigateFunction = useNavigate();
+  // const navigate: NavigateFunction = useNavigate();
   const matchesSM: boolean = useMediaQuery("(min-width:768px)");
   const { authDrawerOpen, authType, closeAuthdrawer } = useAuthDrawer();
 
@@ -25,33 +25,27 @@ export const SignInDrawer = (): JSX.Element => {
   const ConnectPlugWallet = async (): Promise<void> => {
     setIsConnecting(true);
 
-    const host: string = "http://127.0.0.1:4943/";
+    // const host: string = "http://127.0.0.1:4943/";
+    const live_host = "https://ieffn-gaaaa-aaaap-qhkwa-cai.icp0.io";
 
     try {
-      const publicKey: Uint8Array = await (
-        window as any
-      ).ic.plug.requestConnect({
-        host,
+      await (window as any).ic.plug.requestConnect({
+        host: live_host,
         onConnectionUpdate,
         timeout: 5000,
       });
 
       localStorage.setItem(
         "principal",
-        Principal.selfAuthenticating(publicKey).toString()
+        (window as any).ic?.plug?.sessionManager?.sessionData.principalId
       );
       closeAuthdrawer();
       showsuccesssnack("You signed in successfully");
-
-      setTimeout(() => {
-        if (authType == "signup" && accountType == "business") {
-          navigate("/auth/business");
-        } else {
-          navigate("/app");
-        }
-      }, 2500);
     } catch (e) {
-      showerrorsnack("An error occurred, please try again.");
+      console.log(e);
+      showerrorsnack(
+        "An error occurred, please try again." + JSON.stringify(e)
+      );
     } finally {
       setIsConnecting(false);
     }
@@ -94,7 +88,7 @@ export const SignInDrawer = (): JSX.Element => {
             }}
           >
             {authType == "signin"
-              ? "Sign in to your reorg. account"
+              ? "Authenticate into Reorg"
               : "Create a reorg. account"}
           </p>
 
@@ -126,7 +120,7 @@ export const SignInDrawer = (): JSX.Element => {
             onClick={ConnectPlugWallet}
             disabled={isConnecting}
           >
-            Sign in with Plug wallet
+            Authenticate with Plug wallet
             {isConnecting ? (
               <Lottie
                 animationData={LoadingAnimation}

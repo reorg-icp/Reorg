@@ -10,6 +10,8 @@ import { Layout } from "./components/global/Layout";
 import "./styles/index.scss";
 import Private from "./components/auth/Private";
 import { HomePage } from "./pages/home";
+import Register from "./pages/register";
+import ComingSoon from "./pages/comingSoon";
 
 const App = (): JSX.Element => {
   const router = createBrowserRouter([
@@ -20,6 +22,22 @@ const App = (): JSX.Element => {
       children: [
         { path: "", index: true, element: <AboutReorg /> },
         {
+          path: "/app",
+          element: <HomePage />,
+        },
+        {
+          path: "/token",
+          element: (
+            <Private>
+              <Register />
+            </Private>
+          ),
+        },
+        {
+          path: "/comingSoon",
+          element: <ComingSoon />,
+        },
+        {
           path: "/auth/:accType",
           element: (
             <Private>
@@ -28,10 +46,6 @@ const App = (): JSX.Element => {
           ),
         },
       ],
-    },
-    {
-      path: "/app",
-      element: <HomePage />,
     },
   ]);
 

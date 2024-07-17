@@ -1,0 +1,118 @@
+@import "../constants/mixins";
+@import "../constants/colors";
+
+.container {
+  width: 100%;
+  padding: 2rem;
+  margin-top: 8%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff; /* Adjust background color as needed */
+  border-radius: 12px; /* Adds rounded corners */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for lift */
+
+  /* Additional styling for borders */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Soft border for separation */
+}
+
+.container h4 {
+  font-weight: bold;
+}
+
+.container .children {
+  padding: 1%;
+}
+.container .form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.container .field {
+  padding: 1%;
+  font-size: 20px;
+  color: $text_secondary;
+  margin-right: 5%;
+}
+.label {
+  display: flex;
+  flex-direction: row;
+  height: 20px;
+}
+.input {
+  outline: none; /* Removing the default outline */
+  border-radius: 6px; /* Smooth rounded corners */
+  padding: 10px; /* Standard padding for better user interaction */
+  border: 1px solid gray; /* Consistent border styling */
+
+  font-size: 16px; /* Readable font size */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions for focus effects */
+  background-color: #f9f9f9; /* Light background color for contrast */
+  color: #333; /* Dark text color for readability */
+}
+
+.input::placeholder {
+  color: #888; /* Subtle placeholder color */
+  opacity: 1; /* Ensure placeholder text is visible */
+}
+.textArea {
+  outline: none; /* Removing the default outline */
+  border-radius: 6px; /* Smooth rounded corners */
+  padding: 10px; /* Standard padding for better user interaction */
+  border: 1px solid gray; /* Consistent border styling */
+
+  font-size: 10px; /* Readable font size */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions for focus effects */
+  background-color: #f9f9f9; /* Light background color for contrast */
+  color: #333; /* Dark text color for readability */
+  resize: none;
+  height: 70px;
+}
+.btn {
+  height: 45px;
+  border-radius: 8px;
+  background-color: $success; /* Make sure $success is defined correctly */
+  outline: none;
+  color: $primary; /* Make sure $primary is defined correctly */
+  font-size: 20px;
+  font-weight: bold;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px; /* Adjust padding as needed */
+  cursor: pointer;
+  border: none; /* Optionally, remove border for a cleaner look */
+  text-decoration: none; /* Remove underline if used as a link */
+}
+.btn:disabled {
+  background-color: rgba(
+    18,
+    163,
+    58,
+    0.4
+  ); /* Lighter version of $success or a different color */
+  color: rgba(
+    255,
+    255,
+    255,
+    0.7
+  ); /* Lighter version of $primary or a different color */
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
+  opacity: 0.6; /* Optionally reduce opacity */
+}
+.disclaimer {
+  background-color: #ffe6e6; /* Light pink */
+  padding-inline: 20%;
+  padding-block: 1em;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  color: #333333; /* Dark grey text for better readability */
+  font-family: Arial, sans-serif;
+  margin-block: 10px;
+}
+
+.disclaimer-list {
+  padding: 1%;
+}
+.fee {
+  font-weight: bolder;
+}

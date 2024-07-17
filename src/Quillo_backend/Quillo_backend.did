@@ -38,12 +38,7 @@ type ProposalState = variant {
 };
 type Result = variant { Ok : principal; Err : text };
 type Result_1 = variant { Ok : BasicDaoStableStorage; Err : CustomError };
-type Socials = record {
-  x : opt text;
-  linkedin : opt text;
-  website : opt text;
-  discord : opt text;
-};
+type Socials = record { website : opt text; github : opt text };
 type SystemParams = record {
   project_details : opt ProjectInfo;
   transfer_fee : opt Tokens;

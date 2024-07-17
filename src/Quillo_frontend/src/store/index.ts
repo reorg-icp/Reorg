@@ -29,10 +29,8 @@ enum Platform {
 export type Platform = { Web: null } | { Desktop: null } | { Mobile: null };
 
 interface Socials {
-  x: [string];
   website: [string];
-  linkedin: [string];
-  discord: [string];
+  github: [string];
 }
 
 interface Tokenomics {
@@ -51,7 +49,7 @@ const useProjectInfo = create<any>((set: any) => ({
 
   legal: [],
   project_principal: [],
-  socials: { x: "", website: "", linkedin: "", discord: "" },
+  socials: { website: "", github: "" },
 
   tokenomics: null,
   setProjectName: (name: string) => set(() => ({ project_name: name })),

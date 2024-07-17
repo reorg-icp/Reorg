@@ -4,7 +4,7 @@
 #aboutreorg {
   .about_features {
     @include tablet-upwards {
-      margin-top: 4.75rem;
+      margin-top: 8.75rem;
     }
 
     @include desktop {
@@ -95,7 +95,7 @@
       padding: 2rem;
     }
 
-    margin-top: 1.75rem;
+    margin-top: 3.75rem;
     padding: 1rem 0.5rem;
     border-radius: 0.5rem;
     background-color: $secondary;
@@ -104,6 +104,7 @@
     .for_investors {
       @include desktop {
         width: 48%;
+        margin-inline: 20px;
       }
 
       @include big-desktop {
