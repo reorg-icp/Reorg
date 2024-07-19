@@ -208,7 +208,7 @@ const Register = () => {
   let actor = Quillo_backend;
   const agent: any = new HttpAgent();
   //backend canister name
-  actor = createActor("dzh22-nuaaa-aaaaa-qaaoa-cai", {
+  actor = createActor("ircua-hiaaa-aaaap-qhkvq-cai", {
     agent,
   });
 
@@ -246,6 +246,7 @@ const Register = () => {
         );
         setDisabled(false);
       } else if (tokenResponse?.Err) {
+        console.log(tokenResponse?.Err);
         setDisabled(false);
         toast.error(`There was an error creating the token`);
       }
