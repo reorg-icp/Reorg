@@ -10,8 +10,10 @@ import { Wallet } from "../../assets/icons";
 import { colors } from "../../constants/colors";
 import { logoFont, baseFont } from "../../constants/styles";
 import LoadingAnimation from "../../assets/animations/loading.json";
+import { usePlugWallet } from "../../store";
 
 export const SignInDrawer = (): JSX.Element => {
+  const { setPlug } = usePlugWallet((state: any) => state);
   const [accountType, setAccountType] = useState<accType>("business");
   const [isConnecting, setIsConnecting] = useState(false);
 
@@ -34,11 +36,12 @@ export const SignInDrawer = (): JSX.Element => {
         onConnectionUpdate,
         timeout: 5000,
       });
-
-      localStorage.setItem(
-        "principal",
-        (window as any).ic?.plug?.sessionManager?.sessionData.principalId
-      );
+      let user_principal = await (
+        window as any
+      ).ic?.plug?.agent?.getPrincipal();
+      localStorage.setItem("principal", user_principal);
+      console.log((window as any).ic?.plug?.agent);
+      setPlug((window as any).ic?.plug?.agent);
       closeAuthdrawer();
       showsuccesssnack("You signed in successfully");
     } catch (e) {

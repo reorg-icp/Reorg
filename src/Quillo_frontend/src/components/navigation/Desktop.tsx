@@ -1,11 +1,16 @@
-import { JSX } from "react";
+import { JSX, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuthDrawer } from "../../context/authdrawerctx";
 import { Wallet } from "../../assets/icons";
 import "../../styles/components/navigation.scss";
+import { requestUserBalance } from "../../utils/transactions";
 
 export const DesktopNav = (): JSX.Element => {
   const { openAuthDrawer } = useAuthDrawer();
+
+  useEffect(() => {
+    requestUserBalance();
+  });
 
   return (
     <div className="desktopnavctr">

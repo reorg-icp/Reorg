@@ -65,5 +65,10 @@ const useProjectInfo = create<any>((set: any) => ({
     set(() => ({ tokenomics: tokenomics })),
 }));
 
-export { useProjectInfo };
+const usePlugWallet = create<any>((set: any) => ({
+  plug: null,
+  setPlug: (plug: any) => set({ plug: plug }),
+}));
+
+export { useProjectInfo, usePlugWallet };
 export type { Auth };

@@ -5,11 +5,12 @@ import {
   Quillo_backend,
   createActor,
 } from "../../../declarations/Quillo_backend";
-import { HttpAgent } from "@dfinity/agent";
+// import { HttpAgent } from "@dfinity/agent";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { e8sToIcp } from "../utils/transactions";
+import { usePlugWallet } from "../store";
 enum InputType {
   Text = "text",
   TextArea = "textArea",
@@ -200,13 +201,17 @@ function Input({
   );
 }
 const Register = () => {
+  const { plug } = usePlugWallet((state: any) => state);
   const [_, setDaoId] = React.useState<BigInt>(-1n);
   const [disabled, setDisabled] = React.useState(false);
+  const agent = plug.agent; // use plug's agent so that caller is authenticated user
+  console.log(agent);
 
+  console.log(`Type of agent is ${agent}`);
   // const { socials, project_name, project_description, tokenomics } =
   //   useProjectInfo((state: any) => state);
   let actor = Quillo_backend;
-  const agent: any = new HttpAgent();
+  // const agent: any = new HttpAgent();
   //backend canister name
   actor = createActor("ircua-hiaaa-aaaap-qhkvq-cai", {
     agent,
@@ -237,23 +242,42 @@ const Register = () => {
       setDaoId(response?.Ok?.id);
       console.log(typeof response?.Ok?.id);
       toast.success("Success... your token is being created..");
-
-      let tokenResponse: any = await actor.launch_token(response?.Ok?.id);
-
-      if (tokenResponse?.Ok) {
-        toast.success(
-          `Token created and the canister id is ${tokenResponse?.Ok}`
+      let principal_id = localStorage.getItem("principal");
+      let result: any = await actor.get_icp_balance(principal_id as string);
+      if (result?.e8s < BigInt(20000000)) {
+        console.log(result?.e8s);
+        return toast.error(
+          `You don't have enough ICP to complete the transaction, you need atleast 0.2 ICP. Your balance is ${e8sToIcp(
+            result?.e8s
+          )}`
         );
-        setDisabled(false);
-      } else if (tokenResponse?.Err) {
-        console.log(tokenResponse?.Err);
+      } else if (result?.e8s >= BigInt(20000000)) {
+        //approve, transfer_from, launch token
+        let res = await actor.approve_transfer();
+        // let res = await actor.transfer_icp();
+        console.log(
+          `The response after attempting to approve  icp  transfer is ${JSON.stringify(
+            res
+          )}`
+        );
+
+        let tokenResponse: any = await actor.launch_token(response?.Ok?.id);
+
+        if (tokenResponse?.Ok) {
+          toast.success(
+            `Token created and the canister id is ${tokenResponse?.Ok}`
+          );
+          setDisabled(false);
+        } else if (tokenResponse?.Err) {
+          console.log(tokenResponse?.Err);
+          setDisabled(false);
+          toast.error(`There was an error creating the token`);
+        }
+      }
+      if (response?.Err) {
         setDisabled(false);
         toast.error(`There was an error creating the token`);
       }
-    }
-    if (response?.Err) {
-      setDisabled(false);
-      toast.error(`There was an error creating the token`);
     }
   }
   return (
@@ -310,6 +334,7 @@ const Register = () => {
           className="btn"
           onClick={() => {
             setDisabled(true);
+
             registerProject();
           }}
         >

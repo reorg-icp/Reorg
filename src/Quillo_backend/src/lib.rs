@@ -2,9 +2,20 @@
 extern crate serde;
 
 
+use candid::types::principal;
+use candid::Nat;
 use candid::Principal;
 use error_handler::CustomError;
 
+use ic_cdk::api::call::RejectionCode;
+use ic_ledger_types::account_balance;
+use ic_ledger_types::AccountBalanceArgs;
+use ic_ledger_types::AccountIdentifier;
+use ic_ledger_types::BlockIndex;
+use ic_ledger_types::Subaccount;
+use ic_ledger_types::Tokens;
+use ic_cdk::api::call::call;
+use ic_ledger_types::DEFAULT_SUBACCOUNT;
 use icrc2::create_and_deploy_canister;
 use daoservice::BasicDaoStableStorage as Dao;
 use daoservice::UpdateSystemParamsPayload;
@@ -13,6 +24,13 @@ use ic_stable_structures::{
     memory_manager::{MemoryId, MemoryManager, VirtualMemory},
     BTreeMap, Cell, DefaultMemoryImpl,
 };
+use icrc_ledger_types::icrc1::account::Account;
+use icrc_ledger_types::icrc2::approve;
+use icrc_ledger_types::icrc2::approve::ApproveArgs;
+use icrc_ledger_types::icrc2::approve::ApproveError;
+use icrc_ledger_types::icrc2::transfer_from;
+use icrc_ledger_types::icrc2::transfer_from::TransferFromArgs;
+use icrc_ledger_types::icrc2::transfer_from::TransferFromError;
 
 use std::cell::RefCell;
 
@@ -146,4 +164,109 @@ fn greet(name:String)->String{
 fn match_get_dao(id: &u64) -> Option<Dao> {
     DAOS.with(|service| service.borrow().get(id))
 }
+
+
+#[ic_cdk::update]
+async fn get_icp_balance(principal_id: String) -> Tokens {
+
+    ic_cdk::println!("Fetching balance for Principal ID: {}", principal_id);
+
+  
+    let account_identifier = AccountIdentifier::new(
+        &Principal::from_text(principal_id.clone()).unwrap(),
+        &DEFAULT_SUBACCOUNT
+    );
+
+    ic_cdk::println!("Account Identifier: {:?}", account_identifier);
+
+    let balance_args: AccountBalanceArgs = AccountBalanceArgs {
+        account: account_identifier,
+    };
+
+ 
+    ic_cdk::println!("Balance Arguments: {:?}", balance_args);
+
+  
+    let ic_balance = account_balance(Principal::from_text("ryjl3-tyaaa-aaaaa-aaaba-cai").unwrap(), balance_args)
+        .await;
+
+    match ic_balance {
+        Ok(balance) => {
+          
+            ic_cdk::println!("Balance in e8s: {}", balance.e8s());
+
+         
+            balance
+        },
+        Err(e) => {
+        
+            ic_cdk::println!("Error fetching balance: {:?}", e);
+
+            Tokens::from_e8s(0)
+        }
+    }
+}
+
+
+#[ic_cdk::update]
+async fn approve_transfer() -> Result<BlockIndex, String> {
+
+    let approve_args = ApproveArgs {
+        spender:Account::from(Principal::from_text("ircua-hiaaa-aaaap-qhkvq-cai").unwrap()),
+        from_subaccount:None,
+        amount: Nat::from(20000000u64),
+        created_at_time: None,
+        expected_allowance: None,
+        expires_at: None,
+        fee: None,
+        memo: None,
+    };
+
+        ic_cdk::call::<(ApproveArgs,), (Result<BlockIndex, ApproveError>,)>(
+            Principal::from_text("ryjl3-tyaaa-aaaaa-aaaba-cai")
+                .expect("Could not decode the principal."),
+            "icrc2_approve",
+            (approve_args,),
+        )
+        .await
+        .map_err(|e| format!("failed to call ledger: {:?}", e))?
+        .0.map_err(|e| format!("ledger transfer error {:?}", e))
+
+
+  
+
+}
+// #[ic_cdk::update]
+
+// async fn transfer_icp() -> Result<BlockIndex, String> {
+ 
+
+//     let transfer_from_args = TransferFromArgs {
+//         spender_subaccount: None,
+//         amount: Nat::from(20000000u64),
+//         created_at_time: None,
+//         fee: None,
+//         from:Account::from(ic_cdk::caller()),
+//         to:Account::from(Principal::from_text("ircua-hiaaa-aaaap-qhkvq-cai").unwrap()),
+//         memo: None,
+//     };
+
+
+
+ 
+//         ic_cdk::call::<(TransferFromArgs,), (Result<BlockIndex, TransferFromError>,)>(
+//             Principal::from_text("ryjl3-tyaaa-aaaaa-aaaba-cai")
+//                 .expect("Could not decode the principal."),
+//             "icrc2_transfer_from",
+//             (transfer_from_args,),
+//         )
+//         .await
+//         .map_err(|e| format!("failed to call ledger: {:?}", e))?
+//         .0 .map_err(|e| format!("ledger transfer error {:?}", e))
+
+ 
+// }
+
+
+
 ic_cdk::export_candid!();
