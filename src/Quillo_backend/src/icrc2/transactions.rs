@@ -19,13 +19,7 @@ pub async fn mint_cycles(amount: Tokens) -> Result<candid::Nat, CustomError> {
         memo: MEMO_TOP_UP_CANISTER,
         amount,
         fee: ICP_TRANSACTION_FEE,
-        from_subaccount: Some(Subaccount::from(
-            Principal::from_text("owu57-ix3tx-4pgh7-pmu7n-dzlor-tqljq-wui5j-g5b2g-mtnfa-yklry-mae")//this canister make sure users transfer funds to this canister. I think we can use None
-            
-
-
-                .unwrap(),
-        )),
+        from_subaccount: None,
         to: AccountIdentifier::new(
             &Principal::from_text("rkp4c-7iaaa-aaaaa-aaaca-cai").unwrap(),
             &Subaccount::from(id()),

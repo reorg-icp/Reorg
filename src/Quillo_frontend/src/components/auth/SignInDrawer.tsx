@@ -41,7 +41,7 @@ export const SignInDrawer = (): JSX.Element => {
       ).ic?.plug?.agent?.getPrincipal();
       localStorage.setItem("principal", user_principal);
       console.log((window as any).ic?.plug?.agent);
-      setPlug((window as any).ic?.plug?.agent);
+      setPlug((window as any).ic?.plug);
       closeAuthdrawer();
       showsuccesssnack("You signed in successfully");
     } catch (e) {

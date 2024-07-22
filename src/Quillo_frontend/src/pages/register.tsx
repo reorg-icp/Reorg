@@ -204,7 +204,7 @@ const Register = () => {
   const { plug } = usePlugWallet((state: any) => state);
   const [_, setDaoId] = React.useState<BigInt>(-1n);
   const [disabled, setDisabled] = React.useState(false);
-  const agent = plug.agent; // use plug's agent so that caller is authenticated user
+  const agent = plug?.agent; // use plug's agent so that caller is authenticated user
   console.log(agent);
 
   console.log(`Type of agent is ${agent}`);
@@ -244,39 +244,44 @@ const Register = () => {
       toast.success("Success... your token is being created..");
       let principal_id = localStorage.getItem("principal");
       let result: any = await actor.get_icp_balance(principal_id as string);
-      if (result?.e8s < BigInt(20000000)) {
+      if (result?.e8s < BigInt(101000000)) {
         console.log(result?.e8s);
         return toast.error(
           `You don't have enough ICP to complete the transaction, you need atleast 0.2 ICP. Your balance is ${e8sToIcp(
             result?.e8s
           )}`
         );
-      } else if (result?.e8s >= BigInt(20000000)) {
-        //approve, transfer_from, launch token
-        let res = await actor.approve_transfer();
-        // let res = await actor.transfer_icp();
-        console.log(
-          `The response after attempting to approve  icp  transfer is ${JSON.stringify(
-            res
-          )}`
-        );
+      } else if (result?.e8s >= BigInt(101000000)) {
+        //create transferParams
 
-        let tokenResponse: any = await actor.launch_token(response?.Ok?.id);
+        let transfer_params = {
+          to: "ircua-hiaaa-aaaap-qhkvq-cai",
+          amount: 101_000_000,
+          opts: {
+            memo: "123451231231",
+          },
+        };
+        const result = await plug?.requestTransfer(transfer_params);
+        console.log(`The res is ${JSON.stringify(result)}`);
 
-        if (tokenResponse?.Ok) {
-          toast.success(
-            `Token created and the canister id is ${tokenResponse?.Ok}`
-          );
-          setDisabled(false);
-        } else if (tokenResponse?.Err) {
-          console.log(tokenResponse?.Err);
+        if (result?.height) {
+          let tokenResponse: any = await actor.launch_token(response?.Ok?.id);
+
+          if (tokenResponse?.Ok) {
+            toast.success(
+              `Token created and the canister id is ${tokenResponse?.Ok}`
+            );
+            setDisabled(false);
+          } else if (tokenResponse?.Err) {
+            console.log(tokenResponse?.Err);
+            setDisabled(false);
+            toast.error(`There was an error creating the token`);
+          }
+        }
+        if (response?.Err) {
           setDisabled(false);
           toast.error(`There was an error creating the token`);
         }
-      }
-      if (response?.Err) {
-        setDisabled(false);
-        toast.error(`There was an error creating the token`);
       }
     }
   }
