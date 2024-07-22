@@ -19,7 +19,17 @@ export const MobileNav = (): JSX.Element => {
   return (
     <>
       <div className="mobilenavctr">
-        <span className="logo">reorg.</span>
+        <Link
+          to="/"
+          style={{ textDecoration: "none", color: "black", outline: "none" }}
+        >
+          <span
+            className="logo"
+            style={{ fontWeight: "bold", marginLeft: "5px" }}
+          >
+            reorg.
+          </span>
+        </Link>
 
         <button onClick={toggleDrawer(true)} className="drawerbtn">
           <MenuIcon color={colors.bluee} />

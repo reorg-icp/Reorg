@@ -1,5 +1,6 @@
 import { JSX } from "react";
 import { Link } from "react-router-dom";
+
 import {
   AutoAwesome,
   Feature,
@@ -8,10 +9,10 @@ import {
   Twitter,
 } from "../assets/icons";
 import { colors } from "../constants/colors";
-import TokensImg from "../assets/images/tokens.png";
+
 // import OnboardingImg from "../assets/images/onboarding.png";
 // import KYCImg from "../assets/images/kyc.png";
-// import TokenImg from "../assets/images/token.png";
+import TokenImg from "../assets/images/token.png";
 // import DAOImg from "../assets/images/dao.png";
 // import AITknsImg from "../assets/images/ai-tokenomics.png";
 // import GovernImg from "../assets/images/governance.png";
@@ -22,41 +23,130 @@ export default function AboutReorg(): JSX.Element {
     <section id="aboutreorg">
       <div className="about_features">
         <div className="about">
-          <p className="p0">
+          <p className="one-liner-heading">
             Token launch made simple. Trade, liquidity, funding. All in one
             place.
           </p>
+          <div
+            className="buttons"
+            style={{
+              display: "flex",
+              flexDirection: "row",
 
-          <p className="p1">reorg.</p>
+              gap: 20,
+
+              alignItems: "center",
+              justifyContent: "center",
+              alignSelf: "center",
+            }}
+          >
+            <Link to="/token">
+              <button
+                style={{
+                  background:
+                    "linear-gradient(90deg, #006ad4 0%, #004d40 100%)",
+                  color: "#ffffff",
+                  border: "none",
+                  borderRadius: "25px",
+                  padding: "12px 24px",
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                  transition: "all 0.3s ease",
+                  outline: "none",
+                  marginTop: "30px",
+                  alignSelf: "center",
+                }}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.background =
+                    "linear-gradient(90deg, #004d40 0%, #00251a 100%)")
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.background =
+                    "linear-gradient(90deg, #006ad4 0%, #004d40 100%)")
+                }
+              >
+                Launch Token
+              </button>
+            </Link>
+            <Link to="/comingsoon">
+              <button
+                style={{
+                  background:
+                    "linear-gradient(90deg, #006ad4 0%, #004d40 100%)",
+                  color: "#ffffff",
+                  border: "none",
+                  borderRadius: "25px",
+                  padding: "12px 24px",
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                  transition: "all 0.3s ease",
+                  outline: "none",
+                  marginTop: "30px",
+                  alignSelf: "center",
+                }}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.background =
+                    "linear-gradient(90deg, #004d40 0%, #00251a 100%)")
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.background =
+                    "linear-gradient(90deg, #006ad4 0%, #004d40 100%)")
+                }
+              >
+                Go to launchpad
+              </button>
+            </Link>
+          </div>
         </div>
+        <img src={TokenImg} className="responsive-image" alt="Token" />
+      </div>
 
-        <div className="features">
-          {features.map((feature, index) => (
-            <div
-              key={feature.title + index}
-              title={feature.title}
-              id="_feat_base"
-              className={feature.complete ? "_feat" : "_feat_incomplete"}
-            >
+      <div>
+        <h1 className="features-title">Features</h1>
+      </div>
+      <div className="features">
+        {features.map((feature, index) => (
+          <div
+            key={feature.title + index}
+            title={feature.title}
+            className={`feature-card ${
+              feature.complete ? "complete" : "incomplete"
+            }`}
+          >
+            <div className="feature-icon">
               <Feature
                 color={feature.complete ? colors.primary : colors.bluee}
               />
-              {feature.title}
             </div>
-          ))}
-        </div>
+            <div className="feature-content">
+              <h3>{feature.title}</h3>
+              <p>{feature.content}</p>
+            </div>
+            <div className="feature-status">
+              {feature.complete ? (
+                <span className="status complete">Complete</span>
+              ) : (
+                <span className="status incomplete">Incomplete</span>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
 
+      <div>
+        <h1 className="features-title">Why Reorg?</h1>
+      </div>
       <div className="for_founders_investors">
         <div className="for_founders">
           <p className="p0">
-            Easy Launch & Tokenomics
+            Launch multichain tokens
             <AutoAwesome />
           </p>
-          <p className="p1">
-            We simplify the launch process and help design a sound economic
-            model for your token.
-          </p>
+          <p className="p1">Launch ICRC and EVM based tokens</p>
         </div>
 
         <div className="for_founders">
@@ -64,7 +154,7 @@ export default function AboutReorg(): JSX.Element {
             Trading & Liquidity
             <AutoAwesome />
           </p>
-          <p className="p1">Get your token listed on our DEX for trading.</p>
+          <p className="p1">Create liquidity pools</p>
         </div>
 
         <div className="for_founders">
@@ -82,10 +172,6 @@ export default function AboutReorg(): JSX.Element {
             For Investors <Investor />
           </p>
           <p className="p1">Invest in innovative projects</p>
-        </div>
-
-        <div className="growth">
-          <img src={TokensImg} alt="reorg token" />
         </div>
       </div>
 
@@ -107,24 +193,33 @@ export default function AboutReorg(): JSX.Element {
           ))}
         </div>
       </div> */}
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="copy_contact">
+            <p className="copy">&copy; Reorg.</p>
+            <p className="reserved">
+              {new Date().getUTCFullYear()}, All Rights Reserved
+            </p>
 
-      <div className="copy_contact">
-        <p className="copy">&copy; reorg.</p>
-
-        <p className="reserved">
-          {new Date().getUTCFullYear()}, All Rights Reserved
-        </p>
-
-        <div className="contact">
-          <Link to="https://x.com/ReorgDaos" target="_blank">
-            <Twitter width={18} height={18} color={colors.bluee} />
-          </Link>
-
-          <Link to="https://github.com/TefroTech" target="_blank">
-            <Github width={24} height={24} />
-          </Link>
+            <div className="contact">
+              <Link
+                to="https://x.com/ReorgDaos"
+                target="_blank"
+                aria-label="Twitter"
+              >
+                <Twitter width={18} height={18} color={colors.bluee} />
+              </Link>
+              <Link
+                to="https://github.com/TefroTech"
+                target="_blank"
+                aria-label="GitHub"
+              >
+                <Github width={24} height={24} />
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
+      </footer>
     </section>
   );
 }
@@ -132,6 +227,7 @@ export default function AboutReorg(): JSX.Element {
 type featuresType = {
   title: string;
   complete: boolean;
+  content: string;
 };
 
 // type howstepstype = {
@@ -141,13 +237,26 @@ type featuresType = {
 // };
 
 const features: featuresType[] = [
-  { title: "Token Creation", complete: true },
+  {
+    title: "Token Creation",
+    complete: true,
+    content: "Create ICRC and ERC compatible tokens powered by chainfusion",
+  },
   {
     title: "Liquidity pools",
     complete: false,
+    content: "Create liquidity pools by locking a token pair",
   },
-  { title: "Launchpad", complete: false },
-  { title: "AI powered tokenomics", complete: false },
+  {
+    title: "Launchpad",
+    complete: false,
+    content: "Get funding through our launchpad",
+  },
+  {
+    title: "AI powered tokenomics",
+    complete: false,
+    content: "AI powered economic engineering",
+  },
 ];
 
 // const howitworksSteps: howstepstype[] = [

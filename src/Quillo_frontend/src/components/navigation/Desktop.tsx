@@ -15,7 +15,22 @@ export const DesktopNav = (): JSX.Element => {
   return (
     <div className="desktopnavctr">
       <div className="logo_links">
-        <span className="logo">reorg.</span>
+        <Link
+          to="/"
+          style={{
+            textDecoration: "none",
+            color: "black",
+            outline: "none",
+            fontWeight: "bold",
+          }}
+        >
+          <span
+            className="logo"
+            style={{ textDecoration: "none", color: "black", outline: "none" }}
+          >
+            reorg.
+          </span>
+        </Link>
 
         <div className="links">
           <Link to="token">Tokens</Link>
