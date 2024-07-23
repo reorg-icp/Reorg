@@ -14,7 +14,7 @@ use ic_ledger_types::AccountIdentifier;
 use ic_ledger_types::BlockIndex;
 use ic_ledger_types::Subaccount;
 use ic_ledger_types::Tokens;
-use ic_cdk::api::call::call;
+// use ic_cdk::api::call::call;
 use ic_ledger_types::DEFAULT_SUBACCOUNT;
 use icrc2::create_and_deploy_canister;
 use daoservice::BasicDaoStableStorage as Dao;
@@ -25,12 +25,12 @@ use ic_stable_structures::{
     BTreeMap, Cell, DefaultMemoryImpl,
 };
 use icrc_ledger_types::icrc1::account::Account;
-use icrc_ledger_types::icrc2::approve;
+// use icrc_ledger_types::icrc2::approve;
 use icrc_ledger_types::icrc2::approve::ApproveArgs;
 use icrc_ledger_types::icrc2::approve::ApproveError;
-use icrc_ledger_types::icrc2::transfer_from;
-use icrc_ledger_types::icrc2::transfer_from::TransferFromArgs;
-use icrc_ledger_types::icrc2::transfer_from::TransferFromError;
+// use icrc_ledger_types::icrc2::transfer_from;
+// use icrc_ledger_types::icrc2::transfer_from::TransferFromArgs;
+// use icrc_ledger_types::icrc2::transfer_from::TransferFromError;
 
 use std::cell::RefCell;
 
@@ -102,6 +102,32 @@ fn _register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError>
     Ok(dao)
 }
 
+#[ic_cdk::query]
+fn get_projects()-> Vec<(u64, Dao)>{
+        let projects: Vec<_> = DAOS.with(|storage| storage.borrow().iter().collect());
+
+projects
+}
+#[ic_cdk::query]
+async fn get_single_project(id: u64) -> Result<Dao, String> {
+    match_get_dao(&id).ok_or_else(|| format!("Project with id={} not found", id))
+}
+
+fn match_get_dao(id: &u64) -> Option<Dao> {
+    DAOS.with(|service| service.borrow().get(id))
+}
+
+#[ic_cdk::update]
+async fn delete_all_daos() -> Result<String, String> {
+    DAOS.with(|projects| {
+        let mut projects =projects.borrow_mut();
+        let keys: Vec<u64> =projects.iter().map(|(k, _)| k).collect();
+        for key in keys {
+            projects.remove(&key);
+        }
+    });
+    Ok(String::from("All projects deleted successfully"))
+}
 
 #[ic_cdk::update]
 fn register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError> {
@@ -127,7 +153,7 @@ async fn launch_token(
     id: u64
 ) -> Result<Principal, String> {
   
-    let dao = match match_get_dao(&id).ok_or_else(|| format!("DAO with id={} not found", id)) {
+    let  dao = match match_get_dao(&id).ok_or_else(|| format!("DAO with id={} not found", id)) {
         Ok(dao) => dao,
         Err(e) => return Err(e),
     };
@@ -147,12 +173,26 @@ let owner=dao.system_params.project_details.unwrap().project_principal.unwrap();
         token_details.token_image,
       Principal::from_text(owner).unwrap()
     ).await {
-        Ok(canister_id) => Ok(canister_id),
+        Ok(canister_id) =>{
+            //do sth else
+          
+                let mut project = match match_get_dao(&id).ok_or_else(|| format!("DAO with id={} not found", id)) {
+        Ok(dao) => dao,
+        Err(e) => return Err(e),
+    };
+      project.token_id=Some(canister_id);
+
+            DAOS.with(|service| service.borrow_mut().insert(id, project.clone()));
+
+Ok(canister_id)
+        } ,
         Err(e) => match e {
             CustomError::MissingField(_) => Err(String::from("A missing field was found when registering the DAO")),
             CustomError::custom(custom) => Err(custom),
         },
     }
+    //add token_id in that particular
+
 }
 
 #[ic_cdk::query]
@@ -161,9 +201,6 @@ fn greet(name:String)->String{
     name
 }
 
-fn match_get_dao(id: &u64) -> Option<Dao> {
-    DAOS.with(|service| service.borrow().get(id))
-}
 
 
 #[ic_cdk::update]
