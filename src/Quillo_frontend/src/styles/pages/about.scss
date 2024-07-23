@@ -398,67 +398,92 @@ $divider-dark: rgba(255, 255, 255, 0.25);
   }
 
   .footer {
-    background: #ffffff; /* White background */
-    color: #000000; /* Dark text color for contrast */
-    padding: 20px;
+    background: linear-gradient(
+      145deg,
+      #004d40,
+      #00251a
+    ); /* Dark background for contrast */
+    color: #ffffff; /* Light text color for contrast */
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .footer-content {
     max-width: 1200px;
     width: 100%;
     display: flex;
-    flex-direction: row; /* Arrange items in a row */
-    justify-content: space-between; /* Space out items */
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
   }
 
-  .copy_contact {
+  .footer-section {
     display: flex;
-    flex-direction: row; /* Arrange items in a row */
+    flex-direction: column;
     align-items: center;
     gap: 20px;
   }
 
+  .copy {
+    margin: 0;
+    font-size: 14px;
+  }
+  @media (max-width: 768px) {
+    .copy {
+      display: none;
+    }
+  }
+
   .contact a {
-    margin: 0 10px;
+    margin: 0 15px;
   }
 
   .footer-links {
     display: flex;
-    flex-direction: column; /* Stack blog links vertically */
-    align-items: flex-end; /* Align to the end of the container */
+    flex-direction: row;
+    gap: 40px;
   }
 
-  .footer-links h4 {
-    margin-bottom: 10px;
-    font-size: 18px;
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-column h4 {
+    margin-bottom: 15px;
+    font-size: 16px;
     font-weight: bold;
   }
 
-  .footer-links ul {
+  .footer-column ul {
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
-  .footer-links li a {
+  .footer-column li {
+    margin-bottom: 10px;
+  }
+
+  .footer-column li a {
     color: #006ad4; /* Blue color for links */
     text-decoration: none;
     transition: color 0.3s;
   }
 
-  .footer-links li a:hover {
+  .footer-column li a:hover {
     color: #004d40; /* Darker shade on hover */
   }
-}
-.buttons {
-  width: 100vw;
-}
-@media (min-width: 768px) {
+
   .buttons {
-    width: 40vw;
+    width: 100vw;
+  }
+  @media (min-width: 768px) {
+    .buttons {
+      width: 40vw;
+    }
   }
 }

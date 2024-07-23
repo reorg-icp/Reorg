@@ -12,7 +12,9 @@ const Private = ({ children }: Props) => {
   const principalId: string | null = localStorage.getItem("principal");
   useEffect(() => {
     setTimeout(() => {
-      navigate("/");
+      if (!principalId) {
+        return navigate("/");
+      }
     }, 1500);
   }, [localStorage.getItem("principal")]);
 

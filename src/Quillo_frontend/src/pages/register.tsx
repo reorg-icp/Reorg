@@ -11,6 +11,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { e8sToIcp } from "../utils/transactions";
 import { usePlugWallet } from "../store";
+
+import { CSSProperties } from "react";
+import { Oval } from "react-loader-spinner";
+
 enum InputType {
   Text = "text",
   TextArea = "textArea",
@@ -201,6 +205,12 @@ function Input({
   );
 }
 const Register = () => {
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+  };
+
   const { plug } = usePlugWallet((state: any) => state);
   const [_, setDaoId] = React.useState<BigInt>(-1n);
   const [disabled, setDisabled] = React.useState(false);
@@ -247,7 +257,7 @@ const Register = () => {
       if (result?.e8s < BigInt(101000000)) {
         console.log(result?.e8s);
         return toast.error(
-          `You don't have enough ICP to complete the transaction, you need atleast 0.2 ICP. Your balance is ${e8sToIcp(
+          `You don't have enough ICP to complete the transaction, you need atleast 1.0001 ICP. Your balance is ${e8sToIcp(
             result?.e8s
           )}`
         );
@@ -287,65 +297,82 @@ const Register = () => {
   }
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      <div className="container">
-        <div className="children">
-          <h4>Project information</h4>
-        </div>
-        <div className="form">
-          {inputData.map((input) => {
-            return (
-              <Input
-                key={input.id}
-                label={input.label}
-                type={input.type}
-                value={input.value}
-              />
-            );
-          })}
-        </div>
+      <div
+        style={{
+          display: disabled ? "flex" : "none",
+          alignItems: "center",
 
-        {/*Tokenomics */}
+          width: "100vw",
+          flexDirection: "row",
+          justifyContent: "center",
+          position: "absolute",
+          top: "50%",
+        }}
+      >
+        <Oval height={100} width={100} color="black" ariaLabel="loading" />
+      </div>
 
-        <div className="children">
-          <h4>Token Information</h4>
-        </div>
-        <div className="form">
-          {tokenData.map((input) => {
-            return (
-              <Input
-                key={input.id}
-                label={input.label}
-                type={input.type}
-                value={input.value}
-              />
-            );
-          })}
-        </div>
-        <Disclaimer />
-        <button
-          disabled={disabled}
-          className="btn"
-          onClick={() => {
-            setDisabled(true);
+      <div style={{ opacity: disabled ? 0.2 : 1 }}>
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        <div className="container">
+          <div className="children">
+            <h4>Project information</h4>
+          </div>
+          <div className="form">
+            {inputData.map((input) => {
+              return (
+                <Input
+                  key={input.id}
+                  label={input.label}
+                  type={input.type}
+                  value={input.value}
+                />
+              );
+            })}
+          </div>
 
-            registerProject();
-          }}
-        >
-          Deploy token
-        </button>
-        {/* <Deploy
+          {/*Tokenomics */}
+
+          <div className="children">
+            <h4>Token Information</h4>
+          </div>
+          <div className="form">
+            {tokenData.map((input) => {
+              return (
+                <Input
+                  key={input.id}
+                  label={input.label}
+                  type={input.type}
+                  value={input.value}
+                />
+              );
+            })}
+          </div>
+
+          <Disclaimer />
+          <button
+            disabled={disabled}
+            className="btn"
+            onClick={() => {
+              setDisabled(true);
+
+              registerProject();
+            }}
+          >
+            Deploy token
+          </button>
+          {/* <Deploy
           style={{
             position: "relative",
             left: "56%",
@@ -353,6 +380,7 @@ const Register = () => {
             color: "white",
           }}
         /> */}
+        </div>
       </div>
     </>
   );

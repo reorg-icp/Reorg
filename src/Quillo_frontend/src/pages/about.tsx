@@ -195,27 +195,55 @@ export default function AboutReorg(): JSX.Element {
       </div> */}
       <footer className="footer">
         <div className="footer-content">
-          <div className="copy_contact">
-            <p className="copy">&copy; Reorg.</p>
-            <p className="reserved">
-              {new Date().getUTCFullYear()}, All Rights Reserved
-            </p>
-
-            <div className="contact">
-              <Link
-                to="https://x.com/ReorgDaos"
-                target="_blank"
-                aria-label="Twitter"
-              >
-                <Twitter width={18} height={18} color={colors.bluee} />
-              </Link>
-              <Link
-                to="https://github.com/TefroTech"
-                target="_blank"
-                aria-label="GitHub"
-              >
-                <Github width={24} height={24} />
-              </Link>
+          <div className="footer-section">
+            <p className="copy">&copy; {new Date().getUTCFullYear()} Reorg</p>
+          </div>
+          <div className="footer-links">
+            <div className="footer-column">
+              <h4>Services</h4>
+              <ul>
+                <li>
+                  <Link to="/token">Deploy Token</Link>
+                </li>
+                <li>
+                  <Link to="/comingSoon">Liquidity pools</Link>
+                </li>
+                <li>
+                  <Link to="/comingSoon">Launchpad</Link>
+                </li>
+              </ul>
+            </div>
+            <div className="footer-column">
+              <h4>More of Reorg</h4>
+              <ul>
+                <li>
+                  <Link to="/comingSoon">Terms of service</Link>
+                </li>
+                <li>
+                  <Link to="/comingSoon">Whitepaper</Link>
+                </li>
+                <li>
+                  <Link to="/comingSoon">Launchpad</Link>
+                </li>
+                <li>
+                  <Link to="/comingSoon">Roadmap</Link>
+                </li>
+              </ul>
+            </div>
+            <div className="footer-column">
+              <h4>Follow Us</h4>
+              <ul>
+                <li>
+                  <a href="https://x.com/ReorgDaos" target="_blank">
+                    X
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/TefroTech" target="_blank">
+                    GitHub
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

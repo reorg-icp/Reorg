@@ -21,5 +21,8 @@
   "type": "module",
   "workspaces": [
     "src/Quillo_frontend"
-  ]
+  ],
+  "dependencies": {
+    "react-spinners": "^0.14.1"
+  }
 }
