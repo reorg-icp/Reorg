@@ -13,7 +13,7 @@ export const DesktopNav = (): JSX.Element => {
   });
 
   return (
-    <div className="desktopnavctr">
+    <div className="desktopnavctr" style={{ zIndex: 1000 }}>
       <div className="logo_links">
         <Link
           to="/"
@@ -33,7 +33,7 @@ export const DesktopNav = (): JSX.Element => {
         </Link>
 
         <div className="links">
-          <Link to="token">Tokens</Link>
+          <Link to="tokens">Tokens</Link>
 
           <Link to="comingSoon">LaunchPad</Link>
 

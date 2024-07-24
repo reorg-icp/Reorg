@@ -12,7 +12,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { e8sToIcp } from "../utils/transactions";
 import { usePlugWallet } from "../store";
 
-import { CSSProperties } from "react";
 import { Oval } from "react-loader-spinner";
 
 enum InputType {
@@ -205,12 +204,6 @@ function Input({
   );
 }
 const Register = () => {
-  const override: CSSProperties = {
-    display: "block",
-    margin: "0 auto",
-    borderColor: "red",
-  };
-
   const { plug } = usePlugWallet((state: any) => state);
   const [_, setDaoId] = React.useState<BigInt>(-1n);
   const [disabled, setDisabled] = React.useState(false);

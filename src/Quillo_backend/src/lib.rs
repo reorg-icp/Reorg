@@ -102,51 +102,7 @@ fn _register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError>
     Ok(dao)
 }
 
-#[ic_cdk::query]
-fn get_projects()-> Vec<(u64, Dao)>{
-        let projects: Vec<_> = DAOS.with(|storage| storage.borrow().iter().collect());
 
-projects
-}
-#[ic_cdk::query]
-async fn get_single_project(id: u64) -> Result<Dao, String> {
-    match_get_dao(&id).ok_or_else(|| format!("Project with id={} not found", id))
-}
-
-fn match_get_dao(id: &u64) -> Option<Dao> {
-    DAOS.with(|service| service.borrow().get(id))
-}
-
-#[ic_cdk::update]
-async fn delete_all_daos() -> Result<String, String> {
-    DAOS.with(|projects| {
-        let mut projects =projects.borrow_mut();
-        let keys: Vec<u64> =projects.iter().map(|(k, _)| k).collect();
-        for key in keys {
-            projects.remove(&key);
-        }
-    });
-    Ok(String::from("All projects deleted successfully"))
-}
-
-#[ic_cdk::update]
-fn register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError> {
-    match _register_dao(payload) {
-        Ok(mut dao) => {
-            //construct the id
-            let id = DAO_ID_COUNTER.with(|counter| {
-                let counter_value = *counter.borrow().get();
-                let _ = counter.borrow_mut().set(counter_value + 1);
-                counter_value
-            });
-            dao.id=id;
-            //Update the storage
-            DAOS.with(|service| service.borrow_mut().insert(id, dao.clone()));
-            Ok(dao)
-        }
-        Err(error) => Err(error),
-    }
-}
 #[ic_cdk::update]
 async fn launch_token(
    
@@ -195,11 +151,6 @@ Ok(canister_id)
 
 }
 
-#[ic_cdk::query]
-
-fn greet(name:String)->String{
-    name
-}
 
 
 
@@ -304,6 +255,50 @@ async fn approve_transfer() -> Result<BlockIndex, String> {
  
 // }
 
+#[ic_cdk::query]
+async fn get_projects()-> Vec<(u64, Dao)>{
+        let projects: Vec<_> = DAOS.with(|storage| storage.borrow().iter().collect());
 
+projects
+}
+#[ic_cdk::query]
+async fn get_single_project(id: u64) -> Result<Dao, String> {
+    match_get_dao(&id).ok_or_else(|| format!("Project with id={} not found", id))
+}
+
+fn match_get_dao(id: &u64) -> Option<Dao> {
+    DAOS.with(|service| service.borrow().get(id))
+}
+
+#[ic_cdk::update]
+async fn delete_all_daos() -> Result<String, String> {
+    DAOS.with(|projects| {
+        let mut projects =projects.borrow_mut();
+        let keys: Vec<u64> =projects.iter().map(|(k, _)| k).collect();
+        for key in keys {
+            projects.remove(&key);
+        }
+    });
+    Ok(String::from("All projects deleted successfully"))
+}
+
+#[ic_cdk::update]
+async fn register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError> {
+    match _register_dao(payload) {
+        Ok(mut dao) => {
+            //construct the id
+            let id = DAO_ID_COUNTER.with(|counter| {
+                let counter_value = *counter.borrow().get();
+                let _ = counter.borrow_mut().set(counter_value + 1);
+                counter_value
+            });
+            dao.id=id;
+            //Update the storage
+            DAOS.with(|service| service.borrow_mut().insert(id, dao.clone()));
+            Ok(dao)
+        }
+        Err(error) => Err(error),
+    }
+}
 
 ic_cdk::export_candid!();

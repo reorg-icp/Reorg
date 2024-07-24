@@ -1,13 +1,7 @@
 import { JSX } from "react";
 import { Link } from "react-router-dom";
 
-import {
-  AutoAwesome,
-  Feature,
-  Github,
-  Investor,
-  Twitter,
-} from "../assets/icons";
+import { AutoAwesome, Feature, Investor } from "../assets/icons";
 import { colors } from "../constants/colors";
 
 // import OnboardingImg from "../assets/images/onboarding.png";
@@ -40,7 +34,7 @@ export default function AboutReorg(): JSX.Element {
               alignSelf: "center",
             }}
           >
-            <Link to="/token">
+            <Link to="/app/token">
               <button
                 style={{
                   background:
@@ -70,7 +64,7 @@ export default function AboutReorg(): JSX.Element {
                 Launch Token
               </button>
             </Link>
-            <Link to="/comingsoon">
+            <Link to="/tokens">
               <button
                 style={{
                   background:
@@ -97,7 +91,7 @@ export default function AboutReorg(): JSX.Element {
                     "linear-gradient(90deg, #006ad4 0%, #004d40 100%)")
                 }
               >
-                Go to launchpad
+                Tokens
               </button>
             </Link>
           </div>

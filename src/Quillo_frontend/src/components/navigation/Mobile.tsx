@@ -85,7 +85,7 @@ export const MobileNav = (): JSX.Element => {
           </button> */}
 
           <div style={links}>
-            <Link to="token" style={aLink}>
+            <Link to="tokens" style={aLink}>
               Tokens
             </Link>
 

@@ -12,6 +12,7 @@ import Private from "./components/auth/Private";
 import { HomePage } from "./pages/home";
 import Register from "./pages/register";
 import ComingSoon from "./pages/comingSoon";
+import Tokens from "./pages/Tokens";
 
 const App = (): JSX.Element => {
   const router = createBrowserRouter([
@@ -26,12 +27,16 @@ const App = (): JSX.Element => {
           element: <HomePage />,
         },
         {
-          path: "/token",
+          path: "/app/token",
           element: (
             <Private>
               <Register />
             </Private>
           ),
+        },
+        {
+          path: "/tokens",
+          element: <Tokens />,
         },
         {
           path: "/comingSoon",
