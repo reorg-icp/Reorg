@@ -18,8 +18,7 @@ export default function AboutReorg(): JSX.Element {
       <div className="about_features">
         <div className="about">
           <p className="one-liner-heading">
-            Token launch made simple. Trade, liquidity, funding. All in one
-            place.
+            The best TGE platform focused on high-quality token projects.
           </p>
           <div
             className="buttons"
