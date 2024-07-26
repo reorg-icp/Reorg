@@ -31,7 +31,8 @@ pub async fn create_and_deploy_canister(
     token_image: String,
     dao_id: Principal,
 ) -> Result<Principal, CustomError> {
-    let minted_cycles = mint_cycles(Tokens::from_e8s(1000)).await?;
+    //buy cycles worth 0.7 icp
+    let minted_cycles = mint_cycles(Tokens::from_e8s(70000000)).await?;
     let minting_account = Account {
         owner: dao_id,
         subaccount: None,

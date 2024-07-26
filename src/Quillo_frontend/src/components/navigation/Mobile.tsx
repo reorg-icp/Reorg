@@ -1,32 +1,38 @@
 import { JSX, useState, CSSProperties } from "react";
+import { Link } from "react-router-dom";
 import { Drawer } from "@mui/material";
-import { Link, NavigateFunction, useNavigate } from "react-router-dom";
+import { useAuthDrawer } from "../../context/authdrawerctx";
+import { MenuIcon } from "../../assets/icons";
 import { colors } from "../../constants/colors";
-import { ArrowRight, ChevronDown, MenuIcon } from "../../assets/icons";
 import { logoFont, jockeyOneFont } from "../../constants/styles";
-import "../../styles/components/navigation/navigation.scss";
+import "../../styles/components/navigation.scss";
 
 export const MobileNav = (): JSX.Element => {
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
-  const navigate: NavigateFunction = useNavigate();
+  const { openAuthDrawer } = useAuthDrawer();
 
   const toggleDrawer = (newOpen: boolean) => (): void => {
     setDrawerOpen(newOpen);
   };
 
-  const goToGetStarted = (): void => {
-    setDrawerOpen(false);
-    navigate("/auth/business");
-  };
-
   return (
     <>
       <div className="mobilenavctr">
-        <span className="logo">reorg.</span>
+        <Link
+          to="/"
+          style={{ textDecoration: "none", color: "black", outline: "none" }}
+        >
+          <span
+            className="logo"
+            style={{ fontWeight: "bold", marginLeft: "5px" }}
+          >
+            reorg.
+          </span>
+        </Link>
 
         <button onClick={toggleDrawer(true)} className="drawerbtn">
-          <MenuIcon color={colors.primary} />
+          <MenuIcon color={colors.bluee} />
         </button>
       </div>
 
@@ -46,39 +52,49 @@ export const MobileNav = (): JSX.Element => {
             reorg.
           </span>
 
-          <button
-            style={{
-              ...actionBtn,
-              border: `1px solid ${colors.bluee}`,
-              backgroundColor: "transparent",
-            }}
-          >
-            Connect Wallet
-          </button>
-          <button
+          {localStorage.getItem("principal") && (
+            <p className="principal">{localStorage.getItem("principal")}</p>
+          )}
+          {!localStorage.getItem("principal") && (
+            <button
+              style={{
+                ...actionBtn,
+                border: `1px solid ${colors.bluee}`,
+                backgroundColor: "transparent",
+              }}
+              onClick={() => {
+                setDrawerOpen(false);
+                openAuthDrawer("signin");
+              }}
+            >
+              Connect Wallet
+            </button>
+          )}
+
+          {/* <button
             style={{
               ...actionBtn,
               marginTop: "0.75rem",
             }}
-            onClick={goToGetStarted}
+            onClick={() => {
+              setDrawerOpen(false);
+              openAuthDrawer("signup");
+            }}
           >
             Get Started <ArrowRight width={20} height={20} />
-          </button>
+          </button> */}
 
           <div style={links}>
-            <Link to="/" style={aLink}>
+            <Link to="tokens" style={aLink}>
               Tokens
-              <ChevronDown />
             </Link>
 
-            <Link to="/" style={aLink}>
+            <Link to="comingSoon" style={aLink}>
               LaunchPad
-              <ChevronDown />
             </Link>
 
-            <Link to="/" style={aLink}>
-              MarketPlace
-              <ChevronDown />
+            <Link to="comingSoon" style={aLink}>
+              Liquidity pools
             </Link>
           </div>
         </div>

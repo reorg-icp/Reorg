@@ -1,5 +1,5 @@
-@import "../../constants/colors";
-@import "../../constants/mixins";
+@import "../constants/colors";
+@import "../constants/mixins";
 
 .mobilenavctr {
   @include tablet-upwards {
@@ -27,12 +27,11 @@
     @include flexmixin(row, no-wrap, center, center, 0);
     width: 2rem;
     height: 2rem;
-    padding: 0.5rem;
-    border: 0;
+    border: 1px solid $divider;
     border-radius: 0.25rem;
     outline: none;
     outline-color: transparent;
-    background-color: $bluee;
+    background-color: transparent;
   }
 }
 
@@ -97,6 +96,14 @@
       &:hover {
         border-radius: 0;
       }
+
+      span {
+        @include desktop {
+          display: block !important;
+        }
+
+        display: none !important;
+      }
     }
 
     ._connect {
@@ -105,4 +112,7 @@
       color: $bluee;
     }
   }
+}
+.principal {
+  color: $bluee;
 }

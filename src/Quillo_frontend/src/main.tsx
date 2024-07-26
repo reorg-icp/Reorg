@@ -2,11 +2,17 @@ import React, { JSX } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { SnackBarProvider } from "./context/snackbarctx";
+import { AuthDrawerProvider } from "./context/authdrawerctx";
 import AboutReorg from "./pages/about";
 import Authentication from "./pages/auth";
 import ErrorPage from "./pages/error";
 import { Layout } from "./components/global/Layout";
 import "./styles/index.scss";
+import Private from "./components/auth/Private";
+import { HomePage } from "./pages/home";
+import Register from "./pages/register";
+import ComingSoon from "./pages/comingSoon";
+import Tokens from "./pages/Tokens";
 
 const App = (): JSX.Element => {
   const router = createBrowserRouter([
@@ -16,7 +22,34 @@ const App = (): JSX.Element => {
       errorElement: <ErrorPage />,
       children: [
         { path: "", index: true, element: <AboutReorg /> },
-        { path: "/auth/:accType", element: <Authentication /> },
+        {
+          path: "/app",
+          element: <HomePage />,
+        },
+        {
+          path: "/app/token",
+          element: (
+            <Private>
+              <Register />
+            </Private>
+          ),
+        },
+        {
+          path: "/tokens",
+          element: <Tokens />,
+        },
+        {
+          path: "/comingSoon",
+          element: <ComingSoon />,
+        },
+        {
+          path: "/auth/:accType",
+          element: (
+            <Private>
+              <Authentication />
+            </Private>
+          ),
+        },
       ],
     },
   ]);
@@ -24,7 +57,9 @@ const App = (): JSX.Element => {
   return (
     <React.StrictMode>
       <SnackBarProvider>
-        <RouterProvider router={router} />
+        <AuthDrawerProvider>
+          <RouterProvider router={router} />
+        </AuthDrawerProvider>
       </SnackBarProvider>
     </React.StrictMode>
   );

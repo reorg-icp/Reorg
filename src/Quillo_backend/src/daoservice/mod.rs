@@ -16,6 +16,7 @@ pub struct BasicDaoStableStorage {
     pub accounts: Vec<Account>,
     pub proposals: Vec<Proposal>,
     pub system_params: SystemParams,
+    pub token_id:Option<Principal>
 }
 
 #[derive(Clone, Debug, CandidType, Deserialize, PartialEq)]

@@ -1,41 +1,38 @@
 import { create } from "zustand";
-import {} from "../../../declarations/Quillo_backend/Quillo_backend.did";
 import { Principal } from "@dfinity/principal";
+
 interface Auth {
   principal: string;
   accountId: string;
   setPrincipal: (newPrincipal: string) => void;
   setAccountId: (newId: string) => void;
 }
-// enum Platform {
-//   Web = "Web",
-//   Mobile = "Mobile",
-//   Desktop = "Desktop",
-// }
+
+/** 
+enum Platform {
+  Web = "Web",
+  Mobile = "Mobile",
+  Desktop = "Desktop",
+}
+*/
+
+/**
+ enum ProjectCategory {
+  Tokenization = "Tokenization",
+  Defi = "Defi",
+  NFT = "NFT",
+  Dapp = "Dapp",
+  Gaming = "Gaming",
+  }
+  */
+
 export type Platform = { Web: null } | { Desktop: null } | { Mobile: null };
 
-// enum ProjectCategory {
-//   Tokenization = "Tokenization",
-//   Defi = "Defi",
-//   NFT = "NFT",
-//   Dapp = "Dapp",
-//   Gaming = "Gaming",
-// }
 interface Socials {
-  x: [string];
   website: [string];
-  linkedin: [string];
-  discord: [string];
+  github: [string];
 }
 
-// pub struct Tokenomics{
-//     pub token_name:String,
-//     pub token_symbol:String,
-//     pub total_supply:Nat,
-// pub transfer_fee:Nat,
-// pub token_image:String
-
-// }
 interface Tokenomics {
   token_name: string;
   token_symbol: string;
@@ -43,14 +40,6 @@ interface Tokenomics {
   transfer_fee: bigint;
   token_image: string;
 }
-
-const useAuthStore = create<Auth>((set) => ({
-  principal: "",
-  accountId: "",
-  setPrincipal: (newPrincipal: string) =>
-    set(() => ({ principal: newPrincipal })),
-  setAccountId: (newId: string) => set(() => ({ accountId: newId })),
-}));
 
 const useProjectInfo = create<any>((set: any) => ({
   project_name: "",
@@ -60,7 +49,7 @@ const useProjectInfo = create<any>((set: any) => ({
 
   legal: [],
   project_principal: [],
-  socials: { x: "", website: "", linkedin: "", discord: "" },
+  socials: { website: "", github: "" },
 
   tokenomics: null,
   setProjectName: (name: string) => set(() => ({ project_name: name })),
@@ -76,5 +65,10 @@ const useProjectInfo = create<any>((set: any) => ({
     set(() => ({ tokenomics: tokenomics })),
 }));
 
-export { useAuthStore, useProjectInfo };
+const usePlugWallet = create<any>((set: any) => ({
+  plug: null,
+  setPlug: (plug: any) => set({ plug: plug }),
+}));
+
+export { useProjectInfo, usePlugWallet };
 export type { Auth };
