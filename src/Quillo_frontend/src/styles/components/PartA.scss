@@ -42,8 +42,8 @@
   }
 
   .get-started-button {
-    padding: 12px 24px;
-    background-color: #006ad4;
+    padding: 12px 24px; 
+    background:linear-gradient(90deg, #006ad4 0%, #004d40 100%);
     color: #ffffff;
     border: none;
     border-radius: 25px;
@@ -55,7 +55,7 @@
     width: 50%;
 
     &:hover {
-      background-color: #004d40;
+      background: #004d40;
     }
 
     &:focus {
