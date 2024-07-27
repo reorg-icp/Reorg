@@ -11,6 +11,7 @@ import TokenImg from "../assets/images/token.png";
 // import AITknsImg from "../assets/images/ai-tokenomics.png";
 // import GovernImg from "../assets/images/governance.png";
 import "../styles/pages/about.scss";
+import PartA from "../components/sections/partA";
 
 export default function AboutReorg(): JSX.Element {
   return (
@@ -167,7 +168,7 @@ export default function AboutReorg(): JSX.Element {
           <p className="p1">Invest in innovative projects</p>
         </div>
       </div>
-
+<PartA/>
       {/* <div className="how_it_works">
         <p className="p0">how it works</p>
 

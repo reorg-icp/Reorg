@@ -275,10 +275,11 @@ const Register = () => {
               `Token created and the canister id is ${tokenResponse?.Ok}`
             );
             setDisabled(false);
+            
           } else if (tokenResponse?.Err) {
             console.log(tokenResponse?.Err);
             setDisabled(false);
-            toast.error(`There was an error creating the token`);
+            toast.error(`There was an error creating the token error:${tokenResponse?.Err}`);
           }
         }
         if (response?.Err) {
@@ -288,6 +289,7 @@ const Register = () => {
       }
     }
   }
+  console.log("d",disabled);
   return (
     <>
       <div
@@ -302,7 +304,7 @@ const Register = () => {
           top: "50%",
         }}
       >
-        <Oval height={100} width={100} color="black" ariaLabel="loading" />
+        <Oval  height={100} width={100} color="black" ariaLabel="loading" />
       </div>
 
       <div style={{ opacity: disabled ? 0.2 : 1 }}>

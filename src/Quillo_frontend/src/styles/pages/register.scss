@@ -77,7 +77,12 @@
 .btn {
   height: 45px;
   border-radius: 8px;
-  background-color: $success; /* Make sure $success is defined correctly */
+  background: linear-gradient(
+    145deg,
+    #004d40,
+    #00251a
+  ); /* Make sure $success is defined correctly */
+  
   outline: none;
   color: $primary; /* Make sure $primary is defined correctly */
   font-size: 20px;
