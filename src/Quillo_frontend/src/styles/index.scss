@@ -9,10 +9,12 @@
   padding: 0;
   -ms-overflow-style: none;
   scrollbar-width: 0;
+  
 }
 
 html {
   scroll-behavior: smooth;
+  
 }
 
 body {
@@ -20,6 +22,7 @@ body {
   font-weight: 300;
   color: $text_primary;
   background-color: $primary;
+width: 100vw;
 }
 
 ::-webkit-scrollbar {

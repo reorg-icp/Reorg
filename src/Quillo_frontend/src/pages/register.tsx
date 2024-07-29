@@ -188,13 +188,14 @@ function Input({
       {type === InputType.TextArea && (
         <textarea
           className="textArea"
+          placeholder={label}
           onChange={(e: any) => {
             if (value == "project_description") {
               setProjectDescription(e.target.value);
             }
           }}
         >
-          {label}
+          {/* {label} */}
         </textarea>
       )}
       {type === InputType.file && (

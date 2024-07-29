@@ -52,9 +52,13 @@
   border: 1px solid gray; /* Consistent border styling */
 
   font-size: 16px; /* Readable font size */
-  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions for focus effects */
+  // transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions for focus effects */
   background-color: #f9f9f9; /* Light background color for contrast */
   color: #333; /* Dark text color for readability */
+  &:focus{
+    border:1px solid  #006ad4;
+
+  }
 }
 
 .input::placeholder {
@@ -71,11 +75,18 @@
   transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions for focus effects */
   background-color: #f9f9f9; /* Light background color for contrast */
   color: #333; /* Dark text color for readability */
-  resize: none;
-  height: 70px;
+ 
+ width: 250px;
+  max-width: 300px;
+  height: 60px;
+  &:focus{
+    border:1px solid  #006ad4;
+
+  }
+
 }
 .btn {
-  height: 45px;
+  height: 105px;
   border-radius: 8px;
   background: linear-gradient(
     145deg,
@@ -90,7 +101,11 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px; /* Adjust padding as needed */
+  padding-top:10px ;// 
+  padding-bottom:10px ;
+
+
+  // padding: 0 20px; /* Adjust padding as needed */
   cursor: pointer;
   border: none; /* Optionally, remove border for a cleaner look */
   text-decoration: none; /* Remove underline if used as a link */
@@ -120,6 +135,7 @@
   color: #333333; /* Dark grey text for better readability */
   font-family: Arial, sans-serif;
   margin-block: 10px;
+  margin-bottom: 30px;
 }
 
 .disclaimer-list {
