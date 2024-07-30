@@ -247,11 +247,12 @@ const Register = () => {
     if (response?.Ok) {
       setDaoId(response?.Ok?.id);
       console.log(typeof response?.Ok?.id);
-      toast.success("Success... your token is being created..");
+      toast.loading("Success... your token is being created..");
       let principal_id = localStorage.getItem("principal");
       let result: any = await actor.get_icp_balance(principal_id as string);
       if (result?.e8s < BigInt(101000000)) {
         console.log(result?.e8s);
+      setDisabled("");
         return toast.error(
           `You don't have enough ICP to complete the transaction, you need atleast 1.0001 ICP. Your balance is ${e8sToIcp(
             result?.e8s
