@@ -292,7 +292,7 @@ const Register = () => {
       }
     }
   }
-  console.log("d",disabled);
+
   return (
     <>
       {/* <div
