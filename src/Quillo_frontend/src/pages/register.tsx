@@ -207,7 +207,7 @@ function Input({
 const Register = () => {
   const { plug } = usePlugWallet((state: any) => state);
   const [_, setDaoId] = React.useState<BigInt>(-1n);
-  const [disabled, setDisabled] = React.useState(false);
+  const [disabled, setDisabled] = React.useState("");
   const agent = plug?.agent; // use plug's agent so that caller is authenticated user
   console.log(agent);
 
@@ -233,6 +233,8 @@ const Register = () => {
     project_principal: [localStorage.getItem("principal")] as [string],
   };
   async function registerProject() {
+  
+
     console.log(JSON.stringify(project_details));
     let response: any = await actor.register_dao({
       project_details: [project_details] as [any],
@@ -275,16 +277,16 @@ const Register = () => {
             toast.success(
               `Token created and the canister id is ${tokenResponse?.Ok}`
             );
-            setDisabled(false);
+            setDisabled("");
             
           } else if (tokenResponse?.Err) {
             console.log(tokenResponse?.Err);
-            setDisabled(false);
+            setDisabled("");
             toast.error(`There was an error creating the token error:${tokenResponse?.Err}`);
           }
         }
         if (response?.Err) {
-          setDisabled(false);
+          setDisabled("");
           toast.error(`There was an error creating the token`);
         }
       }
@@ -293,7 +295,7 @@ const Register = () => {
   console.log("d",disabled);
   return (
     <>
-      <div
+      {/* <div
         style={{
           display: disabled ? "flex" : "none",
           alignItems: "center",
@@ -306,9 +308,9 @@ const Register = () => {
         }}
       >
         <Oval  height={100} width={100} color="black" ariaLabel="loading" />
-      </div>
+      </div> */}
 
-      <div style={{ opacity: disabled ? 0.2 : 1 }}>
+      <div >
         <ToastContainer
           position="top-right"
           autoClose={2000}
@@ -358,15 +360,15 @@ const Register = () => {
 
           <Disclaimer />
           <button
-            disabled={disabled}
+            disabled={disabled.includes("set")? true : false}
             className="btn"
             onClick={() => {
-              setDisabled(true);
+              setDisabled("set");
 
               registerProject();
             }}
           >
-            Deploy token
+           { disabled ? <><span style={{marginRight:"10px"}}> Deploying...</span><Oval height={20} width={20} color="blue"  ariaLabel="loading" /></> :' Deploy token'}
           </button>
           {/* <Deploy
           style={{
