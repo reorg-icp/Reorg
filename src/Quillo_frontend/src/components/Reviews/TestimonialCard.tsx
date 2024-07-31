@@ -47,7 +47,7 @@ function TestimonialCard({ name, role, avatar, rating, content }: Testimonial) {
                   ))}
                 </div>
               </div>
-              <p className=" font-leagueSpartan  text-[#002F24]">{role}</p>
+              <p   className=" font-leagueSpartan font-[370]  text-[#002F24]">{role}</p>
             </div>
           </div>
           <div className="  font-jost  font-normal text-[#666] text-lg font-jost mb-6 p-0 text-wrap">
