@@ -304,11 +304,11 @@ $divider-dark: rgba(255, 255, 255, 0.25);
     font-size: 2.2rem; // Adjust the font size as needed
     font-weight: bold;
     color: #ffffff; // White color for better readability
-    background: linear-gradient(
-      145deg,
-      #004d40,
-      #00251a
-    ); /* Web3 gradient background */ // Matching gradient background
+    // background: linear-gradient(
+    //   145deg,
+    //   #004d40,
+    //   #00251a
+    // ); /* Web3 gradient background */ // Matching gradient background
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; // Make gradient text
     padding: 10px 20px; // Padding for better spacing
@@ -402,11 +402,11 @@ $divider-dark: rgba(255, 255, 255, 0.25);
 
   .footer {
  
-    background: linear-gradient(
-      145deg,
-      #004d40,
-      #00251a
-    ); /* Dark background for contrast */
+    // background: linear-gradient(
+    //   145deg,
+    //   #004d40,
+    //   #00251a
+    // ); /* Dark background for contrast */
     color: #ffffff; /* Light text color for contrast */
     padding: 40px 20px;
     display: flex;

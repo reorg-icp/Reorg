@@ -13,100 +13,45 @@ import TokenImg from "../assets/images/token.png";
 import "../styles/pages/about.scss";
 import PartA from "../components/sections/partA";
 import FAQSection from "../components/sections/FAQSection";
-import TestimonialCard from "../components/Reviews/TestimonialCard";
-import testimonials from "../assets/TestmonialData";
 import TestimonialCarousel from "../components/Reviews";
 
 export default function AboutReorg(): JSX.Element {
   return (
     <section id="aboutreorg">
-      <div className="about_features">
-        <div className="about">
-          <p className="one-liner-heading">
-          Launch your token with confidence on the best token generation event platform
-          </p>
-          <div
-            className="buttons"
-            style={{
-              display: "flex",
-              flexDirection: "row",
+ <div className="mt-40 w-full  py-16 px-4 sm:px-6 lg:px-8">
+  <div className="max-w-7xl mx-auto">
+    <div className="text-center space-y-8">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
+        Launch your token with{" "}
+        <span className="text-blue-400">confidence</span> on the best{" "}
+        <span className="text-green-400">token generation</span> event platform
+      </h1>
+      <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        Join our platform for{" "}
+        <span className="font-semibold text-yellow-300">secure</span>,{" "}
+        <span className="font-semibold text-yellow-300">expert-backed</span>{" "}
+        token generation events
+      </p>
+    </div>
 
-              gap: 20,
-
-              alignItems: "center",
-              justifyContent: "center",
-              alignSelf: "center",
-            }}
-          >
-            <Link to="/app/token">
-              <button
-                style={{
-                  background:
-                    "linear-gradient(90deg, #006ad4 0%, #004d40 100%)",
-                  color: "#ffffff",
-                  border: "none",
-                  borderRadius: "25px",
-                  padding: "12px 24px",
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-                  transition: "all 0.3s ease",
-                  outline: "none",
-                  marginTop: "30px",
-                  alignSelf: "center",
-                }}
-                onMouseOver={(e) =>
-                  (e.currentTarget.style.background =
-                    "linear-gradient(90deg, #004d40 0%, #00251a 100%)")
-                }
-                onMouseOut={(e) =>
-                  (e.currentTarget.style.background =
-                    "linear-gradient(90deg, #006ad4 0%, #004d40 100%)")
-                }
-              >
-                Launch Token
-              </button>
-            </Link>
-            <Link to="/tokens">
-              <button
-                style={{
-                  background:
-                    "linear-gradient(90deg, #006ad4 0%, #004d40 100%)",
-                  color: "#ffffff",
-                  border: "none",
-                  borderRadius: "25px",
-                  padding: "12px 24px",
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-                  transition: "all 0.3s ease",
-                  outline: "none",
-                  marginTop: "30px",
-                  alignSelf: "center",
-                }}
-                onMouseOver={(e) =>
-                  (e.currentTarget.style.background =
-                    "linear-gradient(90deg, #004d40 0%, #00251a 100%)")
-                }
-                onMouseOut={(e) =>
-                  (e.currentTarget.style.background =
-                    "linear-gradient(90deg, #006ad4 0%, #004d40 100%)")
-                }
-              >
-                Tokens
-              </button>
-            </Link>
-          </div>
-        </div>
-        <img src={TokenImg} className="responsive-image" alt="Token" />
-      </div>
+    <div className="mt-12 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+      <Link to="/app/token">
+        <button className="w-64 sm:w-auto px-8 py-3 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-green-600 rounded-full shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
+          Launch Token
+        </button>
+      </Link>
+      <Link to="/tokens">
+        <button className="w-64 sm:w-auto px-8 py-3 text-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-full shadow-lg hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
+          Tokens
+        </button>
+      </Link>
+    </div>
+  </div>
+</div>
 
       <div>
-        <h1 className="features-title">How it works </h1>
-      </div>
-      <div className="features">
+        <h1 className=" text-4xl text-center space-y-8 font-extrabold  text-white tracking-tight leading-tight">How it works </h1>
+        <div className="features">
         {features.map((feature, index) => (
           <div
             key={feature.title + index}
@@ -134,6 +79,8 @@ export default function AboutReorg(): JSX.Element {
           </div>
         ))}
       </div>
+      </div>
+
 
       <div>
         <h1 className="features-title">Why Reorg?</h1>
@@ -172,9 +119,9 @@ export default function AboutReorg(): JSX.Element {
           <p className="p1">Invest in innovative projects</p>
         </div>
       </div>
-<PartA/>
-<FAQSection/>
-<TestimonialCarousel/>
+      <PartA />
+      <FAQSection />
+      <TestimonialCarousel />
       {/* <div className="how_it_works">
         <p className="p0">how it works</p>
 
