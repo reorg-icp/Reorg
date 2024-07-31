@@ -13,6 +13,9 @@ import TokenImg from "../assets/images/token.png";
 import "../styles/pages/about.scss";
 import PartA from "../components/sections/partA";
 import FAQSection from "../components/sections/FAQSection";
+import TestimonialCard from "../components/Reviews/TestimonialCard";
+import testimonials from "../assets/TestmonialData";
+import TestimonialCarousel from "../components/Reviews";
 
 export default function AboutReorg(): JSX.Element {
   return (
@@ -20,7 +23,7 @@ export default function AboutReorg(): JSX.Element {
       <div className="about_features">
         <div className="about">
           <p className="one-liner-heading">
-            The best TGE platform focused on high-quality token projects.
+          Launch your token with confidence on the best token generation event platform
           </p>
           <div
             className="buttons"
@@ -101,7 +104,7 @@ export default function AboutReorg(): JSX.Element {
       </div>
 
       <div>
-        <h1 className="features-title">Features</h1>
+        <h1 className="features-title">How it works </h1>
       </div>
       <div className="features">
         {features.map((feature, index) => (
@@ -171,6 +174,7 @@ export default function AboutReorg(): JSX.Element {
       </div>
 <PartA/>
 <FAQSection/>
+<TestimonialCarousel/>
       {/* <div className="how_it_works">
         <p className="p0">how it works</p>
 
