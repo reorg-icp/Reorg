@@ -40,7 +40,7 @@ console.log({perPage});
     <div className={`mx-auto md:px-10  px-8  py-8  w-full`}
  
     >
-      <h2 className="text-some-custom-heading text-center mb-12 md:text-xl font-bold text-">Engaging Testimonials</h2>
+      <h2 className="text-center md:mb-12 mb-8 md:text-2xl text-xl font-bold text-[#fff]">Engaging Testimonials</h2>
 
 
    
@@ -48,7 +48,7 @@ console.log({perPage});
           options={ {
             rewind : true,
             perPage: perPage,
-            height : '16rem',
+            height : '15rem',
             gap    : '1rem',
             autoplay:true
             

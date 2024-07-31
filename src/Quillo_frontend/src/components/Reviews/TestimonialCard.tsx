@@ -38,7 +38,7 @@ function TestimonialCard({ name, role, avatar, rating, content }: Testimonial) {
             <Avatar variant="circular" src={avatar} alt={name} />
             <div className="flex w-full flex-col gap-0.5">
               <div className="flex items-center justify-between">
-                <h5  className="font-jockeyOne">
+                <h5  className="font-jockeyOne font-normal text-lg">
                   {name}
                 </h5>
                 <div className="5 flex items-center gap-0">
@@ -47,10 +47,10 @@ function TestimonialCard({ name, role, avatar, rating, content }: Testimonial) {
                   ))}
                 </div>
               </div>
-              <p   className=" font-leagueSpartan font-[370]  text-[#002F24]">{role}</p>
+              <p   className=" font-leagueSpartan font-[370]  text-green-300">{role}</p>
             </div>
           </div>
-          <div className="  font-jost  font-normal text-[#666] text-lg font-jost mb-6 p-0 text-wrap">
+          <div className=" text-green-200  font-normal text-[#666] text-lg font-jost mb-6 p-0 text-wrap">
             <p> &quot; {content}&quot;</p>
           </div>
         </div>

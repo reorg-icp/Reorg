@@ -26,7 +26,7 @@ export default function AboutReorg(): JSX.Element {
         <span className="text-blue-400">confidence</span> on the best{" "}
         <span className="text-green-400">token generation</span> event platform
       </h1>
-      <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+      <p className="font-joz text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
         Join our platform for{" "}
         <span className="font-semibold text-yellow-300">secure</span>,{" "}
         <span className="font-semibold text-yellow-300">expert-backed</span>{" "}
@@ -49,8 +49,8 @@ export default function AboutReorg(): JSX.Element {
   </div>
 </div>
 
-      <div>
-        <h1 className=" text-4xl text-center space-y-8 font-extrabold  text-white tracking-tight leading-tight">How it works </h1>
+      <div className="">
+        <h1 className=" mb-6 md:mb-12 font-jost text-4xl text-center space-y-8 font-extrabold  text-white tracking-tight leading-tight">How it works </h1>
         <div className="features">
         {features.map((feature, index) => (
           <div
@@ -82,10 +82,9 @@ export default function AboutReorg(): JSX.Element {
       </div>
 
 
-      <div>
-        <h1 className="features-title">Why Reorg?</h1>
-      </div>
-      <div className="for_founders_investors">
+      <div className="mt-4 md:mt-12">
+        <h1 className="font-jost text-4xl text-center space-y-8 font-extrabold  text-white tracking-tight leading-tight">Why Reorg?</h1>
+        <div className="for_founders_investors ">
         <div className="for_founders">
           <p className="p0">
             Launch multichain tokens
@@ -119,6 +118,8 @@ export default function AboutReorg(): JSX.Element {
           <p className="p1">Invest in innovative projects</p>
         </div>
       </div>
+      </div>
+     
       <PartA />
       <FAQSection />
       <TestimonialCarousel />
