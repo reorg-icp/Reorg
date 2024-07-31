@@ -33,10 +33,32 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
+
 overflow: scroll;
+overflow-y: auto;
+scrollbar-width: thin; /* Firefox: set scrollbar to thin */
   background: linear-gradient(-45deg, #2c3e50, #4a0e29, #16222a,#e73c7e,);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
+}
+
+/* WebKit-based browsers: set custom scrollbar width and styles */
+body::-webkit-scrollbar {
+  width: 8px; /* Width of the vertical scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded corners of the scrollbar thumb */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar thumb on hover */
 }
 
 @keyframes gradientBG {

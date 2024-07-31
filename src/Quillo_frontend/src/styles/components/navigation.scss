@@ -15,7 +15,7 @@
   padding: 0.5rem;
   border: 0;
   border-bottom: 1px solid $divider;
-  background-color: transparent;
+  // background-color: transparent;
 
   .logo {
     @include usefontLS();
@@ -31,7 +31,7 @@
     border-radius: 0.25rem;
     outline: none;
     outline-color: transparent;
-    background-color: transparent;
+    // background-color: transparent;
   }
 }
 
@@ -49,8 +49,7 @@
   padding: 0 2.5rem;
   border: 0;
   border-bottom: 1px solid $divider;
-  background-color:transparent;
-
+  // background-color:transparent;
   .logo_links {
     @include flexmixin(row, no-wrap, center, flex-start, 1rem);
 

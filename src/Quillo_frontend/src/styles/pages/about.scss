@@ -13,7 +13,8 @@ $success-dark: rgba(0, 230, 118, 0.8);
 $divider-dark: rgba(255, 255, 255, 0.25);
 
 #aboutreorg {
-  
+  position: relative;
+  overflow: hidden;
   margin: 0;
 
   .about_features {
