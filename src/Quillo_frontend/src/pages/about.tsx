@@ -6,7 +6,7 @@ import { colors } from "../constants/colors";
 
 // import OnboardingImg from "../assets/images/onboarding.png";
 // import KYCImg from "../assets/images/kyc.png";
-import TokenImg from "../assets/images/token.png";
+// import TokenImg from "../assets/images/token.png";
 // import DAOImg from "../assets/images/dao.png";
 // import AITknsImg from "../assets/images/ai-tokenomics.png";
 // import GovernImg from "../assets/images/governance.png";
