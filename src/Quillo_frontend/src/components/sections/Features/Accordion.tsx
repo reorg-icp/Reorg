@@ -21,7 +21,7 @@ const Accordion_Feature = ({ title, content }: Prop) => {
           &#9660;
         </span>
       </div>
-      <div className={`accordion-content font-jozi ${isOpen ? "open" : ""}`}>
+      <div className={`accordion-content font-leagueSpartan font-[290] ${isOpen ? "open" : ""}`}>
         {content}
       </div>
     </div>
