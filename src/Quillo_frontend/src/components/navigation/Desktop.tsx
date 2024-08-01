@@ -13,7 +13,7 @@ export const DesktopNav = (): JSX.Element => {
   });
 
   return (
-    <div className="desktopnavctr" style={{ zIndex: 1000 }}>
+    <div className="desktopnavctr" style={{ zIndex: 1000, overflow:"hidden" }}>
       <div className="logo_links">
         <Link
           to="/"
@@ -26,7 +26,7 @@ export const DesktopNav = (): JSX.Element => {
         >
           <span
             className="logo"
-            style={{ textDecoration: "none", color: "black", outline: "none" }}
+            style={{ textDecoration: "none", color: "white", outline: "none" }}
           >
             reorg.
           </span>

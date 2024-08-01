@@ -34,7 +34,7 @@ body {
   padding: 0;
   height: 100vh;
 
-overflow: scroll;
+
 overflow-y: auto;
 scrollbar-width: thin; /* Firefox: set scrollbar to thin */
   background: linear-gradient(-45deg, #2c3e50, #4a0e29, #16222a,#e73c7e,);
@@ -49,16 +49,18 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Background of the scrollbar track */
+  background: #2b0404; /* Background of the scrollbar track */
 }
 
 body::-webkit-scrollbar-thumb {
   background: #888; /* Color of the scrollbar thumb */
   border-radius: 4px; /* Rounded corners of the scrollbar thumb */
+  cursor: pointer;
 }
 
 body::-webkit-scrollbar-thumb:hover {
   background: #555; /* Color of the scrollbar thumb on hover */
+  cursor: pointer;
 }
 
 @keyframes gradientBG {
@@ -85,6 +87,6 @@ body::-webkit-scrollbar-thumb:hover {
     opacity: 0;
   }
 }
-::-webkit-scrollbar {
-  display: none;
-}
+// ::-webkit-scrollbar {
+//   display: none;
+// }

@@ -16,7 +16,7 @@
   border: 0;
   border-bottom: 1px solid $divider;
   // background-color: transparent;
-
+ 
   .logo {
     @include usefontLS();
     font-size: 1.75rem;
@@ -32,9 +32,33 @@
     outline: none;
     outline-color: transparent;
     // background-color: transparent;
+  
+  }
+}
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
+
+
+@keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+  }
+}
 .desktopnavctr {
   @include tablet-upwards {
     @include flexmixin(row, no-wrap, center, space-between, 0);
@@ -50,6 +74,10 @@
   border: 0;
   border-bottom: 1px solid $divider;
   // background-color:transparent;
+  z-index: 1000;
+  background: linear-gradient(-45deg, #2c3e50, #4a0e29, #16222a,#e73c7e,);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
   .logo_links {
     @include flexmixin(row, no-wrap, center, flex-start, 1rem);
 

@@ -233,6 +233,7 @@ const features: featuresType[] = [
     complete: false,
     content: "AI powered economic engineering",
   },
+  
 ];
 
 // const howitworksSteps: howstepstype[] = [
