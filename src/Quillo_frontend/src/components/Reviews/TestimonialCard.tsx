@@ -38,7 +38,7 @@ function TestimonialCard({ name, role, avatar, rating, content }: Testimonial) {
             <Avatar variant="circular" src={avatar} alt={name} />
             <div className="flex w-full flex-col gap-0.5">
               <div className="flex items-center justify-between">
-                <h5  className="font-jockeyOne font-normal text-lg">
+                <h5  className="font-jockeyOne  text-white text-shadow-lg font-normal text-lg">
                   {name}
                 </h5>
                 <div className="5 flex items-center gap-0">
