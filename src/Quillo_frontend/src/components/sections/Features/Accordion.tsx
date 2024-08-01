@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import '../../../styles/components/Accordion.scss';
+import { useState } from "react";
+import "../../../styles/components/Accordion.scss";
 
 type Prop = {
   title: string;
   content: string;
-}
+};
 
 const Accordion_Feature = ({ title, content }: Prop) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,14 +14,14 @@ const Accordion_Feature = ({ title, content }: Prop) => {
   };
 
   return (
-    
     <div className="accordion">
-    
       <div className="accordion-header" onClick={toggleAccordion}>
         <h2>{title}</h2>
-        <span className={`arrow  text-gray-300 ${isOpen ? 'open' : ''}`}>&#9660;</span>
+        <span className={`arrow  text-gray-300 ${isOpen ? "open" : ""}`}>
+          &#9660;
+        </span>
       </div>
-      <div className={`accordion-content font-jozi ${isOpen ? 'open' : ''}`}>
+      <div className={`accordion-content font-jozi ${isOpen ? "open" : ""}`}>
         {content}
       </div>
     </div>

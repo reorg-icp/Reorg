@@ -1,4 +1,19 @@
 .faq-section {
+  .view-more-button {
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #00382C;
+    color: #F7B140;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #002b24;
+    }
+  }
     margin-bottom: 4rem;
     .accordion-title {
    
@@ -14,11 +29,13 @@
      
       border-radius: 8px;
     }
+  
     @media (max-width: 768px) {
 
     h1 {
         font-size: 1rem;
     }
   }
+  
 }
 }
