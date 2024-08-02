@@ -59,7 +59,7 @@ const WhyReorg = () => {
       <Splide options={splideOptions}>
         {cards.map((card, index) => (
           <SplideSlide key={index}>
-            <div className="bg-[#1414] rounded-lg shadow-md p-4 h-full transform hover:scale-105 transition-transform duration-300">
+            <div className="bg-[#1414] border border-opacity-20 border-white  rounded-lg shadow-md p-4 h-full transition-all duration-300 hover:shadow-2xl hover:scale-105">
               <div className="flex items-center space-x-2 mb-2">
                 <p className="font-bold text-white">{card.title}</p>
                 {card.icon}
