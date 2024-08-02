@@ -144,6 +144,7 @@ export const Github = ({ width, height, color }: iconProps): JSX.Element => {
 export const Feature = ({ width, height, color }: iconProps): JSX.Element => {
   return (
     <svg
+    className=""
       width={width ?? 20}
       height={height ?? 20}
       viewBox="0 0 20 20"

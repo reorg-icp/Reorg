@@ -2,7 +2,7 @@ import { JSX } from "react";
 import { Link } from "react-router-dom";
 
 import { AutoAwesome, Feature, Investor } from "../assets/icons";
-import { colors } from "../constants/colors";
+// import { colors } from "../constants/colors";
 
 // import OnboardingImg from "../assets/images/onboarding.png";
 // import KYCImg from "../assets/images/kyc.png";
@@ -13,9 +13,16 @@ import { colors } from "../constants/colors";
 import "../styles/pages/about.scss";
 import PartA from "../components/sections/partA";
 import FAQSection from "../components/sections/FAQSection";
+import FeatureCards from "../styles/components/ howItworks/featuresCard";
+import { features } from "../utils/howItworksFeatures";
 // import TestimonialCarousel from "../components/Reviews";
 
 export default function AboutReorg(): JSX.Element {
+  const colors = {
+    primary: '#00ff00',
+    bluee: '#0000ff',
+  };
+
   return (
     <section id="aboutreorg">
  <div className="md:mt-12 mt-8 w-full  py-16 px-4 sm:px-6 lg:px-8">
@@ -49,40 +56,13 @@ export default function AboutReorg(): JSX.Element {
   </div>
 </div>
 
-      <div className="">
-        <h1 className=" mb-6 md:mb-12 font-jost text-4xl text-center space-y-8 font-extrabold  text-white tracking-tight leading-tight">How it works </h1>
-        <div className="features">
-        {features.map((feature, index) => (
-          <div
-            key={feature.title + index}
-            title={feature.title}
-            className={`feature-card ${
-              feature.complete ? "complete" : "incomplete"
-            }`}
-          >
-            <div className="feature-icon">
-              <Feature
-                color={feature.complete ? colors.primary : colors.bluee}
-              />
-            </div>
-            <div className="feature-content">
-              <h3>{feature.title}</h3>
-              <p>{feature.content}</p>
-            </div>
-            <div className="feature-status">
-              {feature.complete ? (
-                <span className="status complete">Complete</span>
-              ) : (
-                <span className="status incomplete">Incomplete</span>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-      </div>
+
+        
+        <FeatureCards features={features} colors={colors} />
+ 
 
 
-      <div className="mt-4 md:mt-12">
+      <div className="mt-4 md:mt-6">
         <h1 className="font-jost text-4xl text-center space-y-8 font-extrabold  text-white tracking-tight leading-tight">Why Reorg?</h1>
         <div className="for_founders_investors ">
         <div className="for_founders">
@@ -200,41 +180,7 @@ export default function AboutReorg(): JSX.Element {
   );
 }
 
-type featuresType = {
-  title: string;
-  complete: boolean;
-  content: string;
-};
 
-// type howstepstype = {
-//   title: string;
-//   text: string;
-//   image: string;
-// };
-
-const features: featuresType[] = [
-  {
-    title: "Token Creation",
-    complete: true,
-    content: "Create ICRC and ERC compatible tokens powered by chainfusion",
-  },
-  {
-    title: "Liquidity pools",
-    complete: false,
-    content: "Create liquidity pools by locking a token pair",
-  },
-  {
-    title: "Launchpad",
-    complete: false,
-    content: "Get funding through our launchpad",
-  },
-  {
-    title: "AI powered tokenomics",
-    complete: false,
-    content: "AI powered economic engineering",
-  },
-  
-];
 
 // const howitworksSteps: howstepstype[] = [
 //   {
