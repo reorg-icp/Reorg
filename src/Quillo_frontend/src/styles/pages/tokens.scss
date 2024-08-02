@@ -1,13 +1,13 @@
 /* styles/pages/tokens.scss */
 .container {
   width: 100%;
-  background-color: #ffffff; /* White background */
+  background-color: #1414; /* White background */
   padding: 20px; /* Add padding for spacing */
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
   margin: 20px 0; /* Optional: Add margin for spacing from other elements */
   height: 600px; /* Fixed height for the container */
-
+color: white;
   display: flex;
   flex-direction: column;
   overflow-y: auto; /* Allow vertical scrolling */
@@ -176,7 +176,7 @@
 .breadcrumb-item + .breadcrumb-item::before {
   content: ">";
   padding: 0 0.5rem;
-  color: #6c757d;
+  color: white;
 }
 
 .breadcrumb-item a {
@@ -185,5 +185,5 @@
 }
 
 .breadcrumb-item.active {
-  color: #212529;
+  color: white;
 }

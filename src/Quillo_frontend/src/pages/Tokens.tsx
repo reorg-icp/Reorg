@@ -6,7 +6,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import IconButton from "@mui/material/IconButton";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForward";
 import { Link } from "react-router-dom";
-
+import '../styles/components/ComponentWithTailwind.css'
 function Token() {
   return (
     <div className="genesis-item">
@@ -19,7 +19,7 @@ function Token() {
       <p>ICRC2</p>
       <div>
         <IconButton>
-          <ArrowForwardIosIcon style={{ zIndex: 1 }} />{" "}
+          <ArrowForwardIosIcon className="text-white" style={{ zIndex: 1 }} />{" "}
           {/* Replace with the icon you prefer */}
         </IconButton>
       </div>
@@ -65,7 +65,7 @@ const Tokens = () => {
           </button>
         </Link>
       </div> */}
-      <div className="breadcrumb-container" style={{ background: "white" }}>
+      <div className="breadcrumb-container bg-[#1414] "  >
         <nav
           aria-label="breadcrumb"
           style={{
@@ -74,14 +74,14 @@ const Tokens = () => {
             justifyContent: "space-between",
             width: "100%",
             flexWrap: "wrap",
-            background: "white",
+          
           }}
         >
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
               <Link to="/">Home</Link>
             </li>
-            <li className="breadcrumb-item active" aria-current="page">
+            <li className="breadcrumb-item active text-white " aria-current="page">
               View Tokens
             </li>
             <li></li>
@@ -120,7 +120,7 @@ const Tokens = () => {
           <a href="/app/tokens"></a>
         </div>
       </div>
-      <div className="container">
+      <div className="container ">
         <div className="nav">
           <div className="title">
             <h4>Tokens</h4>
