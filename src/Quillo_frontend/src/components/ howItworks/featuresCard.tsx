@@ -1,6 +1,6 @@
 import React from "react";
-import { Feature } from "../../../assets/icons";
-import { featuresType } from "../../../utils/howItworksFeatures";
+import { Feature } from "../../assets/icons";
+import { featuresType } from "../../utils/howItworksFeatures";
 
 type Prop = {
   features: featuresType[];

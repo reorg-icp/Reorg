@@ -50,7 +50,8 @@ console.log({perPage});
             perPage: perPage,
             height : '15rem',
             gap    : '1rem',
-            autoplay:true
+            autoplay:true,
+            
             
         
           } }
