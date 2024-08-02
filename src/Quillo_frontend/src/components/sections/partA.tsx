@@ -5,7 +5,7 @@ import '../../styles/components/PartA.scss'; // Import the SCSS file
 
 const PartA = () => {
   return (
-    <div className=" md:mt-16 mt-12 mb-12  flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div className=" md:mt-16 md:mt-12 mt-28 md:mb-12  flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl w-full flex flex-col lg:flex-row items-center justify-between gap-12">
         <div className="w-full lg:w-1/2 order-2 lg:order-1">
           <img 
