@@ -24,7 +24,7 @@ export const MobileNav = (): JSX.Element => {
           style={{ textDecoration: "none", color: "black", outline: "none" }}
         >
           <span
-            className="logo"
+            className="logo text-white"
             style={{ fontWeight: "bold", marginLeft: "5px" }}
           >
             reorg.

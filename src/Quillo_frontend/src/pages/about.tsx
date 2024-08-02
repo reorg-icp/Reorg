@@ -13,7 +13,7 @@ import { colors } from "../constants/colors";
 import "../styles/pages/about.scss";
 import PartA from "../components/sections/partA";
 import FAQSection from "../components/sections/FAQSection";
-import TestimonialCarousel from "../components/Reviews";
+// import TestimonialCarousel from "../components/Reviews";
 
 export default function AboutReorg(): JSX.Element {
   return (
@@ -122,7 +122,7 @@ export default function AboutReorg(): JSX.Element {
      
       <PartA />
       <FAQSection />
-      <TestimonialCarousel />
+      {/* <TestimonialCarousel /> */}
       {/* <div className="how_it_works">
         <p className="p0">how it works</p>
 
