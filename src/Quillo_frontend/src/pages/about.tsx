@@ -1,7 +1,7 @@
 import { JSX } from "react";
 import { Link } from "react-router-dom";
 
-import { AutoAwesome, Investor } from "../assets/icons";
+// import { AutoAwesome, Investor } from "../assets/icons";
 // import { colors } from "../constants/colors";
 
 // import OnboardingImg from "../assets/images/onboarding.png";
