@@ -91,17 +91,15 @@ function Disclaimer() {
   return (
     <div className=" mb-6 font-leagueSpartan text-lg bg-[#1414] p-4 rounded-md shadow-lg border border-red-300  flex flex-col gap-2 justify-center items-center">
       <div className="disclaimer-list text-gray-200">
-        -  The token deployed is an ICRC2 token !
+        - The token deployed is an ICRC2 token !
       </div>
       <div className=" text-gray-200">
-        -  <span className="fee text-red-700 font-bold">1 ICP</span> is charged as service fee !
+        - <span className="fee text-red-700 font-bold">1 ICP</span> is charged
+        as service fee !
       </div>
     </div>
   );
 }
-
-
-
 
 function Input({
   label,
@@ -136,7 +134,7 @@ function Input({
   } = useProjectInfo((state: any) => state);
 
   return (
-    <div className="field bg-[#3e2138] ">
+    <div className="field bg-[#2c3e50] ">
       <div className="label mb-4 text-gray-400 font-medium">
         <h6>{label}</h6>{" "}
         <span>
@@ -236,8 +234,6 @@ const Register = () => {
     project_principal: [localStorage.getItem("principal")] as [string],
   };
   async function registerProject() {
-  
-
     console.log(JSON.stringify(project_details));
     let response: any = await actor.register_dao({
       project_details: [project_details] as [any],
@@ -255,7 +251,7 @@ const Register = () => {
       let result: any = await actor.get_icp_balance(principal_id as string);
       if (result?.e8s < BigInt(101000000)) {
         console.log(result?.e8s);
-      setDisabled("");
+        setDisabled("");
         return toast.error(
           `You don't have enough ICP to complete the transaction, you need atleast 1.0001 ICP. Your balance is ${e8sToIcp(
             result?.e8s
@@ -282,11 +278,12 @@ const Register = () => {
               `Token created and the canister id is ${tokenResponse?.Ok}`
             );
             setDisabled("");
-            
           } else if (tokenResponse?.Err) {
             console.log(tokenResponse?.Err);
             setDisabled("");
-            toast.error(`There was an error creating the token error:${tokenResponse?.Err}`);
+            toast.error(
+              `There was an error creating the token error:${tokenResponse?.Err}`
+            );
           }
         }
         if (response?.Err) {
@@ -299,8 +296,7 @@ const Register = () => {
 
   return (
     <>
-       <div className="bg-[#3e2138] mt-28 h-90 w-full  ">
-        
+      <div className="bg-[#2c3e50] mt-28 h-90 w-full  ">
         <ToastContainer
           position="top-right"
           autoClose={2000}
@@ -314,8 +310,10 @@ const Register = () => {
           theme="light"
         />
         <div className="  w-full h-full px-4 sm:px-6 lg:px-8 py-4 ">
-        <div className="flex flex-start text-center mb-4">
-            <h4 className="text-gray-300 font-leagueSpartan font-bold text-lg md:text-xl ">Project information.</h4>
+          <div className="flex flex-start text-center mb-4">
+            <h4 className="text-gray-300 font-leagueSpartan font-bold text-lg md:text-xl ">
+              Project information.
+            </h4>
           </div>
           <div className="grid xlg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 md:gap-6">
             {inputData.map((input) => {
@@ -329,8 +327,10 @@ const Register = () => {
               );
             })}
           </div>
-             <div className="mt-6 flex flex-start text-center mb-6">
-            <h4 className="text-gray-300 font-leagueSpartan font-bold text-xl md:text-2xl ">Token Information.</h4>
+          <div className="mt-6 flex flex-start text-center mb-6">
+            <h4 className="text-gray-300 font-leagueSpartan font-bold text-xl md:text-2xl ">
+              Token Information.
+            </h4>
           </div>
           <div className="mb-6 w-full grid xlg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 md:gap-6">
             {tokenData.map((input) => {
@@ -346,36 +346,37 @@ const Register = () => {
           </div>
           <Disclaimer />
           <button
-  disabled={disabled.includes("set")}
-  className={`w-full mt-2 mb-6 px-8 py-3 text-lg font-semibold text-center text-white bg-gradient-to-r from-green-600 to-indigo-500 rounded-md shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1 ${
-    disabled.includes("set")
-      ? "bg-gray-500 cursor-not-allowed"
-      : "bg-blue-600 text-white"
-  }`}
-  onClick={() => {
-    setDisabled("set");
-    registerProject();
-  }}
->
-  {disabled.includes("set") ? (
-    <span className="flex items-center justify-center gap-4 ">
-      <span>Deploying...</span>
-      <Oval height={20} width={20} color="white" ariaLabel="loading" />
-    </span>
-  ) : (
-    "Deploy Token"
-  )}
-</button>
-
+            disabled={disabled.includes("set")}
+            className={`w-full mt-2 mb-6 px-8 py-3 text-lg font-semibold text-center text-white bg-gradient-to-r from-green-600 to-indigo-500 rounded-md shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1 ${
+              disabled.includes("set")
+                ? "bg-gray-500 cursor-not-allowed"
+                : "bg-blue-600 text-white"
+            }`}
+            onClick={() => {
+              setDisabled("set");
+              registerProject();
+            }}
+          >
+            {disabled.includes("set") ? (
+              <span className="flex items-center justify-center gap-4 ">
+                <span>Deploying...</span>
+                <Oval
+                  height={20}
+                  width={20}
+                  color="white"
+                  ariaLabel="loading"
+                />
+              </span>
+            ) : (
+              "Deploy Token"
+            )}
+          </button>
         </div>
-        </div>
-    
-          {/*Tokenomics */}
+      </div>
 
-        
+      {/*Tokenomics */}
 
-     
-           {/*
+      {/*
           <button
             disabled={disabled.includes("set")? true : false}
             className="btn"
@@ -387,7 +388,7 @@ const Register = () => {
           >
            { disabled ? <><span style={{marginRight:"10px"}}> Deploying...</span><Oval height={20} width={20} color="blue"  ariaLabel="loading" /></> :' Deploy token'}
           </button> */}
-          {/* <Deploy
+      {/* <Deploy
           style={{
             position: "relative",
             left: "56%",
@@ -395,8 +396,8 @@ const Register = () => {
             color: "white",
           }}
         /> */}
-        {/* </div>
-      </div> */} 
+      {/* </div>
+      </div> */}
     </>
   );
 };
