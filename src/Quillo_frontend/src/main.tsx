@@ -13,6 +13,7 @@ import { HomePage } from "./pages/home";
 import Register from "./pages/register";
 import ComingSoon from "./pages/comingSoon";
 import Tokens from "./pages/Tokens";
+import KYC from "./pages/Kyc";
 
 const App = (): JSX.Element => {
   const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const App = (): JSX.Element => {
         {
           path: "/tokens",
           element: <Tokens />,
+        },
+        {
+path:"/kyc",
+element:<KYC/>
         },
         {
           path: "/comingSoon",

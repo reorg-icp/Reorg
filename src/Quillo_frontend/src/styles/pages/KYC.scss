@@ -1,0 +1,38 @@
+@import "../constants/mixins";
+@import "../constants/colors";
+
+
+label {
+    @include  usefontLS();
+    display: flex;
+    flex-direction: row;
+   
+ 
+  }
+
+  input {
+    outline: none; /* Removing the default outline */
+    border-radius: 6px; /* Smooth rounded corners */
+    padding: 10px; /* Standard padding for better user interaction */
+    // border: 1px solid gray; /* Consistent border styling */
+  color:white;
+    font-size: 16px; /* Readable font size */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions for focus effects */
+    background-color: #1414; /* Light background color for contrast */
+  
+    &:focus{
+      border:1px solid  #006ad4;
+  
+    }
+    @media (max-width: 768px) {
+      width: 100%;
+  
+      
+     
+    }
+  }
+  
+  .input::placeholder {
+    color: rgb(126, 108, 108); /* Subtle placeholder color */
+    opacity: 1; /* Ensure placeholder text is visible */
+  }
