@@ -82,7 +82,10 @@ export default function KYC() {
           />
         )}
             {currentStep === 3&& 
-        <Documents/>
+        <Documents  
+         data={formData}
+     onBack={handleBack}
+        onNext={handleNext}/>
         }
         {currentStep === 4 && (
           <ReviewForm
