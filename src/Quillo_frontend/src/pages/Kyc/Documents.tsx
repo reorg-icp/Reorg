@@ -2,7 +2,7 @@ import DropZoneFile from "./DropZoneFile"
 
 function Documents() {
   return (
-    <div className="text-white flex flex-col ">
+    <div className="text-white flex flex-col mb-8 ">
  <h2 className="text-white mb-4  text-xl ">Please provide your Documents.</h2>
 
 <div className="flex flex-col gap-6">
