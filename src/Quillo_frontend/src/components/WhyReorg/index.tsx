@@ -1,45 +1,42 @@
-import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 // Don't forget to import the CSS
-import '@splidejs/react-splide/css';
-import { AutoAwesome, Investor } from '../../assets/icons';
+import "@splidejs/react-splide/css";
+import { AutoAwesome } from "../../assets/icons";
 
 const cards = [
   {
-    title: 'Launch multichain tokens',
-    description: 'Launch ICRC and EVM based tokens',
+    title: "Tokenomics support",
+    description:
+      "Backed by top tokenomics experts and leveraging AI, we have helped projects design tokenomics models that are feasible and sustainable",
     icon: <AutoAwesome />,
   },
   {
-    title: 'Trading & Liquidity',
-    description: 'Create liquidity pools',
+    title: "Secure platform for investment",
+    description:
+      "Our delegate vets projects via a strict due diligence process",
     icon: <AutoAwesome />,
   },
   {
-    title: 'Funding Potential',
-    description: 'Get funding for your project through our launchpad.',
+    title: "Raise capital",
+    description: "Get funding for your project through our launchpad.",
     icon: <AutoAwesome />,
-  },
-  {
-    title: 'For Investors',
-    description: 'Invest in innovative projects',
-    icon: <Investor />,
   },
 ];
 
 const WhyReorg = () => {
   const splideOptions = {
-    type: 'loop',
-    perPage: 4,
+    type: "loop",
+    perPage: 3,
     perMove: 1,
-    gap: '1rem',
+    gap: "1rem",
     autoplay: true,
     interval: 3000,
     pauseOnHover: true,
     pauseOnFocus: true,
     arrows: false,
     pagination: false,
-    drag: 'free',
+    drag: "free",
     snap: true,
     breakpoints: {
       1024: {
@@ -64,7 +61,9 @@ const WhyReorg = () => {
                 <p className="font-bold text-white">{card.title}</p>
                 {card.icon}
               </div>
-              <p className="font-leagueSpartan text-gray-400 text-md">{card.description}</p>
+              <p className="font-leagueSpartan text-gray-400 text-md">
+                {card.description}
+              </p>
             </div>
           </SplideSlide>
         ))}

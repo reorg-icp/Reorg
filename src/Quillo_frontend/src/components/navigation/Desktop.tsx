@@ -13,7 +13,7 @@ export const DesktopNav = (): JSX.Element => {
   });
 
   return (
-    <div className="desktopnavctr" style={{ zIndex: 1000, overflow:"hidden" }}>
+    <div className="desktopnavctr" style={{ zIndex: 1000, overflow: "hidden" }}>
       <div className="logo_links">
         <Link
           to="/"
@@ -33,11 +33,9 @@ export const DesktopNav = (): JSX.Element => {
         </Link>
 
         <div className="links">
-          <Link to="tokens">Tokens</Link>
+          <Link to="tokens">Token creator</Link>
 
-          <Link to="comingSoon">LaunchPad</Link>
-
-          <Link to="comingSoon">Liquidity pools</Link>
+          <Link to="comingSoon">launchpad</Link>
         </div>
       </div>
 

@@ -1,4 +1,26 @@
 type Account = record { owner : principal; tokens : Tokens };
+type Application = record {
+  x : text;
+  teamDescription : text;
+  fdv : nat;
+  tokenomics : text;
+  contactName : text;
+  projectName : text;
+  otherLinks : text;
+  projectDescription : text;
+  projectStartDate : text;
+  community : text;
+  ecosystem : text;
+  investmentRounds : text;
+  email : text;
+  website : text;
+  amountToBeRaised : nat;
+  pitch : text;
+  amountOfTeamMembers : nat32;
+  contactTelegramHandle : text;
+  existingUsers : text;
+};
+type Article = record { id : nat64; title : text; content : text };
 type BasicDaoStableStorage = record {
   id : nat64;
   token_id : opt principal;
@@ -39,9 +61,11 @@ type ProposalState = variant {
 };
 type Result = variant { Ok : nat64; Err : text };
 type Result_1 = variant { Ok : text; Err : text };
-type Result_2 = variant { Ok : BasicDaoStableStorage; Err : text };
-type Result_3 = variant { Ok : principal; Err : text };
-type Result_4 = variant { Ok : BasicDaoStableStorage; Err : CustomError };
+type Result_2 = variant { Ok : Application; Err : text };
+type Result_3 = variant { Ok : Article; Err : text };
+type Result_4 = variant { Ok : BasicDaoStableStorage; Err : text };
+type Result_5 = variant { Ok : principal; Err : text };
+type Result_6 = variant { Ok : BasicDaoStableStorage; Err : CustomError };
 type Socials = record { website : opt text; github : opt text };
 type SystemParams = record {
   project_details : opt ProjectInfo;
@@ -67,11 +91,18 @@ type UpdateSystemParamsPayload = record {
   total_token_supply : opt Tokens;
 };
 service : {
+  apply : (Application) -> (text);
   approve_transfer : () -> (Result);
+  delete_all_articles : () -> (Result_1);
   delete_all_daos : () -> (Result_1);
+  get_applications : () -> (vec record { nat64; Application }) query;
+  get_articles : () -> (vec record { nat64; Article }) query;
   get_icp_balance : (text) -> (Tokens);
   get_projects : () -> (vec record { nat64; BasicDaoStableStorage }) query;
-  get_single_project : (nat64) -> (Result_2) query;
-  launch_token : (nat64) -> (Result_3);
-  register_dao : (UpdateSystemParamsPayload) -> (Result_4);
+  get_single_application : (nat64) -> (Result_2) query;
+  get_single_article : (nat64) -> (Result_3) query;
+  get_single_project : (nat64) -> (Result_4) query;
+  launch_token : (nat64) -> (Result_5);
+  publish_article : (text, text) -> (Result_1);
+  register_dao : (UpdateSystemParamsPayload) -> (Result_6);
 }

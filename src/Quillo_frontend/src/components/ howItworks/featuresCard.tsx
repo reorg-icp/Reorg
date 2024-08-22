@@ -13,8 +13,13 @@ const FeatureCards = ({ features, colors }: Prop) => {
   return (
     <div className="mx-auto px-4 py-0 ">
       <h1 className="mb-6 font-jost text-3xl text-center font-extrabold text-white tracking-tight leading-tight">
-        How it works
+        What we offer
       </h1>
+      <p style={{ color: "white" }}>
+        Enabling technical and business founders with tokenisation and growth
+        leveraging our 10+years of experience in token management and
+        infrastructure
+      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
         {features.slice(0, 3).map((feature, index) => (
           <div
