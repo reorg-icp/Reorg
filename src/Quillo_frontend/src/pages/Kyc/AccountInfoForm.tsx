@@ -1,4 +1,4 @@
-import '../../styles/pages/KYC.scss';
+import "../../styles/pages/KYC.scss";
 
 const AccountInfoForm = ({ data, onChange, onBack, onNext }) => {
   const handleChange = (e) => {
@@ -6,44 +6,55 @@ const AccountInfoForm = ({ data, onChange, onBack, onNext }) => {
   };
 
   return (
-    <div className='text-white'>
-      <h2 className="text-xl font-semibold">Account Info</h2>
+    <div className="text-white">
+      <h2 className="text-xl font-semibold">Links</h2>
       <form>
         <label className="block">
-          Email Address:
+       Pitch deck
           <input
-            type="email"
-            name="email"
+          placeholder="Link to pitch deck"
+            type="text"
+            name="pitch"
             className="border p-2 w-full"
-            value={data.email || ''}
+            value={data.pitch || ""}
             onChange={handleChange}
           />
         </label>
         <label className="block mt-2">
-          Username:
+       Tokenomics
           <input
             type="text"
-            name="username"
+            placeholder="Link to tokenomics"
+            name="tokenomics"
             className="border p-2 w-full"
-            value={data.username || ''}
+            value={data.tokenomics || ""}
             onChange={handleChange}
           />
         </label>
         <label className="block mt-2">
-          Password:
+      Other links
           <input
-            type="password"
-            name="password"
+          placeholder="Other relevant links"
+            type="text"
+            name="otherLinks"
             className="border p-2 w-full bg-[#1414]"
-            value={data.password || ''}
+            value={data.otherLinks || ""}
             onChange={handleChange}
           />
         </label>
         <div className="flex justify-between mt-4">
-          <button type="button" className="px-4 py-2 bg-gray-600 text-white rounded" onClick={onBack}>
+          <button
+            type="button"
+            className="px-4 py-2 bg-gray-600 text-white rounded"
+            onClick={onBack}
+          >
             Back
           </button>
-          <button type="button" className="px-4 py-2 bg-blue-600 text-white rounded" onClick={onNext}>
+          <button
+            type="button"
+            className="px-4 py-2 bg-blue-600 text-white rounded"
+            onClick={onNext}
+          >
             Next
           </button>
         </div>

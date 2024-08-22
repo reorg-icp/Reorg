@@ -30,29 +30,27 @@ export default function AboutReorg(): JSX.Element {
           <div className="text-center space-y-8">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
               Launch your token with{" "}
-              <span className="text-blue-400">confidence</span> on the best{" "}
-              <span className="text-green-400">token generation</span> event
-              platform
+              <span className="text-blue-400">confidence</span>
             </h1>
             <p className="font-joz text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Join our platform for{" "}
-              <span className="font-semibold text-yellow-300">secure</span>,{" "}
+              <span className="font-semibold text-yellow-300"> a secure</span>,{" "}
               <span className="font-semibold text-yellow-300">
                 expert-backed
               </span>{" "}
-              token generation events
+              token generation event
             </p>
           </div>
 
           <div className="mt-12 flex flex-row justify-center  md:gap-8 items-center space-x-2 sm:space-x-2">
-            <Link to="/app/token">
+            <Link to="apply">
               <button className="px-8 sm:px-6 md:px-8 py-4 sm:py-3 text-sm sm:text-base md:text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-green-600 rounded-full shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
-                Launch Token
+                Apply
               </button>
             </Link>
             <Link to="/tokens">
               <button className="px-12 sm:px-6 md:px-8 py-4 sm:py-3 text-sm sm:text-base md:text-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-full shadow-lg hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
-                Tokens
+                Upcoming tokens
               </button>
             </Link>
           </div>
@@ -90,16 +88,10 @@ export default function AboutReorg(): JSX.Element {
           </div>
           <div className="footer-links">
             <div className="footer-column">
-              <h4>Services</h4>
+              <h4>Tools</h4>
               <ul>
                 <li>
-                  <Link to="/token">Deploy Token</Link>
-                </li>
-                <li>
-                  <Link to="/comingSoon">Liquidity pools</Link>
-                </li>
-                <li>
-                  <Link to="/comingSoon">Launchpad</Link>
+                  <Link to="/tokens">Token creator</Link>
                 </li>
               </ul>
             </div>
@@ -118,6 +110,12 @@ export default function AboutReorg(): JSX.Element {
                 <li>
                   <Link to="/comingSoon">Roadmap</Link>
                 </li>
+                <li>
+                  <Link to="/comingSoon">Blog</Link>
+                </li>
+                <li>
+                  <Link to="/comingSoon">Delegate</Link>
+                </li>
               </ul>
             </div>
             <div className="footer-column">
@@ -129,7 +127,7 @@ export default function AboutReorg(): JSX.Element {
                   </a>
                 </li>
                 <li>
-                  <a href="https://github.com/TefroTech" target="_blank">
+                  <a href="https://github.com/reorg-icp" target="_blank">
                     GitHub
                   </a>
                 </li>

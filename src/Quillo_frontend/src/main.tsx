@@ -40,8 +40,8 @@ const App = (): JSX.Element => {
           element: <Tokens />,
         },
         {
-path:"/kyc",
-element:<KYC/>
+          path: "/apply",
+          element: <KYC />,
         },
         {
           path: "/comingSoon",
