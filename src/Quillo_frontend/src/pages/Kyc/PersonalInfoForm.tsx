@@ -20,55 +20,59 @@ const PersonalInfoForm = ({ data, onChange, onNext }) => {
           />
         </label>
         <label className=" block">
-          Project description
+         Contact name
           <input
             type="text"
-            name="projectDescription"
+            name="contactName"
             className="border p-2 w-full"
-            value={data.projectDescription || ""}
+            value={data.contactName || ""}
             onChange={handleChange}
           />
         </label>
         <label className=" block">
-          Project ecosystem
-          <textarea
-            placeholder="Where is the project hosted? The token to be issued and grants received"
-            name="projectEcosystem"
-            className="border p-2 w-full"
-            value={data.projectEcosystem || ""}
-            onChange={handleChange}
-          />
-        </label>
-        <label className=" block">
-          Team Description
-          <textarea
-            placeholder="Tell us the story of how the team came together with the relevant experience. Linkedin links "
-            name="projectEcosystem"
-            className="border p-2 w-full"
-            value={data.projectEcosystem || ""}
-            onChange={handleChange}
-          />
-        </label>
-        <label className="block mt-2">
-          Date of Birth:
+     Contact Telegram handle
           <input
-            type="date"
-            name="dob"
+            placeholder=""
+            name="contactTelegramHandle"
             className="border p-2 w-full"
-            value={data.dob || ""}
+            value={data.contactTelegramHandle || ""}
             onChange={handleChange}
           />
         </label>
-        <label className="block mt-2">
-          Phone Number:
+         <label className=" block">
+Email
           <input
-            type="tel"
-            name="phone"
+          type="email"
+            placeholder=""
+            name="email"
             className="border p-2 w-full"
-            value={data.phone || ""}
+            value={data.email || ""}
             onChange={handleChange}
           />
         </label>
+
+    <label className=" block">
+Project website
+          <input
+            placeholder=""
+            name="website"
+            className="border p-2 w-full"
+            value={data.website || ""}
+            onChange={handleChange}
+          />
+        </label>
+         <label className=" block">
+X link
+          <input
+            placeholder=""
+            name="x"
+            className="border p-2 w-full"
+            value={data.x || ""}
+            onChange={handleChange}
+          />
+        </label>
+
+       
         <div className="flex justify-end mt-4">
           <button
             type="button"

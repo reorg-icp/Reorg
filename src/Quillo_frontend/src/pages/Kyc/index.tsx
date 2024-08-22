@@ -9,6 +9,7 @@ export default function KYC() {
   const [formData, setFormData] = useState({
     personalInfo: {},
     accountInfo: {},
+    projectInfo:{}
   });
 
   const handleNext = () => setCurrentStep((prevStep) => prevStep + 1);
@@ -38,7 +39,7 @@ export default function KYC() {
           >
             1
           </span>
-          Personal <span className="hidden sm:inline-flex sm:ms-2">Info</span>
+          Project <span className="hidden sm:inline-flex sm:ms-2">Information</span>
           {currentStep < 4 && (
             <svg
               className="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180"
@@ -71,7 +72,7 @@ export default function KYC() {
           >
             2
           </span>
-          Account <span className="hidden sm:inline-flex sm:ms-2">Info</span>
+        Links <span className="hidden sm:inline-flex sm:ms-2"></span>
           {currentStep < 4 && (
             <svg
               className="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180"
@@ -104,7 +105,7 @@ export default function KYC() {
           >
             3
           </span>
-          Documents <span className="hidden sm:inline-flex sm:ms-2">Info</span>
+        Project <span className="hidden sm:inline-flex sm:ms-2">description</span>
           {currentStep < 4 && (
             <svg
               className="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180"
@@ -160,13 +161,16 @@ export default function KYC() {
           />
         )}
         {currentStep === 3 && (
-          <Documents onBack={handleBack} onNext={handleNext} />
+          <Documents    data={formData.projectInfo}
+            onChange={(newData) => handleFormDataChange("projectInfo", newData)}
+            onBack={handleBack}
+            onNext={handleNext} />
         )}
         {currentStep === 4 && (
           <ReviewForm
             data={formData}
             onBack={handleBack}
-            onSubmit={() => console.log("Submit data:", formData)}
+    
           />
         )}
       </div>
