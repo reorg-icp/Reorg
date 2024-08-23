@@ -17,6 +17,8 @@ import KYC from "./pages/Kyc";
 import Dex from "./pages/Dex";
 
 import Pool from "./pages/Pool";
+import Articles from "./pages/Blog/Articles";
+import Article from "./pages/Blog/Article";
 
 const App = (): JSX.Element => {
   const router = createBrowserRouter([

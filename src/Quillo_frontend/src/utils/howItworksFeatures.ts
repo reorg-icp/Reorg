@@ -12,24 +12,34 @@ export type featuresType = {
 
 export const features: featuresType[] = [
   {
-    title: "Token engineering",
+    title: "No-code token creation",
     complete: true,
     content:
-      "Vesting schedule, token utility, staking programs, liquidity, mining, and more.",
+      "Easily create and deploy tokens across multiple chains without any coding knowledge.",
   },
   {
-    title: "Liquidity and token management",
+    title: "Multichain DEX",
     complete: false,
-    content: "Liquidity pools, airdrop mechanisms and dashboards",
+    content: "A DEX that supports multiple blockchain networks ensuring liquidity and reach",
   },
   {
-    title: "Access to funding",
+    title: "Multichain launchpad",
     complete: false,
-    content: "Get funding through our launchpad.",
+    content: "Get access to a wide range of investors across different blockchains",
   },
   {
-    title: "AI powered tokenomics",
+    title: "Liquidity pool management",
     complete: false,
-    content: "AI powered economic engineering.",
+    content: "Seamlessly create and manage liquidity pools to ensure your token has the necessary depth and trading stability",
+  },
+    {
+    title: "Expert tokenomics consultation",
+    complete: false,
+    content: "Partner with our vetted tokenomics experts to design and optimize your economic model for long term success",
+  },
+     {
+    title: "Comprehensive project vetting",
+    complete: false,
+    content: "Our delegate vets projects before they are available in the launchpad ensuring only trustworthy projects make it to the market",
   },
 ];

@@ -1,17 +1,29 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { formatId, headers, poolData } from "../types";
 
 import ByTokens from "../instances/ByTokens";
 import ByAdress from "../instances/ByAdress";
 import ByType from "../instances/ByType";
+import Modal from "../../Dex/Modal";
 
 function Explore() {
   const [activeTab, setActiveTab] = useState<string>("byTokens");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = useCallback(() => {
+    console.log("Opening modal"); // Debugging log
+    setIsModalOpen(true);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    console.log("Closing modal"); // Debugging log
+    setIsModalOpen(false);
+  }, []);
 
   const renderContent = () => {
     switch (activeTab) {
       case "byTokens":
-        return <ByTokens />;
+        return <ByTokens openModal={openModal} />;
       case "byType":
         return <ByType />;
       case "byAddress":
@@ -20,6 +32,7 @@ function Explore() {
         return null;
     }
   };
+ 
   return (
     <>
       {/* contains table and some components */}
@@ -237,6 +250,7 @@ function Explore() {
             </li>
           </ul>
         </nav>
+        {isModalOpen && <Modal onClose={closeModal} />}
       </div>
     </>
   );

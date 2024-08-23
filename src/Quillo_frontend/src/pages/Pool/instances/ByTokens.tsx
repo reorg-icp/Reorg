@@ -1,11 +1,15 @@
-import React from 'react'
 
-function ByTokens() {
+type props={
+  openModal:()=>void
+}
+const  ByTokens=({openModal}:props) =>{
+ 
+
   return (
     <div className="flex items-center justify-between p-4 text-gray-300">
     {/* <!-- Center section with Select Token and plus icon --> */}
     <div className="flex-grow flex justify-center items-center space-x-4">
-      <div className="bg-[#1F2946] py-2 rounded-md px-6 flex items-center space-x-4 cursor-pointer">
+      <div onClick={openModal} className="bg-[#1F2946] py-2 rounded-md px-6 flex items-center space-x-4 cursor-pointer">
         <div className="mr-4">Select Token</div>
         <span role="img" aria-label="caret-down">
           <svg
@@ -22,7 +26,7 @@ function ByTokens() {
 
       <i className="fas fa-plus text-2xl"></i>
 
-      <div className="bg-[#1F2946] py-2 rounded-md px-6 flex items-center space-x-4 cursor-pointer">
+      <div onClick={openModal} className="bg-[#1F2946] py-2 rounded-md px-6 flex items-center space-x-4 cursor-pointer">
         <div>Select Token</div>
         <span role="img" aria-label="caret-down">
           <svg
@@ -52,6 +56,8 @@ function ByTokens() {
   Create Pools
 </button>
     </div>
+
+  
   </div>
 
   )

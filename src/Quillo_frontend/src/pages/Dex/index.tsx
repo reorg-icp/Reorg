@@ -31,7 +31,7 @@ function Dex() {
 
   return (
     <>
-      <div className=" w-full md:px-8 mb-12 flex items-center justify-center flex-col mx-auto">
+      <div  className=" w-full md:px-8 mb-12 flex items-center justify-center flex-col mx-auto">
         <div className=" md:w-2/3 w-full   flex flex-col items-center justify-center ">
           {/* Main tabs for pool */}
           <div className="  mt-8 flex items-center bg-[#1A2240] justify-between md:space-x-24 space-x-6 p-2 border-transparent rounded-md">
@@ -60,9 +60,10 @@ function Dex() {
         </div>
            {/* Render the active tab's content */}
       <div className="md:w-3/4 w-full transition-all duration-300 mt-2 mx-auto md:p-4 p-2 ">{renderContent()}</div>
+     
+      {isModalOpen && <Modal onClose={closeModal} />}
       </div>
 
-      {isModalOpen && <Modal onClose={closeModal} />}
     </>
   );
 }
