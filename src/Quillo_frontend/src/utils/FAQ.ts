@@ -2,50 +2,42 @@ type FAQ = {
   question: string;
   answer: string;
 };
+
 export const faqData: FAQ[] = [
   {
-    question: "What is a token generation event (TGE)?",
-    answer:
-      "A token generation event  is the process of creating and distributing a new  token. It is often used by blockchain projects to raise funds and engage with their community.",
+    question: "What is Reorg?",
+    answer: "Reorg is a comprehensive token generation and management platform that allows users to create, launch, and manage tokens across multiple blockchains, including ICP, Ethereum, and Solana, with no-code solutions and expert-backed support.",
   },
   {
-    question: "How do I apply for a token launch on your platform?",
-    answer:
-      "To apply, simply fill out the application form. Provide your business model, whitepaper, and other relevant details for our team to review.",
+    question: "How do I create and launch a token using Reorg?",
+    answer: "To create and launch a token on Reorg, simply use our no-code interface to define your token's parameters. Our platform supports multi-chain deployment, and you can leverage our expert tokenomics consultation and vetting process for a successful launch.",
   },
   {
-    question: "What makes your platform different from others?",
-    answer:
-      "We are backed by leading industry experts and we help projects with technical, legal and economic engineering for their tokens. Our delegate also vets projects to ensure only the best projects are listed on the launchpad therefore protecting investors.",
+    question: "What makes Reorg unique compared to other token platforms?",
+    answer: "Reorg stands out with its no-code token creation, multi-chain support, integrated DEX and liquidity pools, and expert tokenomics consultation. We offer a robust vetting process and comprehensive launchpad solutions to ensure successful token launches.",
   },
   {
-    question: "How does your AI-powered tokenomics model work?",
-    answer:
-      "Our AI model analyzes your project's business model and market conditions to suggest optimal tokenomics, including token supply, distribution, and pricing.",
+    question: "How does Reorg's multi-chain support work?",
+    answer: "Reorg enables token creation and management across various blockchains, including ICP, Ethereum, and Solana. This allows you to reach a broader audience and access diverse liquidity pools and trading options.",
   },
   {
-    question: "Can I get expert advice on tokenomics?",
-    answer:
-      "Yes, we have partnered with experienced tokenomics experts who can provide personalized advice and guidance to optimize your token structure.",
+    question: "What is the process for expert tokenomics consultation on Reorg?",
+    answer: "Our platform partners with experienced tokenomics experts who provide personalized advice to optimize your token's economic model. This includes guidance on supply, distribution, and pricing strategies to enhance your token's success.",
   },
   {
-    question: "What is the vetting process for projects?",
-    answer:
-      "Our vetting process includes a thorough review of your business model, whitepaper, team credentials, and market potential done by our delegate. We also conduct extensive KYC to ensure compliance and security.",
+    question: "What is the vetting process for projects on Reorg?",
+    answer: "Our vetting process involves a thorough review of your project’s details by our delegate team. We assess your business model, whitepaper, and team credentials to ensure that only high-quality projects are launched on our platform.",
   },
   {
-    question: "What is KYC and why is it necessary?",
-    answer:
-      "KYC (Know Your Customer) is a process of verifying the identity of our clients to prevent fraud and ensure regulatory compliance. It involves collecting personal information and documents. It is important to protect investors and to mitigate fraudulent token launches",
+    question: "How does Reorg ensure the security of token launches and investments?",
+    answer: "Reorg implements stringent KYC and AML protocols, conducts extensive vetting of projects, and maintains transparency throughout the launch process to ensure a secure environment for both token issuers and investors.",
   },
   {
-    question: "How is investor security ensured?",
-    answer:
-      "We implement strict KYC and AML (Anti-Money Laundering) protocols, conduct thorough vetting of projects through our delegate, and provide transparent information to investors to ensure a secure investment environment.",
+    question: "Can I use Reorg for launching tokens on multiple blockchains?",
+    answer: "Yes, Reorg supports the creation and launch of tokens on multiple blockchains, allowing you to deploy and manage your token across networks such as ICP, Ethereum, and Solana.",
   },
   {
-    question: "Can I launch tokens for multiple chains?",
-    answer:
-      "Yes,  we  facilitate token launches on various blockchain networks, not just the Internet Computer (ICP).",
+    question: "What types of tokens can I launch with Reorg?",
+    answer: "Reorg supports a variety of tokens, including fungible tokens, utility tokens, and more. You can customize your token's attributes and leverage our platform's features to meet your project's specific needs.",
   },
 ];

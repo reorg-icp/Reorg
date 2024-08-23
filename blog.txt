@@ -1,0 +1,51 @@
+
+
+What Is Tokenomics and Why Is It Important?
+
+The crypto community uses sets of overlapping and interrelated terms
+
+such as “cryptoeconomics,” “cryptogovernance,” “token economics,” or “token engineering” to describe the discipline of designing token systems. In this post, we will outline the historic development of all these terms and explain how they are related to each other.
+
+The term “cryptoeconomics” was casually coined in the Ethereum developer community, years after the Bitcoin White paper was first published and the Bitcoin network and similar blockchain networks were deployed. The term is generally attributed to Vitalik Buterin. The earliest recorded citation is from a talk by Vlad Zamfir, which was later loosely formalized in blog posts and talks by Buterin. The term has gained traction in the broader developer community and in the academic community, but it still remains under-defined, possibly because it is used in so many different contexts.
+
+Cryptoeconomics is interdisciplinary by design and requires a deep understanding of cryptography, economics, P2P computer networks, and – a fact that many in the core developer community often ignore – political science. It refers to the study of economic interactions in untrusted environments, where every actor could potentially be corrupt.
+
+Since the emergence of Bitcoin's Proof-of-Work, many variations of PoW have been developed, as have alternative cryptoeconomic mechanisms such as Proof-of-Stake (PoS) and variations of PoS. These mechanisms were developed to provide a security equilibrium for blockchain networks. The goal is to make them fault-tolerant and resistant to attack and collusion in the absence of trusted intermediaries. However, security depends on the resilience of the assumptions made regarding how anonymous network actors will react to economic incentives. How people react to incentives has long been a field of study in economics and in specific behavioral economics, which, so far, has found too little recognition in the space.
+
+This might be due to the fact that the discipline has predominantly evolved in the computer science community. As a result, there is still much room to incorporate methods from a wide variety of economic disciplines, as well as political science and other relevant disciplines.
+
+Cryptoeconomic mechanisms allow all stakeholders of a P2P network to interact in a fully automated and attack-resistant way, without any single person or institution governing or brokering their interactions.
+
+The term token economics or tokenomics, on the other hand, is much more loosely defined. It emerged in the application space of a wider Web3 community, once the Ethereum network and similar blockchain networks had made it possible for anyone to create tokens with a few lines of code without having to create their own blockchain network.
+
+The term “token economics” emerged from colloquial usage on social media and is employed by many to describe the economic design patterns of different types of application tokens – from simple asset tokens to more complex tokens that steer any form of decentralized organization. Whether voting rights are part of this economic design seems to depend on the people using the term.
+
+It is safe to say that the term “token economics” is less rigidly defined than “cryptoeconomics,” as it does not necessarily imply collusion-resistant mechanisms in a P2P network of untrusted actors.
+
+We personally think that the term “token economics” is reductionist, as it focuses on the economic part of the design and ignores, or at least neglects, other relevant disciplines that are critical to the design of a token system. As will be described in more detail below, the design thinking process of Web3 networks not only needs to account for economic incentives, but also for non-economic incentives such as reputation and intrinsic motivation, as well as political incentives such as information rights, voting rights, executive rights, or arbitration rights.
+
+Since Web3 provides a governance layer for the Internet, the process of designing DAOs and their tokens could also be referred to as “cryptogovernance.” At the time of writing, however, many people use this term Cryptogovernance or just governance to describe the process of who gets to decide over protocol upgrades and how the voting rights are or should be distributed among network participants. The question of political participation is either completely segregated from the question of economic incentives in the crypto community, or, in other instances, political participation over protocol upgrades is mingled with the design of economic incentives.
+
+In theory, governance is a political science term that describes the general politics of a community of people – including their economic interactions – and not only their political voting rights. Economic design is always a result of a political worldview. What economic system one wants to create is a political decision.
+
+Furthermore, there is no such thing as a completely free and unregulated market – much less in crypto-economic networks. Every blockchain network/web3 network/DAO is steered by very rigid market rules of who is allowed to transact under which conditions and how much tokenized rewards they can earn doing what. These rules are hard-coded into their protocols. One could even say that Web3 networks are planned economies on steroids.
+
+While in theory, the term governance should include the questions of market design as well as voting rights, legislative rights, information rights, or executive rights, we are personally not fans of the term “cryptogovernance” since the interpretation of what constitutes governance varies widely in the crypto community and, as already mentioned above, is often reduced to voting rights only.
+
+Token Engineering is a term with a more interdisciplinary approach. It was first popularized by Trent McConaghy in his article, “Towards a Practice of Token Engineering,” where he defined token engineering as “the theory, practice, and tools to analyze, design, and verify tokenized ecosystems.” Due to the mission-critical nature of Web3 networks, he decided to use the term “engineering” in a broader sense when designing a token system and argued that “engineering is also a discipline of responsibility: being ethically and professionally accountable to the machines that you build...”
+
+Trent went on to state that the design of token systems should ideally also become a field of rigorous analysis, design, and verification that should be guided by a sense of responsibility and would require tools to reconcile theory with practice. He drew similarities between creating token mechanisms and other disciplines that share a heavy dependence on the mathematics of optimization and decision-making and listed a range of scientific fields that are relevant when designing these systems - such as electrical engineering, swarm robotics, operations research, software engineering, civil engineering, aerospace engineering, complex systems design, public policy design, economics, robotics, machine learning, or AI.
+
+We personally prefer the term token engineering over all other terms because it includes the principles of accountability and safety of the systems we set out to build. Token engineering is a more neutral term than cryptoeconomics or cryptogovernance, while at the same time implying rigorous principles and practices of engineering ethics. The concept of engineering ethics requires that anything we design, especially public infrastructure, be rigorously and carefully tested to minimize the risk of harm for the users. Bridges, railroads, and space shuttles should be built in such a way that they don't collapse or implode. The same should be true for Web3-based cyber-physical economic systems, though a potential collapse would be economic and social.
+
+In this context, we would like to mention Angela Kreitenweis, who founded Token Engineering Academy very early on and has done a great deal to create an educational platform for an emerging token engineering community. Her aim from the very beginning was to provide free education and to grow this discipline further, which we think is extremely important.
+
+We believe that looking at the design of token systems through a purely technological, economic, legal, or political lens perpetuates a reductionist view of why, how, and for whom we build these token systems.
+
+Web3 networks are first and foremost complex socio-economic networks that operate on technological infrastructure that is in itself collectively maintained and has complex social, economic, and technological components. We cannot approach understanding or designing these networks from a one-dimensional perspective.
+
+Unfortunately, the lived practice of designing purpose-driven tokens that steer Web3 networks often focuses on the technical aspects of a token system. A look at the composition of team members of most blockchain/Web3/token startups reflects this techno-centricity quite well. Engineering, however, is the practice of creating technology that ultimately has a socio-economic goal for the people who use the technology.
+
+Regardless of the term used, and regardless of which term will prove to withstand the test of time, we need to apply a holistic approach when designing token systems. From a practical perspective, the range of disciplines that are relevant for the design of token systems – as mentioned by Trent McConaghy and in our own research with Michael Zargham – might seem too broad and thus overwhelming.
+
+To simplify the range, we therefore suggest grouping the relevant fields into four subgroups: “technical engineering,” “political engineering,” “economic engineering,” and “legal engineering.”

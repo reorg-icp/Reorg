@@ -6,20 +6,25 @@ import { AutoAwesome } from "../../assets/icons";
 
 const cards = [
   {
-    title: "Tokenomics support",
+    title: "Multichain flexibility",
     description:
-      "Backed by top tokenomics experts and leveraging AI, we have helped projects design tokenomics models that are feasible and sustainable",
+      "Launch and manage tokens across multiple chains.",
     icon: <AutoAwesome />,
   },
   {
-    title: "Secure platform for investment",
+    title: "No code simplicity",
     description:
-      "Our delegate vets projects via a strict due diligence process",
+      "Launch  tokens without writing a single line of code",
     icon: <AutoAwesome />,
   },
   {
-    title: "Raise capital",
-    description: "Get funding for your project through our launchpad.",
+    title: "Expert backed assurance",
+    description: "Reorg is backed by key opinion leaders in web3 and we ensure your token is market ready",
+    icon: <AutoAwesome />,
+  },
+    {
+    title: "Integrated multichain DEX and Liquidity pools",
+    description: "Easily manage token liquidity and facilitate trading across multiple blockchains through our integrated DEX and liquidity services",
     icon: <AutoAwesome />,
   },
 ];
