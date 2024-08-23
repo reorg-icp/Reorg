@@ -14,6 +14,9 @@ import Register from "./pages/register";
 import ComingSoon from "./pages/comingSoon";
 import Tokens from "./pages/Tokens";
 import KYC from "./pages/Kyc";
+import Dex from "./pages/Dex";
+
+import Pool from "./pages/Pool";
 import Articles from "./pages/Blog/Articles";
 import Article from "./pages/Blog/Article";
 
@@ -45,6 +48,14 @@ const App = (): JSX.Element => {
           path: "/apply",
           element: <KYC />,
         },
+        {
+          path:"/dex",
+          element:<Dex/>
+        },
+        {
+          path:"/pool"  ,
+          element:< Pool/>
+         },  
          {
           path: "/blog",
           element: <Articles/>,
@@ -53,6 +64,7 @@ const App = (): JSX.Element => {
           path: "/blog/:slug",
           element: <Article/>,
         },
+ 
         {
           path: "/comingSoon",
           element: <ComingSoon />,

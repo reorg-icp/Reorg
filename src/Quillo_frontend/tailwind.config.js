@@ -14,6 +14,7 @@ module.exports = {
         colors: {
           primary: '#ffffff',
           secondary: 'rgba(228, 255, 151, 0.2)',
+          gradientBackgroundColor: 'linear-gradient(270deg, #8572ff 0%, #5d52de 100%)',
           text: {
             primary: '#000000',
             secondary: '#7f7f7f',
@@ -29,6 +30,8 @@ module.exports = {
           'primary-gradient-one': 'linear-gradient(0deg, rgba(0, 60, 50, 0.9) 0%, rgba(0, 120, 100, 0.8) 100%)',
           'primary-gradient-two': 'linear-gradient(360deg, rgba(0, 30, 25, 0.9) 0%, rgba(20, 50, 40, 0.8) 100%)',
           'primary-gradient-three': 'linear-gradient(180deg, #004d40 0%, #00251a 100%)',
+          'gradientBackgroundColor': 'linear-gradient(270deg, #8572ff 0%, #5d52de 100%)',
+
         },
       },
       screens: {
