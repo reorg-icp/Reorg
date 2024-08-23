@@ -55,7 +55,16 @@ const App = (): JSX.Element => {
         {
           path:"/pool"  ,
           element:< Pool/>
-         },   
+         },  
+         {
+          path: "/blog",
+          element: <Articles/>,
+        },
+        {
+          path: "/blog/:slug",
+          element: <Article/>,
+        },
+ 
         {
           path: "/comingSoon",
           element: <ComingSoon />,
