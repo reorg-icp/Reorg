@@ -16,6 +16,8 @@ import Tokens from "./pages/Tokens";
 import KYC from "./pages/Kyc";
 import Dex from "./pages/Dex";
 
+import Pool from "./pages/Pool";
+
 const App = (): JSX.Element => {
   const router = createBrowserRouter([
     {
@@ -48,6 +50,10 @@ const App = (): JSX.Element => {
           path:"/dex",
           element:<Dex/>
         },
+        {
+          path:"/pool"  ,
+          element:< Pool/>
+         },   
         {
           path: "/comingSoon",
           element: <ComingSoon />,

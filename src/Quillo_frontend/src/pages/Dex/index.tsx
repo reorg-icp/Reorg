@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import Modal from "./Modal";
 import TransactionFilter from "./TransactionFilter";
+import React from "react";
 
 function Dex() {
   const [isModalOpen, setIsModalOpen] = useState(false);
