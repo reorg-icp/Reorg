@@ -2,7 +2,7 @@ import { Feature } from "../../assets/icons";
 import { featuresType } from "../../utils/howItworksFeatures";
 
 type Prop = {
-  features: featuresType[];
+features: featuresType[];
   colors: {
     primary: string;
     bluee: string;

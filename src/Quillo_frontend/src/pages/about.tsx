@@ -29,8 +29,8 @@ export default function AboutReorg(): JSX.Element {
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-8">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
-              Launch your token with{" "}
-              <span className="text-blue-400">confidence</span>
+            Launch, Trade and scale tokens seamlessly across multiple blockchains
+           
             </h1>
             <p className="font-joz text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Join our platform for{" "}
@@ -38,14 +38,14 @@ export default function AboutReorg(): JSX.Element {
               <span className="font-semibold text-yellow-300">
                 expert-backed
               </span>{" "}
-              token generation event
+              token generation event, multichain DEX and expert-backed launchpad.
             </p>
           </div>
 
           <div className="mt-12 flex flex-row justify-center  md:gap-8 items-center space-x-2 sm:space-x-2">
             <Link to="apply">
               <button className="px-8 sm:px-6 md:px-8 py-4 sm:py-3 text-sm sm:text-base md:text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-green-600 rounded-full shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
-                Apply
+                Apply for TGE
               </button>
             </Link>
             <Link to="/tokens">
@@ -111,7 +111,7 @@ export default function AboutReorg(): JSX.Element {
                   <Link to="/comingSoon">Roadmap</Link>
                 </li>
                 <li>
-                  <Link to="/comingSoon">Blog</Link>
+                  <Link to="/blog">Blog</Link>
                 </li>
                 <li>
                   <Link to="/comingSoon">Delegate</Link>
