@@ -14,6 +14,7 @@ import Register from "./pages/register";
 import ComingSoon from "./pages/comingSoon";
 import Tokens from "./pages/Tokens";
 import KYC from "./pages/Kyc";
+import Dex from "./pages/Dex";
 
 const App = (): JSX.Element => {
   const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const App = (): JSX.Element => {
         {
           path: "/apply",
           element: <KYC />,
+        },
+        {
+          path:"/dex",
+          element:<Dex/>
         },
         {
           path: "/comingSoon",
