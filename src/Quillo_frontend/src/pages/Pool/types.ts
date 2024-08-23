@@ -123,3 +123,8 @@ export interface PoolData {
     if (id.length <= 12) return id;
     return `${id.slice(0, 6)}...${id.slice(-6)}`;
   };
+
+  export const YourLoopCard={
+      title:"Incentives for Liquidity Providers",
+        description:"Liquidity providers will receive trading fee incentives in all transactions, and the value of the trading fee rate is defined by the creator of the liquidity pool. The amount of incentive you get is proportional to your share in the liquidity pool. The trading fee will be injected into the liquidity pool, and you can obtain the corresponding incentive quota by withdrawing your liquidity."
+  }
