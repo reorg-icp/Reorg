@@ -1,54 +1,84 @@
-import React from 'react';
-import  { useState } from 'react';
+import React from "react";
+import { useState } from "react";
 
-interface TransactionFilterProps {
-  onFilterChange: (filter: string) => void;
-}
 
-const TransactionFilter: React.FC<TransactionFilterProps> = ({ onFilterChange }) => {
-  const [activeFilter, setActiveFilter] = useState('All');
+
+const TransactionFilter: React.FC= () => {
+  const [selectedFilter, setSelectedFilter] = useState<string>('All');
   const filters = ['All', 'Swaps', 'Adds', 'Removes'];
 
-  const handleFilterClick = (filter: string) => {
-    setActiveFilter(filter);
-    onFilterChange(filter);
+  const handleFilterChange = (filter: string) => {
+    setSelectedFilter(filter);
+    // You can handle further actions here after a filter is selected
+    console.log(`Selected filter: ${filter}`);
   };
 
+  const headings: string[] = [
+    "Action",
+    "Total Value",
+    "Token Amount",
+    "Token Amount B",
+    "Time (UTC)",
+  ];
   return (
-    <div className="bg-gray-900 p-4 rounded-lg shadow-lg">
-      <h2 className="text-white text-xl mb-4">Transactions</h2>
-      <div className="flex space-x-2">
-        {filters.map((filter) => (
-          <button
-            key={filter}
-            onClick={() => handleFilterClick(filter)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-              activeFilter === filter
-                ? 'bg-indigo-600 text-white'
-                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-            }`}
-          >
-            {filter}
-          </button>
-        ))}
+    <div className="w-full bg-[#1A2240] rounded-lg shadow-lg flex flex-col  gap-6">
+      <div className="">
+        
+        {/* Header with Filter Options */}
+        <div className="bg-[#1F2946] border border-gray-700 text-[#8B9ABD] rounded-t-md p-6 flex flex-col md:flex-row justify-between items-center mb-4">
+        <h2 className="text-xl font-semibold text-gray-300 mb-4 md:mb-0">Transactions</h2>
+        <div className="flex flex-wrap gap-2 md:space-x-4">
+          {filters.map((filter, index) => (
+            <label key={index} className="text-gray-300 flex items-center">
+              <input
+                type="radio"
+                name="transactionType"
+                value={filter}
+                checked={selectedFilter === filter}
+                onChange={() => handleFilterChange(filter)}
+                className="mr-2 cursor-pointer text-blue-500"
+              />
+              <span
+                className={`cursor-pointer ${
+                  selectedFilter === filter
+                    ? 'text-blue-400 font-bold'
+                    : 'hover:text-blue-300'
+                }`}
+              >
+                {filter}
+              </span>
+            </label>
+          ))}
+        </div>
       </div>
+
+        <div className="  relative overflow-x-auto  ">
+          <table className="w-full text-sm text-left border-b border-gray-700   rtl:text-right text-gray-400">
+            <thead className="text-xs   ">
+              {headings.map((header, index) => (
+                <th scope="col" key={index} className="px-6 py-6">
+                  {header}
+                </th>
+              ))}
+            </thead>
+            <tbody>
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       {/* Placeholder for transaction list */}
-      <div className="mt-6 flex items-center justify-center h-32 bg-gray-800 rounded-lg">
-        <div className="text-gray-500">
-          <svg
-            className="w-16 h-16 mx-auto mb-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+      <div className="mb-8 font-leagueSpartan  mt-6 flex items-center justify-center h-32  rounded-lg">
+        <div className="flex flex-col gap-4 text-gray-500 mb-4">
+        <img
+              src="/images/box.png"
+              alt="Empty Liquidity"
+              className="w-24 h-24 md:w-32 md:h-32"
             />
-          </svg>
-          <p>No transactions to display</p>
+       
+          <p>No transactions to display.</p>
         </div>
       </div>
     </div>

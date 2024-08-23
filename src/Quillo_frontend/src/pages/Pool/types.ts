@@ -1,8 +1,4 @@
-enum poolType{
-  'Public Pool' ,
-   'Private Pool' ,
-    'Anchored Pool'
-}
+
 
 export interface PoolData {
     id: string;

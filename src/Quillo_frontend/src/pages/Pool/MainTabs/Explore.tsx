@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { formatId, headers, poolData } from "../types";
-import React from "react";
+
 import ByTokens from "../instances/ByTokens";
 import ByAdress from "../instances/ByAdress";
 import ByType from "../instances/ByType";
@@ -87,7 +87,7 @@ function Explore() {
                 >
                   <td className="px-8 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     <div className="px-0 flex  flex-col gap-2 ">
-                      <span className="flex  flex-row gap-2">
+                      <span className="flex  items-center  flex-row gap-2">
                         <a
                           href={pool.poolLink}
                           className="text-blue-400 hover:underline mr-2"
@@ -102,7 +102,7 @@ function Explore() {
                           className="cursor-pointer"
                         />
                       </span>
-                      <span className="  bg-[#1F2946] w-1/2 text-center py-2 rounded text-xs text-gray-500">
+                      <span className="  bg-[#1F2946]  text-center w-2/3 py-2  rounded text-xs text-gray-500">
                         {pool.type}
                       </span>
                     </div>
@@ -120,7 +120,7 @@ function Explore() {
                       <span>{pool.tradingPair}</span>
                     </div>
                   </td>
-                  <td className="px-2 py-4">{pool.tradingFeeRate}</td>
+                  <td className="px-2 py-4 text-center">{pool.tradingFeeRate}</td>
                   <td className="px-6 py-4">
                     <div>
                       <span className="text-[#5B4994] flex items-center flex-row gap-1">
@@ -131,7 +131,7 @@ function Explore() {
                       <div>{pool.tokenAmount.coinB}</div>
                     </div>
                   </td>
-                  <td className="px-2 py-4">{pool.volume24H}</td>
+                  <td className="px-2 py-4  text-center">{pool.volume24H}</td>
                 </tr>
               ))}
             </tbody>
