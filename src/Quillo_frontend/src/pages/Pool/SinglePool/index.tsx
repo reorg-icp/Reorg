@@ -12,20 +12,6 @@ import Card from "./card";
 import { formatId, PoolData } from "../types";
 import TransactionTable from "./TransactionTable";
 
-// const data = {
-//   volume: [
-//     { name: "Aug 24", value: 437.09 },
-//     { name: "Aug 25", value: 859.9 },
-//   ],
-//   tvl: [
-//     { name: "Aug 24", value: 15150 },
-//     { name: "Aug 25", value: 15780 },
-//   ],
-//   transactions: [
-//     { name: "Aug 24", value: 320 },
-//     { name: "Aug 25", value: 512 },
-//   ],
-// };
 
 
 const SinglePool: React.FC<PoolData> = ({...pool}) => {
@@ -139,7 +125,7 @@ const SinglePool: React.FC<PoolData> = ({...pool}) => {
               </h2>
             </div>
 
-            <div className="flex md:flex-row  flex-col md:space-x-4 md:space-y-0 space-y-4  md:h-10 mb-mb-0  mb-6 items-center bg-[#1F2946] border border-transparent rounded-md ">
+            <div className="flex md:flex-row  flex-col md:space-x-4 md:space-y-0 space-y-4  md:h-10  mb-mb-0  mb-6 items-center bg-[#1F2946] border border-transparent rounded-md ">
               <button
                 onClick={() => setSelectedMetric("volume")}
                 className={`py-2 px-4 inline-block ${

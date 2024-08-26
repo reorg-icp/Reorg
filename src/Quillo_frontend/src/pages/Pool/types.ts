@@ -64,12 +64,8 @@ interface TokenInfo {
         fromCoinAtoCoinB: '1 ICP = 358.42K BITCORN',
         fromCoinBtoCoinA: '1 BITCORN = 0.0005279 ICP',
       },
-      tokens: [{
-        name: "ICP",
-        percentage: "65%",
-        amount: "",
-        locked: true,
-      }],
+      tokens: [   { name: "DOGM", percentage: "100.00%", amount: "336.58 M ", locked: true },
+        { name: "ICP", percentage: "0.00%", amount: "941.25", locked: false },],
       historicalData: {
         volume: [
           { name: 'Aug 24', value: 38.81 },
