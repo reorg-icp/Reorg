@@ -7,7 +7,7 @@ import ByType from "../instances/ByType";
 import Modal from "../../Dex/Modal";
 
 function Explore() {
-  const [activeTab, setActiveTab] = useState<string>("byTokens");
+  const [activeTab, setActiveTab] = useState<string>("byType");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = useCallback(() => {

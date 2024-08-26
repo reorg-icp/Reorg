@@ -1,18 +1,29 @@
 
 
 export interface PoolData {
-    id: string;
-    type: 'Public Pool' | 'Private Pool' | 'Anchored Pool'; // Pool types
-    tradingPair: string;
-    tradingFeeRate: string;
-    tokenAmount: {
-      coinA: string;
-      coinB: string;
-    };
-    volume24H: string;
-    poolLink: string;
-    tokenImages: string[];
-  }
+  id: string;
+  type: 'Public Pool' | 'Private Pool' | 'Anchored Pool';
+  tradingPair: string;
+  tradingFeeRate: string;
+  tokenAmount: {
+    coinA: string;
+    coinB: string;
+  };
+  volume24H: string;
+  poolLink: string;
+  tokenImages: string[];
+  conversionRates: {
+    fromCoinAtoCoinB: string;
+    fromCoinBtoCoinA: string;
+  };
+  volatilityCoefficient:string;
+  historicalData: {
+    volume: { name: string; value: number }[];
+    tvl: { name: string; value: number }[];
+    transactions: { name: string; value: number }[];
+  };
+  locked: boolean;
+}
 
 
  export  const poolData: PoolData[] = [
@@ -31,6 +42,26 @@ export interface PoolData {
         'https://metrics.icpex.org/images/ryjl3-tyaaa-aaaaa-aaaba-cai.png',
         'https://metrics.icpex.org/images/edypu-bqaaa-aaaak-afknq-cai.png',
       ],
+      conversionRates: {
+        fromCoinAtoCoinB: '1 ICP = 358.42K BITCORN',
+        fromCoinBtoCoinA: '1 BITCORN = 0.0005279 ICP',
+      },
+      historicalData: {
+        volume: [
+          { name: 'Aug 24', value: 38.81 },
+          { name: 'Aug 25', value: 42.33 },
+        ],
+        tvl: [
+          { name: 'Aug 24', value: 207.33 },
+          { name: 'Aug 25', value: 210.45 },
+        ],
+        transactions: [
+          { name: 'Aug 24', value: 18 },
+          { name: 'Aug 25', value: 22 },
+        ],
+      },
+      volatilityCoefficient: '0.5',
+      locked: true
     },
     {
       id: 'abcde-12345-67890-fghij-klmno',
@@ -47,7 +78,28 @@ export interface PoolData {
         'https://metrics.icpex.org/images/ryjl3-tyaaa-aaaaa-aaaba-cai.png',
         'https://metrics.icpex.org/images/edypu-bqaaa-aaaak-afknq-cai.png',
       ],
+      conversionRates: {
+        fromCoinAtoCoinB: '1 ICP = 358.42K BITCORN',
+        fromCoinBtoCoinA: '1 BITCORN = 0.0005279 ICP',
+      },
+      historicalData: {
+        volume: [
+          { name: 'Aug 24', value: 38.81 },
+          { name: 'Aug 25', value: 42.33 },
+        ],
+        tvl: [
+          { name: 'Aug 24', value: 207.33 },
+          { name: 'Aug 25', value: 210.45 },
+        ],
+        transactions: [
+          { name: 'Aug 24', value: 18 },
+          { name: 'Aug 25', value: 22 },
+        ],
+      },
+      volatilityCoefficient: '0.5',
+      locked:true
     },
+    
     {
       id: 'fghij-67890-12345-klmno-pqrst',
       type: 'Anchored Pool',
@@ -63,7 +115,28 @@ export interface PoolData {
         'https://metrics.icpex.org/images/ryjl3-tyaaa-aaaaa-aaaba-cai.png',
         'https://metrics.icpex.org/images/edypu-bqaaa-aaaak-afknq-cai.png',
       ],
+      conversionRates: {
+        fromCoinAtoCoinB: '1 ICP = 358.42K BITCORN',
+        fromCoinBtoCoinA: '1 BITCORN = 0.0005279 ICP',
+      },
+      historicalData: {
+        volume: [
+          { name: 'Aug 24', value: 38.81 },
+          { name: 'Aug 25', value: 42.33 },
+        ],
+        tvl: [
+          { name: 'Aug 24', value: 207.33 },
+          { name: 'Aug 25', value: 210.45 },
+        ],
+        transactions: [
+          { name: 'Aug 24', value: 18 },
+          { name: 'Aug 25', value: 22 },
+        ],
+      },
+      volatilityCoefficient: '0.5',
+      locked:false
     },
+
     {
       id: 'xyz-98765-43210-cdefg-hijkl',
       type: 'Public Pool',
@@ -79,7 +152,28 @@ export interface PoolData {
         'https://metrics.icpex.org/images/ryjl3-tyaaa-aaaaa-aaaba-cai.png',
         'https://metrics.icpex.org/images/edypu-bqaaa-aaaak-afknq-cai.png',
       ],
+      conversionRates: {
+        fromCoinAtoCoinB: '1 ICP = 358.42K BITCORN',
+        fromCoinBtoCoinA: '1 BITCORN = 0.0005279 ICP',
+      },
+      historicalData: {
+        volume: [
+          { name: 'Aug 24', value: 38.81 },
+          { name: 'Aug 25', value: 42.33 },
+        ],
+        tvl: [
+          { name: 'Aug 24', value: 207.33 },
+          { name: 'Aug 25', value: 210.45 },
+        ],
+        transactions: [
+          { name: 'Aug 24', value: 18 },
+          { name: 'Aug 25', value: 22 },
+        ],
+      },
+      volatilityCoefficient: '0.5',
+      locked:true
     },
+
     {
       id: 'mnop-45678-12345-qrst-uvwxy',
       type: 'Private Pool',
@@ -95,6 +189,26 @@ export interface PoolData {
         'https://metrics.icpex.org/images/ryjl3-tyaaa-aaaaa-aaaba-cai.png',
         'https://metrics.icpex.org/images/edypu-bqaaa-aaaak-afknq-cai.png',
       ],
+      conversionRates: {
+        fromCoinAtoCoinB: '1 ICP = 358.42K BITCORN',
+        fromCoinBtoCoinA: '1 BITCORN = 0.0005279 ICP',
+      },
+      historicalData: {
+        volume: [
+          { name: 'Aug 24', value: 38.81 },
+          { name: 'Aug 25', value: 42.33 },
+        ],
+        tvl: [
+          { name: 'Aug 24', value: 207.33 },
+          { name: 'Aug 25', value: 210.45 },
+        ],
+        transactions: [
+          { name: 'Aug 24', value: 18 },
+          { name: 'Aug 25', value: 22 },
+        ],
+      },
+      volatilityCoefficient: '0.5',
+      locked:true
     },
     {
       id: 'pqrst-12345-67890-uvwxy-zabcd',
@@ -105,12 +219,33 @@ export interface PoolData {
         coinA: '100.00 LTC (30.00%)',
         coinB: '3.00 M USDT (70.00%)',
       },
+      locked: true,
       volume24H: '$250,000.00',
       poolLink: '/pool/detail/pqrst-12345-67890-uvwxy-zabcd',
       tokenImages: [
         'https://metrics.icpex.org/images/ryjl3-tyaaa-aaaaa-aaaba-cai.png',
         'https://metrics.icpex.org/images/edypu-bqaaa-aaaak-afknq-cai.png',
       ],
+      conversionRates: {
+        fromCoinAtoCoinB: '1 ICP = 358.42K BITCORN',
+        fromCoinBtoCoinA: '1 BITCORN = 0.0005279 ICP',
+      },
+      historicalData: {
+        volume: [
+          { name: 'Aug 24', value: 38.81 },
+          { name: 'Aug 25', value: 42.33 },
+        ],
+        tvl: [
+          { name: 'Aug 24', value: 207.33 },
+          { name: 'Aug 25', value: 210.45 },
+        ],
+        transactions: [
+          { name: 'Aug 24', value: 18 },
+          { name: 'Aug 25', value: 22 },
+        ],
+      },
+      volatilityCoefficient: '0.5',
+      
     },
   ];
   
