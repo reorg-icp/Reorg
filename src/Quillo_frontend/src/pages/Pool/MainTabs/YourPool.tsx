@@ -10,9 +10,9 @@ const YourPool: React.FC = () => {
   };
 
   return (
-    <div className="md:w-[800px] w-[400px] ">
-    <div className="    flex flex-col items-center justify-center  max-w-2xl mx-auto bg-[#1A2240] rounded-md">
-      <div className="mt-8 mb-8 w-full px-6 md:px-8 "> 
+    <div className="w-full md:px-12 px-1 ">
+    <div className="    flex flex-col items-center justify-center  mx-auto bg-[#1A2240] rounded-md">
+      <div className="mt-8 mb-8 w-full px-2 md:px-8 "> 
         {showCard && (
           <Card
             title={YourLoopCard.title}

@@ -32,18 +32,18 @@ function Explore() {
         return null;
     }
   };
- 
+
   return (
     <>
       {/* contains table and some components */}
-      <div className="mt-6  bg-[#1A2240] rounded-md ">
+      <div className="mt-6  bg-[#1A2240] rounded-md   ">
         {/* Switchable Tabs */}
         <div className="mb-6">
-          <div className="bg-[#1F2946] border rounded-t-md font-medium flex items-center justify-center md:text-2xl text-lg text-center text-gray-500 border-b text-gray-400 border-gray-700">
-            <ul className="flex flex-wrap md:space-x-12 mt-2">
-              <li className="me-2">
+          <div className="bg-[#1F2946] border rounded-t-md font-medium flex items-center justify-center text-sm sm:text-lg md:text-2xl text-center text-gray-500 border-b text-gray-400 border-gray-700">
+            <ul className="flex flex-wrap justify-center w-full">
+              <li className="w-1/3 sm:w-auto">
                 <span
-                  className={`inline-block p-4 border-b-2 rounded-t-lg cursor-pointer ${
+                  className={`inline-block p-2 sm:p-4 border-b-2 rounded-t-lg cursor-pointer w-full ${
                     activeTab === "byType"
                       ? "bg-[#1A2240] text-white border-blue-600"
                       : "border-transparent hover:text-gray-600 hover:border-gray-300"
@@ -53,11 +53,11 @@ function Explore() {
                   By Type
                 </span>
               </li>
-              <li className="me-2">
+              <li className="w-1/3 sm:w-auto">
                 <span
-                  className={`inline-block p-4 border-b-2 rounded-t-lg cursor-pointer ${
+                  className={`inline-block p-2 sm:p-4 border-b-2 rounded-t-lg cursor-pointer w-full ${
                     activeTab === "byTokens"
-                      ? "text-blue-500 border-blue-600 border-blue-600"
+                      ? "text-blue-500 border-blue-600"
                       : "border-transparent hover:text-gray-600 hover:border-gray-300"
                   }`}
                   onClick={() => setActiveTab("byTokens")}
@@ -65,9 +65,9 @@ function Explore() {
                   By Tokens
                 </span>
               </li>
-              <li className="me-2">
+              <li className="w-1/3 sm:w-auto">
                 <span
-                  className={`inline-block p-4 border-b-2 rounded-t-lg cursor-pointer ${
+                  className={`inline-block p-2 sm:p-4 border-b-2 rounded-t-lg cursor-pointer w-full ${
                     activeTab === "byAddress"
                       ? "text-blue-500 border-blue-600"
                       : "border-transparent hover:text-gray-600 hover:border-gray-300"
@@ -81,7 +81,9 @@ function Explore() {
           </div>
         </div>
         {/* Render the active tab's content */}
-        <div className="transition-all duration-300">{renderContent()}</div>
+        <div className="transition-all duration-300 w-full ">
+          {renderContent()}
+        </div>
 
         <div className=" relative overflow-x-auto  ">
           <table className="w-full text-sm text-left  rtl:text-right text-gray-400">
@@ -133,7 +135,9 @@ function Explore() {
                       <span>{pool.tradingPair}</span>
                     </div>
                   </td>
-                  <td className="px-2 py-4 text-center">{pool.tradingFeeRate}</td>
+                  <td className="px-2 py-4 text-center">
+                    {pool.tradingFeeRate}
+                  </td>
                   <td className="px-6 py-4">
                     <div>
                       <span className="text-[#5B4994] flex items-center flex-row gap-1">
