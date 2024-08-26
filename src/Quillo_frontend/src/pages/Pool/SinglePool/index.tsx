@@ -9,35 +9,26 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Card from "./card";
-import { formatId } from "../types";
+import { formatId, PoolData } from "../types";
 import TransactionTable from "./TransactionTable";
 
-const data = {
-  volume: [
-    { name: "Aug 24", value: 437.09 },
-    { name: "Aug 25", value: 859.9 },
-  ],
-  tvl: [
-    { name: "Aug 24", value: 15150 },
-    { name: "Aug 25", value: 15780 },
-  ],
-  transactions: [
-    { name: "Aug 24", value: 320 },
-    { name: "Aug 25", value: 512 },
-  ],
-};
-const cardData = {
-  tokens: [
-    { name: "DOGM", percentage: "100.00%", amount: "336.58 M ", locked: true },
-    { name: "ICP", percentage: "0.00%", amount: "941.25", locked: false },
-  ],
-  tradingFeeRate: "0.30%",
-  tvl: "$15.73 K",
-  volatilityCoefficient: "0.5",
-  volume24h: "$568.53",
-};
+// const data = {
+//   volume: [
+//     { name: "Aug 24", value: 437.09 },
+//     { name: "Aug 25", value: 859.9 },
+//   ],
+//   tvl: [
+//     { name: "Aug 24", value: 15150 },
+//     { name: "Aug 25", value: 15780 },
+//   ],
+//   transactions: [
+//     { name: "Aug 24", value: 320 },
+//     { name: "Aug 25", value: 512 },
+//   ],
+// };
 
-const SinglePool: React.FC = () => {
+
+const SinglePool: React.FC<PoolData> = ({...pool}) => {
   const [selectedMetric, setSelectedMetric] = useState<
     "volume" | "tvl" | "transactions"
   >("volume");
@@ -58,7 +49,7 @@ const SinglePool: React.FC = () => {
           <span className="text-gray-400 hover:text-[#8b9ac9]"> Go back</span>
         </a>
       </div>
-      
+
       <div className="bg-[#121935] flex-col space-y-4 mb-6 px-4 py-4 w-full border border-transparent rounded-md">
   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full space-y-4 sm:space-y-0">
     {/* coins with their icons and type of pool */}
@@ -66,26 +57,26 @@ const SinglePool: React.FC = () => {
       <div className="text-lg sm:text-xl font-bold flex items-center space-x-2">
         <span className="relative flex items-center">
           <img
-            src="/images/donCoin.png"
-            alt="DOGMI"
+            src={pool.tokenImages[0]}
+            alt={pool.tokens[0].name}
             className="h-5 w-5 sm:h-6 sm:w-6 rounded-full"
           />
           <img
-            src="/images/icpCoin.png"
-            alt="ICP"
+            src={pool.tokenImages[1]}
+            alt={pool.tokens[0].name}
             className="h-5 w-5 sm:h-6 sm:w-6 rounded-full -ml-2"
           />
         </span>
-        <h1 className="ml-2">DOGMI/ICP</h1>
+        <h1 className="ml-2">{pool.tradingPair}</h1>
       </div>
       <span className="bg-[#1F2946] text-center py-1 px-3 rounded text-xs text-gray-400 w-auto">
-        Private Pool
+        {pool.type}
       </span>
     </div>
 
     {/* id section and share and copy icon */}
     <span className="flex items-center flex-row gap-2 text-sm sm:text-base">
-      <p className="text-[#8572ff]">{formatId("sbhsdbjsdjbhyuwejhdsyusd")}</p>
+      <p className="text-[#8572ff]">{formatId(pool.id)}</p>
       <a href="#" target="_blank" rel="noopener noreferrer">
         <img src="/images/share.png" className="h-4 w-4 sm:h-5 sm:w-5" />
       </a>
@@ -94,7 +85,7 @@ const SinglePool: React.FC = () => {
 
     {/* cycles + add cycles */}
     <span className="flex space-x-1 border border-[0.15px] border-[#8572ff] rounded-md px-2 py-1 text-sm sm:text-base">
-      <span className="">398.9 B |</span>
+      <span className="">{pool.volume24H} B |</span>
       <span className="text-[#8572ff] cursor-pointer">+ Add Cycles</span>
     </span>
   </div>
@@ -103,19 +94,19 @@ const SinglePool: React.FC = () => {
     <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 items-start sm:items-center text-gray-100 text-xs sm:text-sm">
       <span className="flex space-x-1 items-center">
         <img
-          src="/images/donCoin.png"
-          alt="DOGMI"
+           src={pool.tokenImages[0]}
+           alt={pool.tokens[0].name}
           className="h-3 w-3 sm:h-4 sm:w-4 rounded-full"
         />
-        <span> 1 DOGMI = 0.05 {"{5}"} 276</span>
+        <span> {pool.conversionRates.fromCoinAtoCoinB}</span>
       </span>
       <span className="flex space-x-1 items-center">
         <img
-          src="/images/donCoin.png"
-          alt="DOGMI"
+           src={pool.tokenImages[1]}
+           alt={pool.tokens[1]?.name}
           className="h-3 w-3 sm:h-4 sm:w-4 rounded-full"
         />
-        <span>1 ICP = 358.42 K DOGMI</span>
+        <span>{pool.conversionRates.fromCoinBtoCoinA}</span>
       </span>
     </div>
     {/* button actions */}
@@ -131,7 +122,7 @@ const SinglePool: React.FC = () => {
 </div>
 
       <div className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-4 mb-6 w-full">
-        <Card {...cardData} />
+        <Card {...pool} />
 
         <div className=" bg-[#121935] px-4  py-4 rounded-lg w-full">
           <div className="flex flex-row  justify-between mb-4 w-full ">
@@ -140,7 +131,7 @@ const SinglePool: React.FC = () => {
                 {selectedMetric} . &nbsp;
               </h2>
               <h2 className=" text-white text-xl font-leagueSpartan">
-                $437.09
+                $ {pool.volume24H}
               </h2>
               <h2 className=" text-[#8572ff] text-sm font-leagueSpartan">
                 {" "}
@@ -148,7 +139,7 @@ const SinglePool: React.FC = () => {
               </h2>
             </div>
 
-            <div className="flex flex-row space-x-4  h-10 items-center bg-[#1F2946] border border-transparent rounded-md ">
+            <div className="flex md:flex-row  flex-col md:space-x-4 md:space-y-0 space-y-4  md:h-10 mb-mb-0  mb-6 items-center bg-[#1F2946] border border-transparent rounded-md ">
               <button
                 onClick={() => setSelectedMetric("volume")}
                 className={`py-2 px-4 inline-block ${
@@ -177,7 +168,7 @@ const SinglePool: React.FC = () => {
           </div>
 
           <ResponsiveContainer className="" width="100%" height={200}>
-            <BarChart data={data[selectedMetric]}>
+            <BarChart data={pool.historicalData[selectedMetric]}>
               <XAxis dataKey="name" stroke="#ccc" />
               {/* <YAxis stroke="#ccc" /> */}
               {/* <Tooltip /> */}

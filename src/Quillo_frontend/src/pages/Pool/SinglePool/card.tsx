@@ -1,25 +1,12 @@
+
 import React from "react";
+import { PoolData } from "../types";
 
-interface TokenInfo {
-  name: string;
-  percentage: string;
-  amount: string;
-  locked: boolean;
-}
-
-interface CardProps {
-  tokens: TokenInfo[];
-  tradingFeeRate: string;
-  tvl: string;
-  volatilityCoefficient: string;
-  volume24h: string;
-}
-
-const Card: React.FC<CardProps> = ({
+const Card: React.FC<Partial<PoolData>> = ({
   tokens,
   tradingFeeRate,
-  tvl,
   volatilityCoefficient,
+  historicalData,
   volume24h,
 }) => {
   return (
@@ -43,7 +30,7 @@ const Card: React.FC<CardProps> = ({
               {/* <span className="text-xs ">{token.amount}</span> */}
               {/* {token.locked && <span className="ml-1 text-xs">(0🔒)</span>} */}
               <span className="text-sm flex items-center ">
-                336.58 M ( 0{" "}
+                {token.amount} M ( 0{" "}
                 <span
                   role="img"
                   aria-label="lock"
@@ -77,7 +64,7 @@ const Card: React.FC<CardProps> = ({
           </div>
           <div className="flex  flex-col w-full">
             <h3 className=" whitespace-nowrap">TVL</h3>
-            <p className="text-gray-100 text-lg font-semibold">{tvl}</p>
+            <p className="text-gray-100 text-lg font-semibold">${historicalData.tvl[0].value} K</p>
           </div>
         </div>
         <div className="flex  flex-row  gap-12 ">

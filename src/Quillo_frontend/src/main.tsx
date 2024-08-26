@@ -61,7 +61,7 @@ const App = (): JSX.Element => {
          },  
         {
           path:"/pool/detail"  ,
-          element:< SinglePool pool={pool}/>
+          element:< SinglePool {...pool}/>
          },  
          {
           path: "/blog",
