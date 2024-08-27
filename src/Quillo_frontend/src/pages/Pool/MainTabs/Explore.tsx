@@ -5,9 +5,10 @@ import ByTokens from "../instances/ByTokens";
 import ByAdress from "../instances/ByAdress";
 import ByType from "../instances/ByType";
 import Modal from "../../Dex/Modal";
+import { Link } from "react-router-dom";
 
 function Explore() {
-  const [activeTab, setActiveTab] = useState<string>("byTokens");
+  const [activeTab, setActiveTab] = useState<string>("byType");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = useCallback(() => {
@@ -32,18 +33,18 @@ function Explore() {
         return null;
     }
   };
- 
+
   return (
     <>
       {/* contains table and some components */}
-      <div className="mt-6  bg-[#1A2240] rounded-md ">
+      <div className="mt-6  bg-[#1A2240] rounded-md   ">
         {/* Switchable Tabs */}
         <div className="mb-6">
-          <div className="bg-[#1F2946] border rounded-t-md font-medium flex items-center justify-center md:text-2xl text-lg text-center text-gray-500 border-b text-gray-400 border-gray-700">
-            <ul className="flex flex-wrap md:space-x-12 mt-2">
-              <li className="me-2">
+          <div className="bg-[#1F2946] border rounded-t-md font-medium flex items-center justify-center text-sm sm:text-lg md:text-2xl text-center text-gray-500 border-b text-gray-400 border-gray-700">
+            <ul className="flex flex-wrap justify-center w-full">
+              <li className="w-1/3 sm:w-auto">
                 <span
-                  className={`inline-block p-4 border-b-2 rounded-t-lg cursor-pointer ${
+                  className={`inline-block p-2 sm:p-4 border-b-2 rounded-t-lg cursor-pointer w-full ${
                     activeTab === "byType"
                       ? "bg-[#1A2240] text-white border-blue-600"
                       : "border-transparent hover:text-gray-600 hover:border-gray-300"
@@ -53,11 +54,11 @@ function Explore() {
                   By Type
                 </span>
               </li>
-              <li className="me-2">
+              <li className="w-1/3 sm:w-auto">
                 <span
-                  className={`inline-block p-4 border-b-2 rounded-t-lg cursor-pointer ${
+                  className={`inline-block p-2 sm:p-4 border-b-2 rounded-t-lg cursor-pointer w-full ${
                     activeTab === "byTokens"
-                      ? "text-blue-500 border-blue-600 border-blue-600"
+                      ? "text-blue-500 border-blue-600"
                       : "border-transparent hover:text-gray-600 hover:border-gray-300"
                   }`}
                   onClick={() => setActiveTab("byTokens")}
@@ -65,9 +66,9 @@ function Explore() {
                   By Tokens
                 </span>
               </li>
-              <li className="me-2">
+              <li className="w-1/3 sm:w-auto">
                 <span
-                  className={`inline-block p-4 border-b-2 rounded-t-lg cursor-pointer ${
+                  className={`inline-block p-2 sm:p-4 border-b-2 rounded-t-lg cursor-pointer w-full ${
                     activeTab === "byAddress"
                       ? "text-blue-500 border-blue-600"
                       : "border-transparent hover:text-gray-600 hover:border-gray-300"
@@ -81,7 +82,9 @@ function Explore() {
           </div>
         </div>
         {/* Render the active tab's content */}
-        <div className="transition-all duration-300">{renderContent()}</div>
+        <div className="transition-all duration-300 w-full ">
+          {renderContent()}
+        </div>
 
         <div className=" relative overflow-x-auto  ">
           <table className="w-full text-sm text-left  rtl:text-right text-gray-400">
@@ -101,12 +104,12 @@ function Explore() {
                   <td className="px-8 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     <div className="px-0 flex  flex-col gap-2 ">
                       <span className="flex  items-center  flex-row gap-2">
-                        <a
-                          href={pool.poolLink}
+                        <Link
+                          to={`/pool/details/${pool.id}`}
                           className="text-blue-400 hover:underline mr-2"
                         >
                           {formatId(pool.id)}
-                        </a>
+                        </Link>
                         <a href="#" target="_blank" rel="noopener noreferrer">
                           <img src="/images/share.png" />
                         </a>
@@ -133,7 +136,9 @@ function Explore() {
                       <span>{pool.tradingPair}</span>
                     </div>
                   </td>
-                  <td className="px-2 py-4 text-center">{pool.tradingFeeRate}</td>
+                  <td className="px-2 py-4 text-center">
+                    {pool.tradingFeeRate}
+                  </td>
                   <td className="px-6 py-4">
                     <div>
                       <span className="text-[#5B4994] flex items-center flex-row gap-1">
@@ -179,9 +184,9 @@ function Explore() {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                     fillRule="evenodd"
                     d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
+                      clipRule="evenodd"
                   />
                 </svg>
               </a>
@@ -241,9 +246,9 @@ function Explore() {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                     fillRule="evenodd"
                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clip-rule="evenodd"
+                      clipRule="evenodd"
                   />
                 </svg>
               </a>

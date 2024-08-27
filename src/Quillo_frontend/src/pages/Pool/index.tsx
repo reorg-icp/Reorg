@@ -17,8 +17,8 @@ function Pool() {
   };
 
   return (
-    <div className=" px-8 mb-12 flex items-center justify-center flex-col mx-auto ">
-    <div className="mb-8 flex flex-col items-center justify-center ">
+    <div className=" md:px-8 px-1 mb-12 flex items-center justify-center flex-col mx-auto w-full">
+    <div className="mb-8 flex flex-col items-center justify-center w-full">
       {/* Main tabs for pool */}
       <div className="  mt-8 flex items-center bg-[#1A2240] justify-between md:space-x-24 space-x-6 p-2 border-transparent rounded-md">
         <button
@@ -45,7 +45,7 @@ function Pool() {
       </div>
 
       {/* Render the active tab's content */}
-      <div className="transition-all duration-300 mt-6">{renderContent()}</div>
+      <div className="transition-all duration-300 mt-6 w-full md:px-12">{renderContent()}</div>
     </div>
     </div>
   );

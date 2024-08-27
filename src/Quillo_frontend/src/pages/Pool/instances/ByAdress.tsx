@@ -1,20 +1,18 @@
-import React from "react"
 
 const  ByAdress=() =>{
   return (
-    <div className="flex items-center justify-between mx-auto  px-4 mb-2  py-2">
-        
-    <div className="relative flex-grow  max-w-md mx-auto  ">
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between mx-auto px-4 mb-2 py-2">
+    <div className="relative flex-grow w-full md:max-w-md md:mx-auto">
       <label
         htmlFor="default-search"
-        className="mb-2 text-sm font-medium text-gray-900 sr-only "
+        className="mb-2 text-sm font-medium text-gray-900 sr-only"
       >
         Search
       </label>
       <div className="relative">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
           <svg
-            className="w-4 h-4  text-gray-400"
+            className="w-4 h-4 text-gray-400"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -43,20 +41,18 @@ const  ByAdress=() =>{
         </button>
       </div>
     </div>
-    <div className="">
-    <button
-  type="button"
-  className="
-    justify-end px-6 py-2 rounded-md 
-    bg-[#7364F0] text-white text-sm font-medium
-    transition-all duration-300 ease-in-out
-    hover:bg-[#5B4ED1] hover:shadow-lg
-    active:bg-[#4A3FB0] active:shadow-inner active:transform active:translate-y-0.5
-    focus:outline-none focus:ring-2 focus:ring-[#7364F0] focus:ring-opacity-50
-  "
->
-  Create Pools
-</button>
+    <div className="mt-4 md:mt-0">
+      <button
+        type="button"
+        className="w-full md:w-auto justify-end px-6 py-2 rounded-md 
+          bg-[#7364F0] text-white text-sm font-medium
+          transition-all duration-300 ease-in-out
+          hover:bg-[#5B4ED1] hover:shadow-lg
+          active:bg-[#4A3FB0] active:shadow-inner active:transform active:translate-y-0.5
+          focus:outline-none focus:ring-2 focus:ring-[#7364F0] focus:ring-opacity-50"
+      >
+        Create Pools
+      </button>
     </div>
   </div>
   )

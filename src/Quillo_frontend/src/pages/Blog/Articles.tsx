@@ -9,7 +9,7 @@ import {
 import { styled } from "@mui/system";
 import { Link } from "react-router-dom";
 import { HttpAgent } from "@dfinity/agent";
-import { createActor, Quillo_backend } from "../../declarations/Quillo_backend";
+import { createActor, Quillo_backend } from "../../../../declarations/Quillo_backend";
 
 const ArticleCard = styled('div')(({ theme }) => ({
   width: '100%',

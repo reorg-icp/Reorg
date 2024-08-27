@@ -6,10 +6,10 @@ const  ByTokens=({openModal}:props) =>{
  
 
   return (
-    <div className="flex items-center justify-between p-4 text-gray-300">
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between p-4 text-gray-300">
     {/* <!-- Center section with Select Token and plus icon --> */}
-    <div className="flex-grow flex justify-center items-center space-x-4">
-      <div onClick={openModal} className="bg-[#1F2946] py-2 rounded-md px-6 flex items-center space-x-4 cursor-pointer">
+    <div className="flex-grow flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+      <div onClick={openModal} className="bg-[#1F2946] py-2 rounded-md px-6 flex items-center justify-between md:justify-start space-x-4 cursor-pointer w-full md:w-auto">
         <div className="mr-4">Select Token</div>
         <span role="img" aria-label="caret-down">
           <svg
@@ -23,10 +23,10 @@ const  ByTokens=({openModal}:props) =>{
           </svg>
         </span>
       </div>
-
+  
       <i className="fas fa-plus text-2xl"></i>
-
-      <div onClick={openModal} className="bg-[#1F2946] py-2 rounded-md px-6 flex items-center space-x-4 cursor-pointer">
+  
+      <div onClick={openModal} className="bg-[#1F2946] py-2 rounded-md px-6 flex items-center justify-between md:justify-start space-x-4 cursor-pointer w-full md:w-auto">
         <div>Select Token</div>
         <span role="img" aria-label="caret-down">
           <svg
@@ -41,23 +41,21 @@ const  ByTokens=({openModal}:props) =>{
         </span>
       </div>
     </div>
-    <div>
-    <button
-  type="button"
-  className="
-    justify-end px-6 py-2 rounded-md 
-    bg-[#7364F0] text-white text-sm font-medium
-    transition-all duration-300 ease-in-out
-    hover:bg-[#5B4ED1] hover:shadow-lg
-    active:bg-[#4A3FB0] active:shadow-inner active:transform active:translate-y-0.5
-    focus:outline-none focus:ring-2 focus:ring-[#7364F0] focus:ring-opacity-50
-  "
->
-  Create Pools
-</button>
+    <div className="mt-4 md:mt-0">
+      <button
+        type="button"
+        className="
+          w-full md:w-auto justify-end px-6 py-2 rounded-md 
+          bg-[#7364F0] text-white text-sm font-medium
+          transition-all duration-300 ease-in-out
+          hover:bg-[#5B4ED1] hover:shadow-lg
+          active:bg-[#4A3FB0] active:shadow-inner active:transform active:translate-y-0.5
+          focus:outline-none focus:ring-2 focus:ring-[#7364F0] focus:ring-opacity-50
+        "
+      >
+        Create Pools
+      </button>
     </div>
-
-  
   </div>
 
   )

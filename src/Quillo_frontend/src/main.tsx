@@ -19,8 +19,10 @@ import Dex from "./pages/Dex";
 import Pool from "./pages/Pool";
 import Articles from "./pages/Blog/Articles";
 import Article from "./pages/Blog/Article";
+import SinglePool from "./pages/Pool/SinglePool";
 
 const App = (): JSX.Element => {
+  
   const router = createBrowserRouter([
     {
       path: "/",
@@ -55,6 +57,10 @@ const App = (): JSX.Element => {
         {
           path:"/pool"  ,
           element:< Pool/>
+         },  
+        {
+          path:"/pool/details/:id"  ,
+          element:< SinglePool/>
          },  
          {
           path: "/blog",
