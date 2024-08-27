@@ -104,7 +104,7 @@ function Explore() {
                     <div className="px-0 flex  flex-col gap-2 ">
                       <span className="flex  items-center  flex-row gap-2">
                         <a
-                          href={pool.poolLink}
+                          href={`/details/${pool.id}`}
                           className="text-blue-400 hover:underline mr-2"
                         >
                           {formatId(pool.id)}

@@ -20,8 +20,7 @@ import Pool from "./pages/Pool";
 import Articles from "./pages/Blog/Articles";
 import Article from "./pages/Blog/Article";
 import SinglePool from "./pages/Pool/SinglePool";
-import { poolData } from "./pages/Pool/types";
-const pool = poolData[0];
+
 const App = (): JSX.Element => {
   
   const router = createBrowserRouter([
@@ -60,8 +59,8 @@ const App = (): JSX.Element => {
           element:< Pool/>
          },  
         {
-          path:"/pool/detail"  ,
-          element:< SinglePool {...pool}/>
+          path:"/pool/detail/:id"  ,
+          element:< SinglePool/>
          },  
          {
           path: "/blog",

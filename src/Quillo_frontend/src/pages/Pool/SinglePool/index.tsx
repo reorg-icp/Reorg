@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import {
   BarChart,
   Bar,
@@ -9,16 +9,27 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Card from "./card";
-import { formatId, PoolData } from "../types";
+import { formatId, PoolData, poolData } from "../types";
 import TransactionTable from "./TransactionTable";
 
-
-
-const SinglePool: React.FC<PoolData> = ({...pool}) => {
+const SinglePool: React.FC = () => {
   const [selectedMetric, setSelectedMetric] = useState<
     "volume" | "tvl" | "transactions"
   >("volume");
+  
+  const { id } = useParams();
+  const [pool, setPool] = useState<Partial<PoolData> | null>(null);
 
+  useEffect(() => {
+    // Filter the data based on the ID from the URL
+    const fetchDetails = () => {
+      const data = poolData.find((pool) => pool.id === id);
+      setPool(data);
+    };
+
+    fetchDetails();
+  }, [id, poolData]);
+  if (!pool) return <div>Loading...</div>;
   return (
     <div className="min-h-screen flex flex-col  w-full text-white md:px-28 px-2  py-8">
       <div className="mb-6">
@@ -37,75 +48,84 @@ const SinglePool: React.FC<PoolData> = ({...pool}) => {
       </div>
 
       <div className="bg-[#121935] flex-col space-y-4 mb-6 px-4 py-4 w-full border border-transparent rounded-md">
-  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full space-y-4 sm:space-y-0">
-    {/* coins with their icons and type of pool */}
-    <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 items-start sm:items-center">
-      <div className="text-lg sm:text-xl font-bold flex items-center space-x-2">
-        <span className="relative flex items-center">
-          <img
-            src={pool.tokenImages[0]}
-            alt={pool.tokens[0].name}
-            className="h-5 w-5 sm:h-6 sm:w-6 rounded-full"
-          />
-          <img
-            src={pool.tokenImages[1]}
-            alt={pool.tokens[0].name}
-            className="h-5 w-5 sm:h-6 sm:w-6 rounded-full -ml-2"
-          />
-        </span>
-        <h1 className="ml-2">{pool.tradingPair}</h1>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full space-y-4 sm:space-y-0">
+          {/* coins with their icons and type of pool */}
+          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 items-start sm:items-center">
+            <div className="text-lg sm:text-xl font-bold flex items-center space-x-2">
+              <span className="relative flex items-center">
+                <img
+                  src={pool.tokenImages[0]}
+                  alt={pool.tokens[0].name}
+                  className="h-5 w-5 sm:h-6 sm:w-6 rounded-full"
+                />
+                <img
+                  src={pool.tokenImages[1]}
+                  alt={pool.tokens[0].name}
+                  className="h-5 w-5 sm:h-6 sm:w-6 rounded-full -ml-2"
+                />
+              </span>
+              <h1 className="ml-2">{pool.tradingPair}</h1>
+            </div>
+            <span className="bg-[#1F2946] text-center py-1 px-3 rounded text-xs text-gray-400 w-auto">
+              {pool.type}
+            </span>
+          </div>
+
+          {/* id section and share and copy icon */}
+          <span className="flex items-center flex-row gap-2 text-sm sm:text-base">
+            <p className="text-[#8572ff]">{formatId(pool.id)}</p>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <img src="/images/share.png" className="h-4 w-4 sm:h-5 sm:w-5" />
+            </a>
+            <img
+              src="/images/copy.png"
+              className="cursor-pointer h-4 w-4 sm:h-5 sm:w-5"
+            />
+          </span>
+
+          {/* cycles + add cycles */}
+          <span className="flex space-x-1 border border-[0.15px] border-[#8572ff] rounded-md px-2 py-1 text-sm sm:text-base">
+            <span className="">{pool.volume24H} B |</span>
+            <span className="text-[#8572ff] cursor-pointer">+ Add Cycles</span>
+          </span>
+        </div>
+
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
+          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 items-start sm:items-center text-gray-100 text-xs sm:text-sm">
+            <span className="flex space-x-1 items-center">
+              <img
+                src={pool.tokenImages[0]}
+                alt={pool.tokens[0].name}
+                className="h-3 w-3 sm:h-4 sm:w-4 rounded-full"
+              />
+              <span> {pool.conversionRates.fromCoinAtoCoinB}</span>
+            </span>
+            <span className="flex space-x-1 items-center">
+              <img
+                src={pool.tokenImages[1]}
+                alt={pool.tokens[1]?.name}
+                className="h-3 w-3 sm:h-4 sm:w-4 rounded-full"
+              />
+              <span>{pool.conversionRates.fromCoinBtoCoinA}</span>
+            </span>
+          </div>
+          {/* button actions */}
+          <div className="flex items-center space-x-2 w-full sm:w-auto">
+            <Link
+              className="flex-1 sm:flex-none px-3 sm:px-4 py-2 border border-indigo-600 hover:border-indigo-500 rounded-md text-center text-sm"
+              to="/pool"
+            >
+              <button>Add Liquidity</button>
+            </Link>
+            <Link
+              className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-[#8572ff] hover:bg-indigo-600 rounded-md text-center text-sm"
+              to="/dex"
+            >
+              <button>Swap</button>
+            </Link>
+          </div>
+        </div>
       </div>
-      <span className="bg-[#1F2946] text-center py-1 px-3 rounded text-xs text-gray-400 w-auto">
-        {pool.type}
-      </span>
-    </div>
-
-    {/* id section and share and copy icon */}
-    <span className="flex items-center flex-row gap-2 text-sm sm:text-base">
-      <p className="text-[#8572ff]">{formatId(pool.id)}</p>
-      <a href="#" target="_blank" rel="noopener noreferrer">
-        <img src="/images/share.png" className="h-4 w-4 sm:h-5 sm:w-5" />
-      </a>
-      <img src="/images/copy.png" className="cursor-pointer h-4 w-4 sm:h-5 sm:w-5" />
-    </span>
-
-    {/* cycles + add cycles */}
-    <span className="flex space-x-1 border border-[0.15px] border-[#8572ff] rounded-md px-2 py-1 text-sm sm:text-base">
-      <span className="">{pool.volume24H} B |</span>
-      <span className="text-[#8572ff] cursor-pointer">+ Add Cycles</span>
-    </span>
-  </div>
-
-  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
-    <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 items-start sm:items-center text-gray-100 text-xs sm:text-sm">
-      <span className="flex space-x-1 items-center">
-        <img
-           src={pool.tokenImages[0]}
-           alt={pool.tokens[0].name}
-          className="h-3 w-3 sm:h-4 sm:w-4 rounded-full"
-        />
-        <span> {pool.conversionRates.fromCoinAtoCoinB}</span>
-      </span>
-      <span className="flex space-x-1 items-center">
-        <img
-           src={pool.tokenImages[1]}
-           alt={pool.tokens[1]?.name}
-          className="h-3 w-3 sm:h-4 sm:w-4 rounded-full"
-        />
-        <span>{pool.conversionRates.fromCoinBtoCoinA}</span>
-      </span>
-    </div>
-    {/* button actions */}
-    <div className="flex items-center space-x-2 w-full sm:w-auto">
-      <Link className="flex-1 sm:flex-none px-3 sm:px-4 py-2 border border-indigo-600 hover:border-indigo-500 rounded-md text-center text-sm" to="/pool">
-        <button>Add Liquidity</button>
-      </Link>
-      <Link className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-[#8572ff] hover:bg-indigo-600 rounded-md text-center text-sm" to="/dex">
-        <button>Swap</button>
-      </Link>
-    </div>
-  </div>
-</div>
 
       <div className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-4 mb-6 w-full">
         <Card {...pool} />
@@ -117,11 +137,11 @@ const SinglePool: React.FC<PoolData> = ({...pool}) => {
                 {selectedMetric} . &nbsp;
               </h2>
               <h2 className=" text-white text-xl font-leagueSpartan">
-                $ {pool.volume24H}
+                $ {pool.historicalData[selectedMetric][0].value}
               </h2>
               <h2 className=" text-[#8572ff] text-sm font-leagueSpartan">
                 {" "}
-                Aug 25,2024
+                {pool.historicalData[selectedMetric][0].name}
               </h2>
             </div>
 
@@ -161,11 +181,7 @@ const SinglePool: React.FC<PoolData> = ({...pool}) => {
               <Bar dataKey="value" fill="#7F6DF5" />
             </BarChart>
           </ResponsiveContainer>
-
-          
         </div>
-
-     
       </div>
       <TransactionTable />
     </div>

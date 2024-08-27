@@ -34,14 +34,6 @@ interface TokenInfo {
   locked: boolean;
 }
 
-// tokens: [
-//   { name: "DOGM", percentage: "100.00%", amount: "336.58 M ", locked: true },
-//   { name: "ICP", percentage: "0.00%", amount: "941.25", locked: false },
-// ],
-// tradingFeeRate: "0.30%",
-// tvl: "$15.73 K",
-// volatilityCoefficient: "0.5",
-// volume24h: "$568.53",
 
 
  export  const poolData: PoolData[] = [
@@ -68,16 +60,16 @@ interface TokenInfo {
         { name: "ICP", percentage: "0.00%", amount: "941.25", locked: false },],
       historicalData: {
         volume: [
-          { name: 'Aug 24', value: 38.81 },
-          { name: 'Aug 25', value: 42.33 },
+          { name: 'Aug 24,  2024', value: 38.81 },
+          { name: 'Aug 25,  2024', value: 42.33 },
         ],
         tvl: [
-          { name: 'Aug 24', value: 207.33 },
-          { name: 'Aug 25', value: 210.45 },
+          { name: 'Aug 24,  2024', value: 207.33 },
+          { name: 'Aug 25,  2024', value: 210.45 },
         ],
         transactions: [
-          { name: 'Aug 24', value: 18 },
-          { name: 'Aug 25', value: 22 },
+          { name: 'Aug 24,  2024', value: 18 },
+          { name: 'Aug 25,  2024', value: 22 },
         ],
       },
     
@@ -106,16 +98,16 @@ interface TokenInfo {
       },
       historicalData: {
         volume: [
-          { name: 'Aug 24', value: 38.81 },
-          { name: 'Aug 25', value: 42.33 },
+          { name: 'Aug 24,  2024', value: 38.81 },
+          { name: 'Aug 25,  2024', value: 42.33 },
         ],
         tvl: [
-          { name: 'Aug 24', value: 207.33 },
-          { name: 'Aug 25', value: 210.45 },
+          { name: 'Aug 24,  2024', value: 207.33 },
+          { name: 'Aug 25,  2024', value: 210.45 },
         ],
         transactions: [
-          { name: 'Aug 24', value: 18 },
-          { name: 'Aug 25', value: 22 },
+          { name: 'Aug 24,  2024', value: 18 },
+          { name: 'Aug 25,  2024', value: 22 },
         ],
       },
       volatilityCoefficient: '0.5',
@@ -145,16 +137,16 @@ interface TokenInfo {
       },
       historicalData: {
         volume: [
-          { name: 'Aug 24', value: 38.81 },
-          { name: 'Aug 25', value: 42.33 },
+          { name: 'Aug 24,  2024', value: 38.81 },
+          { name: 'Aug 25,  2024', value: 42.33 },
         ],
         tvl: [
-          { name: 'Aug 24', value: 207.33 },
-          { name: 'Aug 25', value: 210.45 },
+          { name: 'Aug 24,  2024', value: 207.33 },
+          { name: 'Aug 25,  2024', value: 210.45 },
         ],
         transactions: [
-          { name: 'Aug 24', value: 18 },
-          { name: 'Aug 25', value: 22 },
+          { name: 'Aug 24,  2024', value: 18 },
+          { name: 'Aug 25,  2024', value: 22 },
         ],
       },
       volatilityCoefficient: '0.5',
@@ -186,16 +178,16 @@ interface TokenInfo {
       },
       historicalData: {
         volume: [
-          { name: 'Aug 24', value: 38.81 },
-          { name: 'Aug 25', value: 42.33 },
+          { name: 'Aug 24,  2024', value: 38.81 },
+          { name: 'Aug 25,  2024', value: 42.33 },
         ],
         tvl: [
-          { name: 'Aug 24', value: 207.33 },
-          { name: 'Aug 25', value: 210.45 },
+          { name: 'Aug 24,  2024', value: 207.33 },
+          { name: 'Aug 25,  2024', value: 210.45 },
         ],
         transactions: [
-          { name: 'Aug 24', value: 18 },
-          { name: 'Aug 25', value: 22 },
+          { name: 'Aug 24,  2024', value: 18 },
+          { name: 'Aug 25,  2024', value: 22 },
         ],
       },
       volatilityCoefficient: '0.5',
@@ -227,16 +219,16 @@ interface TokenInfo {
       },
       historicalData: {
         volume: [
-          { name: 'Aug 24', value: 38.81 },
-          { name: 'Aug 25', value: 42.33 },
+          { name: 'Aug 24,  2024', value: 38.81 },
+          { name: 'Aug 25,  2024', value: 42.33 },
         ],
         tvl: [
-          { name: 'Aug 24', value: 207.33 },
-          { name: 'Aug 25', value: 210.45 },
+          { name: 'Aug 24,  2024', value: 207.33 },
+          { name: 'Aug 25,  2024', value: 210.45 },
         ],
         transactions: [
-          { name: 'Aug 24', value: 18 },
-          { name: 'Aug 25', value: 22 },
+          { name: 'Aug 24,  2024', value: 18 },
+          { name: 'Aug 25,  2024', value: 22 },
         ],
       },
       volatilityCoefficient: '0.5',
@@ -268,16 +260,16 @@ interface TokenInfo {
    
       historicalData: {
         volume: [
-          { name: 'Aug 24', value: 38.81 },
-          { name: 'Aug 25', value: 42.33 },
+          { name: 'Aug 24,  2024', value: 38.81 },
+          { name: 'Aug 25,  2024', value: 42.33 },
         ],
         tvl: [
-          { name: 'Aug 24', value: 207.33 },
-          { name: 'Aug 25', value: 210.45 },
+          { name: 'Aug 24,  2024', value: 207.33 },
+          { name: 'Aug 25,  2024', value: 210.45 },
         ],
         transactions: [
-          { name: 'Aug 24', value: 18 },
-          { name: 'Aug 25', value: 22 },
+          { name: 'Aug 24,  2024', value: 18 },
+          { name: 'Aug 25,  2024', value: 22 },
         ],
       },
       volatilityCoefficient: '0.5',
