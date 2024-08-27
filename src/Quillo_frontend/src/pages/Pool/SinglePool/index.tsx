@@ -34,8 +34,8 @@ console.log("page");
   return (
     <div className="min-h-screen flex flex-col  w-full text-white md:px-28 px-2  py-8">
       <div className="mb-6">
-        <a
-          href="#"
+        <Link
+          to="/pool"
           className="text-lg text-gray-400 flex items-center space-x-2"
         >
           <span>
@@ -45,7 +45,7 @@ console.log("page");
             />
           </span>
           <span className="text-gray-400 hover:text-[#8b9ac9]"> Go back</span>
-        </a>
+        </Link>
       </div>
 
       <div className="bg-[#121935] flex-col space-y-4 mb-6 px-4 py-4 w-full border border-transparent rounded-md">

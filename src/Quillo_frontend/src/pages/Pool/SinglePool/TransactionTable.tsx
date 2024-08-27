@@ -52,8 +52,8 @@ function TransactionTable() {
         </div>
 
         <div className="  relative overflow-x-auto  ">
-          <table className="w-full text-sm text-left border-b border-gray-700   rtl:text-right text-gray-400">
-            <thead className="text-xs   ">
+          <table className="w-full text-sm text-left    rtl:text-right text-gray-400">
+            <thead className="text-xs border-b border-gray-700  ">
               <tr>
                 <th scope="col" className="px-6 py-6">
                   Action
@@ -87,7 +87,7 @@ function TransactionTable() {
                     key={index}
                     className="border-b border-gray-700 hover:bg-[#1F2946]"
                   >
-                    <td className="px-6 py-6 text-center  whitespace-nowrap ">
+                    <td className="px-4 py-6 text-center  whitespace-nowrap ">
                       {data.Action}
                     </td>
                     <td className="px-4 py-6">
