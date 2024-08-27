@@ -16,10 +16,11 @@ const SinglePool: React.FC = () => {
   const [selectedMetric, setSelectedMetric] = useState<
     "volume" | "tvl" | "transactions"
   >("volume");
-  
+
   const { id } = useParams();
   const [pool, setPool] = useState<Partial<PoolData> | null>(null);
-
+console.log({id});
+console.log("page");
   useEffect(() => {
     // Filter the data based on the ID from the URL
     const fetchDetails = () => {

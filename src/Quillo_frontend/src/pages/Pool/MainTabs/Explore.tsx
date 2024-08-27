@@ -5,6 +5,7 @@ import ByTokens from "../instances/ByTokens";
 import ByAdress from "../instances/ByAdress";
 import ByType from "../instances/ByType";
 import Modal from "../../Dex/Modal";
+import { Link } from "react-router-dom";
 
 function Explore() {
   const [activeTab, setActiveTab] = useState<string>("byType");
@@ -103,12 +104,12 @@ function Explore() {
                   <td className="px-8 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     <div className="px-0 flex  flex-col gap-2 ">
                       <span className="flex  items-center  flex-row gap-2">
-                        <a
-                          href={`/details/${pool.id}`}
+                        <Link
+                          to={`/pool/details/${pool.id}`}
                           className="text-blue-400 hover:underline mr-2"
                         >
                           {formatId(pool.id)}
-                        </a>
+                        </Link>
                         <a href="#" target="_blank" rel="noopener noreferrer">
                           <img src="/images/share.png" />
                         </a>
