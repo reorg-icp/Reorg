@@ -20,7 +20,7 @@ const SinglePool: React.FC = () => {
   const { id } = useParams();
   const [pool, setPool] = useState<Partial<PoolData> | null>(null);
 console.log({id});
-console.log("page");
+
   useEffect(() => {
     // Filter the data based on the ID from the URL
     const fetchDetails = () => {
