@@ -24,7 +24,7 @@
     "src/Quillo_frontend"
   ],
   "dependencies": {
-    "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/react-splide": "^0.7.12zsll",
     "@splidejs/splide": "^4.1.4",
     "react-spinners": "^0.14.1"
   }

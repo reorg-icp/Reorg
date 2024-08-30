@@ -88,6 +88,8 @@ export const MobileNav = (): JSX.Element => {
             <Link to="tokens" style={aLink}>
               Tokens
             </Link>
+                 <Link to="pool">Pools</Link>
+                  <Link to="dex">DEX</Link>
 
             <Link to="comingSoon" style={aLink}>
               LaunchPad

@@ -34,6 +34,8 @@ export const DesktopNav = (): JSX.Element => {
 
         <div className="links">
           <Link to="tokens">Token creator</Link>
+              <Link to="pool">Pools</Link>
+                  <Link to="dex">DEX</Link>
 
           <Link to="comingSoon">launchpad</Link>
         </div>
