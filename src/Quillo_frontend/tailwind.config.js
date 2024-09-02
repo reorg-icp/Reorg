@@ -26,6 +26,14 @@ module.exports = {
           bluee: '#006ad4',
           danger: 'rgba(188, 0, 68, 0.7)',
           dark: '#141414',
+
+          glowinggold: '#FFD700',
+          lightgray: '#F5F5F5',
+          darkgray: '#333333',
+          deepblue: '#003366',
+          softbeige: '#F0E5DE',
+
+          
         },
         backgroundImage: {
           'primary-gradient-one': 'linear-gradient(0deg, rgba(0, 60, 50, 0.9) 0%, rgba(0, 120, 100, 0.8) 100%)',

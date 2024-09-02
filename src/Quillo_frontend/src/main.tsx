@@ -10,18 +10,21 @@ import { Layout } from "./components/global/Layout";
 import "./styles/index.scss";
 import Private from "./components/auth/Private";
 import { HomePage } from "./pages/home";
-import Register from "./pages/register";
+// import Register from "./pages/register";
 import ComingSoon from "./pages/comingSoon";
 import Tokens from "./pages/Tokens";
-import KYC from "./pages/Kyc";
+// import KYC from "./pages/Kyc";
 import Dex from "./pages/Dex";
 
 import Pool from "./pages/Pool";
-import Articles from "./pages/Blog/Articles";
-import Article from "./pages/Blog/Article";
+// import Articles from "./pages/Blog/Articles";
+// import Article from "./pages/Blog/Article";
 import SinglePool from "./pages/Pool/SinglePool";
 import SingleBlogPost from "./pages/Blog/SingleBlogPost";
 import BlogsPosts from "./pages/Blog/BlogsPosts";
+import TermsOfService from "./pages/TermsOfService";
+import WhitePaper from "./pages/WhitePaper";
+import Roadmap from "./pages/Roadmap";
 
 const App = (): JSX.Element => {
   
@@ -36,22 +39,22 @@ const App = (): JSX.Element => {
           path: "/app",
           element: <HomePage />,
         },
-        {
-          path: "/app/token",
-          element: (
-            <Private>
-              <Register />
-            </Private>
-          ),
-        },
+        // {
+        //   path: "/app/token",
+        //   element: (
+        //     <Private>
+        //       <Register />
+        //     </Private>
+        //   ),
+        // },
         {
           path: "/tokens",
           element: <Tokens />,
         },
-        {
-          path: "/apply",
-          element: <KYC />,
-        },
+        // {
+        //   path: "/apply",
+        //   element: <KYC />,
+        // },
         {
           path:"/dex",
           element:<Dex/>
@@ -72,14 +75,27 @@ const App = (): JSX.Element => {
           path:'/blogposts',
           element:<BlogsPosts />
          },
+         
          {
-          path: "/blog",
-          element: <Articles/>,
-        },
-        {
-          path: "/blog/:slug",
-          element: <Article/>,
-        },
+          path:'/TermsOfServices',
+          element:<TermsOfService />
+         },
+         {
+          path:'/WhitePaper',
+          element:<WhitePaper />
+         },
+         {
+          path:'/Roadmap',
+          element:<Roadmap />
+         },
+        //  {
+        //   path: "/blog",
+        //   element: <Articles/>,
+        // },
+        // {
+        //   path: "/blog/:slug",
+        //   element: <Article/>,
+        // },
  
         {
           path: "/comingSoon",
