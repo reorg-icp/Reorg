@@ -11,6 +11,7 @@ import { colors } from "../../constants/colors";
 import { logoFont, baseFont } from "../../constants/styles";
 import LoadingAnimation from "../../assets/animations/loading.json";
 import { usePlugWallet } from "../../store";
+import { PlugMobileProvider } from '@funded-labs/plug-mobile-sdk';
 
 export const SignInDrawer = (): JSX.Element => {
   const { setPlug } = usePlugWallet((state: any) => state);
@@ -27,10 +28,34 @@ export const SignInDrawer = (): JSX.Element => {
   const ConnectPlugWallet = async (): Promise<void> => {
     setIsConnecting(true);
 
-    // const host: string = "http://127.0.0.1:4943/";
     const live_host = "https://ieffn-gaaaa-aaaap-qhkwa-cai.icp0.io";
-
+    // const live_host = "http://127.0.0.1:4943/";
+    const isMobile = PlugMobileProvider.isMobileBrowser()
     try {
+      if (isMobile){
+        const mobileProvider = new PlugMobileProvider({
+          debug: true,
+          walletConnectProjectId: 'b321809d2b78a6d1ec98fe2d4accf5ad',
+          window: window,
+        });
+        await mobileProvider.initialize();
+           console.log("initialised")
+        if (!mobileProvider.isPaired()) {
+        
+          await mobileProvider.pair();
+          console.log("pared")
+        }
+   // Create agent using mobile provider
+      const agent = await mobileProvider.createAgent({
+        host: live_host,
+        targets: ['bkyz2-fmaaa-aaaaa-qaaaq-cai','bkyz2-fmaaa-aaaaa-qaaaq-cai' ,'ircua-hiaaa-aaaap-qhkvq-cai'], // Specify the canisters
+      });
+      console.log("created Agent",agent)
+      const user_principal=  await agent.getPrincipal();
+      localStorage.setItem("principal", user_principal as unknown as string);
+      setPlug(agent);
+
+      }else{
       await (window as any).ic.plug.requestConnect({
         host: live_host,
         onConnectionUpdate,
@@ -44,11 +69,20 @@ export const SignInDrawer = (): JSX.Element => {
       setPlug((window as any).ic?.plug);
       closeAuthdrawer();
       showsuccesssnack("You signed in successfully");
-    } catch (e) {
-      console.log(e);
+    } 
+  }catch (e) {
+      console.error(e);
+      if (e  ){
+        const message = JSON.stringify(e);
+        if (message=="Uncaught, Cannot read properties of undefined (reading 'plug')"){
+
+console.log({message});
+        }
+      }
       showerrorsnack(
         "An error occurred, please try again." + JSON.stringify(e)
       );
+    
     } finally {
       setIsConnecting(false);
     }
