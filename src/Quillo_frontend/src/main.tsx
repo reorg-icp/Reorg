@@ -22,6 +22,9 @@ import Article from "./pages/Blog/Article";
 import SinglePool from "./pages/Pool/SinglePool";
 import SingleBlogPost from "./pages/Blog/SingleBlogPost";
 import BlogsPosts from "./pages/Blog/BlogsPosts";
+import TermsOfService from "./pages/TermsOfService";
+import WhitePaper from "./pages/WhitePaper";
+import Roadmap from "./pages/Roadmap";
 
 const App = (): JSX.Element => {
   
@@ -71,6 +74,19 @@ const App = (): JSX.Element => {
          {
           path:'/blogposts',
           element:<BlogsPosts />
+         },
+         
+         {
+          path:'/TermsOfServices',
+          element:<TermsOfService />
+         },
+         {
+          path:'/WhitePaper',
+          element:<WhitePaper />
+         },
+         {
+          path:'/Roadmap',
+          element:<Roadmap />
          },
          {
           path: "/blog",

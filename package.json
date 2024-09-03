@@ -22,5 +22,9 @@
   "type": "module",
   "workspaces": [
     "src/Quillo_frontend"
-  ]
+  ],
+  "dependencies": {
+    "@web5/api": "^0.10.0",
+    "@web5/credentials": "^1.0.3"
+  }
 }

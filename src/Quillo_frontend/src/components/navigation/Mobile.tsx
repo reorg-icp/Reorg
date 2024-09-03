@@ -18,16 +18,17 @@ export const MobileNav = (): JSX.Element => {
 
   return (
     <>
-      <div className="mobilenavctr">
+      <div className="bg-emerald-950 mobilenavctr">
         <Link
           to="/"
           style={{ textDecoration: "none", color: "black", outline: "none" }}
         >
           <span
-            className="logo text-white"
+            className="logo text-blue-50 flex items-center"
             style={{ fontWeight: "bold", marginLeft: "5px" }}
           >
-            reorg.
+            <img src="./src/assets/images/logo.png" alt="REORG. Logo" className="w-12 h-auto m-2" />
+            REORG.
           </span>
         </Link>
 
