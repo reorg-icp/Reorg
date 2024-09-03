@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath, URL } from "url";
 dotenv.config({ path: "../../.env" });
+import mdx from "@mdx-js/rollup";
 
 export default defineConfig({
   build: {
@@ -26,6 +27,7 @@ export default defineConfig({
     },
   },
   plugins: [
+    mdx(),
     react(),
     environment("all", { prefix: "CANISTER_" }),
     environment("all", { prefix: "DFX_" }),

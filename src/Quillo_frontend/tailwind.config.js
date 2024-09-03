@@ -14,6 +14,7 @@ module.exports = {
         colors: {
           primary: '#ffffff',
           secondary: 'rgba(228, 255, 151, 0.2)',
+          poolAndDexBackground:"#1A2240]",
           gradientBackgroundColor: 'linear-gradient(270deg, #8572ff 0%, #5d52de 100%)',
           text: {
             primary: '#000000',

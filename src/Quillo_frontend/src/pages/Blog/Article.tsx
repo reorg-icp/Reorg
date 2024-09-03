@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { HttpAgent } from "@dfinity/agent";
-import { createActor, Quillo_backend } from "../../declarations/Quillo_backend";
+import { createActor, Quillo_backend } from "../../../../declarations/Quillo_backend";
 import { styled } from "@mui/system";
 
 

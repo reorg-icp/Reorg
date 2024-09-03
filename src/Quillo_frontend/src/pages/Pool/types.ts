@@ -1,18 +1,39 @@
 
 
 export interface PoolData {
-    id: string;
-    type: 'Public Pool' | 'Private Pool' | 'Anchored Pool'; // Pool types
-    tradingPair: string;
-    tradingFeeRate: string;
-    tokenAmount: {
-      coinA: string;
-      coinB: string;
-    };
-    volume24H: string;
-    poolLink: string;
-    tokenImages: string[];
-  }
+  id: string;
+  type: 'Public Pool' | 'Private Pool' | 'Anchored Pool';
+  tradingPair: string;
+  tradingFeeRate: string;
+  tokenAmount: {
+    coinA: string;
+    coinB: string;
+  };
+  volume24H: string;
+  poolLink: string;
+  tokenImages: string[];
+  conversionRates: {
+    fromCoinAtoCoinB: string;
+    fromCoinBtoCoinA: string;
+  };
+  historicalData: {
+    volume: { name: string; value: number }[];
+    tvl: { name: string; value: number }[];
+    transactions: { name: string; value: number }[];
+  };
+  tokens: TokenInfo[];
+  volatilityCoefficient: string;
+  volume24h: string;
+  
+}
+
+interface TokenInfo {
+  name: string;
+  percentage: string;
+  amount: string;
+  locked: boolean;
+}
+
 
 
  export  const poolData: PoolData[] = [
@@ -25,13 +46,37 @@ export interface PoolData {
         coinA: '207.33 ICP (0.01%)',
         coinB: '1.53 M BITCORN (99.99%)',
       },
-      volume24H: '$38.81',
+      volume24H: '38.81',
       poolLink: '/pool/detail/hvdnc-uqaaa-aaaam-acplq-cai',
       tokenImages: [
         'https://metrics.icpex.org/images/ryjl3-tyaaa-aaaaa-aaaba-cai.png',
         'https://metrics.icpex.org/images/edypu-bqaaa-aaaak-afknq-cai.png',
       ],
+      conversionRates: {
+        fromCoinAtoCoinB: '1 ICP = 358.42K BITCORN',
+        fromCoinBtoCoinA: '1 BITCORN = 0.0005279 ICP',
+      },
+      tokens: [   { name: "DOGM", percentage: "100.00%", amount: "336.58 M ", locked: true },
+        { name: "ICP", percentage: "0.00%", amount: "941.25", locked: false },],
+      historicalData: {
+        volume: [
+          { name: 'Aug 24,  2024', value: 38.81 },
+          { name: 'Aug 25,  2024', value: 42.33 },
+        ],
+        tvl: [
+          { name: 'Aug 24,  2024', value: 207.33 },
+          { name: 'Aug 25,  2024', value: 210.45 },
+        ],
+        transactions: [
+          { name: 'Aug 24,  2024', value: 18 },
+          { name: 'Aug 25,  2024', value: 22 },
+        ],
+      },
+    
+      volatilityCoefficient: '0.5',
+      volume24h: "$3232"
     },
+
     {
       id: 'abcde-12345-67890-fghij-klmno',
       type: 'Private Pool',
@@ -47,7 +92,30 @@ export interface PoolData {
         'https://metrics.icpex.org/images/ryjl3-tyaaa-aaaaa-aaaba-cai.png',
         'https://metrics.icpex.org/images/edypu-bqaaa-aaaak-afknq-cai.png',
       ],
-    },
+      conversionRates: {
+        fromCoinAtoCoinB: '1 ICP = 358.42K BITCORN',
+        fromCoinBtoCoinA: '1 BITCORN = 0.0005279 ICP',
+      },
+      historicalData: {
+        volume: [
+          { name: 'Aug 24,  2024', value: 38.81 },
+          { name: 'Aug 25,  2024', value: 42.33 },
+        ],
+        tvl: [
+          { name: 'Aug 24,  2024', value: 207.33 },
+          { name: 'Aug 25,  2024', value: 210.45 },
+        ],
+        transactions: [
+          { name: 'Aug 24,  2024', value: 18 },
+          { name: 'Aug 25,  2024', value: 22 },
+        ],
+      },
+      volatilityCoefficient: '0.5',
+      tokens: [   { name: "DOGM", percentage: "100.00%", amount: "336.58 M ", locked: true },
+        { name: "ICP", percentage: "0.00%", amount: "941.25", locked: false },],
+   
+      volume24h: "$568.53"
+      },
     {
       id: 'fghij-67890-12345-klmno-pqrst',
       type: 'Anchored Pool',
@@ -63,7 +131,31 @@ export interface PoolData {
         'https://metrics.icpex.org/images/ryjl3-tyaaa-aaaaa-aaaba-cai.png',
         'https://metrics.icpex.org/images/edypu-bqaaa-aaaak-afknq-cai.png',
       ],
+      conversionRates: {
+        fromCoinAtoCoinB: '1 ICP = 358.42K BITCORN',
+        fromCoinBtoCoinA: '1 BITCORN = 0.0005279 ICP',
+      },
+      historicalData: {
+        volume: [
+          { name: 'Aug 24,  2024', value: 38.81 },
+          { name: 'Aug 25,  2024', value: 42.33 },
+        ],
+        tvl: [
+          { name: 'Aug 24,  2024', value: 207.33 },
+          { name: 'Aug 25,  2024', value: 210.45 },
+        ],
+        transactions: [
+          { name: 'Aug 24,  2024', value: 18 },
+          { name: 'Aug 25,  2024', value: 22 },
+        ],
+      },
+      volatilityCoefficient: '0.5',
+      tokens: [   { name: "DOGM", percentage: "100.00%", amount: "336.58 M ", locked: true },
+        { name: "ICP", percentage: "0.00%", amount: "941.25", locked: false },],
+   
+      volume24h: "$568.53"
     },
+
     {
       id: 'xyz-98765-43210-cdefg-hijkl',
       type: 'Public Pool',
@@ -79,12 +171,38 @@ export interface PoolData {
         'https://metrics.icpex.org/images/ryjl3-tyaaa-aaaaa-aaaba-cai.png',
         'https://metrics.icpex.org/images/edypu-bqaaa-aaaak-afknq-cai.png',
       ],
+
+      conversionRates: {
+        fromCoinAtoCoinB: '1 ICP = 358.42K BITCORN',
+        fromCoinBtoCoinA: '1 BITCORN = 0.0005279 ICP',
+      },
+      historicalData: {
+        volume: [
+          { name: 'Aug 24,  2024', value: 38.81 },
+          { name: 'Aug 25,  2024', value: 42.33 },
+        ],
+        tvl: [
+          { name: 'Aug 24,  2024', value: 207.33 },
+          { name: 'Aug 25,  2024', value: 210.45 },
+        ],
+        transactions: [
+          { name: 'Aug 24,  2024', value: 18 },
+          { name: 'Aug 25,  2024', value: 22 },
+        ],
+      },
+      volatilityCoefficient: '0.5',
+      tokens: [   { name: "DOGM", percentage: "100.00%", amount: "336.58 M ", locked: true },
+        { name: "ICP", percentage: "0.00%", amount: "941.25", locked: false },],
+   
+      volume24h: "$568.53"
     },
+
     {
       id: 'mnop-45678-12345-qrst-uvwxy',
       type: 'Private Pool',
       tradingPair: 'ADA/BNB',
       tradingFeeRate: '0.35%',
+    
       tokenAmount: {
         coinA: '500.00 ADA (40.00%)',
         coinB: '250.00 BNB (60.00%)',
@@ -95,6 +213,29 @@ export interface PoolData {
         'https://metrics.icpex.org/images/ryjl3-tyaaa-aaaaa-aaaba-cai.png',
         'https://metrics.icpex.org/images/edypu-bqaaa-aaaak-afknq-cai.png',
       ],
+      conversionRates: {
+        fromCoinAtoCoinB: '1 ICP = 358.42K BITCORN',
+        fromCoinBtoCoinA: '1 BITCORN = 0.0005279 ICP',
+      },
+      historicalData: {
+        volume: [
+          { name: 'Aug 24,  2024', value: 38.81 },
+          { name: 'Aug 25,  2024', value: 42.33 },
+        ],
+        tvl: [
+          { name: 'Aug 24,  2024', value: 207.33 },
+          { name: 'Aug 25,  2024', value: 210.45 },
+        ],
+        transactions: [
+          { name: 'Aug 24,  2024', value: 18 },
+          { name: 'Aug 25,  2024', value: 22 },
+        ],
+      },
+      volatilityCoefficient: '0.5',
+      tokens: [   { name: "DOGM", percentage: "100.00%", amount: "336.58 M ", locked: true },
+        { name: "ICP", percentage: "0.00%", amount: "941.25", locked: false },],
+   
+      volume24h: "$568.53"
     },
     {
       id: 'pqrst-12345-67890-uvwxy-zabcd',
@@ -105,12 +246,38 @@ export interface PoolData {
         coinA: '100.00 LTC (30.00%)',
         coinB: '3.00 M USDT (70.00%)',
       },
+    
       volume24H: '$250,000.00',
       poolLink: '/pool/detail/pqrst-12345-67890-uvwxy-zabcd',
       tokenImages: [
         'https://metrics.icpex.org/images/ryjl3-tyaaa-aaaaa-aaaba-cai.png',
         'https://metrics.icpex.org/images/edypu-bqaaa-aaaak-afknq-cai.png',
       ],
+      conversionRates: {
+        fromCoinAtoCoinB: '1 ICP = 358.42K BITCORN',
+        fromCoinBtoCoinA: '1 BITCORN = 0.0005279 ICP',
+      },
+   
+      historicalData: {
+        volume: [
+          { name: 'Aug 24,  2024', value: 38.81 },
+          { name: 'Aug 25,  2024', value: 42.33 },
+        ],
+        tvl: [
+          { name: 'Aug 24,  2024', value: 207.33 },
+          { name: 'Aug 25,  2024', value: 210.45 },
+        ],
+        transactions: [
+          { name: 'Aug 24,  2024', value: 18 },
+          { name: 'Aug 25,  2024', value: 22 },
+        ],
+      },
+      volatilityCoefficient: '0.5',
+      tokens: [   { name: "DOGM", percentage: "100.00%", amount: "336.58 M ", locked: true },
+        { name: "ICP", percentage: "0.00%", amount: "941.25", locked: false },],
+   
+      volume24h: "$568.53"
+      
     },
   ];
   

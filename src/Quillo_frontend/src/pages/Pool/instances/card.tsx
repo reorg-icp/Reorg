@@ -1,4 +1,4 @@
-
+import React from 'react';
 interface CardProp{
     title:string, description:string ,onClose:()=>void
 }
