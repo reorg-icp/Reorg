@@ -29,11 +29,11 @@ export default function AboutReorg(): JSX.Element {
       <div className="md:mt-12 mt-8 w-full  py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-8">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            <h1 className="text-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
             Launch, Trade and scale tokens seamlessly across multiple blockchains
            
             </h1>
-            <p className="font-joz text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="font-jozi text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Join our platform for{" "}
               <span className="font-semibold text-yellow-300"> a secure</span>,{" "}
               <span className="font-semibold text-yellow-300">
@@ -45,12 +45,12 @@ export default function AboutReorg(): JSX.Element {
 
           <div className="mt-12 flex flex-row justify-center  md:gap-8 items-center space-x-2 sm:space-x-2">
             <Link to="apply">
-              <button className="px-8 sm:px-6 md:px-8 py-4 sm:py-3 text-sm sm:text-base md:text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-green-600 rounded-full shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
+              <button className="md:px-12  px-8 py-4 text-sm sm:text-base md:text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-green-600 rounded-full shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
                 Apply for TGE
               </button>
             </Link>
             <Link to="/tokens">
-              <button className="px-12 sm:px-6 md:px-8 py-4 sm:py-3 text-sm sm:text-base md:text-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-full shadow-lg hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
+              <button className="md:px-12 px-4 py-4 text-sm sm:text-base md:text-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-full shadow-lg hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
                 Upcoming tokens
               </button>
             </Link>

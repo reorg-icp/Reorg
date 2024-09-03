@@ -15,7 +15,7 @@ const PartA = () => {
           <h5 className="text-xl sm:text-xl lg:text-4xl font-extrabold text-white mb-6 leading-tight">
             An elite delegate of industry-leading decision makers
           </h5>
-          <p className="text-lg sm:text-xl text-blue-200 mb-8 max-w-2xl mx-auto lg:mx-0">
+          <p className="text-lg font-leagueSpartan sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0">
             Our delegate and internal team of analysts and tokenomics vet
             projects via a strict due diligence process.
           </p>
