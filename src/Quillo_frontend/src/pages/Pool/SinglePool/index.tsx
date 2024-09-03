@@ -48,7 +48,7 @@ console.log({id});
         </Link>
       </div>
 
-      <div className="bg-[#121935] flex-col space-y-4 mb-6 px-4 py-4 w-full border border-transparent rounded-md">
+      <div className="bg-[#1414] flex-col space-y-4 mb-6 px-4 py-4 w-full border border-transparent rounded-md">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full space-y-4 sm:space-y-0">
           {/* coins with their icons and type of pool */}
           <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 items-start sm:items-center">
@@ -67,7 +67,7 @@ console.log({id});
               </span>
               <h1 className="ml-2">{pool.tradingPair}</h1>
             </div>
-            <span className="bg-[#1F2946] text-center py-1 px-3 rounded text-xs text-gray-400 w-auto">
+            <span className="bg-[#1418] text-center py-1 px-3 rounded text-xs text-gray-400 w-auto">
               {pool.type}
             </span>
           </div>
@@ -119,7 +119,7 @@ console.log({id});
               <button>Add Liquidity</button>
             </Link>
             <Link
-              className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-[#8572ff] hover:bg-indigo-600 rounded-md text-center text-sm"
+              className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-[#8572ff] hover:bg-[#8572ff]  rounded-md text-center text-sm"
               to="/dex"
             >
               <button>Swap</button>
@@ -131,10 +131,10 @@ console.log({id});
       <div className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-4 mb-6 w-full">
         <Card {...pool} />
 
-        <div className=" bg-[#121935] px-4  py-4 rounded-lg w-full">
+        <div className=" bg-[#1414] px-4  py-4 rounded-lg w-full">
           <div className="flex flex-row  justify-between mb-4 w-full ">
             <div className="flex flex-col font-leagueSpartan ">
-              <h2 className=" text-[#8b9ac9] text-base font-leagueSpartan capitalize">
+              <h2 className=" text-gray-300 text-base font-leagueSpartan capitalize">
                 {selectedMetric} . &nbsp;
               </h2>
               <h2 className=" text-white text-xl font-leagueSpartan">
@@ -146,11 +146,11 @@ console.log({id});
               </h2>
             </div>
 
-            <div className="flex md:flex-row  flex-col md:space-x-4 md:space-y-0 space-y-4  md:h-10  mb-mb-0  mb-6 items-center bg-[#1F2946] border border-transparent rounded-md ">
+            <div className="flex md:flex-row  flex-col md:space-x-4 md:space-y-0 space-y-4  md:h-10  mb-mb-0  mb-6 items-center bg-[#1418] border border-transparent rounded-md ">
               <button
                 onClick={() => setSelectedMetric("volume")}
                 className={`py-2 px-4 inline-block ${
-                  selectedMetric === "volume" ? "bg-indigo-600" : ""
+                  selectedMetric === "volume" ? "bg-[#8572ff] " : ""
                 } rounded`}
               >
                 Volume
@@ -158,7 +158,7 @@ console.log({id});
               <button
                 onClick={() => setSelectedMetric("tvl")}
                 className={`px-4 py-2 ${
-                  selectedMetric === "tvl" && "bg-indigo-600"
+                  selectedMetric === "tvl" && "bg-[#8572ff] "
                 } rounded`}
               >
                 TVL
@@ -166,7 +166,7 @@ console.log({id});
               <button
                 onClick={() => setSelectedMetric("transactions")}
                 className={`px-4 py-2 ${
-                  selectedMetric === "transactions" && "bg-indigo-600"
+                  selectedMetric === "transactions" && "bg-[#8572ff] "
                 } rounded`}
               >
                 Transactions

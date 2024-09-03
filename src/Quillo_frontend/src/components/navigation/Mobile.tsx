@@ -24,11 +24,11 @@ export const MobileNav = (): JSX.Element => {
           style={{ textDecoration: "none", color: "black", outline: "none" }}
         >
           <span
-            className="logo text-blue-50 flex items-center"
+            className="logo text-blue-50 flex items-center "
             style={{ fontWeight: "bold", marginLeft: "5px" }}
           >
-            <img src="./src/assets/images/logo.png" alt="REORG. Logo" className="w-12 h-auto m-2" />
-            REORG.
+            <img src="/images/logo.png" alt="REORG. Logo" className="w-6 h-auto m-2" />
+            <span className="text-lg">REORG.</span>
           </span>
         </Link>
 

@@ -11,9 +11,9 @@ const Card: React.FC<Partial<PoolData>> = ({
   tokenImages,
 }) => {
   return (
-    <div className="bg-[#121935]  text-[#5486C4] rounded-md md:w-[350px] w-full  ">
-      <div className="bg-[#1F2946] space-y-2 mb-4 w-full px-2 py-4 rounded-t-md border border-[o.15px] border-blue-300 ">
-        <h2 className="text-sm text-[##8b9ac9] font-semibold mb-2">Distribution of tokens</h2>
+    <div className="bg-[#1414]  text-gray-300 rounded-md md:w-[350px] w-full  ">
+      <div className="bg-[#1418] space-y-2 mb-4 w-full px-2 py-4 rounded-t-md border border-[o.15px] border-blue-300 ">
+        <h2 className="text-sm text-gray-100 font-semibold mb-2">Distribution of tokens</h2>
         {tokens.map((token, index) => (
           <div
             key={index}

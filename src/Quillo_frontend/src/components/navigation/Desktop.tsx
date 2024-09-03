@@ -28,7 +28,7 @@ export const DesktopNav = (): JSX.Element => {
            className="logo flex items-center"
            style={{ textDecoration: "none", color: "white", outline: "none" }}
           >
-            <img src="./src/assets/images/logo.png" alt="REORG. Logo" className="w-12 h-auto m-2" />
+            <img src="/images/logo.png" alt="react" className="w-12 h-auto m-2" />
              REORG.
           </span>
 

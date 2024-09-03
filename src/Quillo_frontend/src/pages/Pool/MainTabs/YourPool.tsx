@@ -11,7 +11,7 @@ const YourPool: React.FC = () => {
 
   return (
     <div className="w-full md:px-12 px-1 ">
-    <div className="    flex flex-col items-center justify-center  mx-auto bg-[#1A2240] rounded-md">
+    <div className="    flex flex-col items-center justify-center  mx-auto bg-[#1414] rounded-md">
       <div className="mt-8 mb-8 w-full px-2 md:px-8 "> 
         {showCard && (
           <Card
@@ -38,7 +38,7 @@ const YourPool: React.FC = () => {
         
         {/* Connect button */}
         <div className="flex justify-center px-2">
-          <button className="bg-gradient-to-r w-full from-[#8572ff] to-[#5d52de] text-white text-base md:text-lg font-semibold py-3 px-12 rounded-lg focus:outline-none hover:opacity-90 transition-opacity duration-200">
+          <button className="w-full text-white text-base md:text-lg font-semibold py-3 px-12 rounded-lg focus:outline-none bg-gradient-to-r from-blue-600 to-green-600 rounded-full shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
             Connect
           </button>
         </div>
@@ -47,5 +47,6 @@ const YourPool: React.FC = () => {
     </div>
   );
 };
+
 
 export default YourPool;

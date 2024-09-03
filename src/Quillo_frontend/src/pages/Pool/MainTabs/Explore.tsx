@@ -36,18 +36,19 @@ function Explore() {
 
   return (
     <>
+    {/* bg-[#1F2946] */}
       {/* contains table and some components */}
-      <div className="mt-6  bg-[#1A2240] rounded-md   ">
+      <div className="mt-6  bg-[#1414]  rounded-md   ">
         {/* Switchable Tabs */}
         <div className="mb-6">
-          <div className="bg-[#1F2946] border rounded-t-md font-medium flex items-center justify-center text-sm sm:text-lg md:text-2xl text-center text-gray-500 border-b text-gray-400 border-gray-700">
+          <div className=" bg-[#1414]  border rounded-t-md font-medium flex items-center justify-center text-sm sm:text-lg md:text-2xl text-center text-gray-400 border-b text-gray-400 border-gray-700">
             <ul className="flex flex-wrap justify-center w-full">
               <li className="w-1/3 sm:w-auto">
                 <span
                   className={`inline-block p-2 sm:p-4 border-b-2 rounded-t-lg cursor-pointer w-full ${
                     activeTab === "byType"
-                      ? "bg-[#1A2240] text-white border-blue-600"
-                      : "border-transparent hover:text-gray-600 hover:border-gray-300"
+                      ? "bg-[#1414]  text-white border-gray-300 "
+                      : "border-transparent hover:text-gray-600 hover:border-blue-600"
                   }`}
                   onClick={() => setActiveTab("byType")}
                 >
@@ -58,8 +59,8 @@ function Explore() {
                 <span
                   className={`inline-block p-2 sm:p-4 border-b-2 rounded-t-lg cursor-pointer w-full ${
                     activeTab === "byTokens"
-                      ? "text-blue-500 border-blue-600"
-                      : "border-transparent hover:text-gray-600 hover:border-gray-300"
+                      ? "  bg-[#1414] text-white border-gray-300"
+                      : "border-transparent hover:text-gray-600 hover:border-blue-600"
                   }`}
                   onClick={() => setActiveTab("byTokens")}
                 >
@@ -70,8 +71,8 @@ function Explore() {
                 <span
                   className={`inline-block p-2 sm:p-4 border-b-2 rounded-t-lg cursor-pointer w-full ${
                     activeTab === "byAddress"
-                      ? "text-blue-500 border-blue-600"
-                      : "border-transparent hover:text-gray-600 hover:border-gray-300"
+                      ? "  bg-[#1414] text-white   border-gray-300 "
+                      : "border-transparent hover:text-gray-600 hover:border-blue-600"
                   }`}
                   onClick={() => setActiveTab("byAddress")}
                 >
@@ -88,7 +89,7 @@ function Explore() {
 
         <div className=" relative overflow-x-auto  ">
           <table className="w-full text-sm text-left  rtl:text-right text-gray-400">
-            <thead className="text-xs  uppercase  bg-[#1F2946] border border-gray-700 text-[#8B9ABD]">
+            <thead className="text-xs  uppercase   bg-[#1414] border border-gray-700 text-[#8B9ABD]">
               {headers.map((header, index) => (
                 <th scope="col" key={index} className="px-6 py-6">
                   {header}
@@ -99,7 +100,7 @@ function Explore() {
               {poolData.map((pool) => (
                 <tr
                   key={pool.id}
-                  className="border-b border-gray-700 hover:bg-[#1F2946]"
+                  className="border-b border-gray-700 hover:bg-[#1418]"
                 >
                   <td className="px-8 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     <div className="px-0 flex  flex-col gap-2 ">
@@ -119,7 +120,7 @@ function Explore() {
                           className="cursor-pointer"
                         />
                       </span>
-                      <span className="  bg-[#1F2946]  text-center w-2/3 py-2  rounded text-xs text-gray-500">
+                      <span className=" bg-[#1418]  text-center w-2/3 py-2  rounded text-xs text-gray-500">
                         {pool.type}
                       </span>
                     </div>
@@ -170,11 +171,11 @@ function Explore() {
               101
             </span>
           </span>
-          <ul className="inline-flex items-stretch -space-x-px">
+          <ul className="   inline-flex items-stretch -space-x-px">
             <li>
               <a
                 href="#"
-                className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500  rounded-l-lg border border-gray-300  hover:text-gray-700 bg-[#1410] dark:border-gray-700 dark:text-gray-400 dark:hover:bg-[#1418] dark:hover:text-white"
               >
                 <span className="sr-only">Previous</span>
                 <svg
@@ -195,7 +196,7 @@ function Explore() {
             <li>
               <a
                 href="#"
-                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500  border border-gray-300  hover:text-gray-700 bg-[#1411]  dark:border-gray-700 dark:text-gray-400 hover:bg-[#1418] dark:hover:text-white"
               >
                 1
               </a>
@@ -203,7 +204,7 @@ function Explore() {
             <li>
               <a
                 href="#"
-                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500  border border-gray-300  hover:text-gray-700 bg-[#1411]  dark:border-gray-700 dark:text-gray-400 hover:bg-[#1418] dark:hover:text-white"
               >
                 2
               </a>
@@ -220,7 +221,7 @@ function Explore() {
             <li>
               <a
                 href="#"
-                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500  border border-gray-300  hover:text-gray-700 bg-[#1411]  dark:border-gray-700 dark:text-gray-400 hover:bg-[#1418] dark:hover:text-white"
               >
                 ...
               </a>
@@ -228,7 +229,7 @@ function Explore() {
             <li>
               <a
                 href="#"
-                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500  border border-gray-300  hover:text-gray-700 bg-[#1411]  dark:border-gray-700 dark:text-gray-400 hover:bg-[#1418] dark:hover:text-white"
               >
                 100
               </a>
@@ -236,7 +237,7 @@ function Explore() {
             <li>
               <a
                 href="#"
-                className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500  rounded-r-lg border border-gray-300  hover:text-gray-700 bg-[#1411]  dark:border-gray-700 dark:text-gray-400 hover:bg-[#1418] dark:hover:text-white"
               >
                 <span className="sr-only">Next</span>
                 <svg
