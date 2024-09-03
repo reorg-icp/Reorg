@@ -19,10 +19,10 @@ function TransactionTable() {
     "Time (UTC)",
   ];
   return (
-    <div className="w-full bg-[#1A2240] rounded-lg shadow-lg flex flex-col  gap-6">
+    <div className="w-full bg-[#1414] rounded-lg shadow-lg flex flex-col  gap-6">
       <div className="">
         {/* Header with Filter Options */}
-        <div className="bg-[#1F2946] border border-gray-700 text-[#8B9ABD] rounded-t-md p-6 flex flex-col md:flex-row justify-between items-center mb-4">
+        <div className="bg-[#1418] border border-gray-700 text-[#8B9ABD] rounded-t-md p-6 flex flex-col md:flex-row justify-between items-center mb-4">
           <h2 className="text-xl font-semibold text-gray-300 mb-4 md:mb-0">
             Transactions
           </h2>
@@ -85,7 +85,7 @@ function TransactionTable() {
                 {dammyTransaction.map((data, index) => (
                   <tr
                     key={index}
-                    className="border-b border-gray-700 hover:bg-[#1F2946]"
+                    className="border-b border-gray-700 hover:bg-[#1418]"
                   >
                     <td className="px-4 py-6 text-center  whitespace-nowrap ">
                       {data.Action}
@@ -128,11 +128,11 @@ function TransactionTable() {
               101
             </span>
           </span>
-          <ul className="inline-flex items-stretch -space-x-px">
+          <ul className="   inline-flex items-stretch -space-x-px">
             <li>
               <a
                 href="#"
-                className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500  rounded-l-lg border border-gray-300  hover:text-gray-700 bg-[#1410] dark:border-gray-700 dark:text-gray-400 dark:hover:bg-[#1418] dark:hover:text-white"
               >
                 <span className="sr-only">Previous</span>
                 <svg
@@ -153,7 +153,7 @@ function TransactionTable() {
             <li>
               <a
                 href="#"
-                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500  border border-gray-300  hover:text-gray-700 bg-[#1411]  dark:border-gray-700 dark:text-gray-400 hover:bg-[#1418] dark:hover:text-white"
               >
                 1
               </a>
@@ -161,7 +161,7 @@ function TransactionTable() {
             <li>
               <a
                 href="#"
-                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500  border border-gray-300  hover:text-gray-700 bg-[#1411]  dark:border-gray-700 dark:text-gray-400 hover:bg-[#1418] dark:hover:text-white"
               >
                 2
               </a>
@@ -178,7 +178,7 @@ function TransactionTable() {
             <li>
               <a
                 href="#"
-                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500  border border-gray-300  hover:text-gray-700 bg-[#1411]  dark:border-gray-700 dark:text-gray-400 hover:bg-[#1418] dark:hover:text-white"
               >
                 ...
               </a>
@@ -186,7 +186,7 @@ function TransactionTable() {
             <li>
               <a
                 href="#"
-                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500  border border-gray-300  hover:text-gray-700 bg-[#1411]  dark:border-gray-700 dark:text-gray-400 hover:bg-[#1418] dark:hover:text-white"
               >
                 100
               </a>
@@ -194,7 +194,7 @@ function TransactionTable() {
             <li>
               <a
                 href="#"
-                className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500  rounded-r-lg border border-gray-300  hover:text-gray-700 bg-[#1411]  dark:border-gray-700 dark:text-gray-400 hover:bg-[#1418] dark:hover:text-white"
               >
                 <span className="sr-only">Next</span>
                 <svg

@@ -20,7 +20,7 @@ function Pool() {
     <div className=" md:px-8 px-1 mb-12 flex items-center justify-center flex-col mx-auto w-full">
     <div className="mb-8 flex flex-col items-center justify-center w-full">
       {/* Main tabs for pool */}
-      <div className="  mt-8 flex items-center bg-[#1A2240] justify-between md:space-x-24 space-x-6 p-2 border-transparent rounded-md">
+      <div className="  mt-8 flex items-center bg-[#1418] justify-between md:space-x-24 space-x-6 p-2 border-transparent rounded-md">
         <button
           className={`rounded-md inline-block py-2 md:px-12 px-8 cursor-pointer text-white relative font-semibold whitespace-nowrap text-center transition-all duration-200 ease-[cubic-bezier(0.645,0.045,0.355,1)] select-none ${
             activeTab === "explore"

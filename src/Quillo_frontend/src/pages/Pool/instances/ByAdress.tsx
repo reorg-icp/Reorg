@@ -30,7 +30,8 @@ const  ByAdress=() =>{
         <input
           type="search"
           id="default-search"
-          className="block w-full p-4 ps-10 text-sm border rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+
+          className=" outline-noone block w-full p-4 ps-10 text-sm border rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-[#1418] border-gray-600 placeholder-gray-400 text-white"
           placeholder="Search ..."
         />
         <button
