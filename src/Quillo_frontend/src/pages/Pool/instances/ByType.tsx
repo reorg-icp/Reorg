@@ -17,7 +17,7 @@ function ByType(): React.JSX.Element {
         className={`px-3 md:px-4 py-2 rounded-md text-xs md:text-sm font-medium transition-colors duration-200 ${
           activeFilter === filter
             ? "bg-[#7364F0] text-white"
-            : "bg-[#1F2946] text-gray-300 hover:bg-gray-700"
+            : "bg-[#1418] text-gray-300 hover:bg-gray-700"
         }`}
       >
         {filter}
