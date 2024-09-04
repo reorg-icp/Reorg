@@ -48,7 +48,7 @@ export const SignInDrawer = (): JSX.Element => {
    // Create agent using mobile provider
       const agent = await mobileProvider.createAgent({
         host: live_host,
-        targets: ['bkyz2-fmaaa-aaaaa-qaaaq-cai','bkyz2-fmaaa-aaaaa-qaaaq-cai' ,'ircua-hiaaa-aaaap-qhkvq-cai'], // Specify the canisters
+        targets: [ 'ircua-hiaaa-aaaap-qhkvq-cai'], // Specify the canisters
       });
       console.log("created Agent",agent)
       const user_principal=  await agent.getPrincipal();
@@ -144,7 +144,7 @@ console.log({message});
                 <Radio
                   checked={accountType == "investor"}
                   onChange={() => setAccountType("investor")}
-                  sx={{ color: colors.bluee }}
+                  sx={{ color: "white" }}
                 />
                 Create an investor account
               </span>
@@ -171,10 +171,14 @@ console.log({message});
           </button>
 
           <p
+            
+            className="
+            text-gray-300
+            "
             style={{
               ...baseFont,
               marginTop: "0.5rem",
-              color: colors.text_secondary,
+            
             }}
           >
             Plug is a crypto wallet for the Internet Computer that allows you to
@@ -205,7 +209,7 @@ const logotxt: CSSProperties = {
   ...logoFont,
   fontSize: "2.5rem",
   fontWeight: 600,
-  color: colors.bluee,
+  color: "white",
 };
 
 const divider: CSSProperties = {
@@ -237,7 +241,7 @@ const button: CSSProperties = {
 const signinbtn: CSSProperties = {
   marginTop: "1rem",
   gap: "0.5rem",
-  backgroundColor: colors.bluee,
+  backgroundColor: "#1409",
 };
 
 const cancelBtn: CSSProperties = {
