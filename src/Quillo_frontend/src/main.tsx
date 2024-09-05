@@ -21,11 +21,13 @@ import Pool from "./pages/Pool";
 // import Article from "./pages/Blog/Article";
 import SinglePool from "./pages/Pool/SinglePool";
 import SingleBlogPost from "./pages/Blog/SingleBlogPost";
-import BlogsPosts from "./pages/Blog/BlogsPosts";
+import BlogsPosts from "./pages/Blog";
 import TermsOfService from "./pages/TermsOfService";
 import WhitePaper from "./pages/WhitePaper";
 import Roadmap from "./pages/Roadmap";
 import KYC from "./pages/Kyc";
+import Register from "./pages/register";
+// import KYC from "./pages/Kyc";
 
 const App = (): JSX.Element => {
   
@@ -40,14 +42,14 @@ const App = (): JSX.Element => {
           path: "/app",
           element: <HomePage />,
         },
-        // {
-        //   path: "/app/token",
-        //   element: (
-        //     <Private>
-        //       <Register />
-        //     </Private>
-        //   ),
-        // },
+        {
+          path: "/app/token",
+          element: (
+            <Private>
+              <Register />
+            </Private>
+          ),
+        },
         {
           path: "/tokens",
           element: <Tokens />,

@@ -1,17 +1,8 @@
+import { Article, BlogSectionProps } from "./types";
 
-export interface Article {
-  id: number;
-  title: string;
-  description: string;
-  imageUrl: string;
-  readTime: number;
-}
 
-interface BlogSectionProps {
-  articles: Article[];
-}
 
-const ArticleCard: React.FC<Article> = ({ title, description, imageUrl, readTime,id }) => (
+export const ArticleCard: React.FC<Article> = ({ title, imageUrl, content,readTime,id }) => (
     <article className="max-w-sm group">
     <a href={`/singleblog/${id}`} className="block mb-5 overflow-hidden rounded-lg">
       <img 
@@ -23,7 +14,7 @@ const ArticleCard: React.FC<Article> = ({ title, description, imageUrl, readTime
     <h2 className="mb-2 text-xl font-bold leading-tight text-white transition-colors group-hover:text-cyan-400">
       <a href={`/singleblog/${id}`}>{title}</a>
     </h2>
-    <p className="mb-4 font-leagueSpartan text-gray-400">{description}</p>
+    <p className="mb-4 font-leagueSpartan text-gray-300">{content}</p>
     <span 
     
       className="inline-flex items-center font-medium underline underline-offset-4 text-purple-600 hover:text-purple-800 transition-all duration-300 ease-in-out group-hover:translate-x-2 "
@@ -41,7 +32,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ articles }) => {
           Multichain Insights: Latest in Token Ecosystems
         </h2>
         <div className="grid lg:gap-12 gap-8 sm:grid-cols-2 lg:grid-cols-3 px-4">
-          {articles.map((article) => (
+          { articles && Array.isArray(articles) && articles.map(([_,article]:any) => (
             <ArticleCard key={article.id} {...article} />
           ))}
         </div>

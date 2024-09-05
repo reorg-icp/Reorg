@@ -2,9 +2,44 @@ import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import BlogFooter from "./Sections/BlogFooter";
+import RecommendedArticles from "./Sections/RecommendedArticles";
+import { useParams } from "react-router-dom";
+import { HttpAgent } from "@dfinity/agent";
+import {
+  createActor,
+  Quillo_backend,
+} from "../../../../declarations/Quillo_backend";
+
+import { useArticles } from "../../store";
+
+
 const BlogPost: React.FC = () => {
   const [content, setContent] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(true);
+  const { slug } = useParams();
+  const [dust, setDust] = useState<any>();
+  const [loading, setLoading] = React.useState<boolean>(true);
+  const {articles} = useArticles();
+  let actor = Quillo_backend;
+  const agent: any = new HttpAgent();
+  actor = createActor("ircua-hiaaa-aaaap-qhkvq-cai", { agent });
+
+  async function fetchDust() {
+    let dust = await actor.get_single_article(
+      parseInt(slug as string) as unknown as bigint
+    );
+    return dust;
+  }
+
+  React.useEffect(() => {
+    async function fetchData() {
+      const fetchedDust: any = await fetchDust();
+      setDust(fetchedDust?.Ok);
+      setLoading(false);
+    }
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     // In a real application, you'd fetch this content from an API or file
@@ -88,7 +123,13 @@ To simplify, we suggest grouping the relevant fields into four subgroups:
  `;
 
     setContent(markdown);
-    setLoading(false);
+
+    /// please remove this code if dust is ready
+  setTimeout(()=>{
+    if(!dust){
+      setLoading(false)
+     }
+  },6000);
   }, []);
 
   const components = {
@@ -99,10 +140,16 @@ To simplify, we suggest grouping the relevant fields into four subgroups:
       />
     ),
     h2: (props: any) => (
-      <h2 className="md:text-3xl text-lg text-center lg:text-left w-full font-bold md:my-3 my-1 text-indigo-400" {...props} />
+      <h2
+        className="md:text-3xl text-lg text-center lg:text-left w-full font-bold md:my-3 my-1 text-indigo-400"
+        {...props}
+      />
     ),
     h3: (props: any) => (
-      <h3 className="md:text-2xl text-base text-center lg:text-left font-bold md:my-2  text-indigo-400" {...props} />
+      <h3
+        className="md:text-2xl text-base text-center lg:text-left font-bold md:my-2  text-indigo-400"
+        {...props}
+      />
     ),
     p: (props: any) => (
       <p
@@ -134,39 +181,54 @@ To simplify, we suggest grouping the relevant fields into four subgroups:
       <a className="text-cyan-500 hover:text-cyan-300 underline" {...props} />
     ),
   };
-  if (loading)
-    return (
-      <div className="flex justify-center items-center h-screen">
-        Loading...
-      </div>
-    );
 
   return (
     <div className="mt-24 mb-24  w-full h-full px-2 max-h-screen">
-      <div className="mt-12  max-w-4xl mx-auto  font-jozi bg-[#1A2240]  border border-indigo-500 border-l-4 rounded-md py-4 px-6">
+       {loading ? (
+          // Loading state
+          <div className="flex flex-col items-center justify-center h-96">
+            <i className="fas fa-spinner text-6xl text-gray-300 animate-spin mb-4"></i>
+            <p className="text-xl text-gray-300">Loading...</p>
+          </div>
+        ) :( 
+        <>
+        <div className="mt-12  max-w-4xl mx-auto  font-jozi bg-[#1414]  border border-indigo-500 border-l-4 rounded-md py-4 px-6">
         <ReactMarkdown
           components={components}
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeRaw]}
         >
-          {content}
+          {dust ? dust.content : content}
         </ReactMarkdown>
       </div>
-      <div className='rounded border border-indigo-500 max-w-4xl mx-auto bg-[#1A2240] text-gray-200 py-4 my-12 mb-64 flex flex-col items-center justify-center'>
-  <span className='py-2 text-center text-lg font-semibold'>Enjoyed the read? Let's stay connected!</span>
-  <span className='py-1 text-sm  font-leagueSpartan text-purple-700'>Share your thoughts or spread to your friends.</span>
-  <div className='flex space-x-4 py-2'>
-    <button className='bg-[#1414] border-blue-200 ring-[1px] ring-blue-200  ring-opacity-50 hover:bg-indigo-500 rounded-md text-center text-white py-1 px-4 rounded flex items-center space-x-2'>
-      <i className='fas fa-share-alt'></i>
-      <span>Share</span>
-    </button>
-    <button className='border border-indigo-600 hover:border-indigo-300 rounded-md text-center text-white py-1 px-4 rounded flex items-center space-x-2'>
-      <i className='fas fa-comment'></i>
-      <span>Comment</span>
-    </button>
-  </div>
-</div>
 
+      <div className="rounded border border-indigo-500 max-w-4xl mx-auto bg-[#1414] text-gray-200 py-4 my-12 mb-12 flex flex-col items-center justify-center">
+        <span className="py-2 text-center text-lg font-semibold">
+          Enjoyed the read? Let's stay connected!
+        </span>
+        <span className="py-1 text-sm  font-leagueSpartan text-purple-700">
+          Share your thoughts or spread to your friends.
+        </span>
+        <div className="flex space-x-4 py-2">
+          <button className="bg-[#1418] border-blue-200 ring-[1px] ring-blue-200  ring-opacity-50 hover:bg-indigo-500 rounded-md text-center text-white py-1 px-4 rounded flex items-center space-x-2">
+            <i className="fas fa-share-alt"></i>
+            <span>Share</span>
+          </button>
+          <button className="border border-indigo-600 hover:border-indigo-300 rounded-md text-center text-white py-1 px-4 rounded flex items-center space-x-2">
+            <i className="fas fa-comment"></i>
+            <span>Comment</span>
+          </button>
+        </div>
+        </div>
+        </>
+        )}
+      
+
+   {
+    articles &&  Array.isArray(articles)  && (   <RecommendedArticles articles={articles} readArticleId={slug} />
+    )
+   }
+      <BlogFooter />
     </div>
   );
 };
