@@ -6,15 +6,16 @@ const PersonalInfoForm = ({ data, onChange, onNext }) => {
   };
 
   return (
-    <div className="text-white">
-      <h2 className="text-xl text-white  font-semibold">Project information</h2>
-      <form>
+    <div className="text-white mb-4 ">
+      <h2 className="text-xl text-white  font-semibold mb-4">Project information</h2>
+      <form className="">
+        <div className="grid md:grid-cols-3  grid-cols-1 gap-6 ">
         <label className=" block">
           Project name
           <input
             type="text"
             name="projectName"
-            className="border p-2 w-full"
+            className="border  border-emerald-800   p-3 w-full"
             value={data.projectName || ""}
             onChange={handleChange}
           />
@@ -24,7 +25,7 @@ const PersonalInfoForm = ({ data, onChange, onNext }) => {
           <input
             type="text"
             name="contactName"
-            className="border p-2 w-full"
+            className="border  border-emerald-800   p-3 w-full"
             value={data.contactName || ""}
             onChange={handleChange}
           />
@@ -34,7 +35,7 @@ const PersonalInfoForm = ({ data, onChange, onNext }) => {
           <input
             placeholder=""
             name="contactTelegramHandle"
-            className="border p-2 w-full"
+            className="border  border-emerald-800   p-3 w-full"
             value={data.contactTelegramHandle || ""}
             onChange={handleChange}
           />
@@ -45,7 +46,7 @@ Email
           type="email"
             placeholder=""
             name="email"
-            className="border p-2 w-full"
+            className="border  border-emerald-800   p-3 w-full"
             value={data.email || ""}
             onChange={handleChange}
           />
@@ -56,7 +57,7 @@ Project website
           <input
             placeholder=""
             name="website"
-            className="border p-2 w-full"
+            className="border  border-emerald-800   p-3 w-full"
             value={data.website || ""}
             onChange={handleChange}
           />
@@ -66,17 +67,17 @@ X link
           <input
             placeholder=""
             name="x"
-            className="border p-2 w-full"
+            className="border  border-emerald-800   p-3 w-full"
             value={data.x || ""}
             onChange={handleChange}
           />
         </label>
-
+        </div>
        
-        <div className="flex justify-end mt-4">
-          <button
+        <div className="flex justify-between mt-6 md:mt-12  mb-6">
+        <button
             type="button"
-            className="px-4 py-2 bg-blue-600 text-white rounded"
+            className="px-4 py-2 border border-emerald-800  bg-[#1417] hover:border-amber-400  hover:bg-[#1409] focus:ring-1 focus:ring-emerald-400 text-white rounded"
             onClick={onNext}
           >
             Next

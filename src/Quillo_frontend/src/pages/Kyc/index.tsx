@@ -12,8 +12,22 @@ export default function KYC() {
     projectInfo:{}
   });
 
-  const handleNext = () => setCurrentStep((prevStep) => prevStep + 1);
-  const handleBack = () => setCurrentStep((prevStep) => prevStep - 1);
+  const handleNext = () => {
+    setCurrentStep((prevStep) => prevStep + 1);
+
+    // Smoothly scroll to the top of the window
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
+  const handleBack = () => {
+    setCurrentStep((prevStep) => prevStep - 1)
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+  });
+  };
 
   const handleFormDataChange = (step, newData) => {
     setFormData((prevData) => ({
@@ -23,23 +37,24 @@ export default function KYC() {
   };
 
   return (
-    <div className="p-4">
-      <ol className="flex items-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4 rtl:space-x-reverse">
+    <div className=" md:mt-18 mt-6 w-full mx-auto md:px-2 px-1 h-[1400px] h-full mb-30 flex flex-col ">
+      <ol className="mt-4 flex  flex-row inset-0 items-center md:justify-center w-full   px-4 justify-between text-sm font-medium text-center text-gray-500  border  rounded-lg shadow-sm dark:text-gray-400 sm:text-base dark:bg-[#1409] border-gray-700 py-4  md:space-x-24 rtl:space-x-reverse">
         <li
           className={`flex items-center ${
             currentStep === 1 ? "text-blue-600 dark:text-blue-500" : ""
           }`}
         >
           <span
-            className={`flex items-center justify-center w-5 h-5 me-2 text-xs border ${
+            className={`flex items-center justify-center w-5 h-5 me-2 text-xs border border-emerald-800  hidden md:block ${
               currentStep === 1
-                ? "border-blue-600 dark:border-blue-500"
-                : "border-gray-500 dark:border-gray-400"
+                ? "border-blue-500"
+                : "border-gray-400"
             } rounded-full shrink-0`}
           >
             1
           </span>
-          Project <span className="hidden sm:inline-flex sm:ms-2">Information</span>
+          Project 
+          <span className="hidden sm:inline-flex sm:ms-2">Information</span>
           {currentStep < 4 && (
             <svg
               className="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180"
@@ -64,10 +79,10 @@ export default function KYC() {
           }`}
         >
           <span
-            className={`flex items-center justify-center w-5 h-5 me-2 text-xs border ${
+            className={`flex items-center justify-center w-5 h-5 me-2 text-xs border border-emerald-800    hidden md:block    ${
               currentStep === 2
-                ? "border-blue-600 dark:border-blue-500"
-                : "border-gray-500 dark:border-gray-400"
+                ? "border-blue-500"
+                : "border-gray-400"
             } rounded-full shrink-0`}
           >
             2
@@ -97,10 +112,10 @@ export default function KYC() {
           }`}
         >
           <span
-            className={`flex items-center justify-center w-5 h-5 me-2 text-xs border ${
+            className={`flex items-center justify-center w-5 h-5 me-2 text-xs border  border-emerald-800 hidden md:block   ${
               currentStep === 3
-                ? "border-blue-600 dark:border-blue-500"
-                : "border-gray-500 dark:border-gray-400"
+                ? " border-blue-500"
+                : " border-gray-400"
             } rounded-full shrink-0`}
           >
             3
@@ -130,10 +145,10 @@ export default function KYC() {
           }`}
         >
           <span
-            className={`flex items-center justify-center w-5 h-5 me-2 text-xs border ${
+            className={`flex items-center justify-center w-5 h-5 me-2 text-xs border  border-emerald-800  hidden md:block   ${
               currentStep === 4
-                ? "border-blue-600 dark:border-blue-500"
-                : "border-gray-500 dark:border-gray-400"
+                ? "border-blue-500"
+                : "border-gray-400"
             } rounded-full shrink-0`}
           >
             4
@@ -142,7 +157,7 @@ export default function KYC() {
         </li>
       </ol>
 
-      <div className="mt-4">
+      <div className="mt-4 mb-24">
         {currentStep === 1 && (
           <PersonalInfoForm
             data={formData.personalInfo}

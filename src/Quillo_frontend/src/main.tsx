@@ -25,6 +25,7 @@ import BlogsPosts from "./pages/Blog/BlogsPosts";
 import TermsOfService from "./pages/TermsOfService";
 import WhitePaper from "./pages/WhitePaper";
 import Roadmap from "./pages/Roadmap";
+import KYC from "./pages/Kyc";
 
 const App = (): JSX.Element => {
   
@@ -51,10 +52,10 @@ const App = (): JSX.Element => {
           path: "/tokens",
           element: <Tokens />,
         },
-        // {
-        //   path: "/apply",
-        //   element: <KYC />,
-        // },
+        {
+          path: "/apply",
+          element: <KYC />,
+        },
         {
           path:"/dex",
           element:<Dex/>
