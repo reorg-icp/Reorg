@@ -94,7 +94,7 @@ function Disclaimer() {
         - The token deployed is an ICRC2 token !
       </div>
       <div className=" text-gray-200">
-        - <span className="fee text-red-700 font-bold">1 ICP</span> is charged
+        - <span className="fee text-white-700 font-bold">1 ICP</span> is charged
         as service fee !
       </div>
     </div>
@@ -134,7 +134,7 @@ function Input({
   } = useProjectInfo((state: any) => state);
 
   return (
-    <div className="field bg-[#2c3e50] ">
+    <div className="field bg-emerald-950 ">
       <div className="label mb-4 text-gray-400 font-medium">
         <h6>{label}</h6>{" "}
         <span>
@@ -145,6 +145,9 @@ function Input({
         <input
           className="input"
           type="text"
+          style={{
+            borderColor:"#50C878"
+          }}
           placeholder={label}
           onChange={(e: any) => {
             if (value == "project_name") {
@@ -169,6 +172,9 @@ function Input({
         <input
           className="input"
           type="number"
+          style={{
+               borderColor:"#50C878"
+          }}
           placeholder={label}
           onChange={(e: any) => {
             if (value == "total_supply") {
@@ -188,6 +194,9 @@ function Input({
       )}
       {type === InputType.TextArea && (
         <textarea
+        style={{
+             borderColor:"#50C878"
+        }}
           className="textArea"
           placeholder={label}
           onChange={(e: any) => {
@@ -200,7 +209,7 @@ function Input({
         </textarea>
       )}
       {type === InputType.file && (
-        <input type="file" accept="image/*" onChange={handleFileChange}></input>
+        <input style={{   borderColor:"#50C878"}} type="file" accept="image/*" onChange={handleFileChange}></input>
       )}
     </div>
   );
@@ -296,7 +305,7 @@ const Register = () => {
 
   return (
     <>
-      <div className="bg-[#2c3e50] mt-28 h-90 w-full  ">
+      <div className="bg-emerald-950 mt-28 h-90 w-full  ">
         <ToastContainer
           position="top-right"
           autoClose={2000}
@@ -336,6 +345,7 @@ const Register = () => {
             {tokenData.map((input) => {
               return (
                 <Input
+                
                   key={input.id}
                   label={input.label}
                   type={input.type}
@@ -347,7 +357,7 @@ const Register = () => {
           <Disclaimer />
           <button
             disabled={disabled.includes("set")}
-            className={`w-full mt-2 mb-6 px-8 py-3 text-lg font-semibold text-center text-white bg-gradient-to-r from-green-600 to-indigo-500 rounded-md shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1 ${
+            className={`w-full mt-2 mb-6 px-8 py-3 text-lg font-semibold text-center text-white bg-emerald-900 rounded-md shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1 ${
               disabled.includes("set")
                 ? "bg-gray-500 cursor-not-allowed"
                 : "bg-blue-600 text-white"

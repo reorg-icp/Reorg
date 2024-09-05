@@ -27,7 +27,7 @@ export const MobileNav = (): JSX.Element => {
             className="logo text-blue-50 flex items-center "
             style={{ fontWeight: "bold", marginLeft: "5px" }}
           >
-            <img src="/images/logo.png" alt="REORG. Logo" className="w-6 h-auto m-2" />
+            <img src="/images/logo.png" alt="logo" className="w-6 h-auto m-2" />
             <span className="text-lg">REORG.</span>
           </span>
         </Link>
@@ -54,13 +54,13 @@ export const MobileNav = (): JSX.Element => {
           </span>
 
           {localStorage.getItem("principal") && (
-            <p className="principal">{localStorage.getItem("principal")}</p>
+            <p className="principal text-white">{localStorage.getItem("principal")}</p>
           )}
           {!localStorage.getItem("principal") && (
             <button
               style={{
                 ...actionBtn,
-                border: `1px solid ${colors.bluee}`,
+                border: `1px solid #004d40`,
                 backgroundColor: "transparent",
               }}
               onClick={() => {
@@ -89,8 +89,8 @@ export const MobileNav = (): JSX.Element => {
             <Link to="tokens" style={aLink}>
               Tokens
             </Link>
-                 <Link to="pool">Pools</Link>
-                  <Link to="dex">DEX</Link>
+                 <Link to="pool" style={aLink}>Pools</Link>
+                  <Link to="dex" style={aLink}>DEX</Link>
 
             <Link to="comingSoon" style={aLink}>
               LaunchPad
@@ -114,7 +114,7 @@ const drawerstyles: CSSProperties = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  backgroundColor: colors.darkdefault,
+  backgroundColor: " #002d1b"
 };
 
 const divider: CSSProperties = {
@@ -166,5 +166,6 @@ const aLink: CSSProperties = {
   alignItems: "center",
   textDecoration: "none",
   fontSize: "1.25rem",
-  color: colors.primary,
+  color: "white",
+ 
 };

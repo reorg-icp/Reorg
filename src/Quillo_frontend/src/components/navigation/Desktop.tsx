@@ -44,12 +44,18 @@ export const DesktopNav = (): JSX.Element => {
           <span className="text-blue-50">launchpad</span>
           
           </Link>
+             <Link className="text-white hover:text-emerald-100 border border-emerald-800 hover:border-amber-400 px-4 py-2 rounded transition-all duration-300" to="pool">
+          <span className="text-blue-50">Pools</span>
+              </Link>
+             <Link className="text-white hover:text-emerald-100 border border-emerald-800 hover:border-amber-400 px-4 py-2 rounded transition-all duration-300" to="pool">
+          <span className="text-blue-50">Dex</span>
+          </Link>
         </div>
       </div>
 
       <div className="actions ">
         {localStorage.getItem("principal") && (
-          <p className="principal">{localStorage.getItem("principal")}</p>
+          <p className="principal text-white ">{localStorage.getItem("principal")}</p>
         )}
         {!localStorage.getItem("principal") && (
           <button
