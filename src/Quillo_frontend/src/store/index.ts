@@ -69,6 +69,10 @@ const usePlugWallet = create<any>((set: any) => ({
   plug: null,
   setPlug: (plug: any) => set({ plug: plug }),
 }));
+const useArticles = create<any>((set:any)=>({
+  articles:null,
+  setArticles:(articles:any)=>set({articles:articles})
+}));
 
-export { useProjectInfo, usePlugWallet };
+export { useProjectInfo, usePlugWallet ,useArticles};
 export type { Auth };
