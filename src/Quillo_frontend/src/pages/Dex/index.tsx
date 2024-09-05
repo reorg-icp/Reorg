@@ -34,7 +34,7 @@ function Dex() {
       <div  className=" w-full md:px-8 mb-12 flex items-center justify-center flex-col mx-auto">
         <div className=" md:w-2/3 w-full   flex flex-col items-center justify-center ">
           {/* Main tabs for pool */}
-          <div className="  mt-8 flex items-center bg-[#1A2240] justify-between md:space-x-24 space-x-6 p-2 border-transparent rounded-md">
+          <div className="  mt-8 flex items-center bg-[#1414] justify-between md:space-x-24 space-x-6 p-2 border-transparent rounded-md">
             <button
               className={`rounded-md inline-block py-2 md:px-12 px-8 cursor-pointer text-white relative font-semibold whitespace-nowrap text-center transition-all duration-200 ease-[cubic-bezier(0.645,0.045,0.355,1)] select-none ${
                 activeTab === "swap"

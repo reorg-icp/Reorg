@@ -21,11 +21,11 @@ const TransactionFilter: React.FC= () => {
     "Time (UTC)",
   ];
   return (
-    <div className="w-full bg-[#1A2240] rounded-lg shadow-lg flex flex-col  gap-6">
+    <div className="w-full bg-[#1414] rounded-lg shadow-lg flex flex-col  gap-6">
       <div className="">
         
         {/* Header with Filter Options */}
-        <div className="bg-[#1F2946] border border-gray-700 text-[#8B9ABD] rounded-t-md p-6 flex flex-col md:flex-row justify-between items-center mb-4">
+        <div className="bg-[#1418] border border-gray-700 text-[#8B9ABD] rounded-t-md p-6 flex flex-col md:flex-row justify-between items-center mb-4">
         <h2 className="text-xl font-semibold text-gray-300 mb-4 md:mb-0">Transactions</h2>
         <div className="flex flex-wrap gap-2 md:space-x-4">
           {filters.map((filter, index) => (
@@ -54,7 +54,7 @@ const TransactionFilter: React.FC= () => {
 
         <div className="  relative overflow-x-auto  ">
           <table className="w-full text-sm text-left border-b border-gray-700   rtl:text-right text-gray-400">
-            <thead className="text-xs   ">
+            <thead className="text-xs bg-[#1409]  ">
               {headings.map((header, index) => (
                 <th scope="col" key={index} className="px-6 py-6">
                   {header}

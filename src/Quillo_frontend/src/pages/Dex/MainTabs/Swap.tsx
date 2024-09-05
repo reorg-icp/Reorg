@@ -5,14 +5,14 @@ interface Props {
 const Swap: React.FC<Props> = ({ openModal }) => {
   return (
     <div className="w-full">
-      <div className=" md:w-2/3 w-full mx-auto bg-[#1A2240] text-white rounded-lg shadow-lg">
+      <div className=" md:w-2/3 w-full mx-auto bg-[#1414] text-white rounded-lg shadow-lg">
         {/* Swap Header */}
         <div
-          className=" flex items-center justify-between mb-4 bg-cover bg-center bg-no-repeat w-full p-3 rounded-t-md"
-          style={{
-            backgroundImage:
-              "url('https://icpex.org/b075f951952fbe9211f3.png')",
-          }}
+          className=" flex items-center justify-between mb-4 bg-[#1418] w-full p-3 rounded-t-md"
+          // style={{
+          //   backgroundImage:
+          //     "url('https://icpex.org/b075f951952fbe9211f3.png')",
+          // }}
         >
           <h2 className="text-lg font-semibold">Swap</h2>
           <div className="flex  items-center space-x-3">
@@ -54,7 +54,7 @@ const Swap: React.FC<Props> = ({ openModal }) => {
         </div>
 
         <div className=" px-8 mb-4">
-          <div className=" p-4 bg-[#1F2946] rounded-lg flex items-center justify-between mt-2">
+          <div className=" p-4 bg-[#1418] rounded-lg flex items-center justify-between mt-2">
             <div
               className="flex items-center space-x-2 cursor-pointer"
               onClick={openModal}
@@ -79,7 +79,7 @@ const Swap: React.FC<Props> = ({ openModal }) => {
 
         {/* Divider */}
         <div className="flex items-center  justify-center mb-4 ">
-          <i className=" outline-none cursor-pointer fas fa-arrow-down bg-[#1F2946] text-gray-500 border border-transparent rounded-full w-8 h-8 flex items-center justify-center  transform transition-transform duration-300 hover:rotate-180  "></i>
+          <i className=" outline-none cursor-pointer fas fa-arrow-down bg-[#1418] text-gray-400 border border-transparent rounded-full w-8 h-8 flex items-center justify-center  transform transition-transform duration-300 hover:rotate-180  "></i>
         </div>
 
         <div className=" flex flex-col gap-6 px-8 ">
@@ -87,7 +87,7 @@ const Swap: React.FC<Props> = ({ openModal }) => {
             <span className="text-md">Receive (Estimated)</span>
             <span className="text-md text-gray-400">Balance: 0</span>
           </div>
-          <div className=" cursor-pointer bg-[#1F2946] rounded-lg  p-4 flex items-center  mt-2">
+          <div onClick={openModal} className=" cursor-pointer bg-[#1418] rounded-lg  p-4 flex items-center  mt-2">
             <div className="mr-4 ">Select Token</div>
             <span
               role="img"
@@ -111,7 +111,7 @@ const Swap: React.FC<Props> = ({ openModal }) => {
           </div>
           {/* Connect Button */}
 
-          <button className=" px-4 w-full py-3 bg-[#8f5fff] hover:bg-[#724eff] text-white rounded-lg transition duration-200">
+          <button className=" px-4 w-full py-3 bg-gradientBackgroundColor border-blue-200 ring-[2px] ring-blue-200 ring-opacity-50 hover:ring-amber-300 text-white rounded-lg transition duration-200">
             Connect
           </button>
           {/* Price Details */}
@@ -193,8 +193,8 @@ const Swap: React.FC<Props> = ({ openModal }) => {
     
       </div>
                  {/* Footer */}
-                 <div className=" md:w-2/3 w-full mx-auto bg-[#1A2240] text-white rounded-lg shadow-lg">
-            <div className=" mt-4  p-4 rounded-md mb-8 bg-[#121935]  text-center text-sm text-gray-400 flex flex-row justify-center items-center">
+              <div className=" md:w-2/3 w-full mx-auto bg-[#1414] text-white rounded-lg shadow-lg">
+            <div className=" mt-4  p-4 rounded-md mb-8 bg-[#1414]  text-center text-sm text-gray-400 flex flex-row justify-center items-center">
             <span>
           Issues with tokens after the swap? Check your sub-wallet here.
         </span>
