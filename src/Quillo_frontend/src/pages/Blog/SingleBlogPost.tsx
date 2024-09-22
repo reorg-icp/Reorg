@@ -52,7 +52,7 @@ The crypto community uses a **set of overlapping and interrelated terms** such a
 
 The term **cryptoeconomics** was casually coined within the Ethereum developer community, years after the Bitcoin whitepaper was first published and the Bitcoin network, along with similar blockchain networks, were deployed. This term is generally attributed to **Vitalik Buterin**. The earliest recorded citation is from a talk by **Vlad Zamfir**, which was later loosely formalized in blog posts and talks by Buterin. Although the term has gained traction in the broader developer and academic communities, it remains under-defined, possibly because it is used in so many different contexts.
 
-Cryptoeconomics is **interdisciplinary by design** and requires a deep understanding of cryptography, economics, P2P computer networks, and—often overlooked—**political science**. It refers to the study of economic interactions in **untrusted environments**, where every actor could potentially be corrupt.
+Cryptoeconomics is **interdisciplinary by daaesign** and requires a deep understanding of cryptography, economics, P2P computer networks, and—often overlooked—**political science**. It refers to the study of economic interactions in **untrusted environments**, where every actor could potentially be corrupt.
 
 ## Evolution of Cryptoeconomic Mechanisms
 

@@ -12,9 +12,10 @@ module.exports = {
         black: "#141414",
         purple: "#50C878",
       },
-      fontFamily: {
-        default: ["Inter", "sans-serif"],
-      },
+     fontFamily: {
+  default: ["Inter", "Bebas Neue", "sans-serif"],
+}
+,
       backgroundImage: {
         gradientOne:
           "linear-gradient(0deg, rgba(0, 60, 50, 0.9) 0%, rgba(0, 120, 100, 0.8) 100%)",

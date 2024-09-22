@@ -42,7 +42,7 @@ function BlogsPosts() {
       </div>
 
 
-      {!loading ? (
+      {loading ? (
           // Loading state
           <div className="flex flex-col items-center justify-center h-96">
             <i className="fas fa-spinner text-6xl text-gray-300 animate-spin mb-4"></i>

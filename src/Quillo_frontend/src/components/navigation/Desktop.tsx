@@ -5,6 +5,7 @@ import { Wallet } from "../../assets/icons";
 import "../../styles/components/navigation.scss";
 import { requestUserBalance } from "../../utils/transactions";
 
+
 export const DesktopNav = (): JSX.Element => {
   const { openAuthDrawer } = useAuthDrawer();
 
@@ -26,30 +27,29 @@ export const DesktopNav = (): JSX.Element => {
         >
           <span
            className="logo flex items-center"
-           style={{ textDecoration: "none", color: "white", outline: "none" }}
+           style={{ textDecoration: "none", color: "white", outline: "none", fontFamily:"Press Start 2P, sans-serif" }}
           >
             <img src="/images/logo.png" alt="react" className="w-12 h-auto m-2" />
              REORG.
           </span>
 
         </Link>
-
         <div className=" links">
           <Link className="text-blue-50 hover:text-emerald-100 border border-emerald-800 hover:border-amber-400 px-4 py-2 rounded transition-all duration-300" to="tokens">
-          <span className="text-blue-50">Token creator</span>
+          <span className="text-blue-50">Tokenize game</span>
           
           </Link>
 
           <Link className="text-white hover:text-emerald-100 border border-emerald-800 hover:border-amber-400 px-4 py-2 rounded transition-all duration-300" to="comingSoon">
-          <span className="text-blue-50">launchpad</span>
+          <span className="text-blue-50">Marketplace</span>
           
           </Link>
-             <Link className="text-white hover:text-emerald-100 border border-emerald-800 hover:border-amber-400 px-4 py-2 rounded transition-all duration-300" to="pool">
+             {/* <Link className="text-white hover:text-emerald-100 border border-emerald-800 hover:border-amber-400 px-4 py-2 rounded transition-all duration-300" to="pool">
           <span className="text-blue-50">Pools</span>
               </Link>
              <Link className="text-white hover:text-emerald-100 border border-emerald-800 hover:border-amber-400 px-4 py-2 rounded transition-all duration-300" to="pool">
           <span className="text-blue-50">Dex</span>
-          </Link>
+          </Link> */}
         </div>
       </div>
 

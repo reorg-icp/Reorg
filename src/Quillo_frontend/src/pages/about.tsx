@@ -16,6 +16,8 @@ import FAQSection from "../components/sections/FAQSection";
 import FeatureCards from "../components/ howItworks/featuresCard";
 import { features } from "../utils/howItworksFeatures";
 import WhyReorg from "../components/WhyReorg";
+import Animation from "../components/Animation";
+import JoinCommunity from "../components/JoinCommunity";
 // import TestimonialCarousel from "../components/Reviews";
 
 export default function AboutReorg(): JSX.Element {
@@ -30,28 +32,28 @@ export default function AboutReorg(): JSX.Element {
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-8">
             <h1 className="text-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            Launch, Trade and scale tokens seamlessly across multiple blockchains
+            Where gamers and collectors unite
            
             </h1>
             <p className="font-jozi text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Join our platform for{" "}
-              <span className="font-semibold text-yellow-300"> a secure</span>,{" "}
+            Tokenize, Trade, and {" "}
+              <span className="font-semibold text-yellow-300"> own</span>,{" "} the {" "}
               <span className="font-semibold text-yellow-300">
-                expert-backed
+                 assets
               </span>{" "}
-              token generation event, multichain DEX and expert-backed launchpad.
+          that define your play
             </p>
           </div>
-
+<Animation/>
           <div className="mt-12 flex flex-row justify-center  md:gap-8 items-center space-x-2 sm:space-x-2">
             <Link to="apply">
               <button className="md:px-12  px-8 py-4 text-sm sm:text-base md:text-lg font-semibold text-white bg-emerald-900 rounded-full shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
-                Apply for TGE
+            I'm a game developer
               </button>
             </Link>
             <Link to="/tokens">
               <button className="md:px-12 px-4 py-4 text-sm sm:text-base md:text-lg font-semibold text-white bg-emerald-900 rounded-full shadow-lg hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
-                Upcoming tokens
+           I'm a collector
               </button>
             </Link>
           </div>
@@ -59,10 +61,12 @@ export default function AboutReorg(): JSX.Element {
       </div>
 
       <FeatureCards features={features} colors={colors} />
-
-      <PartA />
-      <WhyReorg />
-      <FAQSection />
+      <JoinCommunity/>
+{/* meet the delegates  */}
+      {/* <PartA /> */}
+      {/* why reorg sllyder */}
+      {/* <WhyReorg /> */}
+      {/* <FAQSection /> */}
       {/* <TestimonialCarousel /> */}
       {/* <div className="how_it_works">
         <p className="p0">how it works</p>
