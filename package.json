@@ -12,7 +12,7 @@
     "test": "npm test --workspaces --if-present",
     "deploy": "./did.sh &&  dfx generate Quillo_frontend && dfx generate Quillo_backend && dfx deploy -y",
     "publish": " ./did.sh && dfx deploy Quillo_backend --network ic ",
-    "new": " dfx build  && dfx deploy --network ic --verbose",
+    "new": " dfx build  && dfx deploy --network ic ",
     "build-backend": "cd src/Quillo_backend && cargo build",
     "clean-backend": "cd src/Quillo_backend && cargo clean",
     "acp": "git add . && git commit -m \"$MESSAGE\" && git push origin \"$BRANCH\"",
@@ -22,5 +22,9 @@
   "type": "module",
   "workspaces": [
     "src/Quillo_frontend"
-  ]
+  ],
+  "dependencies": {
+    "@web5/api": "^0.10.0",
+    "@web5/credentials": "^1.0.3"
+  }
 }

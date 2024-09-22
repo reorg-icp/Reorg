@@ -2,30 +2,30 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 // Don't forget to import the CSS
 import "@splidejs/react-splide/css";
-import { AutoAwesome } from "../../assets/icons";
+
 
 const cards = [
   {
     title: "Multichain flexibility",
     description:
       "Launch and manage tokens across multiple chains.",
-    icon: <AutoAwesome />,
+ 
   },
   {
     title: "No code simplicity",
     description:
       "Launch  tokens without writing a single line of code",
-    icon: <AutoAwesome />,
+
   },
   {
     title: "Expert backed assurance",
     description: "Reorg is backed by key opinion leaders in web3 and we ensure your token is market ready",
-    icon: <AutoAwesome />,
+    
   },
     {
     title: "Integrated multichain DEX and Liquidity pools",
     description: "Easily manage token liquidity and facilitate trading across multiple blockchains through our integrated DEX and liquidity services",
-    icon: <AutoAwesome />,
+ 
   },
 ];
 
@@ -64,7 +64,7 @@ const WhyReorg = () => {
             <div className="bg-[#1414] border border-opacity-20 border-white  rounded-lg shadow-md p-4 h-full transition-all duration-300 hover:shadow-2xl hover:scale-105">
               <div className="flex items-center space-x-2 mb-2">
                 <p className="font-bold text-white">{card.title}</p>
-                {card.icon}
+               
               </div>
               <p className="font-leagueSpartan text-gray-400 text-md">
                 {card.description}

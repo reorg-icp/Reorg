@@ -48,9 +48,10 @@ const FeatureCards = ({ features, colors }: Prop) => {
                     Available Now
                   </span>
                 ) : (
-                  <span className="px-4 py-2 border border-blue-500 text-blue-500 text-sm font-semibold rounded-full inline-block">
-                    Coming Soon
-                  </span>
+               <span className="px-4 py-2 border border-[#50C878] text-[#50C878] text-sm font-semibold rounded-full inline-block">
+    Coming Soon
+</span>
+
                 )}
               </div>
             </div>
@@ -80,9 +81,10 @@ const FeatureCards = ({ features, colors }: Prop) => {
                     Available Now
                   </span>
                 ) : (
-                  <span className="px-4 py-2 border border-blue-500 text-blue-500 text-sm font-semibold rounded-full inline-block">
-                    Coming Soon
-                  </span>
+                <span className="px-4 py-2 border border-[#50C878] text-[#50C878] text-sm font-semibold rounded-full inline-block">
+    Coming Soon
+</span>
+
                 )}
               </div>
             </div>

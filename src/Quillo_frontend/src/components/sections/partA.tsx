@@ -19,7 +19,7 @@ const PartA = () => {
             Our delegate and internal team of analysts and tokenomics vet
             projects via a strict due diligence process.
           </p>
-          <button className="bg-gradient-to-r from-blue-600 to-green-600 rounded-full shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1 text-white font-bold py-3 px-8 rounded-full text-lg ">
+          <button className="bg-emerald-900 rounded-full shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1 text-white font-bold py-3 px-8 rounded-full text-lg ">
             Meet the delegate
           </button>
         </div>

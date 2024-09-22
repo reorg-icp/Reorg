@@ -7,20 +7,20 @@ import IconButton from "@mui/material/IconButton";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForward";
 import { Link } from "react-router-dom";
 import '../styles/components/ComponentWithTailwind.css'
+
 function Token() {
   return (
     <div className="genesis-item">
       <div>
-        <img className="logo-img" src={TokenImg} alt="Token Logo"></img>
+        <img className="logo-img" src={TokenImg} alt="Token Logo" />
       </div>
-      <p>Reorg Test</p>
-      <p>RTST</p>
-      <p>2EIRIRI449399393993</p>
-      <p>ICRC2</p>
+      <p className="text-white">Reorg Test</p>
+      <p className="text-white">RTST</p>
+      <p className="text-white">2EIRIRI449399393993</p>
+      <p className="text-white">ICRC2</p>
       <div>
-        <IconButton>
-          <ArrowForwardIosIcon className="text-white" style={{ zIndex: 1 }} />{" "}
-          {/* Replace with the icon you prefer */}
+        <IconButton className="text-emerald-900">
+          <ArrowForwardIosIcon className="text-emerald-900" style={{ zIndex: 1 }} />
         </IconButton>
       </div>
     </div>
@@ -32,40 +32,10 @@ const Tokens = () => {
   const handleSwitch = () => {
     setOpen(!open);
   };
+
   return (
     <>
-      {/* <div className="view-tokens">
-        <Link to="/app/tokens">
-          <button
-            style={{
-              background: "linear-gradient(90deg, #006ad4 0%, #004d40 100%)",
-              color: "#ffffff",
-              border: "none",
-              borderRadius: "25px",
-              padding: "12px 24px",
-              fontSize: "16px",
-              fontWeight: "bold",
-              cursor: "pointer",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-              transition: "all 0.3s ease",
-              outline: "none",
-              marginTop: "30px",
-              alignSelf: "center",
-            }}
-            onMouseOver={(e) =>
-              (e.currentTarget.style.background =
-                "linear-gradient(90deg, #004d40 0%, #00251a 100%)")
-            }
-            onMouseOut={(e) =>
-              (e.currentTarget.style.background =
-                "linear-gradient(90deg, #006ad4 0%, #004d40 100%)")
-            }
-          >
-            Launch Token
-          </button>
-        </Link>
-      </div> */}
-      <div className="breadcrumb-container bg-[#1414] "  >
+      <div className="breadcrumb-container">
         <nav
           aria-label="breadcrumb"
           style={{
@@ -74,23 +44,23 @@ const Tokens = () => {
             justifyContent: "space-between",
             width: "100%",
             flexWrap: "wrap",
-          
           }}
         >
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link to="/">Home</Link>
+              <Link to="/" >
+              <span className="text-emerald-200">Home</span>
+              </Link>
             </li>
-            <li className="breadcrumb-item active text-white " aria-current="page">
+            <li className="breadcrumb-item active text-white" aria-current="page">
               View Tokens
             </li>
             <li></li>
           </ol>
           <Link to="/app/token">
             <button
+              className="bg-emerald-900 text-white"
               style={{
-                background: "linear-gradient(90deg, #006ad4 0%, #004d40 100%)",
-                color: "#ffffff",
                 border: "none",
                 borderRadius: "25px",
                 padding: "12px 24px",
@@ -103,65 +73,43 @@ const Tokens = () => {
                 marginTop: "5px",
                 alignSelf: "center",
               }}
-              onMouseOver={(e) =>
-                (e.currentTarget.style.background =
-                  "linear-gradient(90deg, #004d40 0%, #00251a 100%)")
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.style.background =
-                  "linear-gradient(90deg, #006ad4 0%, #004d40 100%)")
-              }
             >
               Launch Token
             </button>
           </Link>
         </nav>
         <div className="view-tokens">
-          <a href="/app/tokens"></a>
+          <a href="/app/tokens" className="text-emerald-900"></a>
         </div>
       </div>
-      <div className="container ">
+      <div className="container bg-emerald-900">
         <div className="nav">
-          <div className="title">
+          <div className="title text-white">
             <h4>Tokens</h4>
-            <span className="number">1</span>
+            <span className="number bg-[#34d399] ">1</span>
           </div>
           <FormControlLabel
             control={
               <Switch
+              style={{
+                color:"#34d399"
+              }}
                 checked={open}
                 onChange={handleSwitch}
                 name="toggleSwitch"
-                color="primary" // You can change the color if needed
+                classes={{
+                  switchBase: '#34d399', // Applies to the switch color
+                }}
               />
             }
-            label="Show only my tokens"
+            label={<span className="text-white">Show only my tokens</span>}
           />
         </div>
-        {/* <div className="genesis">
-          <h4>Token logo</h4>
-          <h4>Token name</h4>
-          <h4>Token symbol</h4>
-          <h4>Canister ID</h4>
-          <h4>Standard</h4>
-          <h4>More</h4>
-        </div> */}
 
-        <Token />
-        <Token />
-        <Token />
-        <Token />
-        <Token />
-        <Token />
-        <Token />
-        <Token />
-        <Token />
-        <Token />
-        <Token />
-        <Token />
         <Token />
       </div>
     </>
   );
 };
+
 export default Tokens;

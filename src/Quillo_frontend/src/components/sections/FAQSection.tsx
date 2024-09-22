@@ -35,7 +35,7 @@ const FAQSection = () => {
       <div className="flex justify-start mt-6">
         <button
           onClick={handleViewMore}
-          className="px-4 py-2 font-semibold text-white bg-gradient-to-r from-blue-600 to-green-600 rounded-full shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1 font-leagueSpartan rounded-lg  transition duration-300"
+          className="px-4 py-2 font-semibold text-white bg-emerald-900 rounded-full shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1 font-leagueSpartan rounded-lg  transition duration-300"
         >
           {visibleIndex + itemsPerPage >= totalItems ? "View Less" : "View More"}
         </button>
