@@ -1,5 +1,6 @@
 import { Feature } from "../../assets/icons";
 import { featuresType } from "../../utils/howItworksFeatures";
+import Ecosystems from "../Ecosystems";
 
 type Prop = {
 features: featuresType[];
@@ -12,13 +13,13 @@ features: featuresType[];
 const FeatureCards = ({ features, colors }: Prop) => {
   return (
     <div className="mx-auto px-4 py-0 w-full flex flex-col items-center ">
+     
+      <Ecosystems/>
       <h1 className="mb-6 font-jost text-3xl text-center font-extrabold text-white tracking-tight leading-tight">
-        What we offer
+      Features
       </h1>
       <p  className="text-gray-300 text-center font-leagueSpartan text-lg md:text-2xl font-normal  tracking-loose  max-w-2xl ">
-        Enabling technical and business founders with tokenisation and growth
-        leveraging our 10+years of experience in token management and
-        infrastructure.
+     Made for game developers and gamers
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
         {features.slice(0, 3).map((feature, index) => (

@@ -10,10 +10,10 @@ import { Layout } from "./components/global/Layout";
 import "./styles/index.scss";
 import Private from "./components/auth/Private";
 import { HomePage } from "./pages/home";
-import Register from "./pages/register";
+// import Register from "./pages/register";
 import ComingSoon from "./pages/comingSoon";
 import Tokens from "./pages/Tokens";
-import KYC from "./pages/Kyc";
+// import KYC from "./pages/Kyc";
 import Dex from "./pages/Dex";
 
 import Pool from "./pages/Pool";
