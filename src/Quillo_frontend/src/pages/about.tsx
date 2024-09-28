@@ -11,11 +11,11 @@ import { Link } from "react-router-dom";
 // import AITknsImg from "../assets/images/ai-tokenomics.png";
 // import GovernImg from "../assets/images/governance.png";
 import "../styles/pages/about.scss";
-import PartA from "../components/sections/partA";
-import FAQSection from "../components/sections/FAQSection";
+// import PartA from "../components/sections/partA";
+// import FAQSection from "../components/sections/FAQSection";
 import FeatureCards from "../components/ howItworks/featuresCard";
 import { features } from "../utils/howItworksFeatures";
-import WhyReorg from "../components/WhyReorg";
+// import WhyReorg from "../components/WhyReorg";
 import Animation from "../components/Animation";
 import JoinCommunity from "../components/JoinCommunity";
 // import TestimonialCarousel from "../components/Reviews";
@@ -46,7 +46,7 @@ export default function AboutReorg(): JSX.Element {
           </div>
 <Animation/>
           <div className="mt-12 flex flex-row justify-center  md:gap-8 items-center space-x-2 sm:space-x-2">
-            <Link to="apply">
+            <Link to="app/token">
               <button className="md:px-12  px-8 py-4 text-sm sm:text-base md:text-lg font-semibold text-white bg-emerald-900 rounded-full shadow-lg hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
             I'm a game developer
               </button>

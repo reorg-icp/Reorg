@@ -49,7 +49,7 @@ const useProjectInfo = create<any>((set: any) => ({
 
   legal: [],
   project_principal: [],
-  socials: { website: "", github: "" },
+  socials: { website: "", github: "https://github.com/reorg-icp" },
 
   tokenomics: null,
   setProjectName: (name: string) => set(() => ({ project_name: name })),

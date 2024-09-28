@@ -5,12 +5,12 @@ import animationData from '../../public/animation.json'; // Replace with your Lo
 const Animation: React.FC = () => {
   return (
     <div className="flex justify-center items-center">
-      <div className="relative w-64 h-64 overflow-hidden rounded-lg flex justify-center items-center"> {/* Use rounded-lg for soft edges */}
+      <div className="relative w-80 h-80 overflow-hidden rounded-lg flex justify-center items-center"> {/* Use rounded-lg for soft edges */}
         <Lottie 
           animationData={animationData} 
           loop 
           autoplay 
-          style={{ width: '100%', height: '100%' }} // Responsive styles
+          style={{ width: '70vw', height: '100vw' }} // Responsive styles
         />
       </div>
     </div>

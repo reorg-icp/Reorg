@@ -31,25 +31,26 @@ type InputData = {
   value: string;
 };
 
+//NB REMOVING GITHUB MIGHT BE A BREAKING CHANGE
 const inputData: Array<InputData> = [
   {
     id: 1,
-    label: "Project name",
+    label: "Game name",
     type: InputType.Text,
     value: "project_name",
   },
   {
     id: 2,
-    label: "Project description",
+    label: "Game description",
     type: InputType.TextArea,
     value: "project_description",
   },
-  {
-    id: 3,
-    label: "Github link",
-    type: InputType.Text,
-    value: "github",
-  },
+  // {
+  //   id: 3,
+  //   label: "Github link",
+  //   type: InputType.Text,
+  //   value: "github",
+  // },
   {
     id: 2,
     label: "Website link",
@@ -60,13 +61,13 @@ const inputData: Array<InputData> = [
 const tokenData: Array<InputData> = [
   {
     id: 1,
-    label: "Token name",
+    label: "Currency name",
     type: InputType.Text,
     value: "token_name",
   },
   {
     id: 2,
-    label: "Token symbol",
+    label: "Currency symbol",
     type: InputType.Text,
     value: "token_symbol",
   },
@@ -84,7 +85,7 @@ const tokenData: Array<InputData> = [
   },
   {
     id: 5,
-    label: "Token logo",
+    label: "Currency logo",
     type: InputType.file,
     value: "token_logo",
   },
@@ -94,7 +95,7 @@ function Disclaimer() {
   return (
     <div className=" mb-6 font-leagueSpartan text-lg bg-[#1414] p-4 rounded-md shadow-lg border border-red-300  flex flex-col gap-2 justify-center items-center">
       <div className="disclaimer-list text-gray-200">
-        - The token deployed is an ICRC2 token !
+        - The currency deployed is an ICRC2 token !
       </div>
       <div className=" text-gray-200">
         - <span className="fee text-white-700 font-bold">1 ICP</span> is charged
@@ -616,7 +617,14 @@ const blockchainOptions = [
   { label: "Arbitrum", value: "arbitrum" },
 ];
 
+const tokenOptions = [
+  { label: "In game currency", value: "in game currency" },
+  { label: "Game asset", value: "game asset" }
+
+];
+
  const [blockchain, setBlockchain] = useState("icp");
+ const [tokenType, setTokenType]=useState("in game currency")
 
   const { plug } = usePlugWallet((state: any) => state);
   const [_, setDaoId] = React.useState<BigInt>(-1n);
@@ -728,11 +736,30 @@ const blockchainOptions = [
         />
         <div className="  w-full h-full px-4 sm:px-6 lg:px-8 py-4 ">
           <div className="flex flex-start text-center mb-4">
-            <h4 className="text-gray-300 font-leagueSpartan font-bold text-lg md:text-xl ">
-              Project information.
-            </h4>
+          <h4 className="text-gray-300 font-leagueSpartan font-bold text-lg md:text-xl">What token do you want to create?</h4>
           </div>
-          <div className="grid xlg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 md:gap-6">
+
+<div style={{marginBottom:"10px"}}>
+
+          <select
+              value={tokenType}
+              onChange={(e) => setTokenType(e.target.value)}
+              className="mt-2 p-2 text-lg bg-gray-800 text-white rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              {tokenOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+
+{tokenType=== "in game currency" && <>
+
+
+
+ <div className="grid xlg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 md:gap-6">
             {inputData.map((input) => {
               return (
                 <Input
@@ -745,7 +772,7 @@ const blockchainOptions = [
             })}
           </div>
             <div className="mt-6 flex flex-col items-start text-left">
-            <h4 className="text-gray-300 font-leagueSpartan font-bold text-lg md:text-xl">Select Blockchain</h4>
+            <h4 className="text-gray-300 font-leagueSpartan font-bold text-lg md:text-xl">Where do you want to deploy your token</h4>
             <select
               value={blockchain}
               onChange={(e) => setBlockchain(e.target.value)}
@@ -758,9 +785,20 @@ const blockchainOptions = [
               ))}
             </select>
           </div>
+
+
+{/* Token information */}
+
+
+
+
+
+       
+
+
           <div className="mt-6 flex flex-start text-center mb-6">
             <h4 className="text-gray-300 font-leagueSpartan font-bold text-xl md:text-2xl ">
-              Token Information.
+              Your in game currency information
             </h4>
           </div>
           <div className="mb-6 w-full grid xlg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 md:gap-6">
@@ -802,12 +840,34 @@ const blockchainOptions = [
                 />
               </span>
             ) : (
-              "Deploy Token"
+              "Deploy Currency"
             )}
           </button>
-        </div>
-      </div>
+          </>
+  }
 
+{tokenType === "game asset" && (
+  <div style={{
+    backgroundColor: 'rgba(0, 128, 0, 0.1)', // Light emerald green background
+    color: 'white', // Darker emerald green text
+    border: '2px solid #004D40', // Darker emerald green border
+    borderRadius: '8px', // Rounded corners
+    padding: '16px', // Padding for spacing
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Subtle shadow
+    fontFamily: 'Arial, sans-serif', // Font family
+    fontSize: '16px', // Font size
+    textAlign: 'center', // Centered text
+    marginTop: '20px' // Margin at the top
+  }}>
+ 
+    <h3>You can only launch in game currencies. Game asset tokenization is coming soon!</h3>
+  </div>
+)}
+
+        </div>
+        
+      </div>
+            
       {/*Tokenomics */}
 
       {/*
