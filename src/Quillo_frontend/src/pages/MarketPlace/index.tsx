@@ -17,9 +17,9 @@ import { useMediaQuery } from 'react-responsive';
 const mockAssets = [
   {
     id: 1,
-    name: "Legendary Sword",
+    name: "Legendary GUN",
     price: 0.5,
-    image: "?text=Legendary+Sword",
+    image: "https://as2.ftcdn.net/v2/jpg/05/68/60/33/1000_F_568603373_myYg5WDPyja669cX4gMLRO7FdxxhbPtS.jpg",
     category: "Weapon",
     featured: true,
   },
@@ -27,7 +27,7 @@ const mockAssets = [
     id: 2,
     name: "Magic Potion",
     price: 0.2,
-    image: "?text=Magic+Potion",
+    image: "https://as2.ftcdn.net/v2/jpg/03/54/99/07/1000_F_354990724_z5fYmELyMAghfmjTg5ESjEDioDz5i4CX.jpg",
     category: "Consumable",
     featured: false,
   },
@@ -35,7 +35,7 @@ const mockAssets = [
     id: 3,
     name: "Dragon Mount",
     price: 1.5,
-    image: "?text=Dragon+Mount",
+    image: "https://as1.ftcdn.net/v2/jpg/06/07/97/58/1000_F_607975804_Av70hhhtBN42s4OlWwnGqYVNsQHz7hpB.jpg",
     category: "Mount",
     featured: true,
   },
@@ -43,7 +43,7 @@ const mockAssets = [
     id: 4,
     name: "Enchanted Armor",
     price: 0.8,
-    image: "?text=Enchanted+Armor",
+    image: "https://as1.ftcdn.net/v2/jpg/05/64/50/68/1000_F_564506895_Q73u4hGjq0hwYm85QdHsMsd5pw21tRFC.jpg",
     category: "Armor",
     featured: false,
   },
@@ -51,7 +51,7 @@ const mockAssets = [
     id: 5,
     name: "Rare Gemstone",
     price: 0.3,
-    image: "?text=Rare+Gemstone",
+    image: "https://as1.ftcdn.net/v2/jpg/03/54/98/98/1000_F_354989895_eMcPM4foL6oquYxP2ieBVDGcTbJRUwvy.jpg",
     category: "Collectible",
     featured: true,
   },
@@ -59,7 +59,7 @@ const mockAssets = [
     id: 6,
     name: "Ancient Scroll",
     price: 0.4,
-    image: "?text=Ancient+Scroll",
+    image: "https://as1.ftcdn.net/v2/jpg/02/06/63/28/1000_F_206632821_yiCYpqti1VQdGrJYDhkWFJIu60XWBQ60.jpg",
     category: "Consumable",
     featured: false,
   },
@@ -67,7 +67,7 @@ const mockAssets = [
     id: 7,
     name: "Mythical Bow",
     price: 0.7,
-    image: "?text=Mythical+Bow",
+    image: "https://as2.ftcdn.net/v2/jpg/09/55/62/15/1000_F_955621585_VXY3Qx3cQjPGr178SHn9tKaI7WwGGBN5.jpg",
     category: "Weapon",
     featured: false,
   },
@@ -75,7 +75,7 @@ const mockAssets = [
     id: 8,
     name: "Flying Carpet",
     price: 1.2,
-    image: "?text=Flying+Carpet",
+    image: "https://as1.ftcdn.net/v2/jpg/05/32/05/94/1000_F_532059478_uXekdU3WNLZK4jSgvUkNhgSy3S7PLwU7.jpg",
     category: "Mount",
     featured: true,
   },
@@ -101,7 +101,7 @@ const Marketplace = () => {
 
   // Inside your component
   const isMobile = useMediaQuery({ maxWidth: 640 }); // Tailwind 'sm' breakpoint (640px)
-  const { cart, addToCart, removeFromCart, clearCart } = useMarketPlaceStore();
+  const { cart, addToCart, removeFromCart } = useMarketPlaceStore();
   useEffect(() => {
     const filteredAssets = mockAssets.filter(
       (asset) =>
@@ -301,30 +301,31 @@ const Marketplace = () => {
 };
 
 const FeaturedAssetCard = ({ asset, addToCart }) => (
-  <motion.div
-    whileHover={{ scale: 1.05 }}
-    className="bg-[#1418] shadow-lg rounded-lg overflow-hidden"
-  >
-    <img
-      src={`https://placehold.co/400x300/${asset.image}`}
-      alt={asset.name}
-      className="w-full h-48 object-cover"
-    />
-    <div className="p-4">
-      <h3 className="text-xl font-semibold text-white">{asset.name}</h3>
-      <p className="text-sm text-gray-400">Category: {asset.category}</p>
-      <p className="text-lg font-bold text-green-400 mt-2">{asset.price} ETH</p>
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => addToCart(asset)}
-        className="mt-4 w-full bg-green-400 text-black px-4 py-2 rounded-lg hover:bg-green-500"
-      >
-        Add to Cart
-      </motion.button>
-    </div>
-  </motion.div>
-);
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="bg-[#1418] shadow-lg rounded-lg overflow-hidden w-full sm:w-72 md:w-80 lg:w-96"
+    >
+      <img
+        src={asset.image}
+        alt={asset.name}
+        className="w-full h-36 sm:h-40 md:h-48 lg:h-56 object-cover"
+      />
+      <div className="p-4">
+        <h3 className="text-lg sm:text-xl font-semibold text-white">{asset.name}</h3>
+        <p className="text-sm text-gray-400">Category: {asset.category}</p>
+        <p className="text-md sm:text-lg font-bold text-green-400 mt-2">{asset.price} ETH</p>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => addToCart(asset)}
+          className="mt-4 w-full bg-green-400 text-black px-4 py-2 rounded-lg hover:bg-green-500"
+        >
+          Add to Cart
+        </motion.button>
+      </div>
+    </motion.div>
+  );
+  
 
 const AssetCard = ({ asset, addToCart }) => (
   <motion.div
@@ -332,7 +333,7 @@ const AssetCard = ({ asset, addToCart }) => (
     className="bg-[#1418] shadow-lg rounded-lg overflow-hidden"
   >
     <img
-      src={`https://placehold.co/400x300/${asset.image}`}
+      src={asset.image}
       alt={asset.name}
       className="w-full h-40 object-cover"
     />
