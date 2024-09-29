@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { FaShoppingCart, FaWallet, FaEthereum, FaCheck } from 'react-icons/fa';
 import useMarketPlaceStore from '../../store/UserMarketPlaceStore';
 import { toast } from 'react-toastify';
