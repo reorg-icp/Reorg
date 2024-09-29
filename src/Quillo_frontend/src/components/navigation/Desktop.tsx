@@ -40,7 +40,7 @@ export const DesktopNav = (): JSX.Element => {
           
           </Link>
 
-          <Link className="text-white hover:text-emerald-100 border border-emerald-800 hover:border-amber-400 px-4 py-2 rounded transition-all duration-300" to="tokens">
+          <Link className="text-white hover:text-emerald-100 border border-emerald-800 hover:border-amber-400 px-4 py-2 rounded transition-all duration-300" to="/market">
           <span className="text-blue-50">Marketplace</span>
           
           </Link>

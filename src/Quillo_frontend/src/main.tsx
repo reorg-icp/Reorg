@@ -27,6 +27,9 @@ import WhitePaper from "./pages/WhitePaper";
 import Roadmap from "./pages/Roadmap";
 import KYC from "./pages/Kyc";
 import Register from "./pages/register";
+import Marketplace from "./pages/MarketPlace";
+import BuyNowPage from "./pages/MarketPlace/BuyNowPage";
+import CheckoutPage from "./pages/MarketPlace/CheckOutPage";
 // import KYC from "./pages/Kyc";
 
 const App = (): JSX.Element => {
@@ -45,14 +48,26 @@ const App = (): JSX.Element => {
         {
           path: "/app/token",
           element: (
-            <Private>
+            // <Private>
               <Register />
-            </Private>
+            // </Private>
           ),
         },
         {
           path: "/tokens",
           element: <Tokens />,
+        },
+        {
+          path: "/market",
+          element: <Marketplace />,
+        },
+        {
+          path: "/Buy/:id",
+          element: <BuyNowPage />,
+        },
+        {
+          path: "/checkout",
+          element: <CheckoutPage/>,
         },
         {
           path: "/apply",
