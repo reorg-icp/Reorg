@@ -1,4 +1,4 @@
-import "../styles/pages/register.scss";
+import "../../styles/pages/register.scss";
 import { useProjectInfo } from "../../store";
 import {
   Quillo_backend,
@@ -215,7 +215,7 @@ function Input({
     </div>
   );
 }
-const Register = () => {
+const DeveloperLaunchToken = () => {
   const navigate=useNavigate();
   const blockchainOptions = [
     { label: "Internet Computer (ICP)", value: "icp" },
@@ -477,4 +477,4 @@ const Register = () => {
     </>
   );
 };
-export default Register;
+export default DeveloperLaunchToken;

@@ -1,6 +1,6 @@
 import React, { JSX } from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { SnackBarProvider } from "./context/snackbarctx";
 import { AuthDrawerProvider } from "./context/authdrawerctx";
 import AboutReorg from "./pages/about";
@@ -26,11 +26,12 @@ import TermsOfService from "./pages/TermsOfService";
 import WhitePaper from "./pages/WhitePaper";
 import Roadmap from "./pages/Roadmap";
 import KYC from "./pages/Kyc";
-import Register from "./pages/register";
 import Marketplace from "./pages/MarketPlace";
-import BuyNowPage from "./pages/MarketPlace/BuyNowPage";
+
+// import BuyNowPage from "./pages/MarketPlace/BuyNowPage";
 import CheckoutPage from "./pages/MarketPlace/CheckOutPage";
-import TokenLaunchSuccessWrapper from "./pages/DeveloperLaunch/LaunchSuccessWrapper";
+import TokenLaunchSuccessWrapper from "./pages/DeveloperLaunchToken/LaunchSuccessWrapper";
+import DeveloperLaunchToken from "./pages/DeveloperLaunchToken";
 
 // import KYC from "./pages/Kyc";
  
@@ -53,7 +54,7 @@ const App = (): JSX.Element => {
           path: "/app/token",
           element: (
             <Private>
-              <Register />
+              <DeveloperLaunchToken />
              </Private>
           ),
         },
@@ -70,10 +71,10 @@ const App = (): JSX.Element => {
           path: "/market",
           element: <Marketplace />,
         },
-        {
-          path: "/Buy/:id",
-          element: <BuyNowPage />,
-        },
+        // {
+        //   path: "/Buy/:id",
+        //   element: <BuyNowPage />,
+        // },
         {
           path: "/checkout",
           element: <CheckoutPage/>,
