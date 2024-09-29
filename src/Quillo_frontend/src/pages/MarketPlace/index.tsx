@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import useMarketPlaceStore from "../../store/UserMarketPlaceStore";
 
 import { useMediaQuery } from 'react-responsive';
+import { useAuthDrawer } from "../../context/authdrawerctx";
 
 // Mock data
 const mockAssets = [
@@ -98,8 +99,7 @@ const Marketplace = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showCart, setShowCart] = useState(false);
   const cartRef = useRef<HTMLDivElement>(null);
-
-  // Inside your component
+  const { openAuthDrawer } = useAuthDrawer();
   const isMobile = useMediaQuery({ maxWidth: 640 }); // Tailwind 'sm' breakpoint (640px)
   const { cart, addToCart, removeFromCart } = useMarketPlaceStore();
   useEffect(() => {
@@ -109,7 +109,6 @@ const Marketplace = () => {
         asset.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setAssets(filteredAssets);
-    // Add event listener for clicks outside the cart
     const handleClickOutside = (event: MouseEvent) => {
       if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
         setShowCart(false);
@@ -123,10 +122,21 @@ const Marketplace = () => {
   }, [selectedCategory, searchTerm]);
 
   const connectWallet = () => {
-    setWalletAddress("0x3f3a...1f8b");
-    setWalletConnected(true);
+    openAuthDrawer("signin");
+    
   };
+useEffect(()=>{
+    const address = localStorage.getItem("principal");
+    if (address) {
+      // Format the address to "0x3f3a...1f8b"
+      const formattedAddress = `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+    
+      setWalletAddress(formattedAddress);
+      setWalletConnected(true);
+    }
+    
 
+},[])
   const featuredAssets = assets.filter((asset) => asset.featured);
 
   return (

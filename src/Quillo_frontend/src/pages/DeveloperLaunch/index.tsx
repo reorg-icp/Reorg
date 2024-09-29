@@ -312,7 +312,7 @@ const Register = () => {
               state: {
                 name:  project_details.project_name,
                 symbol:tokenomics.token_symbol,
-                totalSupply: tokenomics,
+                totalSupply: tokenomics.total_supply,
                 canisterId: tokenResponse?.Ok,
                 symbolImage:tokenomics.token_image || "https://via.placeholder.com/400x300/1418/FFFFFF?text=Game+Asset"
               }
