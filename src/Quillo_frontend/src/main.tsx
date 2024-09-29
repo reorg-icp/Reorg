@@ -48,9 +48,9 @@ const App = (): JSX.Element => {
         {
           path: "/app/token",
           element: (
-            // <Private>
+            <Private>
               <Register />
-            // </Private>
+             </Private>
           ),
         },
         {

@@ -132,62 +132,62 @@ const Marketplace = () => {
   return (
     <div className="min-h-screen   text-gray-300">
       {/* Header */}
-      <header className="fixed  mt-16  top-0 left-0 w-full  bg-[#142] z-50 border border-[#1418]">
-        <div className="border-b border-[#142]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-green-400 tracking-wider text-center sm:text-left">
-              GameAsset Marketplace
-            </h1>
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 items-center">
-              <input
-                type="text"
-                className="text-gray-200 border border-green-400 rounded-lg px-4 py-2 w-full sm:w-auto focus:outline-none focus:ring-1 focus:ring-emerald-300 placeholder-gray-300"
-                placeholder="Search assets..."
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={connectWallet}
-                className="bg-green-400 text-black px-5 py-2 w-full sm:w-auto rounded-lg flex items-center justify-center space-x-2 hover:bg-green-500 transition-all"
-              >
-                <FaWallet />
-                <span>
-                  {walletConnected ? walletAddress : "Connect Wallet"}
-                </span>
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowCart(!showCart)}
-                className="bg-emerald-600 text-white px-3 py-2 w-full sm:w-auto rounded-lg flex items-center justify-center space-x-2 hover:bg-green-400 transition-all"
-              >
-                <FaShoppingCart />
-                <span>{cart.length}</span>
-              </motion.button>
-            </div>
-          </div>
-        </div>
+      <header className="fixed mt-16 top-0 left-0 w-full bg-[#142] md:py-4 z-50 border border-[#1418]">
+  <div className="border-b border-[#142]">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
+      <h1 className="text-xl sm:text-2xl font-extrabold text-white tracking-wider text-center sm:text-left">
+        GameAsset Marketplace.
+      </h1>
+      <div className="flex flex-col sm:flex-row space-y-2.5 sm:space-y-0 sm:space-x-2 items-center">
+        <input
+          type="text"
+          className="text-gray-200 border border-green-400 rounded-lg px-3 py-2 w-full sm:w-auto focus:outline-none focus:ring-1 focus:ring-emerald-300 placeholder-gray-300"
+          placeholder="Search assets..."
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={connectWallet}
+          className="bg-green-400 text-black px-4 py-1.5 sm:px-5 sm:py-2 w-full sm:w-auto rounded-lg flex items-center justify-center space-x-2 hover:bg-green-500 transition-all"
+        >
+          <FaWallet />
+          <span className="text-sm sm:text-base">
+            {walletConnected ? walletAddress : "Connect Wallet"}
+          </span>
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setShowCart(!showCart)}
+          className="bg-emerald-600 text-white px-3 py-1.5 sm:px-3 sm:py-2 w-full sm:w-auto rounded-lg flex items-center justify-center space-x-2 hover:bg-green-400 transition-all"
+        >
+          <FaShoppingCart />
+          <span className="text-sm sm:text-base">{cart.length}</span>
+        </motion.button>
+      </div>
+    </div>
+  </div>
 
-        {/* Category Filter */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap justify-center gap-4">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-lg ${
-                selectedCategory === category
-                  ? "bg-green-400 text-black"
-                  : "bg-[#142] text-gray-200"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-      </header>
+  {/* Category Filter */}
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex flex-wrap justify-center gap-2 sm:gap-4">
+    {categories.map((category) => (
+      <button
+        key={category}
+        onClick={() => setSelectedCategory(category)}
+        className={`px-3 py-1 rounded-lg ${
+          selectedCategory === category
+            ? "bg-green-400 text-black"
+            : "bg-[#142] text-gray-200"
+        }`}
+      >
+        {category}
+      </button>
+    ))}
+  </div>
+</header>
 
-      <div className="mt-[200px]">
+      <div className="md:mt-[200px] mt-[300px] ">
         {/* Featured Assets */}
         {featuredAssets.length > 0 && (
           <section className="max-w-7xl mx-auto px-6 py-10">
@@ -220,7 +220,7 @@ const Marketplace = () => {
         </section>
 
 {/* Shopping Cart */}
-{/* Shopping Cart */}
+
 <AnimatePresence>
   {showCart && (
     <motion.div
@@ -241,10 +241,10 @@ const Marketplace = () => {
         y: isMobile ? 300 : 0, // Exit to bottom on mobile
       }}
       className={`fixed ${
-        isMobile ? 'bottom-0 left-0 right-0 h-2/3' : 'top-0 right-0 h-full w-80'
-      } bg-[#002D1B] shadow-lg p-6 overflow-y-auto`}
+        isMobile ? 'bottom-0 left-0 right-0 h-1/2' : 'top-0 right-0 h-full w-80'
+      } bg-[#002D1B] shadow-lg p-6 overflow-y-auto `}
     >
-      <div className="flex justify-between items-center md:mt-[200px] mt-64">
+      <div className="flex justify-between items-center mb-2 md:mt-60 mt-24 ">
         <h2 className="text-2xl font-bold text-green-400">Shopping Cart</h2>
         <button
           onClick={() => setShowCart(false)}

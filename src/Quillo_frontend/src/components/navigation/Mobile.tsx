@@ -86,19 +86,22 @@ export const MobileNav = (): JSX.Element => {
           </button> */}
 
           <div style={links}>
-            <Link to="tokens" style={aLink}>
-              Tokens
+            <Link to="app/token" style={aLink}>
+            Tokenize game
             </Link>
-                 <Link to="pool" style={aLink}>Pools</Link>
-                  <Link to="dex" style={aLink}>DEX</Link>
+            <Link to="/market" style={aLink}>
+            Marketplace
+            </Link>
+                 {/* <Link to="pool" style={aLink}>Pools</Link>
+                  <Link to="dex" style={aLink}>DEX</Link> */}
 
-            <Link to="comingSoon" style={aLink}>
+            {/* <Link to="comingSoon" style={aLink}>
               LaunchPad
             </Link>
 
             <Link to="comingSoon" style={aLink}>
               Liquidity pools
-            </Link>
+            </Link> */}
           </div>
         </div>
       </Drawer>

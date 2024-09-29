@@ -51,7 +51,7 @@ export default function AboutReorg(): JSX.Element {
             I'm a game developer
               </button>
             </Link>
-            <Link to="/tokens">
+            <Link to="/market">
               <button className="md:px-12 px-4 py-4 text-sm sm:text-base md:text-lg font-semibold text-white bg-emerald-900 rounded-full shadow-lg hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
            I'm a collector
               </button>
