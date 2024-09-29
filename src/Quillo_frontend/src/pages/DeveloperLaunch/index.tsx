@@ -1,14 +1,14 @@
 import "../styles/pages/register.scss";
-import { useProjectInfo } from "../store";
+import { useProjectInfo } from "../../store";
 import {
   Quillo_backend,
   createActor,
-} from "../../../declarations/Quillo_backend";
+} from "../../../../declarations/Quillo_backend";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { e8sToIcp } from "../utils/transactions";
-import { usePlugWallet } from "../store";
+import { e8sToIcp } from "../../utils/transactions";
+import { usePlugWallet } from "../../store";
 
 
 import { Oval } from "react-loader-spinner";
@@ -313,7 +313,8 @@ const Register = () => {
                 name:  project_details.project_name,
                 symbol:tokenomics.token_symbol,
                 totalSupply: tokenomics,
-                canisterId: tokenResponse?.Ok
+                canisterId: tokenResponse?.Ok,
+                symbolImage:tokenomics.token_image || "https://via.placeholder.com/400x300/1418/FFFFFF?text=Game+Asset"
               }
             });
           } else if (tokenResponse?.Err) {

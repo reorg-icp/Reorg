@@ -1,6 +1,6 @@
 import React, { JSX } from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 import { SnackBarProvider } from "./context/snackbarctx";
 import { AuthDrawerProvider } from "./context/authdrawerctx";
 import AboutReorg from "./pages/about";
@@ -30,10 +30,14 @@ import Register from "./pages/register";
 import Marketplace from "./pages/MarketPlace";
 import BuyNowPage from "./pages/MarketPlace/BuyNowPage";
 import CheckoutPage from "./pages/MarketPlace/CheckOutPage";
-// import KYC from "./pages/Kyc";
+import TokenLaunchSuccessWrapper from "./pages/DeveloperLaunch/LaunchSuccessWrapper";
 
+// import KYC from "./pages/Kyc";
+ 
 const App = (): JSX.Element => {
-  
+
+
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -56,6 +60,11 @@ const App = (): JSX.Element => {
         {
           path: "/tokens",
           element: <Tokens />,
+        },
+        {
+          path: "/launch-success",
+          element: <TokenLaunchSuccessWrapper/>
+           
         },
         {
           path: "/market",
