@@ -77,7 +77,7 @@ const CheckoutPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-black text-gray-300 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#1414] text-gray-300 py-12 px-4 sm:px-6 lg:px-8">
      
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold text-center text-green-400 mb-8">Checkout</h1>
