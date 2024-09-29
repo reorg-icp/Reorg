@@ -13,8 +13,8 @@ const TokenLaunchSuccessWrapper: React.FC = () => {
   } | null;
 
   if (!state) {
-    // If there's no state, redirect to a fallback route (e.g., dashboard)
-    return <Navigate to="/dashboard" replace />;
+    // If there's no state, redirect to a launch
+    return <Navigate to="/app/token" replace />;
   }
 
   return (
