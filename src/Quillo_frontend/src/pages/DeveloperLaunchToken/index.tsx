@@ -1,14 +1,14 @@
-import "../styles/pages/register.scss";
-import { useProjectInfo } from "../store";
+import "../../styles/pages/register.scss";
+import { useProjectInfo } from "../../store";
 import {
   Quillo_backend,
   createActor,
-} from "../../../declarations/Quillo_backend";
+} from "../../../../declarations/Quillo_backend";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { e8sToIcp } from "../utils/transactions";
-import { usePlugWallet } from "../store";
+import { e8sToIcp } from "../../utils/transactions";
+import { usePlugWallet } from "../../store";
 
 
 import { Oval } from "react-loader-spinner";
@@ -215,7 +215,7 @@ function Input({
     </div>
   );
 }
-const Register = () => {
+const DeveloperLaunchToken = () => {
   const navigate=useNavigate();
   const blockchainOptions = [
     { label: "Internet Computer (ICP)", value: "icp" },
@@ -312,8 +312,9 @@ const Register = () => {
               state: {
                 name:  project_details.project_name,
                 symbol:tokenomics.token_symbol,
-                totalSupply: tokenomics,
-                canisterId: tokenResponse?.Ok
+                totalSupply: tokenomics.total_supply,
+                canisterId: tokenResponse?.Ok,
+                symbolImage:tokenomics.token_image || "https://via.placeholder.com/400x300/1418/FFFFFF?text=Game+Asset"
               }
             });
           } else if (tokenResponse?.Err) {
@@ -476,4 +477,4 @@ const Register = () => {
     </>
   );
 };
-export default Register;
+export default DeveloperLaunchToken;
