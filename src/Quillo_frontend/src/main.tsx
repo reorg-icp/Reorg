@@ -51,7 +51,7 @@ const App = (): JSX.Element => {
           element: <HomePage />,
         },
         {
-          path: "/app/token",
+          path: "/token",
           element: (
             <Private>
               <DeveloperLaunchToken />

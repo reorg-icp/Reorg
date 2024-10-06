@@ -4,8 +4,8 @@ import { FaEthereum, FaWallet } from 'react-icons/fa';
 
 const BuyNowPage: React.FC = () => {
   const [transactionPending, setTransactionPending] = useState(false);
-  const [walletAddress, setWalletAddress] = useState('0x3f3a...1f8b');
-  const [balance, setBalance] = useState(1.25); // ETH balance of the wallet
+  const [walletAddress] = useState('0x3f3a...1f8b');
+  const [balance] = useState(1.25); // ETH balance of the wallet
   const price = 0.05; // ETH price of the asset
   const gasFee = 0.002; // Approximate gas fee for the transaction
 

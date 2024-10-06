@@ -30,7 +30,8 @@ export type Platform = { Web: null } | { Desktop: null } | { Mobile: null };
 
 interface Socials {
   website: [string];
-  github: [string];
+  github:[string]
+ 
 }
 
 interface Tokenomics {
@@ -49,7 +50,7 @@ const useProjectInfo = create<any>((set: any) => ({
 
   legal: [],
   project_principal: [],
-  socials: { website: "", github: "https://github.com/reorg-icp" },
+  socials: { website: "", github:["null"] },
 
   tokenomics: null,
   setProjectName: (name: string) => set(() => ({ project_name: name })),

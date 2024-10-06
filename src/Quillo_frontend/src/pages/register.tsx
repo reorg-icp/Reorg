@@ -152,9 +152,7 @@ function Input({
             if (value == "website") {
               setSocials({ ...socials, website: [e.target.value] });
             }
-            if (value == "github") {
-              setSocials({ ...socials, github: [e.target.value] });
-            }
+          
             if (value == "token_name") {
               setTokenomics({ ...tokenomics, token_name: e.target.value });
             }
@@ -275,7 +273,12 @@ const Register = () => {
     if (response?.Ok) {
       setDaoId(response?.Ok?.id);
       console.log(typeof response?.Ok?.id);
-      toast.loading("Success... your token is being created..");
+      toast.success("Success... your token is being created..", {
+  autoClose: 5000, 
+
+  
+  // 5 seconds
+});
       let principal_id = localStorage.getItem("principal");
       let result: any = await actor.get_icp_balance(principal_id as string);
       if (result?.e8s < BigInt(101000000)) {

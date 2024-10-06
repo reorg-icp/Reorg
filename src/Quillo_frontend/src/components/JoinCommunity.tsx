@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaDiscord, FaTwitter, FaTelegram, FaYoutube } from 'react-icons/fa'; // Social icons
+import { FaDiscord, FaTelegram, FaYoutube } from 'react-icons/fa'; // Social icons
 import { HiUserGroup } from 'react-icons/hi'; // Community icon
 import { FiMail } from 'react-icons/fi'; // Newsletter icon
 
@@ -45,7 +45,7 @@ const JoinCommunity: React.FC = () => {
 
         {/* Social Media Icons */}
         <div className="flex justify-center space-x-6 text-gray-300 text-3xl mb-8">
-          <a href="#" className="hover:text-white transition-colors"><FaTwitter /></a>
+          <a href="https://x.com/reorgDaos" className="hover:text-white transition-colors">X</a>
           <a href="#" className="hover:text-white transition-colors"><FaTelegram /></a>
           <a href="#" className="hover:text-white transition-colors"><FaYoutube /></a>
         </div>
