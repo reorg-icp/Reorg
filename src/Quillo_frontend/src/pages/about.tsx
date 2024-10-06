@@ -96,10 +96,10 @@ export default function AboutReorg(): JSX.Element {
               <h4>Tools</h4>
               <ul>
                 <li>
-                  <Link to="/tokens">
+                  <Link to="/token">
                   <span
                   className="text-blue-50 hover:text-amber-500"
-                  >Token creator</span>
+                  >Tokenize game</span>
                   
                   </Link>
                 </li>

@@ -57,8 +57,7 @@ const App = (): JSX.Element => {
               <DeveloperLaunchToken />
              </Private>
           ),
-        },
-      
+     
         {
           path: "/launch-success",
           element: <TokenLaunchSuccessWrapper/>
