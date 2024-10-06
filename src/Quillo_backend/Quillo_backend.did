@@ -66,7 +66,7 @@ type Result_3 = variant { Ok : Article; Err : text };
 type Result_4 = variant { Ok : BasicDaoStableStorage; Err : text };
 type Result_5 = variant { Ok : principal; Err : text };
 type Result_6 = variant { Ok : BasicDaoStableStorage; Err : CustomError };
-type Socials = record { website : opt text; github : opt text };
+type Socials = record { website : opt text };
 type SystemParams = record {
   project_details : opt ProjectInfo;
   transfer_fee : opt Tokens;

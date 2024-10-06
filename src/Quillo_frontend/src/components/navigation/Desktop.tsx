@@ -35,7 +35,7 @@ export const DesktopNav = (): JSX.Element => {
 
         </Link>
         <div className=" links">
-          <Link className="text-blue-50 hover:text-emerald-100 border border-emerald-800 hover:border-amber-400 px-4 py-2 rounded transition-all duration-300" to="app/token">
+          <Link className="text-blue-50 hover:text-emerald-100 border border-emerald-800 hover:border-amber-400 px-4 py-2 rounded transition-all duration-300" to="/token">
           <span className="text-blue-50">Tokenize game</span>
           
           </Link>

@@ -12,7 +12,7 @@ import Private from "./components/auth/Private";
 import { HomePage } from "./pages/home";
 // import Register from "./pages/register";
 import ComingSoon from "./pages/comingSoon";
-import Tokens from "./pages/Tokens";
+
 // import KYC from "./pages/Kyc";
 import Dex from "./pages/Dex";
 
@@ -51,17 +51,14 @@ const App = (): JSX.Element => {
           element: <HomePage />,
         },
         {
-          path: "/app/token",
+          path: "/token",
           element: (
             <Private>
               <DeveloperLaunchToken />
              </Private>
           ),
         },
-        {
-          path: "/tokens",
-          element: <Tokens />,
-        },
+      
         {
           path: "/launch-success",
           element: <TokenLaunchSuccessWrapper/>
