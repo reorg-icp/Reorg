@@ -11,7 +11,7 @@ const connectWallet = async (network) => {
 };
 
 // Mock function to simulate blockchain transaction
-const sendTransaction = async (amount, network) => {
+const sendTransaction = async (_amount, _network) => {
   // Simulate a 20% chance of transaction failure
   if (Math.random() < 0.2) {
     throw new Error('Transaction failed');
