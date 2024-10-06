@@ -273,7 +273,7 @@ const Register = () => {
     if (response?.Ok) {
       setDaoId(response?.Ok?.id);
       console.log(typeof response?.Ok?.id);
-      toast.success("Success... your token is being created..", {
+      toast.loading("Success... your token is being created..", {
   autoClose: 5000, 
 
   
@@ -325,11 +325,13 @@ const Register = () => {
             toast.error(
               `There was an error creating the token error:${tokenResponse?.Err}`
             );
+           
           }
         }
         if (response?.Err) {
           setDisabled("");
           toast.error(`There was an error creating the token`);
+          
         }
       }
     }
