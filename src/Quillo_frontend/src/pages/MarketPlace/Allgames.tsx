@@ -16,6 +16,7 @@ const Allgames = () => {
   async function getGames() {
     try {
       let response = await actor.get_projects();
+      console.log(response[0][1].system_params.project_details[0].tokenomics[0].token_image)
       setGames(response);
     } catch (error) {
       console.error("An error occurred:", error);
@@ -44,7 +45,7 @@ const Allgames = () => {
               <div className="flex items-center mb-2">
                 <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-300 mr-4">
                   <img
-                    src={game[1].system_params.project_details[0].tokenomics[0].token_image}
+                    src={`data:image/jpeg;base64,${game[1].system_params.project_details[0].tokenomics[0].token_image}`}
                     alt="Token"
                     className="w-full h-full object-cover"
                   />
