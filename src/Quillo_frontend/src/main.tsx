@@ -32,7 +32,7 @@ import Marketplace from "./pages/MarketPlace";
 import CheckoutPage from "./pages/MarketPlace/CheckOutPage";
 import TokenLaunchSuccessWrapper from "./pages/DeveloperLaunchToken/LaunchSuccessWrapper";
 import DeveloperLaunchToken from "./pages/DeveloperLaunchToken";
-
+import './App.css'
 // import KYC from "./pages/Kyc";
  
 const App = (): JSX.Element => {
