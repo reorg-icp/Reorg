@@ -282,4 +282,8 @@ else
     # Write the text data to the file
     echo "$TEXT_DATA" > "$FILE_PATH"
     echo "File '$FILE_PATH' has been created and data has been written."
+<<<<<<< HEAD
 fi
+=======
+fi
+>>>>>>> bb9048bf8ad9aca0b957ac9106cf3b271e5a1dfc

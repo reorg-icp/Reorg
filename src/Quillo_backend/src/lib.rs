@@ -24,6 +24,9 @@ use ic_stable_structures::{
     memory_manager::{MemoryId, MemoryManager, VirtualMemory},
     BTreeMap, Cell, DefaultMemoryImpl,
 };
+
+use icrc7_and_icrc37::create_and_deploy_nft::create_and_deploy_canister_nft;
+use icrc7_and_icrc37::types::Nft;
 use icrc_ledger_types::icrc1::account::Account;
 // use icrc_ledger_types::icrc2::approve;
 use icrc_ledger_types::icrc2::approve::ApproveArgs;
@@ -43,16 +46,24 @@ mod daoservice;
 mod error_handler;
 mod icrc2;
 mod utils;
+
 pub mod rust_declarations {
     pub mod cmc_service;
     pub mod icp_ledger_service;
     pub mod types;
+}
+pub mod icrc7_and_icrc37{
+    pub mod types;
+    pub mod create_and_deploy_nft;
+    
+
 }
 type Memory = VirtualMemory<DefaultMemoryImpl>;
 
 type IdCell = Cell<u64, Memory>;
 
 const ICRC1_LEDGER_WASM: &[u8] = include_bytes!("./assets/icrc1_ledger.wasm.gz");
+const ICRC7_LEDGER_WASM: &[u8] = include_bytes!("./assets/icrc1_ledger.wasm.gz");
 
 thread_local! {
 
@@ -119,6 +130,36 @@ fn _register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError>
 
     Ok(dao)
 }
+
+
+#[ic_cdk::update]
+async fn launch_nft(
+    Nft { 
+        minting_principal, symbol, name, description, logo, supply_cap 
+    }: Nft
+) -> Result<Principal, String> {
+    let nft = Nft {
+        minting_principal,
+        symbol,
+        name,
+        description,
+        logo,
+        supply_cap,
+    };
+
+    match create_and_deploy_canister_nft(nft).await {
+        Ok(canister_id) => {
+            ic_cdk::println!("Token created successfully");
+            Ok(canister_id)
+        },
+        Err(e) => {
+            ic_cdk::println!("Failed to create token: {:?}", e);
+            Err(e.to_string())
+        }
+    }
+}
+
+
 
 #[ic_cdk::update]
 async fn launch_token(id: u64) -> Result<Principal, String> {

@@ -29,6 +29,14 @@ type BasicDaoStableStorage = record {
   proposals : vec Proposal;
 };
 type CustomError = variant { custom : text; MissingField : text };
+type Nft = record {
+  supply_cap : opt nat;
+  logo : opt text;
+  name : text;
+  description : opt text;
+  minting_principal : principal;
+  symbol : text;
+};
 type ProjectInfo = record {
   tokenomics : opt Tokenomics;
   project_description : text;
@@ -101,10 +109,11 @@ service : {
   get_articles : () -> (vec record { nat64; Article }) query;
   get_icp_balance : (text) -> (Tokens);
   get_projects : () -> (vec record { nat64; BasicDaoStableStorage }) query;
-  get_single_application : (nat64) -> (Result_3) query;
-  get_single_article : (nat64) -> (Result_4) query;
-  get_single_project : (nat64) -> (Result_5) query;
-  launch_token : (nat64) -> (Result_6);
-  publish_article : (text, text) -> (Result_2);
-  register_dao : (UpdateSystemParamsPayload) -> (Result_7);
+  get_single_application : (nat64) -> (Result_2) query;
+  get_single_article : (nat64) -> (Result_3) query;
+  get_single_project : (nat64) -> (Result_4) query;
+  launch_nft : (Nft) -> (Result_5);
+  launch_token : (nat64) -> (Result_5);
+  publish_article : (text, text) -> (Result_1);
+  register_dao : (UpdateSystemParamsPayload) -> (Result_6);
 }

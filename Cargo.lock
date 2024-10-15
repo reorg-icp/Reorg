@@ -14,6 +14,7 @@ dependencies = [
  "ic-ledger-types",
  "ic-stable-structures",
  "icrc-ledger-types",
+ "mint-cycles",
  "serde",
  "serde_derive",
 ]
@@ -1005,6 +1006,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "488016bfae457b036d996092f6cb448677611ce4449e970ceaf42695203f218a"
 dependencies = [
  "autocfg",
+]
+
+[[package]]
+name = "mint-cycles"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "87d6ca4104ad51c3be189a4b3c123c95d60c61a49eea78a952c656aa3ea9a597"
+dependencies = [
+ "candid",
+ "ic-cdk 0.13.2",
+ "ic-cdk-macros 0.14.0",
+ "ic-cdk-timers",
+ "ic-ledger-types",
+ "ic-stable-structures",
+ "icrc-ledger-types",
+ "serde",
+ "serde_derive",
 ]
 
 [[package]]
