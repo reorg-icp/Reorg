@@ -34,6 +34,7 @@ import CheckoutPage from "./pages/MarketPlace/CheckOutPage";
 import TokenLaunchSuccessWrapper from "./pages/DeveloperLaunchToken/LaunchSuccessWrapper";
 import DeveloperLaunchToken from "./pages/DeveloperLaunchToken";
 import './App.css'
+import Marketplace from "./pages/MarketPlace";
 // import KYC from "./pages/Kyc";
  
 const App = (): JSX.Element => {
@@ -67,6 +68,10 @@ const App = (): JSX.Element => {
         {
           path: "/market",
           element: <Allgames/>,// Marketplace
+        },
+        {
+          path: "/assets/:project_name",
+          element: <Marketplace/>,// Marketplace
         },
         // {
         //   path: "/Buy/:id",
