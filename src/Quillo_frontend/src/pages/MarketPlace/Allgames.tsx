@@ -1,4 +1,4 @@
-import { Quillo_backend, createActor } from "../../declarations/Quillo_backend";
+import { Quillo_backend, createActor } from "../../../../declarations/Quillo_backend";
 import { usePlugWallet } from "../../store";
 import { useEffect, useState } from "react";
 

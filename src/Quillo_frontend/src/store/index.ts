@@ -50,7 +50,7 @@ const useProjectInfo = create<any>((set: any) => ({
 
   legal: [],
   project_principal: [],
-  socials: { website: "", github:["null"] },
+  socials: { website: "" },
 
   tokenomics: null,
   setProjectName: (name: string) => set(() => ({ project_name: name })),

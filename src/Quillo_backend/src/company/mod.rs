@@ -25,9 +25,11 @@ impl Default for ProjectInfo {
     }
 }
 #[derive(Clone, Debug, CandidType, Deserialize)]
-pub struct Socials {
-    pub website: Option<String>,
-    pub github: Option<String>,
+pub struct Socials{
+
+    pub website:Option<String>
+ 
+ 
 }
 #[derive(Clone, Debug, CandidType, Deserialize)]
 pub enum ProjectCategory {

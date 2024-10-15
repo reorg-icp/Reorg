@@ -275,10 +275,7 @@ const Register = () => {
       setDaoId(response?.Ok?.id);
       console.log(typeof response?.Ok?.id);
       toast.loading("Success... your token is being created..", {
-  autoClose: 5000, 
-
-  
-  // 5 seconds
+  autoClose: 5000, // 5 seconds
 });
       let principal_id = localStorage.getItem("principal");
       let result: any = await actor.get_icp_balance(principal_id as string);

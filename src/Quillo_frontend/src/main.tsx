@@ -12,7 +12,7 @@ import Private from "./components/auth/Private";
 import { HomePage } from "./pages/home";
 // import Register from "./pages/register";
 import ComingSoon from "./pages/comingSoon";
-import Tokens from "./pages/Tokens";
+
 // import KYC from "./pages/Kyc";
 import Dex from "./pages/Dex";
 import Allgames from "./pages/MarketPlace/Allgames";
@@ -33,7 +33,7 @@ import KYC from "./pages/Kyc";
 import CheckoutPage from "./pages/MarketPlace/CheckOutPage";
 import TokenLaunchSuccessWrapper from "./pages/DeveloperLaunchToken/LaunchSuccessWrapper";
 import DeveloperLaunchToken from "./pages/DeveloperLaunchToken";
-
+import './App.css'
 // import KYC from "./pages/Kyc";
  
 const App = (): JSX.Element => {
@@ -57,12 +57,8 @@ const App = (): JSX.Element => {
             <Private>
               <DeveloperLaunchToken />
              </Private>
-          ),
-        },
-        {
-          path: "/tokens",
-          element: <Tokens />,
-        },
+          )},
+     
         {
           path: "/launch-success",
           element: <TokenLaunchSuccessWrapper/>
