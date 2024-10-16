@@ -35,6 +35,7 @@ import TokenLaunchSuccessWrapper from "./pages/DeveloperLaunchToken/LaunchSucces
 import DeveloperLaunchToken from "./pages/DeveloperLaunchToken";
 import './App.css'
 import Marketplace from "./pages/MarketPlace";
+import AssetDetailsPage from "./pages/MarketPlace/SigleDetailsPage";
 // import KYC from "./pages/Kyc";
  
 const App = (): JSX.Element => {
@@ -73,10 +74,10 @@ const App = (): JSX.Element => {
           path: "/assets/:project_name",
           element: <Marketplace/>,// Marketplace
         },
-        // {
-        //   path: "/Buy/:id",
-        //   element: <BuyNowPage />,
-        // },
+        {
+          path: "/details/:id",
+          element: <AssetDetailsPage  />,
+        },
         {
           path: "/checkout",
           element: <CheckoutPage/>,

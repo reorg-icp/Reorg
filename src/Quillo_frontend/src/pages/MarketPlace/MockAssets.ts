@@ -1,5 +1,5 @@
 // Mock data for assets associated with each token
-const mockAssets = [
+export const MockAssets = [
     // Assets for Cyber Token (CYQ)
     {
       id: 1,
