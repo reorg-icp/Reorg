@@ -36,6 +36,7 @@ import DeveloperLaunchToken from "./pages/DeveloperLaunchToken";
 import './App.css'
 import Marketplace from "./pages/MarketPlace";
 import AssetDetailsPage from "./pages/MarketPlace/SigleDetailsPage";
+import TokenPurchase from "./pages/MarketPlace/TokenPurchase";
 // import KYC from "./pages/Kyc";
  
 const App = (): JSX.Element => {
@@ -71,8 +72,12 @@ const App = (): JSX.Element => {
           element: <Allgames/>,// Marketplace
         },
         {
-          path: "/assets/:project_name",
+          path: "/assets/:tokenSymbol",
           element: <Marketplace/>,// Marketplace
+        },
+        {
+          path: "/BuyCurrency/:tokenSymbol",
+          element: <TokenPurchase/>,// Marketplace
         },
         {
           path: "/details/:id",

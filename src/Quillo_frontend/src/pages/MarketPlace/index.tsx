@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { FaWallet } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { Link, useParams } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import useMarketPlaceStore from "../../store/UserMarketPlaceStore";
 
 import { useMediaQuery } from "react-responsive";
 import { useAuthDrawer } from "../../context/authdrawerctx";
 import { MockAssets } from "./MockAssets";
-import { Tag, ShoppingCart, Star, ChevronRight } from "lucide-react";
+import { Tag, ShoppingCart, Star, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, Search, Filter } from "lucide-react";
 import ShopingCartBucket from "./module/ShopingCartBucket";
 import Cart from "./module/cart";
 // Mock data
@@ -97,40 +97,47 @@ import Cart from "./module/cart";
 // ];
 
 const Marketplace = () => {
-  const { project_name } = useParams();
+  const { tokenSymbol } = useParams();
   const [walletConnected, setWalletConnected] = useState(false);
   const [walletAddress, setWalletAddress] = useState("");
-  const [assets, setAssets] = useState(MockAssets);
+  const [assets, setAssets] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [isHeaderExpanded, setIsHeaderExpanded] = useState(false);
 
   const cartRef = useRef<HTMLDivElement>(null);
   const { openAuthDrawer } = useAuthDrawer();
   const isMobile = useMediaQuery({ maxWidth: 640 });
+  console.log(tokenSymbol);
   const {  addToCart, setShowCart } =
     useMarketPlaceStore();
-
-  useEffect(() => {
-    const filteredAssets = MockAssets.filter(
-      (asset) =>
-        (selectedCategory === "All" || asset.category === selectedCategory) &&
-        asset.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        asset.project === project_name
-    );
-    setAssets(filteredAssets);
-
-    const handleClickOutside = (event: MouseEvent) => {
-      if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
-        setShowCart(false);
+    const tokenAssets = MockAssets.find(token => token.tokenSymbol === tokenSymbol);
+      
+    useEffect(() => {
+      // Find the token object that matches the tokenSymbol from the URL
+    
+      if (tokenAssets) {
+        const filteredAssets = tokenAssets.assets.filter(
+          (asset) =>
+            (selectedCategory === "All" || asset.category === selectedCategory) &&
+            asset.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setAssets(filteredAssets);
+      } else {
+        setAssets([]);
       }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [selectedCategory, searchTerm, project_name]); // Add dependencies
-
+  
+      const handleClickOutside = (event: MouseEvent) => {
+        if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
+          setShowCart(false);
+        }
+      };
+  
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [selectedCategory, searchTerm, tokenSymbol]);
   const connectWallet = () => {
     openAuthDrawer("signin");
   };
@@ -148,67 +155,136 @@ const Marketplace = () => {
     }
   }, []);
   const featuredAssets = assets.filter((asset) => asset.featured);
+  const navigate = useNavigate();
 
+  const goBack = () => {
+    navigate(-1); 
+  };
+
+  const toggleHeader = () => {
+    setIsHeaderExpanded(!isHeaderExpanded);
+  };
   return (
     <div className="min-h-screen   text-gray-300">
-      {/* Header */}
-      <header className="fixed mt-16 top-0 left-0 w-full bg-[#142] md:py-4 z-50 border border-[#1418]">
-        <div className="border-b border-[#142]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-white tracking-wider text-center sm:text-left">
-              GameAsset Marketplace.
-            </h1>
-            <div className="flex flex-col sm:flex-row space-y-2.5 sm:space-y-0 sm:space-x-4 items-center">
-              <input
-                type="text"
-                className="text-gray-200 border border-green-400 rounded-lg px-3 py-2 w-full sm:w-auto focus:outline-none focus:ring-1 focus:ring-emerald-300 placeholder-gray-300"
-                placeholder="Search assets..."
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
+   
+        {/* Collapsible Header */}
+        <motion.header
+        initial={false}
+        animate={{ height: isHeaderExpanded ? "auto" : "60px" }}
+        transition={{ duration: 0.3 }}
+        className="fixed top-0 mt-16 left-0 w-full bg-[#142] z-50 border border-[#1419] overflow-hidden flex-col items-center  justify-center  "
+      >
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 py-2">
+          <div className="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
+            <div className="flex items-center justify-between w-full">
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={connectWallet}
-                className="bg-green-400 hidden md:block  text-black px-4 py-1.5 sm:px-5 sm:py-2 w-full sm:w-auto rounded-lg md:flex md:items-center md:justify-center md:space-x-2  hover:bg-green-500 transition-all"
+                whileHover={{ x: -5 }}
+                onClick={goBack}
+                className="flex items-center text-green-400 hover:text-green-300 text-sm sm:text-base"
               >
-                <FaWallet />
-                <span className="text-sm sm:text-base">
-                  {walletConnected ? walletAddress : "Connect Wallet"}
-                </span>
+                <ChevronLeft size={16} />
+                <span className="ml-1">Back</span>
               </motion.button>
-              <ShopingCartBucket />
+              {!isHeaderExpanded && (
+                <h1 className="text-lg sm:text-xl font-extrabold text-white tracking-wider text-center mx-2">
+                  GameAsset Market
+                </h1>
+              )}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={toggleHeader}
+                className="flex items-center text-green-400 hover:text-green-300 bg-[#1a2b] px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm"
+              >
+                {isHeaderExpanded ? (
+                  <>
+                    <ChevronUp size={16} className="mr-1 sm:mr-2" />
+                    <span className="hidden sm:inline">Hide</span>
+                    <span className="sm:hidden">Hide</span>
+                  </>
+                ) : (
+                  <>
+                    <Search size={16} className="mr-1 sm:mr-2" />
+                    <Filter size={16} className="mr-1 sm:mr-2" />
+                    <span className="hidden sm:inline">Search & Filter</span>
+                    <span className="sm:hidden">Search</span>
+                  </>
+                )}
+              </motion.button>
             </div>
           </div>
         </div>
-
-        {/* Category Filter */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex flex-wrap justify-center gap-2 sm:gap-4">
-          {["All", ...new Set(assets.map((asset) => asset.category))].map(
-            (category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-3 py-1 rounded-lg ${
-                  selectedCategory === category
-                    ? "bg-green-400 text-black"
-                    : "bg-[#142] text-gray-200"
-                }`}
-              >
-                {category}
-              </button>
-            )
+       
+        
+        <AnimatePresence>
+          {isHeaderExpanded && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
+                <h1 className="text-xl sm:text-2xl font-extrabold text-white tracking-wider text-center sm:text-left">
+                  GameAsset Marketplace
+                </h1>
+                <div className="flex flex-col sm:flex-row space-y-2.5 sm:space-y-0 sm:space-x-4 items-center w-full sm:w-auto">
+                  <div className="relative w-full sm:w-auto">
+                    <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                    <input
+                      type="text"
+                      className="text-gray-200 border border-green-400 rounded-lg pl-10 pr-3 py-2 w-full focus:outline-none focus:ring-1 focus:ring-emerald-300 placeholder-gray-400"
+                      placeholder="Search assets..."
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                  </div>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={connectWallet}
+                    className="bg-green-400 hidden md:block text-black px-4 py-1.5 sm:px-5 sm:py-2 w-full sm:w-auto rounded-lg md:flex md:items-center md:justify-center md:space-x-2 hover:bg-green-500 transition-all"
+                  >
+                    <FaWallet />
+                    <span className="text-sm sm:text-base">
+                      {walletConnected ? walletAddress : "Connect Wallet"}
+                    </span>
+                  </motion.button>
+                  <ShopingCartBucket />
+                </div>
+              </div>
+              
+              {/* Category Filter */}
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex flex-wrap justify-center gap-2 sm:gap-4">
+                {["All", ...new Set(assets.map((asset) => asset.category))].map(
+                  (category) => (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={`px-3 py-1 rounded-lg ${
+                        selectedCategory === category
+                          ? "bg-green-400 text-black"
+                          : "bg-[#1a2b] text-gray-200 hover:bg-[#2a3b] transition-colors"
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  )
+                )}
+              </div>
+            </motion.div>
           )}
-        </div>
-      </header>
+        </AnimatePresence>
+      </motion.header>
 
       <Cart ref={cartRef}/>
+      <div className={` ${isHeaderExpanded ? 'mt-[300px] md:mt-[230px] ' : 'mt-32'}`}>
 
-      <div className="md:mt-[200px] mt-[300px] ">
+
         {/* Featured Assets */}
         {featuredAssets.length > 0 && (
           <section className="max-w-7xl mx-auto px-6 py-6">
             <h2 className="text-2xl font-bold text-green-400 mb-4">
-              Featured Game Assets
+            Featured {tokenAssets.project} Assets
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredAssets.map((asset) => (
@@ -226,7 +302,7 @@ const Marketplace = () => {
         {/* All Assets */}
         <section className="max-w-7xl mx-auto md:px-6  px-2 py-6">
           <h2 className="text-2xl font-bold text-green-400 mb-4">
-            Explore Assets
+          Explore {tokenAssets.project} Assets
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 md:gap-8 gap-2">
             {assets.map((asset) => (
@@ -280,7 +356,7 @@ const FeaturedAssetCard = ({ asset, addToCart }) => (
         <span className="text-sm">{asset.category}</span>
       </div>
       <div className="flex justify-between items-center mb-4">
-        <p className="text-lg font-bold text-green-400">{asset.price} ETH</p>
+        <p className="text-lg font-bold text-green-400">${asset.price} {asset.tokenSymbol}</p>
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -321,17 +397,27 @@ const AssetCard = ({ asset, addToCart, isMobile }) => (
         <span className="text-xs">{asset.category}</span>
       </div>
       <div className="flex justify-between items-center">
-        <p className="text-md font-bold text-green-400">{asset.price} ETH</p>
+        <p className="text-md font-bold text-green-400">${asset.price} {asset.tokenSymbol} </p>
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => addToCart(asset)}
-          className="bg-green-400 text-black md:px-2 md:py-1  px-[0.2] py-1 rounded-lg hover:bg-green-500 text-xs font-semibold flex items-center"
+          className="bg-green-400 text-black md:px-3 md:py-1  px-[0.2] py-1 rounded-lg hover:bg-green-500 text-xs font-semibold flex items-center"
         >
           <ShoppingCart size={isMobile ? 6 : 12} className="md:mr-1" />
           Add to Cart
         </motion.button>
+
       </div>
+      <motion.div
+        className="text-green-400 text-sm font-semibold flex items-center justify-end cursor-pointer mt-4"
+        whileHover={{ x: 5 }}
+      >
+        <Link to={`/details/${asset.id}`} className="flex items-center ">
+          <span>View Details</span>
+          <ChevronRight size={16} className="ml-1" />
+        </Link>
+      </motion.div>
     </div>
   </motion.div>
 );
