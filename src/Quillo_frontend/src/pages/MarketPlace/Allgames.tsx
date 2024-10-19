@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Sparkles, Coins, ArrowRight, ShoppingCart } from 'lucide-react';
-
+import { motion } from 'framer-motion';
 import gamesData from './games.json';
 
 const Allgames = () => {
@@ -61,13 +61,20 @@ const Allgames = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 mt-4">
-              <Link to={`/assets/${game[1].system_params.project_details[0].tokenomics[0].token_symbol}`} className="w-full sm:w-auto">
+           <motion.button
+           
+        whileHover={{ x: 10 }}
+        whileTap={{ scale: 0.9 }}
+
+        >
+           <Link to={`/assets/${game[1].system_params.project_details[0].tokenomics[0].token_symbol}`} className="w-full sm:w-auto">
                 <button className="w-full sm:w-auto flex items-center justify-center text-primary hover:text-gray-400 transition-colors duration-300 px-4 py-2">
                  
                   <span className="align-middle">View Market</span>
                   <ArrowRight size={18} className="mr-2" />
                 </button>
               </Link>
+           </motion.button>
               <Link to={`/BuyCurrency/${game[1].system_params.project_details[0].tokenomics[0].token_symbol}`} className="w-full sm:w-auto">
                 <button className="w-full sm:w-auto bg-[#141] border border-primary text-primary hover:bg-secondary hover:text-gray-300 transition-colors duration-300 flex items-center justify-center p-2 rounded">
                   <ShoppingCart size={18} className="mr-2" />

@@ -57,7 +57,7 @@ function Cart(ref) {
               className="flex justify-between items-center mb-4 mt-4"
             >
               <span>{item.name}</span>
-              <span>{item.price} ETH</span>
+              <span>{item.price} </span>
               <button
                 onClick={() => removeFromCart(item.id)}
                 className="text-red-500 hover:text-red-600"

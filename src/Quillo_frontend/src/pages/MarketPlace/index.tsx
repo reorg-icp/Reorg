@@ -165,7 +165,7 @@ const Marketplace = () => {
     setIsHeaderExpanded(!isHeaderExpanded);
   };
   return (
-    <div className="min-h-screen   text-gray-300">
+    <div className="max-h-screen  text-gray-300">
    
         {/* Collapsible Header */}
         <motion.header
@@ -377,7 +377,7 @@ const FeaturedAssetCard = ({ asset, addToCart }) => (
         className="text-green-400 text-sm font-semibold flex items-center justify-end cursor-pointer"
         whileHover={{ x: 5 }}
       >
-        <Link to={`/details/${asset.id}`} className="flex items-center ">
+        <Link to={`/details/${asset.id}?tokenSymbol=${asset.tokenSymbol}`} className="flex items-center ">
           <span>View Details</span>
           <ChevronRight size={16} className="ml-1" />
         </Link>
