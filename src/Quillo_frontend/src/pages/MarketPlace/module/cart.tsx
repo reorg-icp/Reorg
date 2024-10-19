@@ -35,7 +35,7 @@ function Cart(ref) {
           }}
           className={`fixed ${
             isMobile
-              ? "bottom-0 left-0 right-0 h-1/2"
+              ? "bottom-0 left-0 right-0 h-1/2 z-20"
               : "top-0 right-0 h-full w-80"
           } bg-[#002D1B] shadow-lg p-6 overflow-y-auto `}
         >

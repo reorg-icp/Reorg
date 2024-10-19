@@ -190,12 +190,16 @@ const Marketplace = () => {
                   GameAsset Market
                 </h1>
               )}
+              <div className="flex space-x-4">
+              {!isHeaderExpanded &&  <ShopingCartBucket />}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={toggleHeader}
                 className="flex items-center text-green-400 hover:text-green-300 bg-[#1a2b] px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm"
               >
+               
+
                 {isHeaderExpanded ? (
                   <>
                     <ChevronUp size={16} className="mr-1 sm:mr-2" />
@@ -211,6 +215,8 @@ const Marketplace = () => {
                   </>
                 )}
               </motion.button>
+              </div>
+            
             </div>
           </div>
         </div>
