@@ -5,6 +5,7 @@ interface CartItem {
   id: number;
   name: string;
   price: number;
+  tokenSymbol:string;
   // Add other relevant properties
 }
 

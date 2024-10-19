@@ -282,7 +282,11 @@ const Marketplace = () => {
         </AnimatePresence>
       </motion.header>
 
+      <div
+      ref={cartRef}
+      >
       <Cart ref={cartRef}/>
+      </div>
       <div className={` ${isHeaderExpanded ? 'mt-[300px] md:mt-[230px] ' : 'mt-32'}`}>
 
 
@@ -377,7 +381,8 @@ const FeaturedAssetCard = ({ asset, addToCart }) => (
         className="text-green-400 text-sm font-semibold flex items-center justify-end cursor-pointer"
         whileHover={{ x: 5 }}
       >
-        <Link to={`/details/${asset.id}?tokenSymbol=${asset.tokenSymbol}`} className="flex items-center ">
+       <Link to={`/details/${asset.id}?tokenSymbol=${asset.tokenSymbol}`} className="flex items-center ">
+
           <span>View Details</span>
           <ChevronRight size={16} className="ml-1" />
         </Link>
@@ -419,7 +424,8 @@ const AssetCard = ({ asset, addToCart, isMobile }) => (
         className="text-green-400 text-sm font-semibold flex items-center justify-end cursor-pointer mt-4"
         whileHover={{ x: 5 }}
       >
-        <Link to={`/details/${asset.id}`} className="flex items-center ">
+       <Link to={`/details/${asset.id}?tokenSymbol=${asset.tokenSymbol}`} className="flex items-center ">
+
           <span>View Details</span>
           <ChevronRight size={16} className="ml-1" />
         </Link>
