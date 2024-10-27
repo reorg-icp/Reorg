@@ -1,0 +1,129 @@
+[
+    [
+      1,
+      {
+        "system_params": {
+          "project_details": [
+            {
+              "project_name": "CyberQuest",
+              "tokenomics": [
+                {
+                  "token_image": "https://via.placeholder.com/150/0000FF/808080?text=CyberQuest+Token",
+                  "token_name": "Cyber Token",
+                  "token_symbol": "CYQ",
+                  "total_supply": "1000000",
+                  "transfer_fee": "0.5"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    [
+      2,
+      {
+        "system_params": {
+          "project_details": [
+            {
+              "project_name": "DragonStrike",
+              "tokenomics": [
+                {
+                  "token_image": "https://via.placeholder.com/150/808000/808080?text=DragonStrike+Token",
+                  "token_name": "Dragon Coin",
+                  "token_symbol": "DSK",
+                  "total_supply": "500000",
+                  "transfer_fee": "0.25"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    [
+      3,
+      {
+        "system_params": {
+          "project_details": [
+            {
+              "project_name": "GalaxyRaiders",
+              "tokenomics": [
+                {
+                  "token_image": "https://via.placeholder.com/150/green/808080?text=GalaxyRaiders+Token",
+                  "token_name": "Galaxy Token",
+                  "token_symbol": "GRT",
+                  "total_supply": "2000000",
+                  "transfer_fee": "1.0"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    [
+      4,
+      {
+        "system_params": {
+          "project_details": [
+            {
+              "project_name": "SolarConquest",
+              "tokenomics": [
+                {
+                  "token_image": "https://via.placeholder.com/150/000FF/808080?text=SolarConquest+Token",
+                  "token_name": "Solar Coin",
+                  "token_symbol": "SLC",
+                  "total_supply": "750000",
+                  "transfer_fee": "0.75"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    [
+      5,
+      {
+        "system_params": {
+          "project_details": [
+            {
+              "project_name": "VortexWarriors",
+              "tokenomics": [
+                {
+                  "token_image": "https://via.placeholder.com/150/800080/808080?text=VortexWarriors+Token",
+                  "token_name": "Vortex Token",
+                  "token_symbol": "VTX",
+                  "total_supply": "1200000",
+                  "transfer_fee": "0.4"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    [
+      6,
+      {
+        "system_params": {
+          "project_details": [
+            {
+              "project_name": "NebulaHorizon",
+              "tokenomics": [
+                {
+                  "token_image": "https://via.placeholder.com/150/000000/808080?text=NebulaHorizon+Token",
+                  "token_name": "Nebula Coin",
+                  "token_symbol": "NBH",
+                  "total_supply": "900000",
+                  "transfer_fee": "0.3"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  ]
+  

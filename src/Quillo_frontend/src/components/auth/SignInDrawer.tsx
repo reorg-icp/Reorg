@@ -12,6 +12,7 @@ import { logoFont, baseFont } from "../../constants/styles";
 import LoadingAnimation from "../../assets/animations/loading.json";
 import { usePlugWallet } from "../../store";
 import { PlugMobileProvider } from '@funded-labs/plug-mobile-sdk';
+// import MobileProvider from "@funded-labs/plug-mobile-sdk/dist/src/MobileProvider";
 
 export const SignInDrawer = (): JSX.Element => {
   const { setPlug } = usePlugWallet((state: any) => state);
@@ -46,6 +47,7 @@ export const SignInDrawer = (): JSX.Element => {
           console.log("pared")
         }
    // Create agent using mobile provider
+   
       const agent = await mobileProvider.createAgent({
         host: live_host,
         targets: [ 'ircua-hiaaa-aaaap-qhkvq-cai'], // Specify the canisters
@@ -53,7 +55,11 @@ export const SignInDrawer = (): JSX.Element => {
       console.log("created Agent",agent)
       const user_principal=  await agent.getPrincipal();
       localStorage.setItem("principal", user_principal as unknown as string);
-      setPlug(agent);
+      let plug={
+        agent:agent
+      }
+      setPlug(plug);
+        localStorage.setItem("plug",JSON.stringify(plug) );
 
       }else{
       await (window as any).ic.plug.requestConnect({
@@ -66,6 +72,7 @@ export const SignInDrawer = (): JSX.Element => {
       ).ic?.plug?.agent?.getPrincipal();
       localStorage.setItem("principal", user_principal);
       console.log((window as any).ic?.plug?.agent);
+      localStorage.setItem("plug",JSON.stringify((window as any).ic?.plug ));
       setPlug((window as any).ic?.plug);
       closeAuthdrawer();
       showsuccesssnack("You signed in successfully");

@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { e8sToIcp } from "../utils/transactions";
-import { usePlugWallet } from "../store";
+// import { usePlugWallet } from "../store";
 
 
 import { Oval } from "react-loader-spinner";
@@ -152,9 +152,7 @@ function Input({
             if (value == "website") {
               setSocials({ ...socials, website: [e.target.value] });
             }
-            if (value == "github") {
-              setSocials({ ...socials, github: [e.target.value] });
-            }
+          
             if (value == "token_name") {
               setTokenomics({ ...tokenomics, token_name: e.target.value });
             }
@@ -231,7 +229,8 @@ const Register = () => {
   const [blockchain, setBlockchain] = useState("icp");
   const [tokenType, setTokenType] = useState("in game currency");
 
-  const { plug } = usePlugWallet((state: any) => state);
+  // const { plug } = usePlugWallet((state: any) => state);
+  const plug= JSON.parse(localStorage.getItem("plug"));
   const [_, setDaoId] = React.useState<BigInt>(-1n);
   const [disabled, setDisabled] = React.useState("");
   const agent = plug?.agent; // use plug's agent so that caller is authenticated user
@@ -324,11 +323,13 @@ const Register = () => {
             toast.error(
               `There was an error creating the token error:${tokenResponse?.Err}`
             );
+           
           }
         }
         if (response?.Err) {
           setDisabled("");
           toast.error(`There was an error creating the token`);
+          
         }
       }
     }

@@ -67,6 +67,7 @@ export const DesktopNav = (): JSX.Element => {
           title="Authenticate in to reorg."
           onClick={() => openAuthDrawer("signin")}
         >
+          
           <span className="text-blue-50">Connect Wallet</span>
           <Wallet width={20} height={18} />
         </button>

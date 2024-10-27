@@ -7,7 +7,6 @@ use candid::types::principal;
 use candid::Nat;
 use candid::Principal;
 use error_handler::CustomError;
-
 use ic_cdk::api::call::RejectionCode;
 use ic_ledger_types::account_balance;
 use ic_ledger_types::AccountBalanceArgs;
@@ -25,6 +24,9 @@ use ic_stable_structures::{
     memory_manager::{MemoryId, MemoryManager, VirtualMemory},
     BTreeMap, Cell, DefaultMemoryImpl,
 };
+
+use icrc7_and_icrc37::create_and_deploy_nft::create_and_deploy_canister_nft;
+use icrc7_and_icrc37::types::Nft;
 use icrc_ledger_types::icrc1::account::Account;
 // use icrc_ledger_types::icrc2::approve;
 use icrc_ledger_types::icrc2::approve::ApproveArgs;
@@ -32,7 +34,9 @@ use icrc_ledger_types::icrc2::approve::ApproveError;
 // use icrc_ledger_types::icrc2::transfer_from;
 // use icrc_ledger_types::icrc2::transfer_from::TransferFromArgs;
 // use icrc_ledger_types::icrc2::transfer_from::TransferFromError;
-
+use ic_ledger_types::{TransferArgs, TransferError};
+use icrc_ledger_types::icrc2::transfer_from::TransferFromArgs;
+use icrc_ledger_types::icrc2::transfer_from::TransferFromError;
 use std::cell::RefCell;
 
 mod application;
@@ -42,16 +46,24 @@ mod daoservice;
 mod error_handler;
 mod icrc2;
 mod utils;
+
 pub mod rust_declarations {
     pub mod cmc_service;
     pub mod icp_ledger_service;
     pub mod types;
+}
+pub mod icrc7_and_icrc37{
+    pub mod types;
+    pub mod create_and_deploy_nft;
+    
+
 }
 type Memory = VirtualMemory<DefaultMemoryImpl>;
 
 type IdCell = Cell<u64, Memory>;
 
 const ICRC1_LEDGER_WASM: &[u8] = include_bytes!("./assets/icrc1_ledger.wasm.gz");
+const ICRC7_LEDGER_WASM: &[u8] = include_bytes!("./assets/icrc1_ledger.wasm.gz");
 
 thread_local! {
 
@@ -118,6 +130,36 @@ fn _register_dao(payload: UpdateSystemParamsPayload) -> Result<Dao, CustomError>
 
     Ok(dao)
 }
+
+
+#[ic_cdk::update]
+async fn launch_nft(
+    Nft { 
+        minting_principal, symbol, name, description, logo, supply_cap 
+    }: Nft
+) -> Result<Principal, String> {
+    let nft = Nft {
+        minting_principal,
+        symbol,
+        name,
+        description,
+        logo,
+        supply_cap,
+    };
+
+    match create_and_deploy_canister_nft(nft).await {
+        Ok(canister_id) => {
+            ic_cdk::println!("Token created successfully");
+            Ok(canister_id)
+        },
+        Err(e) => {
+            ic_cdk::println!("Failed to create token: {:?}", e);
+            Err(e.to_string())
+        }
+    }
+}
+
+
 
 #[ic_cdk::update]
 async fn launch_token(id: u64) -> Result<Principal, String> {
@@ -355,6 +397,111 @@ async fn get_single_article(id: u64) -> Result<Article, String> {
 
 fn match_get_article(id: &u64) -> Option<Article> {
     ARTICLES.with(|service| service.borrow().get(id))
+}
+#[ic_cdk::update]
+
+async fn buy_tokens(token_id: String, amount: Nat, token_owner: String) -> Result<Nat, String> {
+    let approve_result = _approve_spending(
+        Principal::from_text("ryjl3-tyaaa-aaaaa-aaaba-cai").unwrap(),
+        amount.clone(),
+        Principal::from_text(token_id.clone()).unwrap(),
+    )
+    .await;
+
+    match approve_result {
+        Ok(_) => {
+            //First the user needs to transfer some ICP to the token owner, where we cut a transaction cost then the token owner sends some Tokens to the caller
+            let caller_acc = Account::from(ic_cdk::caller());
+            let transfer_from_args = TransferFromArgs {
+                from: caller_acc,
+                to: Account::from(Principal::from_text(token_owner.clone()).unwrap()),
+                amount: amount.clone(),
+                fee: None,
+                memo: None,
+                spender_subaccount: None,
+                created_at_time: None,
+            };
+            let transfer_result =
+                ic_cdk::call::<(TransferFromArgs,), (Result<BlockIndex, TransferFromError>,)>(
+                    Principal::from_text("ryjl3-tyaaa-aaaaa-aaaba-cai")
+                        .expect("Could not decode the principal"),
+                    "icrc2_transfer_from",
+                    (transfer_from_args,),
+                )
+                .await
+                .map_err(|e| format!("Failed to call ledger :{:?}", e))?
+                .0;
+
+            match transfer_result {
+                Ok(_) => {
+                    //do more here like teransgerring tokens in to the user and cutting a transaction
+                    let _token_approve_result = _approve_spending(
+                        Principal::from_text(token_id.clone()).unwrap(),
+                        amount.clone(),
+                        Principal::from_text("ircua-hiaaa-aaaap-qhkvq-cai").unwrap(),
+                    )
+                    .await?;
+
+                    let transfer_from_args = TransferFromArgs {
+                        from: Account::from(Principal::from_text(token_owner.clone()).unwrap()),
+                        to: caller_acc,
+                        amount: amount.clone(),
+                        fee: None,
+                        memo: None,
+                        spender_subaccount: None,
+                        created_at_time: None,
+                    };
+                    let transfer_result2 = ic_cdk::call::<
+                        (TransferFromArgs,),
+                        (Result<BlockIndex, TransferFromError>,),
+                    >(
+                        Principal::from_text(token_id).expect("Could not decode the principal"),
+                        "icrc2_transfer_from",
+                        (transfer_from_args,),
+                    )
+                    .await
+                    .map_err(|e| format!("Failed to call ledger :{:?}", e))?
+                    .0;
+                    match transfer_result2 {
+                        Ok(index) => Ok(index.into()),
+                        Err(e) => Err(format!("ledger transfer error: {:?}", e)),
+                    }
+                }
+                Err(e) => Err(format!("ledger transfer error: {:?}", e)),
+            }
+        }
+        Err(e) => Err(format!("ledger transfer error: {:?}", e)),
+    }
+}
+
+async fn _approve_spending(
+    token_id: Principal,
+    amount: Nat,
+    spender: Principal,
+) -> Result<Nat, String> {
+    //we need to approve our backend to spend on behalf of the user
+    let approve_args = ApproveArgs {
+        from_subaccount: None,
+        spender: Account::from(spender),
+        amount,
+        expected_allowance: None,
+        expires_at: None,
+        fee: None,
+        memo: None,
+        created_at_time: None,
+    };
+    let approve_result = ic_cdk::call::<(ApproveArgs,), (Result<Nat, ApproveError>,)>(
+        token_id,
+        "icrc2_approve",
+        (approve_args,),
+    )
+    .await
+    .map_err(|e| format!("Failed to call ledger :{:?}", e))?
+    .0;
+    match approve_result {
+        Ok(block) => Ok(block),
+        Err(e) => Err(format!("There was an approve error !! {:?}", e)),
+    }
 }
 
 #[ic_cdk::update]

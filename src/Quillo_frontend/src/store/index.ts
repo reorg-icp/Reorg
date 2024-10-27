@@ -30,7 +30,8 @@ export type Platform = { Web: null } | { Desktop: null } | { Mobile: null };
 
 interface Socials {
   website: [string];
-  github: [string];
+  github:[string]
+ 
 }
 
 interface Tokenomics {

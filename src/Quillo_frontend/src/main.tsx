@@ -15,6 +15,7 @@ import ComingSoon from "./pages/comingSoon";
 
 // import KYC from "./pages/Kyc";
 import Dex from "./pages/Dex";
+import Allgames from "./pages/MarketPlace/Allgames";
 
 import Pool from "./pages/Pool";
 import Articles from "./pages/Blog/Articles";
@@ -26,13 +27,16 @@ import TermsOfService from "./pages/TermsOfService";
 import WhitePaper from "./pages/WhitePaper";
 import Roadmap from "./pages/Roadmap";
 import KYC from "./pages/Kyc";
-import Marketplace from "./pages/MarketPlace";
+// import Marketplace from "./pages/MarketPlace";
 
 // import BuyNowPage from "./pages/MarketPlace/BuyNowPage";
 import CheckoutPage from "./pages/MarketPlace/CheckOutPage";
 import TokenLaunchSuccessWrapper from "./pages/DeveloperLaunchToken/LaunchSuccessWrapper";
 import DeveloperLaunchToken from "./pages/DeveloperLaunchToken";
-
+import './App.css'
+import Marketplace from "./pages/MarketPlace";
+import AssetDetailsPage from "./pages/MarketPlace/SigleDetailsPage";
+import TokenPurchase from "./pages/MarketPlace/TokenPurchase";
 // import KYC from "./pages/Kyc";
  
 const App = (): JSX.Element => {
@@ -65,12 +69,20 @@ const App = (): JSX.Element => {
         },
         {
           path: "/market",
-          element: <Marketplace />,
+          element: <Allgames/>,// Marketplace
         },
-        // {
-        //   path: "/Buy/:id",
-        //   element: <BuyNowPage />,
-        // },
+        {
+          path: "/assets/:tokenSymbol",
+          element: <Marketplace/>,// Marketplace
+        },
+        {
+          path: "/BuyCurrency/:tokenSymbol",
+          element: <TokenPurchase/>,// Marketplace
+        },
+        {
+          path: "/details/:id",
+          element: <AssetDetailsPage  />,
+        },
         {
           path: "/checkout",
           element: <CheckoutPage/>,

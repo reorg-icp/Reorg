@@ -29,6 +29,14 @@ type BasicDaoStableStorage = record {
   proposals : vec Proposal;
 };
 type CustomError = variant { custom : text; MissingField : text };
+type Nft = record {
+  supply_cap : opt nat;
+  logo : opt text;
+  name : text;
+  description : opt text;
+  minting_principal : principal;
+  symbol : text;
+};
 type ProjectInfo = record {
   tokenomics : opt Tokenomics;
   project_description : text;
@@ -60,12 +68,13 @@ type ProposalState = variant {
   Accepted;
 };
 type Result = variant { Ok : nat64; Err : text };
-type Result_1 = variant { Ok : text; Err : text };
-type Result_2 = variant { Ok : Application; Err : text };
-type Result_3 = variant { Ok : Article; Err : text };
-type Result_4 = variant { Ok : BasicDaoStableStorage; Err : text };
-type Result_5 = variant { Ok : principal; Err : text };
-type Result_6 = variant { Ok : BasicDaoStableStorage; Err : CustomError };
+type Result_1 = variant { Ok : nat; Err : text };
+type Result_2 = variant { Ok : text; Err : text };
+type Result_3 = variant { Ok : Application; Err : text };
+type Result_4 = variant { Ok : Article; Err : text };
+type Result_5 = variant { Ok : BasicDaoStableStorage; Err : text };
+type Result_6 = variant { Ok : principal; Err : text };
+type Result_7 = variant { Ok : BasicDaoStableStorage; Err : CustomError };
 type Socials = record { website : opt text };
 type SystemParams = record {
   project_details : opt ProjectInfo;
@@ -93,8 +102,9 @@ type UpdateSystemParamsPayload = record {
 service : {
   apply : (Application) -> (text);
   approve_transfer : () -> (Result);
-  delete_all_articles : () -> (Result_1);
-  delete_all_daos : () -> (Result_1);
+  buy_tokens : (text, nat, text) -> (Result_1);
+  delete_all_articles : () -> (Result_2);
+  delete_all_daos : () -> (Result_2);
   get_applications : () -> (vec record { nat64; Application }) query;
   get_articles : () -> (vec record { nat64; Article }) query;
   get_icp_balance : (text) -> (Tokens);
@@ -102,6 +112,7 @@ service : {
   get_single_application : (nat64) -> (Result_2) query;
   get_single_article : (nat64) -> (Result_3) query;
   get_single_project : (nat64) -> (Result_4) query;
+  launch_nft : (Nft) -> (Result_5);
   launch_token : (nat64) -> (Result_5);
   publish_article : (text, text) -> (Result_1);
   register_dao : (UpdateSystemParamsPayload) -> (Result_6);
