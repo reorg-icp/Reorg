@@ -4,26 +4,54 @@ import useMarketPlaceStore from '../../store/UserMarketPlaceStore';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import {debounce} from 'lodash';
+import { fetchGasFees } from './module/FetchGasFees';
 // Mock function to simulate wallet connection
 const connectWallet = async (network) => {
   return { address: '0x1234...5678', balance: '10.5', network };
 };
 
 // Mock function to simulate blockchain transaction
-const sendTransaction = async (amounts, networks) => {
+const sendTransaction = async (_amounts, _networks) => {
   if (Math.random() < 0.2) {
     throw new Error('Transaction failed');
   }
   return { txHash: '0xabcd...1234' };
 };
 
+
 // Mock function to estimate gas fees
-const debouncedEstimateGasFee = debounce(async (network) => {
+const debouncedEstimateGasFee = debounce(async (network:string, token:string) => {
   const baseFee = Math.random() * 0.01;
-  return baseFee * (network === 'Ethereum' ? 1 : network === 'ICP' ? 0.0 : 0.5);
+  const networkMultiplier = getGasFee(network);
+  const tokenMultiplier = getTokenMultiplier(token);
+  return baseFee * await networkMultiplier * tokenMultiplier;
 }, 300);
 
-const networks = ["ICP", 'Ethereum', 'Binance Smart Chain', 'Polygon', 'Avalanche'];
+
+const getGasFee = async (network:string) => {
+  try {
+    const gasFee = await fetchGasFees(network);
+    console.log(`Current gas fee for ${network}: ${gasFee} Gwei`);
+    return Number(gasFee);
+  } catch (error) {
+    console.error('Error fetching gas fee:', error);
+  }
+};
+
+
+// Mock function to get token multiplier (you would replace this with actual conversion rates)
+const getTokenMultiplier = (token:string) => {
+  const rates = {
+    ETH: 1,
+    BNB: 0.3,
+    MATIC: 0.0001,
+    AVAX: 0.05,
+    ICP: 0.2,
+    // Add other in-game currencies here
+  };
+  return rates[token] || 0.01;
+};
+const networks = ["ICP", 'Ethereum',  'Polygon','Arbitrum'];
 
 const CheckoutPage = () => {
   const [step, setStep] = useState(1);
@@ -54,7 +82,7 @@ const CheckoutPage = () => {
     const updateGasFees = async () => {
       const fees = {};
       for (const token of Object.keys(groupedByToken)) {
-        fees[token] = await debouncedEstimateGasFee(selectedNetwork);
+        fees[token] = await debouncedEstimateGasFee(selectedNetwork, token);
       }
       setGasFees(fees);
     };
@@ -194,25 +222,25 @@ const CheckoutPage = () => {
               <p className="mb-2">Balance: {wallet.balance} ETH</p>
               <p className="mb-4">Network: {wallet.network}</p>
               <div className="border-t border-gray-600 mt-4 pt-4">
-                {Object.keys(totals).map((token) => (
-                  <div key={token} className="mb-4">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-300">Subtotal ({token}):</span>
-                      <span className="text-green-400">{totals[token].toFixed(2)} {token}</span>
-                    </div>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-300">Estimated Gas Fee ({token}):</span>
-                      <span className="text-green-400">{gasFees[token]?.toFixed(4)} {token}</span>
-                    </div>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-semibold text-gray-300">Total to Pay ({token}):</span>
-                      <span className="font-semibold text-green-400">
-                        {(totals[token] + (gasFees[token] || 0)).toFixed(4)} {token}
-                      </span>
-                    </div>
+              {Object.keys(totals).map((token) => (
+                <div key={token} className="mb-4">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-gray-300">Subtotal ({token}):</span>
+                    <span className="text-green-400">{totals[token].toFixed(2)} {token}</span>
                   </div>
-                ))}
-              </div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-gray-300">Estimated Gas Fee ({token}):</span>
+                    <span className="text-green-400">{gasFees[token]?.toFixed(4)} {token}</span>
+                  </div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-semibold text-gray-300">Total to Pay ({token}):</span>
+                    <span className="font-semibold text-green-400">
+                      {(totals[token] + (gasFees[token] || 0)).toFixed(4)} {token}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
               <button
                 onClick={handleConfirmPurchase}
                 className="w-full mt-6 bg-green-500 text-white py-3 rounded-lg font-semibold transition-all duration-300 ease-in-out transform hover:bg-green-600 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"

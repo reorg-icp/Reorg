@@ -3,12 +3,38 @@ import { useState, useEffect } from "react";
 import { Sparkles, Coins, ArrowRight, ShoppingCart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import gamesData from './games.json';
+import { createActor, Quillo_backend } from "../../../../declarations/Quillo_backend";
+import { usePlugWallet } from "../../store";
 
 const Allgames = () => {
   const [games, setGames] = useState([]);
+  const { plug } = usePlugWallet((state) => state);
+
+  const agent = plug?.agent; // use plug's agent so that caller is authenticated user
+  console.log(agent);
+  console.log(`Type of agent is ${typeof agent}`);
+
+  let actor = Quillo_backend;
+  actor = createActor("ircua-hiaaa-aaaap-qhkvq-cai", { agent });
+
+  async function getGames() {
+    try {
+      let response = await actor.get_projects();
+      setGames(response);
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  }
 
   useEffect(() => {
-    setGames(gamesData);
+    const fetchGames = async () => {
+      await getGames(); // Call getGames on component mount
+      if (games.length <= 0) {
+        setGames(gamesData);
+      }
+    };
+  
+    fetchGames();
   }, []);
 
   return (
